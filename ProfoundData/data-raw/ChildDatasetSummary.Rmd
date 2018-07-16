@@ -1,0 +1,321 @@
+```{r, echo=F, warning = F, message=F}
+firstVariables <- c("record_id", "site", "site_id", "species", "species_id", "date", "year", "mo", "day")
+``` 
+
+### Dataset SITES
+
+
+```{r, echo=F, warning = F, message=F}
+df <- browseData("METADATA_SITES")
+df <- df[, !colnames(df) %in% c("source")]
+rownames(df) <- NULL
+``` 
+
+The sites parameters were provided by the local site data responsibles. The sites variables that we included in the database are listed in the table below.
+
+ 
+```{r, echo=F, warning = F, message=F}
+pander(df, adding = 0, missing = '**--**', round = 3,    use.hyphening = TRUE, split.cells = 3, split.tables = 200, caption = tableCaption("Description of SITES variables included in the database."))
+``` 
+
+### Dataset SITEDESCRIPTION
+
+```{r, echo=F, warning = F, message=F}
+df <- browseData("METADATA_SITEDESCRIPTION")
+df <- df[, !colnames(df) %in% c("source")]
+
+rownames(df) <- NULL
+``` 
+
+The sites description were provided by the local site data responsibles. The site description variables that we included in the database are listed in the table below.
+
+ 
+```{r, echo=F, warning = F, message=F}
+pander(df, adding = 0, missing = '**--**', round = 3,    use.hyphening = TRUE, split.cells = 3, split.tables = 200, caption = tableCaption("Description of SITEDESCRIPTION variables included in the database."))
+``` 
+
+
+### Dataset TREE
+
+```{r, echo=F, warning = F, message=F}
+df <- browseData("METADATA_TREE")
+df <- df[, !colnames(df) %in% c("source")]
+rownames(df) <- NULL
+``` 
+
+The individual tree data were provided by the local site data responsibles. The tree level variables that we included in the database are listed in the table below.
+
+ 
+```{r, echo=F, warning = F, message=F}
+pander(df, adding = 0, missing = '**--**', round = 3,    use.hyphening = TRUE, split.cells = 3, split.tables = 200, caption = tableCaption("Description of TREE variables included in the database."))
+``` 
+
+
+### Dataset STAND
+
+```{r, echo=F, warning = F, message=F}
+df <- browseData("METADATA_STAND")
+df <- df[, !colnames(df) %in% c("source")]
+rownames(df) <- NULL
+``` 
+
+
+The stand data were provided by the local site data responsibles. In some cases, the data were derived using the function *summarizeData* included in this package. The stand variables that we included in the database are listed in the table below.
+ 
+```{r, echo=F, warning = F, message=F}
+pander(df, adding = 0, missing = '**--**', round = 3,    use.hyphening = TRUE, split.cells = 3, split.tables = 200, caption = tableCaption("Description of STAND variables included in the database."))
+``` 
+
+
+### Dataset SOIL
+
+```{r, echo=F, warning = F, message=F, results='hide'}
+df <- browseData("METADATA_SOIL")
+df <- df[, !colnames(df) %in% c("source")]
+rownames(df) <- NULL
+```
+
+The soil data were provided by the local site data responsibles. The variables that we included in the database are listed in the table below. The data is very heteregenous, therefore not all variables are available for each site.
+
+```{r, echo=F, warning = F, message=F}
+pander(df, adding = 0, missing = '**--**', round = 3,    use.hyphening = TRUE, split.cells = 3, split.tables = 200, caption = tableCaption("Description of SOIL variables included in the database."))
+``` 
+
+
+
+### Dataset CLIMATE
+
+The climate data contains daily measurements of the following variables: min, max and mean temperature, precipitation, relative humidity, air pressure, global radiation and wind speed.
+
+```{r, echo=F, warning = F, message=F}
+df <- browseData("METADATA_CLIMATE_LOCAL")
+df <- df[df$source != "FLUXNET",]
+df <- df[, !colnames(df) %in% c("source", "comments")]
+rownames(df) <- NULL
+
+maskVariables <- c( "site_id", "date","year", "mo","day","airpress_hPa","p_mm", "rad_Jcm2day", "record_id", "relhum_percent", "tmax_degC", "tmean_degC","tmin_degC", "wind_ms")
+``` 
+
+ 
+```{r, echo=F, warning = F, message=F}
+pander(df, adding = 0, missing = '**--**', round = 3,    use.hyphening = TRUE, split.cells = 3, split.tables = 200, caption = tableCaption("Description of CLIMATE variables included in the database."))
+``` 
+
+#### Dataset CLIMATE_LOCAL 
+
+The CLIMATE LOCAL data refers to climate data measured at each forest site or meteorological stations close to the location of the forest site. For those forest sites for which the data has been derived from half-hourly  [FLUXNET2015](http://fluxnet.fluxdata.org/) data, we also provide the original half-hourly data in the table METEOROLOGICAL.
+
+When relative humidity was not part of the original data, we calculated it from the vapour pressure deficit and the daily temperatures as
+
+$$
+relhum\_percent = (1 - VPD\_F / es)*100
+$$
+
+where
+
+$$
+es = (es(tmax\_degC) - es(tmin\_degC))/2
+$$
+    
+and 
+
+$$
+es(Ta) = 0.6108e^{(17.27*Ta)/ (Ta + 237.3)}
+$$
+`r paste("Besides the variables listed in Table ", tableCaption(), ", the CLIMATE_LOCAL dataset contains additional variables to indicate the data quality.", sep='') `
+
+```{r, echo=F, warning = F, message=F}
+df <- browseData("METADATA_CLIMATE_LOCAL")
+df <- df[df$source == "FLUXNET",]
+df <- df[, !colnames(df) %in% c("source", "comments")]
+
+df <- df[!df$variable %in% maskVariables, ]
+rownames(df)<- NULL
+``` 
+
+ 
+```{r, echo=F, warning = F, message=F}
+pander(df, adding = 0, missing = '**--**', round = 3, use.hyphening = TRUE, split.cells = 3, split.tables = Inf, caption = tableCaption("Description of CLIMATE_LOCAL quality variables from FLUXNET included in the database."))
+``` 
+
+#### Dataset CLIMATE_ISIMIP
+
+
+There are several climatic datasets based on the Inter-Sectoral Impact Model Intercomparison Project (ISIMIP). For each forest site, we extracted the climate data from the corresponding gridcell in the ISIMIP data.
+
+```{r, echo=F, warning = F, message=F}
+df <- browseData("SOURCE")
+df <- df[df$dataset == "CLIMATE_ISIMIPFT",]
+df <- df[, !colnames(df) %in% c("comments")]
+``` 
+`r paste("- **CLIMATE_ISIMIPFT:** Based on climate data described here: ", df$reference, sep='') `
+
+```{r, echo=F, warning = F, message=F}
+df <- browseData("SOURCE")
+df <- df[df$dataset == "CLIMATE_ISIMIP2A",]
+df <- df[, !colnames(df) %in% c("comments")]
+``` 
+`r paste("- **CLIMATE_ISIMIP2A:** Based on climate data described here: ", df$reference, sep='') `
+
+```{r, echo=F, warning = F, message=F}
+df <- browseData("SOURCE")
+df <- df[df$dataset == "CLIMATE_ISIMIP2B",]
+df <- df[, !colnames(df) %in% c("comments")]
+``` 
+`r paste("- **CLIMATE_ISIMIP2B:** Based on climate data described here: ", df$reference, sep='') `
+
+```{r, echo=F, warning = F, message=F}
+df <- browseData("SOURCE")
+df <- df[df$dataset == "CLIMATE_ISIMIP2BLBC",]
+df <- df[, !colnames(df) %in% c("comments")]
+``` 
+`r paste("- **CLIMATE_ISIMIP2BLBC:** Based on climate data described here: ", df$reference, sep='') `
+
+
+
+ISIMIP climatic datasets contain additionally one or both of these variables
+```{r, echo=F, warning = F, message=F}
+df <- browseData("METADATA_CLIMATE_ISIMIP2B")
+df <- df[, !colnames(df) %in% c("source")]
+df <- df[!df$variable %in% maskVariables, ]
+rownames(df)<- NULL
+``` 
+
+ 
+```{r, echo=F, warning = F, message=F}
+pander(df, adding = 0, missing = '**--**', round = 3,
+    use.hyphening = TRUE, split.cells = 3, split.tables = Inf, caption = tableCaption("Description of CLIMATE_ISIMIP addtional variables included in the database."))
+``` 
+
+
+### Dataset NDEPOSITION
+
+```{r, echo=F, warning = F, message=F}
+df <- browseData("METADATA_NDEPOSITION_EMEP")
+df <- df[, !colnames(df) %in% c("source")]
+rownames(df) <- NULL
+``` 
+The nitrogen deposition data contain yearly measurements of the variables listed in the table below.
+
+```{r, echo=F, warning = F, message=F}
+pander(df, adding = 0, missing = '**--**', round = 3,    use.hyphening = TRUE, split.cells = 3, split.tables = Inf, caption = tableCaption("Description of NDEPOSITION variables included in the database."))
+``` 
+
+#### Dataset NDEPOSITION_EMEP
+```{r, echo=F, warning = F, message=F}
+df <- browseData("SOURCE")
+df <- df[df$dataset=="NDEPOSITION_EMEP",]
+rownames(df) <- NULL
+``` 
+
+`r paste("The NDEPOSITION_EMEP data were obtained from ", df$reference, sep='') `
+
+
+#### Dataset NDEPOSITION_ISIMIP2B
+```{r, echo=F, warning = F, message=F}
+df <- browseData("SOURCE")
+df <- df[df$dataset=="NDEPOSITION_ISIMIP2B",]
+rownames(df) <- NULL
+``` 
+
+`r paste("The NDEPOSITION_EMEP data were extracted for for each forest site from the corresponding gridcell in the ISIMIP data described in ", df$reference, ". The dataset contains additionally the variable *forcingConditions*.", sep='') `
+```{r, echo=F, warning = F, message=F}
+df <- browseData("METADATA_NDEPOSITION_ISIMIP2B")
+df <- df[df$variable == "forcingConditions", ]
+rownames(df)<- NULL
+``` 
+
+ 
+```{r, echo=F, warning = F, message=F}
+pander(df, adding = 0, missing = '**--**', round = 3,
+    use.hyphening = TRUE, split.cells = 3, split.tables = Inf, caption = tableCaption("Description of NDEPOSITION_ISIMIP2B addtional variables included in the database."))
+``` 
+
+### Dataset CO2_ISIMIP
+
+The CO2 dataset contains yearly global concentrations of atmospheric CO2 for several forcing conditions.
+
+```{r, echo=F, warning = F, message=F}
+df <- browseData("METADATA_CO2_ISIMIP")
+df <- df[, !colnames(df) %in% c("source")]
+rownames(df) <- NULL
+``` 
+
+```{r, echo=F, warning = F, message=F}
+pander(df, adding = 0, missing = '**--**', round = 3,    use.hyphening = TRUE, split.cells = 3, split.tables = Inf, caption = tableCaption("Description of CO2_ISIMIP variables included in the database."))
+``` 
+
+
+
+### Dataset ATMOSPHERICHEATCONDUCTION
+
+The ENERGYBALANCE data contains half-hourly measurements of the variables listed in the table below and was obtained from  [FLUXNET2015](http://fluxnet.fluxdata.org/) data.
+
+```{r, echo=F, warning = F, message=F}
+df <- browseData("METADATA_ATMOSPHERICHEATCONDUCTION")
+df <- df[, !colnames(df) %in% c("source")]
+rownames(df) <- NULL
+``` 
+
+```{r, echo=F, warning = F, message=F}
+pander(df, adding = 0, missing = '**--**', round = 3,    use.hyphening = TRUE, split.cells = 3, split.tables = Inf, caption = tableCaption("Description of ATMOSPHERICHEATCONDUCTION variables included in the database."))
+``` 
+
+
+### Dataset FLUX
+
+The energy balance data contains half-hourly measurements of the variables listed in the table below and was obtained from  [FLUXNET2015](http://fluxnet.fluxdata.org/) data.
+
+```{r, echo=F, warning = F, message=F}
+df <- browseData("METADATA_FLUX")
+df <- df[, !colnames(df) %in% c("source")]
+rownames(df) <- NULL
+``` 
+
+```{r, echo=F, warning = F, message=F}
+pander(df, adding = 0, missing = '**--**', round = 3, use.hyphening = TRUE, split.cells = 3, split.tables = Inf, caption = tableCaption("Description of FLUX variables included in the database."))
+``` 
+
+
+
+### Dataset SOILTS
+
+```{r, echo=F, warning = F, message=F}
+df <- browseData("METADATA_SOILTS")
+df <- df[, !colnames(df) %in% c("source")]
+rownames(df) <- NULL
+``` 
+
+The soil time series data contains half-hourly measurements of the variables listed in the table below and was obtained from  [FLUXNET2015](http://fluxnet.fluxdata.org/) data.
+
+ 
+```{r, echo=F, warning = F, message=F}
+pander(df, adding = 0, missing = '**--**', round = 3, use.hyphening = TRUE, split.cells = 3, split.tables = Inf, caption = tableCaption("Description of SOILTS variables included in the database."))
+``` 
+
+
+### Dataset MODIS
+
+```{r, echo=F, warning = F, message=F}
+df <- browseData("METADATA_MODIS")
+modisMod <- unique(df$source)
+#metadatas <- paste("METADATA_MODIS_", modisMod,sep="")
+modisMod <- paste("- **MODIS_", modisMod,sep="")
+modisMod <- paste(modisMod, "**", sep="")
+#df <- lapply(metadatas, function(x) df<- browseData(x))
+#df <- Reduce(rbind, df)
+df <- df[, !colnames(df) %in% c("comments")]
+rownames(df) <- NULL
+``` 
+
+The original MODIS time series are available at the [NASA Land Processes Distributed Archive Center (LP DAAC)](https://lpdaac.usgs.gov/). The data were downloaded from the [Land Product Subset web service](https://daac.ornl.gov/MODIS/) of the [Oak Ridge National Laboratory Distributed Active Archive Center (ORNL DAAC)](https://daac.ornl.gov/). Five different datasets are included in the database:
+
+
+`r paste(modisMod, collapse='\n') `
+
+The data comprise surface reflectance, land surface temperature, vegetation indexes, Leaf Area Index (LAI) and Fraction of Photosynthetically Active Radiation (FPAR), GPP and Net Photosynthesis. The MODIS variables are listed the table below.
+
+ 
+```{r, echo=F, warning = F, message=F}
+pander(df, adding = 0, missing = '**--**', round = 3,    use.hyphening = TRUE, split.cells = 3, split.tables = Inf, caption = tableCaption("Description of MODIS variables included in the database."))
+``` 

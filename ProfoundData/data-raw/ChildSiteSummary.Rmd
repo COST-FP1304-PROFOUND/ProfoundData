@@ -1,0 +1,40 @@
+`r paste("### Site ", currentSiteName, collapse='\n')`
+
+
+#### General info
+
+`r paste(currentDescription, collapse='\n')`
+
+The following data is available for the site
+```{r, echo = F, echo=F, message= F, warning=F}
+dataAvailable <- overview[i,3:ncol(overview)]
+rownames(dataAvailable) <- NULL
+pander(dataAvailable, adding = 0, missing = '**--**', round = 3,
+       use.hyphening = TRUE, split.cells = 3, caption = tableCaption(paste("Available data for ", currentSiteName, sep="")))
+
+```
+
+#### Data
+
+```{r, eval = T, echo=F, message= F, warning=F, results='hide'}
+both <- c("CLIMATE_LOCAL")
+onlySummary <- c("CLIMATE_ISIMIP2B", "CLIMATE_ISIMIP2A", "CLIMATE_ISIMIPFT", "CLIMATE_ISIMIP2BLBC")
+nothing <- c("MODIS", "CO2_ISIMIP", "SOIL", "SITES")#, "NDEPOSITION_ISIMIP2B")
+all <- c(both, onlySummary, nothing)
+
+outDummy <- NULL
+for (k in 1:length(dataAvailable)){
+  if(dataAvailable[k] == 1){
+    currentDataset <- names(dataAvailable)[k] 
+      if(names(dataAvailable)[k] %in% both){
+        outDummy <- c(outDummy, knit_child('ChildBoth.Rmd'))
+      }else if(names(dataAvailable)[k] %in% onlySummary){
+         outDummy <- c(outDummy, knit_child('ChildSummary.Rmd'))
+      }else if(!names(dataAvailable)[k] %in% nothing){
+        outDummy <- c(outDummy, knit_child('ChildPlot.Rmd'))
+    }
+  }
+}
+```
+
+`r paste(outDummy, collapse='\n')`

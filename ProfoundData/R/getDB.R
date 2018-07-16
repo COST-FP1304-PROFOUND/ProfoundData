@@ -1,0 +1,25 @@
+#' @title A function to retun information the a database connection object
+#'
+#' @description A getDB funtion to return the filepath to the database
+#' @return a character string with filepath to the database
+#' @export
+#' @examples
+#'  \dontrun{
+#'   getDB()
+#'  }
+#' @note To report errors in the package or the data, please use the issue tracker
+#' in the github repository of TG2 https://github.com/COST-FP1304-PROFOUND/TG2/issues
+#' (preferred, but requires that you have access to our GitHub account) or
+#' or use this google form http://goo.gl/forms/e2ZQCiZz4x
+#' @author Ramiro Silveyra Gonzalez
+getDB <- function(){
+  conn <- try(makeConnection(), T)
+  if ('try-error' %in% class(conn)){
+    stop("Invalid database connection")
+  }else{
+    RSQLite::dbDisconnect(conn)
+  }
+  versionHelp()
+  return(getFromNamespace("db",  pos =  "package:ProfoundData")$path)
+}
+
