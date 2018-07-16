@@ -6,7 +6,7 @@ load("~/ownCloud/PROFOUND_Data/Processed/RData/CO2_ISIMIP_Data.RData")
 # Target variables
 #variables_names <- c( "forcingConditions","year", "CO2_ISIMIP")
 # Columns DB
-columns <- c("record_id",  "site_id" , "year","rcp",  "CO2_ppm")
+columns <- c("record_id",  "site_id" , "year","forcingConditions",  "co2_ppm")
 
 # Here a check
 #TODO if something missing stop it

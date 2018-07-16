@@ -69,7 +69,7 @@ CO2_ISIMIP_Data <- do.call("rbind", CO2_ISIMIP_Data)
 
 rownames(CO2_ISIMIP_Data) <- NULL
 
-names(CO2_ISIMIP_Data) <- c("year", "CO2_ppm", "rcp")
+names(CO2_ISIMIP_Data) <- c("year", "co2_ppm", "forcingConditions")
 
 CO2_ISIMIP_Data$site_id <- 99
 CO2_ISIMIP_Data$site <- "Global"
