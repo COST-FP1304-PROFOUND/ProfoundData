@@ -56,10 +56,10 @@ writeNDEPfiles <- function(zipFile){
   
   if (length(unzippedFiles) != length(filesOfInterest))stop("Wrong stuff")
   
-  nhx <-read.table(filesOfInterest[1], header = F,col.names = c("Time", "nhx_gNm2yr1"))
-  noy <- read.table(filesOfInterest[2], header = F,col.names = c("Time", "noy_gNm2yr1"))
+  nhx <-read.table(filesOfInterest[1], header = F,col.names = c("Time", "nhx_gm2"))
+  noy <- read.table(filesOfInterest[2], header = F,col.names = c("Time", "noy_gm2"))
   nitro <- merge(nhx, noy, by=c("Time", "Time"))
-  nitro$scenario <- "historical"
+  nitro$forcingConditions <- "historical"
   nitro$site <- site
   nitro$date <- as.Date(nitro$Time, format =  "%Y-%m-%d")
   nitro$Time <- NULL
@@ -70,10 +70,10 @@ writeNDEPfiles <- function(zipFile){
   write.table(nitro, file.path(outDir,paste(site, "_historical", ".txt", sep = "")),
               row.names = F)
   
-  nhx <-read.table(filesOfInterest[3], header = F,col.names = c("Time", "nhx_gNm2yr1"))
-  noy <- read.table(filesOfInterest[4], header = F,col.names = c("Time", "noy_gNm2yr1"))
+  nhx <-read.table(filesOfInterest[3], header = F,col.names = c("Time", "nhx_gm2"))
+  noy <- read.table(filesOfInterest[4], header = F,col.names = c("Time", "noy_gm2"))
   nitro <- merge(nhx, noy, by=c("Time", "Time"))
-  nitro$scenario <- "rcp2p6"
+  nitro$forcingConditions <- "rcp2p6"
   nitro$site <- site
   nitro$date <- as.Date(nitro$Time)
   nitro$year <- format(nitro$date, "%Y")
@@ -84,10 +84,10 @@ writeNDEPfiles <- function(zipFile){
   write.table(nitro, file.path(outDir,paste(site, "_rcp2p6", ".txt", sep = "")),
               row.names = F)
   
-  nhx <-read.table(filesOfInterest[5], header = F, col.names = c("Time", "nhx_gNm2yr1"))
-  noy <- read.table(filesOfInterest[6], header = F, col.names = c("Time", "noy_gNm2yr1"))
+  nhx <-read.table(filesOfInterest[5], header = F, col.names = c("Time", "nhx_gm2"))
+  noy <- read.table(filesOfInterest[6], header = F, col.names = c("Time", "noy_gm2"))
   nitro <- merge(nhx, noy, by=c("Time", "Time"))
-  nitro$scenario <- "rcp6p0"
+  nitro$forcingConditions <- "rcp6p0"
   nitro$site <- site
   nitro$date <- as.Date(nitro$Time)
   nitro$year <- format(nitro$date, "%Y")
@@ -125,12 +125,12 @@ for (i in 1:length(sites.raw)){
   for (j in 1:length(forcingConditionss.raw)){
     dummy <- paste("ndep_hd_noy_", forcingConditionss.raw[j], "_", sites.raw[i], ".txt", sep="")
     filesOfInterest <- filenames[grepl(dummy, filenames)]
-    noy <- read.table(filesOfInterest, header = F,col.names = c("Time", "noy_gNm2yr1"))
+    noy <- read.table(filesOfInterest, header = F,col.names = c("Time", "noy_gm2"))
     dummy <- paste("ndep_hd_nhx_", forcingConditionss.raw[j], "_", sites.raw[i], ".txt", sep="")
     filesOfInterest <- filenames[grepl(dummy, filenames)]
-    nhx <-read.table(filesOfInterest, header = F,col.names = c("Time", "nhx_gNm2yr1"))
+    nhx <-read.table(filesOfInterest, header = F,col.names = c("Time", "nhx_gm2"))
     nitro <- merge(nhx, noy, by=c("Time", "Time"))
-    nitro$scenario <- forcingConditionss.new[j]
+    nitro$forcingConditions <- forcingConditionss.new[j]
     nitro$site <- sites.new[i]
     nitro$date <- as.Date(nitro$Time, format =  "%Y-%m-%d")
     nitro$Time <- NULL

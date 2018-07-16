@@ -2,12 +2,9 @@
 #                          NDEP Data
 #
 #------------------------------------------------------------------------------#
-
-load( "~/ownCloud/PROFOUND_Data/Processed/RData/NDep_Data.RData")
 # Target variables
-#variables_names <- c( "RCP","year", "CO2")
 # Columns DB
-columns <- c("record_id", "site_id", "scenario",  "year", "noy_gNm2yr1","nhx_gNm2yr1")
+columns <- c("record_id", "site_id", "forcingConditions",  "year", "noy_gm2","nhx_gm2")
 
 # Read all zip files
 inDir <- "~/ownCloud/PROFOUND_Data/Processed/ISIMIP2B/NDEP/new"
@@ -22,7 +19,7 @@ print.progressNDEP <- function(df){
 # loadsites
 load("~/ownCloud/PROFOUND_Data/Processed/RData/Sites.RData")
 # get the  locations
-site <- Sites$name2
+site <- Sites$site2
 site.id <-  Sites$site_id
 names(site.id) <- site
 #TODO if something missing stop it
@@ -77,6 +74,8 @@ for (i in 1:length(filenames)){
     df <- rbind(df1, df2)
     
     df$record_id <- c((id+1):(id+length(df$site)))
+    
+    
     # open connection to DB
     db <- dbConnect(SQLite(), dbname= myDB)
     dbWriteTable(db, "NDEPOSITION_ISIMIP2B_master",
