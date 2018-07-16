@@ -1,0 +1,42 @@
+   site_id       name1              name2      lat       lon epsg        country aspect_deg
+1        3    BilyKriz               none 49.30000 18.320000 4326 Czech Republic         NA
+2        4  Brasschaat         Brasschaat 51.30920  4.520500 4326        Belgium        192
+3        5  Collelongo         Collelongo 41.84940 13.588100 4326          Italy        252
+4        6     Espirra            Espirra 38.63940 -8.601800 4326       Portugal         NA
+5       10       Hesse              Hesse 48.67420  7.065600 4326         France         NA
+6       12    Hyytiala           Hyytiälä 61.84750 24.295000 4326        Finland         NA
+7       13       Kroof              KROOF 48.25000 11.400000 4326        Germany         NA
+8       14      LeBray            Le Bray 44.71711 -0.769300 4326         France         NA
+9       16       Peitz Peitz (Eberswalde) 51.91660 14.350000 4326        Germany         NA
+10      18   Puechabon          Puéchabon 43.74139  3.595833 4326         France         NA
+11      20 Solling_304               none 51.77000  9.570000 4326        Germany        252
+12      21        Soro      Sorø (DK-SOR) 55.48584 11.644616 4326        Denmark         NA
+13      25 Solling_305               none 51.76470  9.579700 4326        Germany         90
+   elevation_masl slope_percent natVegetation_code1 natVegetation_code2
+1              NA            NA             F.5.2.3                F134
+2              16           0.0               F.1.1                  F8
+3            1560          10.0             F.5.2.3                F146
+4              NA            NA               J.2.1                 J35
+5             300            NA             F.5.1.2                 F83
+6             185            NA               D.1.3                  D7
+7              NA            NA               U.3.2                 U24
+8              NA            NA               F.1.1                  F7
+9              50            NA             D.5.3.1                 D54
+10             NA            NA               J.1.2                 J14
+11            504           1.7             F.5.1.2                 F83
+12             NA            NA             F.5.2.1                F108
+13            508           1.0                <NA>                <NA>
+                                                                                                                                                                                                                                                                                                                       natVegetation_description
+1                                                                                                                                                                                                       Hercynian (spruce-)fir-beech forests (Fagus sylvatica, Abies alba, Picea abies), partly with Cardamine enneaphyllos, Prenanthes purpurea
+2                                                               Atlantic-subatlantic birch-pedunculate oak forests (Quercus robur, Betula pendula, Populus tremula) with Hieracium laevigatum, Lonicera periclymenum, Dryopteris carthusiana, D. Dilatata, in the north with Ceratocapnos claviculata, Trientalis europaea, Maianthemum bifolium
+3                                                                                                                                                                                                      North and middle Apennine beach forests (Fagus sylvatica), with partly Abies alba, with Geranium nodosum, partly Trochiscanthes nodiflora
+4                                                                                                                                                                                           Lusitanian-Onubense cork oak forest (Quercus suber) with Olea europara subsp. oleaster, Juniperus navicularis, Quercus pubescens on poor sandy soils
+5                                                                                                                                                                        (Atlantic-)subatlantic Luzula luzuloides-(sessile oak)beech forests (Fagus sylvatica, Quercus petraea) with Ilex aquifolium, Teucrium scorodonia, Lonicera periclymenum
+6  Fennoscandianmoss-rich spruce forests (Picea abies) with dwarf shrubs and herbaceous plants (Vacciniummyrtillus, Calamagrostit arundinacea, Luzula pilosa, Maianthemum bifolium, Trientalis europaea, Hylocomium splendens, Pleurozium schreberi), partly with Anemone nemerosa Ribes alpinum, locally alternating with pine and spruce mires
+7                                                                   West and Central European alder-ash forests (Fraxinus excelsior, Alnus glutinosa) or ash elm forests (Ulmus minor, Faxinus excelsior), partly in combination with moist pedunculate oak-hornbeam forests (Carpinus betulus, Quercus robur) and alder carrs (Alnus glutinosa)
+8                                                                                                                        Aquitanian pedunculate oak forests (Quercus robur), partly with Quercus pyrenaica, Q. Suber, Pinus pinaster, with Erica scoparia, E. Ciliaria, Rubia peregrina, Arenaria montana, Pulmonaria longifolia, Carex arenaria
+9                                                                              SouthScandinavian-east Central European dwarf shrub- and lichen-rich pine forests (Pinus sylvestris), partly with Quercus robur in understorey, with Vaccinium vitis-idaea, Calluna vulgaris, Cladina spp., Dicranum polysetum on sandy soils and siliceous rocks
+10                                                                                                                                                                                                           Catalonian-Provencal meso-Mediterranean holm oak forests (Quercus ilex) with Quercus coccifera, Euphorbia characias, Viburnum tinus
+11                                                                                                                                                                       (Atlantic-)subatlantic Luzula luzuloides-(sessile oak)beech forests (Fagus sylvatica, Quercus petraea) with Ilex aquifolium, Teucrium scorodonia, Lonicera periclymenum
+12                                                         South Scandinavian-north Central European Galium odoratum- and Milium effusum-beech forests (Fagus sylvatica), partly with Fraxinus excelsior, partly with Stellaria nemorum subsp. Montana, Luzula sylvatica, Polygonatum verticillatum, Ranunculus lanuginosus, Cardamine bulbifera
+13                                                                                                                                                                                                                                                                                                                                          <NA>

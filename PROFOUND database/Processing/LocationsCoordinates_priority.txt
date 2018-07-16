@@ -1,0 +1,14 @@
+Location	Lat	Lon	Country
+Hyytiala	61.8475	24.295	FI
+Peitz	51.9166	14.35	DE
+Solling	51.77	9.57	DE
+Soro	55.485844	11.644616	DK
+Kroof	48.25	11.4	DE
+LeBray	44.71711	-0.7693	FR
+Collelongo	41.8494	13.5881	IT
+Hesse	48.6742	7.0656	FR
+Brasschaat	51.3092	4.5205	BE
+Espirra	38.6394	-8.6018	PT
+Puechabon	43.74139	3.595833	FR
+BilyKriz	49.3	18.32	CZ
+

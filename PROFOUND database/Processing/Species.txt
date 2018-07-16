@@ -1,0 +1,12 @@
+Species	Code
+Fagus sylvatica	fasy
+Quercus robur	quro
+Quercus petraea	qupe
+Pinus sylvestris	pisy
+Picea abies	piab
+Pinus pinaster	pipi
+Larix decidua	lade
+Acer platanoides	acpl
+Eucalyptus globulus	eugl
+hard woods	hawo
+

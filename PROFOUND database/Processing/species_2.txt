@@ -1,0 +1,13 @@
+long_name, short_name, species_id
+Fagus sylvatica, fasy, 1
+Quercus robur, quro, 2
+Quercus petraea, qupe, 3
+Pinus sylvestris, pisy, 4
+Picea abies, piab, 5
+Pinus pinaster, pipi, 6
+Larix decidua, lade, 7
+Acer platanoides, acpl, 8
+Eucalyptus globulus, eugl, 9
+hard woods, hawo, 10
+
+

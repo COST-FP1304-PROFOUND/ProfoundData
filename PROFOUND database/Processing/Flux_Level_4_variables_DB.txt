@@ -1,0 +1,69 @@
+Variable	Description	Units	FluxData	Yes	Status
+IDrecord	id of the record	none	Level 4	No	included
+Location	location 	none	Level 4	No	included
+Date	date in format 	none	Level 4	No	included
+Year	year as integer	none	Level 4	No	included
+Day	day of the month	none	Level 4	No	included
+Month	from 1 to 12	none	Level 4	No	included
+Hour	from 0 to 23.5, indicates the end of the half hour of measurement 	none	Level 4	No	included
+DoY	decimal day of the year	none	Level 4	No	included
+Rg_f	global radiation filled 	[W m-2]	Level 4	No	included
+Rg_f_qc	global radiation quality flags: 0 = original, 1 = category A (most reliable), 2 = category B (medium), 3 = category C (least reliable). (Refer to Reichstein et al. 2005 Global Change Biology for more information)		Level 4	No	included
+Ta_f 	air temperature filled	[Â°C]	Level 4	Yes	included
+Ta_f_qc	quality flag for Ta_f		Level 4	No	included
+Ts_f soil	temperature filled	[Â°C]	Level 4	Yes	included
+Ts_f_qc	quality flag for Ta_s		Level 4	No	included
+VPD_f	vapour pressure deficit 	[hPa]	Level 4	No	included
+VPD_f_qc	vapour pressure deficit quality flags: 0 = original, 1 = category A (most reliable), 2 = category B (medium), 3 = category C (least reliable). (Refer to Reichstein et al. 2005 Global Change Biology for more information)		Level 4	No	included
+Precip	precipitation 	[mm]	Level 4	Yes	included
+SWC	soil water content	[%vol]	Level 4	Yes	included
+H_f	sensible heat flux filled	[W m-2]	Level 4	Yes	included
+H_f_qc	sensible heat flux quality flags: 0 = original, 1 = category A (most reliable), 2 = category B (medium), 3 = category C (least reliable). (Refer to Reichstein et al. 2005 Global Change Biology for more information)		Level 4	No	included
+LE_f	latent heat flux filled	[W m-2]	Level 4	No	included
+LE_fq_c	latent heat flux quality flags: 0 = original, 1 = category A (most reliable), 2 = category B (medium), 3 = category C (least reliable). (Refer to Reichstein et al. 2005 Global Change Biology for more information)		Level 4	No	included
+NEE_st	Net Ecosystem Exchange standardized -  calculated using the storage obtained with the discrete approach (single point on the top of the tower) with the same method for all the sites	[umolCO2 m-2 s-1]	Level 3	Yes	included
+NEE_st_qf	fluxes quality flags (see below)		Level 3	No	included
+NEE_or	Net Ecosystem Exchange original -  calculated using the storage sent by the PI that can be obtained with the discrete approach or using the profile system (see others information below)	 [umolCO2 m-2 s-1]	Level 3	Yes	included
+NEE_or_qf	fluxes quality flags as defined in the Level3 product (see below)		Level 3	No	included
+Reco_st	Estimated ecosystem respiration according to the short-term temperature response of night-time fluxes based on NEE_st (Refer to Reichstein et al. 2005 Global Change Biology for more information)	[umolCO2 m-2 s-1]	Level 4	Yes	included
+Reco_or 	Estimated ecosystem respiration according to the short-term temperature response of night-time fluxes based on NEE_or (Refer to Reichstein et al. 2005 Global Change Biology for more information)	[umolCO2 m-2 s-1]	Level 4	Yes	included
+NEE_st_fMDS	NEE_st (see below) filled using the Marginal Distribution Sampling method (Refer to Reichstein et al. 2005 Global Change Biology for more information)	[umolCO2 m-2 s-1]	Level 4	No	included
+NEE_st_fMDS_qc	NEE_st_fMDS quality flags: 0 = original, 1 = category A (most reliable), 2 = category B (medium), 3 = category C (least reliable). (Refer to Reichstein et al. 2005 Global Change Biology for more information)		Level 4	No	included
+NEE_or_fMDS	NEE_or (see below) filled using the Marginal Distribution Sampling method (Refer to Reichstein et al. 2005 Global Change Biology for more information)	[umolCO2 m-2 s-1]	Level 4	No	included
+NEE_or_fMDS_qc	NEE_or_fMDS quality flags: 0 = original, 1 = category A (most reliable), 2 = category B (medium), 3 = category C (least reliable). (Refer to Reichstein et al. 2005 Global Change Biology for more information)		Level 4	No	included
+NEE_st_fANN	NEE_st (see below) filled using the Artificial Neural Network method (Refer to Papale et al. 2003 Global Change Biology for more information and to the Other Information section in this document)	[umolCO2 m-2 s-1]	Level 4	No	included
+NEE_st_fANN_qc	NEE_st_fANN quality flags: 0 = original, 1 = filled using original meteorological inputs or filled with qc=1, 2 = filled using filled meteorological inputs with qc=2 or 3, 3 = not filled using ANN due to one or more input missed but filled with the MDS method 		Level 4	No	included
+NEE_or_fANN	NEE_or (see below) filled using the Artificial Neural Network method (Refer to Papale et al. 2003 Global Change Biology for more information and to the Other Information section in this document)	[umolCO2 m-2 s-1]	Level 4	No	included
+NEE_or_fANN_qc	NEE_or_fANN quality flags: 0 = original, 1 = filled using original meteorological inputs or filled with qc=1, 2 = filled using filled meteorological inputs with qc=2 or 3, 3 = not filled using ANN due to one or more input missed but filled with the MDS method		Level 4	No	included
+GPP_st_MDS	gross primary production based on NEE_st filled with the Marginal Distribution Sampling method	[gC m-2 day-1]	Level 4	Yes	included
+GPP_or_MDS	gross primary production based on NEE_st filled with the Marginal Distribution Sampling method	[gC m-2 day-1]	Level 4	Yes	included
+GPP_st_ANN	gross primary production based on NEE_st filled with the Artificial Neural Network method	[gC m-2 day-1]	Level 4	Yes	included
+GPP_or_ANN	gross primary production based on NEE_st filled with the Artificial Neural Network method	[gC m-2 day-1]	Level 4	Yes	included
+CO2	carbon dioxide concentration measured at top of the tower	[umol/mol]	Level 3 	Yes	included
+H2O	water vapour concentration measured at top of the tower	[mmol/mol]	Level 3 	Yes	included
+ZL	atmosphere stability parameter		Level 3 	No	included
+Fc	carbon dioxide flux	[umolCO2 m-2 s-1]	Level 3 	No	included
+Fc_qf	fluxes quality flags (see below)		Level 3 	No	included
+H	sensible heat flux [W m-2]		Level 3	Yes	included
+LE	latent heat flux [W m-2]		Level 3	Yes	included
+ustar	friction velocity  [m s-1]		Level 3	Yes	included
+ust_qf	quality flag: 0 = ok, 1 = possible spike. Calculated starting the linear regration between ustar and wind speed. Flagged as 1 if the residual are bigger than 5 times the standard deviation.		Level 3	No	included
+Rg	global radiation	[W m-2]	Level 3	Yes	included
+PPFD	photosynthetic photon flux density	[umol m-2 s-1]	Level 3	Yes	included
+R_pot	potential radiation (at top of atmosphere) calculated from time and geographic coordinates	[W m-2]	Level 3	Yes	included
+Rg_qf	quality flag for Rg: 0=ok, 1=possible bad values. Calculated comparing measured Rg and potential radiation.		Level 3	No	included
+Rad_qf	quality flag for Rg and PPFD: 0 = ok, 1 = possible bad values. Calculated starting from the linear regration between the two variables. Flagged as 1 if the residual are bigger than 5 times the standard deviation.		Level 3	No	included
+Rr	reflected radiation	[W m-2]	Level 3	Yes	included
+Rn	net radiation	[W m-2]	Level 3	Yes	included
+Rd	diffuse radiation (global)	[W m-2]	Level 3	Yes	included
+APAR	light interception	[umol m-2 s-1]	Level 3	Yes	included
+Ta	air temperature	[Â°C]	Level 3	Yes	included
+Ts1	soil temperature depth 1	[°C]	Level 3	No	included
+Ts2	soil temperature depth 2	[°C]	Level 3	No	included
+SWC1	soil water content depth 1	[%vol]	Level 3	No	included
+SWC2	soil water content depth 2	[%vol]	Level 3	No	included
+G1	soil heat flux	[W m-2]	Level 3	??	included
+G2	soil heat flux	[W m-2]	Level 3	??	included
+Rh	relative humidity	[%]	Level 3	No	included
+WD	wind direction	[degrees]	Level 3	Yes	included
+WS	wind horizontal speed	[m s-1]	Level 3	Yes	included

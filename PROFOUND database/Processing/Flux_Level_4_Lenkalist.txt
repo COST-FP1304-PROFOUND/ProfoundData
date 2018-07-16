@@ -1,0 +1,26 @@
+Ta - air temperature
+Ts - soil temperature
+SWC - soil water content, soil moisture (Ms)
+Rh - relative air humidity (rH)
+VPD - vapour pressure deficit
+Precip - precipitation (Pre, P)
+ustar - friction velocity of the wind (u*)
+WS - wind speed (u)
+WD - wind direction
+Rg - global radiation (GR)
+PPFD - photosynthetic photon flux density, photosynthetically active radiation (PAR, FAR)
+R_pot - potencial radiation, extraterestrial radiation (Rext)
+Rn - net radiation
+Rr - reflected radiation
+Rd - diffuse dariation
+APAR - light interception
+G - ground heat flux (is G1 or G2)
+Pa - air pressure (sometimes also P, which is a bit confusing) --> Not found
+
+CO2 - concentration of CO2
+H2O - concentration of H2O
+NEE - net ecosystem exchange, CO2 flux (fCO2)
+Reco - ecosystem respiration
+GPP - gross primary production
+LE - latent heat flux, latent energy (LH)
+H - sensible heat flux
