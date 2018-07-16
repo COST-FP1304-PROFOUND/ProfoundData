@@ -11,7 +11,7 @@ columns <- c("record_id",  "site_id", "date", "day", "mo", "year",
              "reflB01_percent", "reflB02_percent","reflB03_percent",
              "reflB04_percent", "reflB05_percent", "reflB06_percent",
              "reflB07_percent", "aB01_rad", "aB02_rad", "aB05_rad", "aB06_rad",
-             "ndwi", "ndvi", "evi", "sani_rad", "sasi_rad", "refl_qc" )
+             "ndwi", "ndvi8", "evi8",  "sasi_rad","sani_rad", "refl_qc" )
 colnamesDummy <- names(MODIS_MOD09A1_Data)
 columns[!columns %in% colnamesDummy] 
 colnamesDummy[!colnamesDummy %in% columns] 

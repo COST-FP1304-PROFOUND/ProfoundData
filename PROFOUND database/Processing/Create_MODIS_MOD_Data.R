@@ -68,7 +68,7 @@ names(modis.df[[3]]) <-c("IDrecord", "site", "date", "day", "mo", "year", "reflB
                          "reflB03_percent","reflB04_percent", "reflB05_percent", "reflB06_percent", "reflB07_percent",
                          "refl_qc",
                          "aB01_rad" , "aB02_rad", "aB05_rad", "aB06_rad",
-                         "ndwi", "ndvi", "evi", "sasi_rad", "sani_rad")
+                         "ndwi", "ndvi8", "evi8", "sasi_rad", "sani_rad")
                         
                          
 
@@ -142,16 +142,16 @@ head(modis.df[[4]])
 #------------------------------------------------------------------------------#         
 head(modis.df[[5]])
 names(modis.df[[5]])
-names(modis.df[[5]]) <- gsub("A250m_16_days_EVI", "evi", names(modis.df[[5]]))
-names(modis.df[[5]]) <- gsub("A250m_16_days_NDVI", "ndvi", names(modis.df[[5]]))
-names(modis.df[[5]]) <- gsub("Index.Quality", "evi_qc", names(modis.df[[5]]))
-unique(modis.df[[5]]$evi_qc)
-table(modis.df[[5]]$evi_qc)
-modis.df[[5]]$evi_qc <-  ifelse(modis.df[[5]]$evi_qc== "good quality", 0,
-                                ifelse(modis.df[[5]]$evi_qc== "other quality", 2,
-                                       ifelse(modis.df[[5]]$evi_qc== "interpolated", 3,
+names(modis.df[[5]]) <- gsub("A250m_16_days_EVI", "evi16", names(modis.df[[5]]))
+names(modis.df[[5]]) <- gsub("A250m_16_days_NDVI", "ndvi16", names(modis.df[[5]]))
+names(modis.df[[5]]) <- gsub("Index.Quality", "evi16_qc", names(modis.df[[5]]))
+unique(modis.df[[5]]$evi16_qc)
+table(modis.df[[5]]$evi16_qc)
+modis.df[[5]]$evi16_qc <-  ifelse(modis.df[[5]]$evi16_qc== "good quality", 0,
+                                ifelse(modis.df[[5]]$evi16_qc== "other quality", 2,
+                                       ifelse(modis.df[[5]]$evi16_qc== "interpolated", 3,
                                                      99 )))
-modis.df[[5]]$ndvi_qc <- modis.df[[5]]$evi_qc
+modis.df[[5]]$ndvi16_qc <- modis.df[[5]]$evi16_qc
 head(modis.df[[5]])
 names(modis.df[[5]])
 #------------------------------------------------------------------------------#
@@ -168,9 +168,9 @@ for (i in 1:length(modis.df)){
 }
 # Add sites
 load("./RData/Sites.RData")
-Sites <- Sites[, c("site_id", "name2")]
+Sites <- Sites[, c("site_id", "site2")]
 site_id <- Sites[, "site_id"]
-names(site_id) <- Sites[, "name2"]
+names(site_id) <- Sites[, "site2"]
 
 # check sites and site id
 lapply(modis.df, function(x)unique(x$site))

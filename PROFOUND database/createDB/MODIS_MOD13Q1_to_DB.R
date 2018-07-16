@@ -7,8 +7,8 @@ names(MODIS_MOD13Q1_Data)
 # Target variables
 #variables_names <- c( "RCP","year", "CO2")
 # Columns DB
-columns <- c("record_id",  "site_id", "date", "day", "mo", "year","ndvi", "evi",
-             "ndvi_qc", "evi_qc")
+columns <- c("record_id",  "site_id", "date", "day", "mo", "year","ndvi16", "evi16",
+             "ndvi16_qc", "evi16_qc")
 # Load libraries
 require(sqldf)
 require(DBI)
