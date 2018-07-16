@@ -10,7 +10,7 @@
 # loadsites
 load("~/ownCloud/PROFOUND_Data/Processed/RData/Sites.RData")
 # get the  locations
-site <- Sites$name2
+site <- Sites$site2
 site.id <-  Sites$site_id
 names(site.id) <- site
 
@@ -22,7 +22,7 @@ filenames <- list.files(inDir, full.names=TRUE, recursive = TRUE)
 print.progressForcing <- function(df){
   cat("\n");cat(rep("-", 30));cat("\n")
   cat(as.character(unique(df$site)));cat("\n")
-  cat(as.character(unique(df$product)));cat("\n");cat("\n")
+  cat(as.character(unique(df$forcingDataset)));cat("\n");cat("\n")
 }
   
 
@@ -65,6 +65,7 @@ dbSendQuery(conn = db,
 # Check the table
 dbListTables(db) # The tables in the database
 dbListFields(db, "CLIMATE_ISIMIP2A_master") # The fields in the table
+columns.master <- dbListFields(db, "CLIMATE_ISIMIP2A_master") 
 ## Close connnection to db
 dbDisconnect(db)
 # dbSendQuery(db, "DROP TABLE ISIMIP2A")
@@ -72,10 +73,10 @@ dbDisconnect(db)
 #------------------------------------------------------------------------------#
 #               ENTER DATA IN THE TABLE
 #------------------------------------------------------------------------------#
-columns <- c("record_id", "site_id", "date", "product","day", "mo",
+columns <- c("record_id", "site_id", "date", "forcingDataset","day", "mo",
              "year","tmax_degC","tmean_degC", "tmin_degC", "p_mm", "relhum_percent",
              "airpress_hPa", "rad_Jcm2day", "wind_ms")
-
+columns.master[!columns.master %in% columns ]
 
 id <- 0
 # Loop over files adds data to DB, could also add it to list and then do.call(rbind, listDf)
