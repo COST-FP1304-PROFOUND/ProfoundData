@@ -1,4 +1,4 @@
-"site_id","name1","name2","lat","lon","epsg"
+"site_id","site","site2","lat","lon","epsg"
 -99,NA,"Solling Beech (SO_BE)",51.77,9.57,"4326"
 -99,NA,"Solling Spruce (SO_SP)",51.77,9.57,"4326"
 1,"Aarburg","Aarburg",47.3,7.9,"4326"

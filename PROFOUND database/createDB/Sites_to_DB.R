@@ -9,9 +9,9 @@ load("~/ownCloud/PROFOUND_Data/Processed/RData/Sites.RData")
 #                    CREATE   SQL    TABLE
 #------------------------------------------------------------------------------#
 # Load libraries
-library(sqldf)
-library(DBI)
-library(RSQLite)
+require(sqldf)
+require(DBI)
+require(RSQLite)
 # open connection to DB
 #myDB <- "/home/trashtos/ownCloud/PROFOUND_Data/ProfoundData.sqlite"
 db <- dbConnect(SQLite(), dbname= myDB)
@@ -55,7 +55,7 @@ dbDisconnect(db)
 #------------------------------------------------------------------------------#
 #               ENTER DATA IN THE TABLE
 #------------------------------------------------------------------------------#
-columns <- c("site_id", "name1", "name2")
+columns <- c("site_id", "site", "site2")
 names(Sites)
 db <- dbConnect(SQLite(), dbname= myDB)
 dbWriteTable(db, "SITESID_master",
