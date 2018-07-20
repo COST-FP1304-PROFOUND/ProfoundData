@@ -195,7 +195,7 @@ df <- browseData("METADATA_NDEPOSITION_EMEP")
 df <- df[, !colnames(df) %in% c("source")]
 rownames(df) <- NULL
 ``` 
-The nitrogen deposition data contain yearly measurements of the variables listed in the table below.
+The nitrogen deposition data contain annual measurements of the variables listed in the table below.
 
 ```{r, echo=F, warning = F, message=F}
 pander(df, adding = 0, missing = '**--**', round = 3,    use.hyphening = TRUE, split.cells = 3, split.tables = Inf, caption = tableCaption("Description of NDEPOSITION variables included in the database."))
@@ -233,7 +233,7 @@ pander(df, adding = 0, missing = '**--**', round = 3,
 
 ### Dataset CO2_ISIMIP
 
-The CO2 dataset contains yearly global concentrations of atmospheric CO2 for several forcing conditions.
+The CO2 dataset contains annual global concentrations of atmospheric CO2 for several forcing conditions.
 
 ```{r, echo=F, warning = F, message=F}
 df <- browseData("METADATA_CO2_ISIMIP")
@@ -249,7 +249,7 @@ pander(df, adding = 0, missing = '**--**', round = 3,    use.hyphening = TRUE, s
 
 ### Dataset ATMOSPHERICHEATCONDUCTION
 
-The ENERGYBALANCE data contains half-hourly measurements of the variables listed in the table below and was obtained from  [FLUXNET2015](http://fluxnet.fluxdata.org/) data.
+The ATMOSPHERICHEATCONDUCTION data contains half-hourly measurements of the variables listed in the table below and was obtained from  [FLUXNET2015](http://fluxnet.fluxdata.org/) data.
 
 ```{r, echo=F, warning = F, message=F}
 df <- browseData("METADATA_ATMOSPHERICHEATCONDUCTION")

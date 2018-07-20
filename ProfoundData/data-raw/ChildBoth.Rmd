@@ -4,11 +4,12 @@
 ```{r, eval = T, echo=F, message= F, warning=F, results='hide'}
 plotData(location = currentSiteName, dataset = currentDataset, automaticPanels = T)
 df <- summarizeData(location = currentSiteName, dataset = currentDataset)
-df <- rbind(summarizeData(location = currentSiteName, dataset = currentDataset, by="years"), summarizeData(location = currentSiteName, dataset = currentDataset, by="total"))
+df2 <- summarizeData(location = currentSiteName, dataset = currentDataset, by="total")
+df <- rbind(df, df2)
 ``` 
 
 
  
 ```{r, eval = T, echo=F, message= F, warning=F}
-pander(df, adding = 0, missing = '**--**', round = 3,  use.hyphening = TRUE, split.cells = 3, split.tables = 200,  caption = tableCaption(paste("Summary of ", currentDataset, " for ", currentSiteName,". Note: The variables p_mm and rad_Jcm2day are the annual total values. Rest of variables are the mean yearly values.", sep="")))
+pander(df, adding = 0, missing = '**--**', digits = 3,  use.hyphening = TRUE,  split.cells = 3, split.tables = 200,  caption = tableCaption(paste("Summary of ", currentDataset, " for ", currentSiteName,". Note: Average of the annual sum of the variables p_mm and rad_Jcm2day. Restof variables, average of the annual mean values.", sep="")))
 ``` 

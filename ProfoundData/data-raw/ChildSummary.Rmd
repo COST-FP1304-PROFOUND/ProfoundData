@@ -8,5 +8,5 @@ df <- summarizeData(location = currentSiteName, dataset = currentDataset)
 
  
 ```{r, eval = T, echo=F, message= F, warning=F}
-pander(df, adding = 0, missing = '**--**', round = 3,  use.hyphening = TRUE, split.cells = 3, split.tables = 200, caption = tableCaption(paste("Summary of ", currentDataset, " for ", currentSiteName, ". Note: The values are the average of the yearly values. The variables p_mm and rad_Jcm2day are the average of the total yearly values. Rest of variables are the average of the mean yearly values.", sep="")))
+pander(df, adding = 0, missing = '**--**', round = 3,  use.hyphening = TRUE, split.cells = 3, split.tables = 200, caption = tableCaption(paste("Summary of ", currentDataset, " for ", currentSiteName, ". Note: Average of the annual sum of the variables p_mm and rad_Jcm2day. Restof variables, average of the annual mean values.", sep="")))
 ``` 

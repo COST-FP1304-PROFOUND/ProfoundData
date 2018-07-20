@@ -4,7 +4,7 @@
 ```{r, eval = T, echo=F, message= F, warning=F, results='hide'}
 plotSmall <- FALSE
 plotBig <- TRUE
-smallDatasets <- c("ENERGYBALANCE", "NDEPOSITION_EMEP", "NDEPOSITION_ISIMIP2B",
+smallDatasets <- c("ATMOSPHERICHEATCONDUNCTION", "NDEPOSITION_EMEP", "NDEPOSITION_ISIMIP2B",
                    "MODIS_MOD15A2", "MODIS_MOD11A2", "MODIS_MOD13Q1", "MODIS_MOD17A2")
 
 if (currentDataset %in% smallDatasets){

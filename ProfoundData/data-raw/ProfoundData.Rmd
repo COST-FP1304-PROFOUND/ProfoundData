@@ -1,13 +1,13 @@
 ---
-title: "The PROFOUND database and R package"
-author: "Ramiro Silveyra Gonzalez, Florian Hartig, Christopher Reyer"
+title: "The PROFOUND R-package: ProfoundData"
+author: "Ramiro Silveyra Gonzalez, Christopher Reyer, Florian Hartig, Friedrich Bonn, Klara Dolos"
 date: "`r Sys.Date()`"
 output: 
   rmarkdown::html_vignette:
     toc: true
     toc_depth: 3
 vignette: >
-  %\VignetteIndexEntry{Describes the PROFOUND database and R package}
+  %\VignetteIndexEntry{Describes PROFOUND R-package}
   %\VignetteEngine{knitr::rmarkdown}
   \usepackage[utf8](inputenc)
 --- 
@@ -65,120 +65,8 @@ set.seed(1)
 ``` 
 
 
-# Introduction
 
-## Rationale 
-
-Within the [COST Action FP1304 PROFOUND](http://cost-profound.eu/site/), we are developing a database that allows to test forest models against a wide range of observational data. This database will be part of a structured model comparison for several forest sites throughout Europe (10-15 forests) to unravel model uncertainties and to provide robust projections of climate change impacts. This model comparison should make use of the wide range of data types that have become available in recent years. We have therefore started compiling data from all kinds of sources in a database. However, in the long-term, the database is envisioned to be not only useful for the model comparison but to develop into a key benchmark dataset for forest models in general.
-
-The database makes also use of data files that you have gratefully provided us with or that we have extracted from data repositories you are involved in. Our aim is to publish the database as part of a ”data paper for harmonized model evaluation” so that whenever a researcher wants to run a model, they could do so using the data as comprehensive test material. The added value of that database is that several data types are brought together (e.g. soil, tree, flux data, satellite and also climate data including scenarios etc...) and the data is harmonized as much as possible and prepared to be ready-to-use for modelers. We do not intend to replace larger database such as ICOS, Euroflux etc. but want provide a product targeted to modelers needs.
-
-
-## Data policy
-
-The PROFOUND database combines data from existing data sources which are either freely available or available after registration. The added value of the PROFOUND database resides in the combination, harmonization and preparation of the different data types for forest ecosystem modelers. Therefore, the license is for the database while the rights for the individual raw datasets reside with the actual data owners. The PROFOUND database is only redistributing the data.
-
-This work is available under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 license (CC BY 4.0). You are free to copy and redistribute the material in any medium or format and remix, transform, and build upon the material for any purpose, even commercially.
-
-**Attribution** — You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use. Please cite the work as follows: Reyer, CPO et al. (2017) The PROFOUND database for evaluating forest models for climate impact assessments at the stand scale. Earth System Science Data XXX:XXX-XXX. License: Creative Commons Attribution 4.0 (CC BY 4.0).
-
-Further data policy statements of the individual datasets contained in the PROFOUND database are listed in the table below.
- 
-
-
-```{r, echo=F, warning = F, message=F}
-library(ProfoundData)
-setDB("/home/ramiro/ownCloud/PROFOUND_Data/v0.1.13/ProfoundData.sqlite")
-#setDB("/home/ramiro/ownCloud/PROFOUND_Data/TESTVERSION/PROFOUNDData.sqlite")
-description <- getData("SITEDESCRIPTION")
-df <- browseData("POLICY")
-df <- df[!df$dataset == "PROFOUND database" , ]
-df <- df[!df$dataset == "CLIMATEFLUXNET" , ]
-rownames(df) <- NULL
-``` 
-
-```{r, echo=F, warning = F, message=F}
-pander(df, adding = 0, missing = '**--**', round = 3,
-       use.hyphening = TRUE, split.cells = 3, caption = tableCaption("Additional data policy statements specific to the individual datasets included in the PROFOUND database."))
-``` 
-
-
-## SQL Database
-
-The PROFOUND database is a relational SQLite database and it is made of several independent tables (see Fig. 1). From these tables many views are created that can be accessed and downloaded by users. We are also developing a R package to ease the queries of data from the database.
-
-
-## R package
-
-We have developed a R package to ease the queries of data from the database. 
-
-
-## Database and package releases
-
-Both package and database are under development. The new database and package relases are published in the [PROFOUND repository](https://github.com/COST-FP1304-PROFOUND/TG2/releases). Users with no Github access are welcome to join the Github repository. 
-
-
-![`r figCaption("Overview on the PROFOUND database and the R package.") `](../data-raw/ProfoundData.jpg)
-
-
-
-# The PROFOUND database
-
-## Site overview
-```{r, echo = F, message = F}
-df <- getData(dataset = "SITES")
-df <- df[, !colnames(df) %in% c("natVegetation_code1" ,	"natVegetation_code2" , "natVegetation_description")]
-df <- df[!df$site_id ==99, ]
-```
-
-`r paste( "The PROFOUND database includes ", nrow(df), " forest sites. They are listed in the table below.", sep = "") `
-
-```{r, echo = F, message = F}
-pander(df, adding = 0, missing = '**--**', round = 3, use.hyphening = TRUE, split.cells = 3, split.tables = 200,
-        caption = tableCaption("Forest sites included in the database."))
-```
-
-To provide the information on which data is available for each site, an overview table is created by combining all existing tables in the database.
-
-```{r, fig.width= 7, echo = F, message = F}
-overview <- browseData()
-pander(overview, adding = 0, missing = '**--**', round = 3, use.hyphening = TRUE, split.cells = 3, split.tables =  Inf,
-        caption = tableCaption("Overview of sites and datasets"))
-```
-
-
-
-## Data types
-
-
-```{r dataTypes, include=FALSE, eval=T}
-childs <- "ChildDatasetSummary.Rmd"
-out <- knit_child(childs)
-```
-
-`r paste(out, collapse='\n')`
-
-
-
-## Site by site information
-
-```{r sitesReport, include=FALSE, eval=T}
-out <- NULL
-
-for (i in 1:length(overview$site_id)) {
-  currentSiteID <- overview$site_id[i]
-  currentSiteID <- overview$site_id[i]
-  currentSiteName <- overview$site[i]
-  currentDescription <- description[description$site ==currentSiteName, ]$description
- out <- c(out, knit_child('ChildSiteSummary.Rmd'))
-}
-
-```
-`r paste(out, collapse='\n')`
-
-
-
-# ProfoundData R package: using the database from R 
+# ProfoundData R-package: using the database from R 
 
 This package serves as interface for users that want to access the PROFOUND data. Two main functions are included to achieve this goal: a getData function for downloading data form the database and a plotData function to quickly inspect any variable of the datasets.
 
@@ -187,7 +75,7 @@ Currently, the functions permit to download data from one location and one datas
 This is just a preliminary version of both package and database. As user, please test the functions and provide feedback on what could be improved.
 
 
-## First Steps
+# First Steps
 
 Before installing the package, you should have the following packages available:
 
@@ -208,7 +96,7 @@ To check the database  you can use the use *getDB*, which returns the database p
 getDB()
 ```
 
-## The browseData function: exploring the database
+# The browseData function: exploring the database
 
 
 The browseData function allows you to see what data is included in the database and for what locations the data is available. Currently you will find that for several locations the data is not available.
@@ -254,7 +142,7 @@ available <- browseData(location ="le_bray")
 +  whether a dataset is available for a specific location
 
 ```{r}
-available <- browseData(location ="le_bray",dataset = "CLIMATE_LOCAL")
+available <- browseData(location ="le_bray", dataset = "CLIMATE_LOCAL")
 ```
 
 +  version histoy 
@@ -298,12 +186,12 @@ policy <- browseData(dataset = "POLICY", location = "solling_spruce")
 ```
 
 
-## The getData function
+# The getData function
 
 The getData allows to download data from the PROFOUND database. The returned object will be a dataframe or list of dataframes, depending on the data that has been requested. 
 
 
-### SITES
+## SITES
 
 To obtain the site information, use getData to download the table SITES
 
@@ -327,7 +215,7 @@ soro$description
 ```
 
 
-### DATASETS
+## DATASETS
 
 To download any dataset, you have to provide a dataset name and a location
 
@@ -336,14 +224,14 @@ data <-getData( dataset =  "CLIMATE_LOCAL", location = "soro")
 ```
 
 
-#### collapse
+### collapse
 
 This option specifies wether the returned data should be data frame or a list of data frames. This argument is relevant when dowloading data from SOIL  or ISIMIP datasets.
 
 For ISIMIP datasets, by setting collapse to FALSE youwill obtain a list with dataframes, named after the forcing datasets and conditions. Otherwise, the data will return in a unique data frame.
 
 ```{r, echo=T,  message= F, warning=F}
-data <- getData(location = "soro", dataset ="CLIMATE_ISIMIP2A", collapse = F)
+data <- getData(dataset ="CLIMATE_ISIMIP2A", location = "soro", collapse = FALSE)
 names(data)
 names(data[[1]])
 ```
@@ -351,90 +239,91 @@ names(data[[1]])
 We recommend always use unset collapse when downloading SOIL data, becuase in many cases SOIL is a collection of tables.
 
 ```{r, echo=T,  message= F, warning=F}
-data <- getData(location = "soro", dataset ="SOIL", collapse = F)
+data <- getData(dataset ="SOIL", location = "soro", collapse = FALSE)
 str(data, 1)
 names(data[[1]])
 ```
 
 
-#### forcingDataset, forcingCondition
+### forcingDataset, forcingCondition
 
 When downloading ISIMIP datasets, regaradless of whether it is climate, nitrogen deposition or CO2 data, you might want to select specific forcing datasets and/or conditions. With the function arguments *forcingDataset* and *forcingConditions* is possible, respectively.
 
 ```{r, echo=T,  message= F, warning=F}
-data <- getData( location ="soro", dataset ="CLIMATE_ISIMIP2B", forcingDataset="GFDLESM2M", forcingCondition ="rcp2p6")
+data <- getData( dataset ="CLIMATE_ISIMIP2B", location ="soro", forcingDataset="GFDLESM2M", forcingCondition ="rcp2p6")
 knitr::kable(head(data),  align = "l")
 
 ```
 
 The abote getData call is actually equivalent to 
 ```{r, echo=T,  message= F, warning=F}
-data <- getData( location ="soro", dataset ="CLIMATE_ISIMIP2B_GFDLESM2M_rcp2p6")
+data <- getData(dataset ="CLIMATE_ISIMIP2B_GFDLESM2M_rcp2p6", location ="soro")
 knitr::kable(head(data),  align = "l")
 ```
 
 
-#### variables
+### variables
 
 For any dataset, it is possible to define the variable or variables to be downloaded
 
 ```{r, echo=T,  message= F, warning=F}
-data <- getData( location ="soro", dataset ="CLIMATE_ISIMIP2B", forcingDataset="GFDLESM2M", forcingCondition ="rcp2p6",
+data <- getData(dataset ="CLIMATE_ISIMIP2B", location ="soro", forcingDataset="GFDLESM2M", forcingCondition ="rcp2p6",
                  variables = "p_mm")
 knitr::kable(head(data),  align = "l")
 
 ```
 
-#### species
+### species
 
 When downloading TREE or STAND data, you can select species with the argument *species*. It takes both full species name or the species id.
 ```{r, echo=T,  message= F, warning=F}
-data <- getData( location ="hyytiala", dataset ="TREE", species = "Pinus sylvestris")
+data <- getData(dataset ="TREE", location ="hyytiala", species = "Pinus sylvestris")
 ```
 ```{r, echo=T,  message= F, warning=F}
 data <- getData( location ="hyytiala", dataset ="TREE", species = "pisy")
 ```
 
-#### period
+### period
 For time series data, it is possible to subset the data to a specific period.
 ```{r, echo=T,  message= F, warning=F}
-data <- getData( location ="soro", dataset ="CLIMATE_ISIMIP2B", forcingDataset="GFDLESM2M", forcingCondition ="rcp2p6",
+data <- getData(dataset ="CLIMATE_ISIMIP2B", location ="soro", forcingDataset="GFDLESM2M", forcingCondition ="rcp2p6",
                  period = c("2006-01-01","2006-12-31"))
 range(data$date)
 ```
 
-#### quality
+### quality
+
 Some datasets, such as CLIMATE_LOCAL or FLUX, have qualitfy flags to indicate how the data were obtained. Please be aware of the values of quality flags before using this option, the definition of the flags is available in the metadata. 
 
 When passing a quality flag value, you should also define how the thresholding should be applied. Values out the selected range will be dropped from the data based on your query.
 
 ```{r, echo=T,  message= F, warning=F}
-data <- getData("CLIMATE_LOCAL", "soro", period = c("2011-01-01","2012-12-31"), quality = 1, decreasing = F)
+data <- getData(dataset = "CLIMATE_LOCAL", location = "soro", period = c("2011-01-01","2012-12-31"), quality = 1, decreasing = FALSE)
 
 ```
 
 ```{r, echo=T,  message= F, warning=F}
-data <- getData("FLUX", "soro", period = c("2011-01-01","2012-12-31"), quality = 0, decreasing = T)
+data <- getData(dataset = "FLUX", location = "soro", period = c("2011-01-01","2012-12-31"), quality = 0, decreasing = TRUE)
 ```
-## The plotData function
+# The plotData function
  
 The plotData function performs a query to the database, downloads the data, applies the desired options (time period, quality flag) and shapes the final data into a time series for plotting. It requires a dataset name and a location. Check  the help files to see what datasets are supported. 
 
-### Normal plotting
+## Normal plotting
 
 A simple plot call looks like 
 
 ```{r, fig.show='hold', echo=T, results="hide", message= F, warning=F}
-plotData("CLIMATE_LOCAL", "le_bray", automaticPanels = T)
+plotData(dataset = "CLIMATE_LOCAL", location = "le_bray", automaticPanels = TRUE)
 ```
 
 Or for tree data
 ```{r, fig.show='hold',echo=T, results="hide", message= F, warning=F}
-plotData("TREE", "solling_beech",   automaticPanels = T)
+plotData(dataset = "TREE", location = "solling_beech",   automaticPanels = TRUE)
 ```
 Note that argument *automaticPanels* that defines whether the plot in a panel.
 
-### Additional options
+## Additional options
 
 Besides, it support the same options than getData
 
@@ -442,7 +331,7 @@ Besides, it support the same options than getData
 
 
 ```{r, echo=T,  message= F, warning=F}
-plotData(dataset ="CLIMATE_ISIMIP2B", location ="soro", forcingDataset="GFDLESM2M", forcingCondition ="rcp2p6", automaticPanels = T)
+plotData(dataset ="CLIMATE_ISIMIP2B", location ="soro", forcingDataset="GFDLESM2M", forcingCondition ="rcp2p6", automaticPanels = TRUE)
 ```
 
 - **variables**
@@ -456,7 +345,7 @@ plotData(dataset ="CLIMATE_ISIMIP2B",location ="soro", forcingDataset="GFDLESM2M
 - **species**
 
 ```{r, echo=T,  message= F, warning=F}
-plotData( dataset ="TREE", location ="hyytiala", species = "Pinus sylvestris", automaticPanels = T)
+plotData(dataset ="TREE", location ="hyytiala", species = "Pinus sylvestris", automaticPanels = TRUE)
 ```
 
 
@@ -469,30 +358,30 @@ plotData("CLIMATE_LOCAL", "soro", period = c("2011-01-01","2012-12-31"))
 - **quality**
 
 ```{r, echo=T,  message= F, warning=F}
-plotData("CLIMATE_LOCAL", "soro", period = c("2011-01-01","2012-12-31"), quality = 1, decreasing = F)
+plotData("CLIMATE_LOCAL", "soro", period = c("2011-01-01","2012-12-31"), quality = 1, decreasing = FALSE)
 ```
 
 ```{r, echo=T,  message= F, warning=F}
-plotData("FLUX", "soro", period = c("2011-01-01","2012-12-31"), quality = 0, decreasing = T)
+plotData("FLUX", "soro", period = c("2011-01-01","2012-12-31"), quality = 0, decreasing = TRUE)
 ```
 - **aggregate**
 
 You can also aggregate data by defining *aggregate* and *FUN*. The data can by aggregated by day, month,year or date, and any statistic is supported such as median
 
 ```{r,  fig.width=6, fig.height=4, warning = F,echo=T, results="hide", message= F}
-plotData(dataset = "CLIMATE_ISIMIP2B",location ="soro",  forcingDataset= "GFDLESM2M",
+plotData(dataset = "CLIMATE_ISIMIP2B", location ="soro",  forcingDataset= "GFDLESM2M",
            forcingCondition="rcp2p6", variables = "tmax_degC", period = c("2020-01-01", "2022-01-01"),
-           aggregate = "month", FUN =median, automaticPanels = F)
+           aggregate = "month", FUN =median, automaticPanels = FALSE)
 
 ```
 
 
 
-## The summarizeData function
+# The summarizeData function
 
 The summarizeData allows to obtain data summaries from the PROFOUNDData database of climatic datasets and the TREE dataset.
 
-### TREE
+## TREE
 
 
 ```{r, fig.show='hold', echo=T,  message= F, warning=F}
@@ -500,16 +389,16 @@ data <-summarizeData(dataset =  "TREE", location = "bily_kriz")
 kable(data, row.names = F)
 ```
 
-### CLIMATE
+## CLIMATE
 
-##### CLIMATE_LOCAL
+#### CLIMATE_LOCAL
 
 ```{r, fig.show='hold', echo=T,  message= F, warning=F}
 data <-summarizeData(dataset =  "CLIMATE_LOCAL", location = "bily_kriz")
 kable(data, row.names = F)
 ```
 
-##### CLIMATE_ISIMIP
+#### CLIMATE_ISIMIP
 
 For several forcing datasets and/or forcing conditions
 
@@ -525,7 +414,7 @@ kable(head(data), row.names = F)
 ```
 
 
-## The queryDB function: parsing your own queries
+# The queryDB function: parsing your own queries
 
 The package functions are designed to ease the access to database by providing an R interface. However, if you feel confident with SQL syntaxis, you are ready to perfom much advanced queries. The function *queryDB*, allows to perform self-defined queries, 
 
@@ -557,7 +446,7 @@ Hint: Check the last section for furhter information on SQL syntaxis.
  
  
  
-## Package structure
+# Package structure
 
 Both functions rely on several utility functions. Regardless of the requested data with the plotData or the getData, the following steps take place:
 
@@ -582,13 +471,3 @@ This function will transform the queried data into a dataframe, or list of dataf
 
 To access the database  you  can use an SQLite database explorer such as [SQLiteStudio](http://sqlitestudio.pl/). Such software allows to visualize and download through an interface as well as writing SQL statements. Further information  on SQLite chracterisctics can be found at the [SQLite website](https://www.sqlite.org/lang.html). Besides, there are plenty of resources about using SQL like [this one](http://www.w3schools.com/sql/default.asp) 
 
-
-
-# References
-
-```{r, echo=F, warning = F, message=F}
-df <- getData("SITEDESCRIPTION")
-reference <- paste(df$reference, collapse = " ")
-reference <- gsub("[+] ", "\n- ", reference)
-``` 
-`r paste(reference, collapse="") `

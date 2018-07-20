@@ -39,7 +39,7 @@ SQLlite<y:LabelModel>
           <y:Fill color="#99CCFF" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="30" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="73.84375" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="210.396484375" x="131.5905034837192" y="23.15993315876517">ProfoundData
-R package<y:LabelModel>
+R-package<y:LabelModel>
               <y:SmartNodeLabelModel distance="4.0"/>
             </y:LabelModel>
             <y:ModelParameter>
@@ -153,7 +153,7 @@ R package<y:LabelModel>
               <y:Geometry height="30.0" width="200.23743119266055" x="672.9256488275262" y="108.09214834931691"/>
               <y:Fill color="#99CCFF" transparent="false"/>
               <y:BorderStyle color="#000000" type="line" width="1.0"/>
-              <y:NodeLabel alignment="center" autoSizePolicy="node_width" borderDistance="0.0" fontFamily="Dialog" fontSize="17" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="23.7890625" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="200.23743119266055" x="0.0" y="3.10546875">R package<y:LabelModel>
+              <y:NodeLabel alignment="center" autoSizePolicy="node_width" borderDistance="0.0" fontFamily="Dialog" fontSize="17" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="23.7890625" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="200.23743119266055" x="0.0" y="3.10546875">R-package<y:LabelModel>
                   <y:SmartNodeLabelModel distance="0.0"/>
                 </y:LabelModel>
                 <y:ModelParameter>
@@ -925,8 +925,8 @@ R package<y:LabelModel>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="-53.884338578721895" sy="-161.30105937169407" tx="-40.08314807828174" ty="0.0">
-            <y:Point x="303.8143479166668" y="-397.7962124999998"/>
-            <y:Point x="303.8143479166668" y="-445.5335807669192"/>
+            <y:Point x="332.12999335666683" y="-397.7962124999998"/>
+            <y:Point x="332.12999335666683" y="-445.5335807669192"/>
           </y:Path>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
