@@ -1,6 +1,6 @@
 Package: ProfoundData
 Title: A package for downloading and exploring data from the Profound database
-Version: 0.1.6
+Version: 0.1.7
 Authors@R: c(person("Ramiro", "Silveyra Gonzalez",  email = "rasilgon@gmail.com", role = c("aut", "cre")),
             person("Klara", "Dolos", email = "dolos@kit edu", role = c("ctb")),
             person("Christopher", "Reyer", email = "reyer@pik-potsdam.de", role = c("ctb")),
