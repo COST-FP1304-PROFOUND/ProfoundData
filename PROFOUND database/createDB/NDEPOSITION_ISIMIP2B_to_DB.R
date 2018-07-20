@@ -13,7 +13,7 @@ filenames <- list.files(inDir, full.names=TRUE, recursive = TRUE)
 print.progressNDEP <- function(df){
   cat("\n");cat(rep("-", 30));cat("\n")
   cat(as.character(unique(df$site)));cat("\n")
-  cat(as.character(unique(df$scenario))); cat("\n");cat("\n")
+  cat(as.character(unique(df$forcingConditions))); cat("\n");cat("\n")
 }
 # Here a check
 # loadsites

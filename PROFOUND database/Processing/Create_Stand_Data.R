@@ -209,7 +209,7 @@ load("./RData/Sites.RData")
 # get the  locations
 
 site.id <-  Sites$site_id
-names(site.id) <- Sites$name2
+names(site.id) <- Sites$site2
 
 columns <- c("site_id", "year", "species_id", "age", "dbhArith_cm",
              "dbhBA_cm", "dbhDQ_cm", "heightArith_m", "heightBA_m", "ba_m2ha",

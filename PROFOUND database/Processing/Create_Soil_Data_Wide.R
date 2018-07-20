@@ -539,7 +539,7 @@ Soil_Data_Wide$Soro <- df
 # Get sites
 load("./RData/Sites.RData")
 # get the  locations
-Site <- Sites$name2
+Site <- Sites$site2
 Site.id <-  Sites$site_id
 names(Site.id) <- Site
 

@@ -75,9 +75,9 @@ for (i in 1:length(Climate_Data)){
   df <- Climate_Data[[i]]
   df$record_id <- c((id+1):(id+length(df$site)))
   db <- dbConnect(SQLite(), dbname= myDB)
-  #hola <- df[ , columns]
+  hola <- df[ , columns]
   dbWriteTable(db, "CLIMATE_LOCAL_master",
-               df[ , columns],
+              df[ , columns],
                append=TRUE, row.names = FALSE)
   dbDisconnect(db)
   # reset the id values

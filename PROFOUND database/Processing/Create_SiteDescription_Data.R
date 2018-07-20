@@ -30,7 +30,7 @@ SiteDescription_Data <- df[, colnames(df) %in% variables]
 load("./RData/Sites.RData")
 # get the  locations
 
-site.id <- Sites[, c("name2", "site_id")]
+site.id <- Sites[, c("site2", "site_id")]
 names(site.id) <- c("site", "site_id")
 
 SiteDescription_Data <- merge(SiteDescription_Data, site.id, all.x= T )
@@ -47,7 +47,7 @@ load("./RData/Sites.RData")
 # get the  locations
 
 site.id <-  Sites$site_id
-names(site.id) <- Sites$name2
+names(site.id) <- Sites$site2
 
 SiteDescription_Data$site_id <- sapply(as.character(SiteDescription_Data$site), FUN =function(x){site.id[x]})
 
@@ -65,7 +65,7 @@ load("./RData/Sites.RData")
 # get the  locations
 
 site.id <-  Sites$site_id
-names(site.id) <- Sites$name2
+names(site.id) <- Sites$site2
 
 
 SiteDescription_Data$site_id <- sapply(as.character(SiteDescription_Data$site), FUN =function(x){site.id[x]})

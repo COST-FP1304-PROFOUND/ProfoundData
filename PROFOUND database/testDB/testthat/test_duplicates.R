@@ -1,5 +1,3 @@
-# The aim of this test is to check whether it  is possible to download all data
-
 # test whether there are dpuplicates in the data
 
 context("Test basic")

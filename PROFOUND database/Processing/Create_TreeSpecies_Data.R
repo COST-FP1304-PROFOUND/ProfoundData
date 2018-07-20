@@ -9,7 +9,8 @@
 #       Soro
 #       BilyKriz
 # It must be derived for:
-
+myDir <- "~/ownCloud/PROFOUND_Data/Processed/"
+setwd(myDir)
 
 tree_file <- "./tree_species.txt"
 TreeSpecies_Data <- read.table(tree_file, header=T, sep="\t")

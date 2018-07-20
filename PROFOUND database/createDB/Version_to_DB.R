@@ -58,3 +58,5 @@ if ( "VERSION" %in% dbListTables(db)){
 
 dbGetQuery(db, "CREATE VIEW VERSION AS SELECT * FROM VERSION_master")
 dbDisconnect(db)
+
+

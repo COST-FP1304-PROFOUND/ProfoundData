@@ -39,16 +39,21 @@ save(NDepEMEP_Data, file = "./RData/NDepEMEP_Data.RData")
 load("./RData/NDepEMEP_Data.RData")
 load("./RData/Sites.RData")
 # get the  locations
-Site <- Sites$name2
+Site <- Sites$site2
 Site.id <-  Sites$site_id
 names(Site.id) <- Site
 
 columns <- c("site", "site_id",  "year", "NdepOxi_mgm2","NdepRed_mgm2")
 
+
 for (i in 1:length(NDepEMEP_Data)){
   file.site <-names(NDepEMEP_Data)[i]
-  NDepEMEP_Data[[i]]$site_id <- Site.id[[file.site]]
-  NDepEMEP_Data[[i]]$site <- file.site
+  if (file.site %in% names(Site.id)){
+    NDepEMEP_Data[[i]]$site_id <- Site.id[[file.site]]
+    NDepEMEP_Data[[i]]$site <- file.site
+  }else{
+    names(NDepEMEP_Data)[i] <- NA
+  }
   newnames <- names(NDepEMEP_Data[[i]])
   newnames <- gsub("years", "year",newnames )
   newnames <- gsub("NDEPOxi", "NdepOxi_mgm2",newnames )
@@ -61,6 +66,8 @@ for (i in 1:length(NDepEMEP_Data)){
     }
   }
 }
+# Delete not needed sites
+NDepEMEP_Data <- NDepEMEP_Data[!is.na(names(NDepEMEP_Data))]
 
 
 save(NDepEMEP_Data, file="./RData/NDepEMEP_Data.RData")
@@ -71,8 +78,8 @@ load("./RData/NDepEMEP_Data.RData")
 
 for (i in 1:length(NDepEMEP_Data)){
   file.site <-names(NDepEMEP_Data)[i]
-  NDepEMEP_Data[[i]]$NdepOxi_gm2 <- NDepEMEP_Data[[i]]$NdepOxi_mgm2 / 1000
-  NDepEMEP_Data[[i]]$NdepRed_gm2 <- NDepEMEP_Data[[i]]$NdepRed_mgm2 / 1000
+  NDepEMEP_Data[[i]]$noy_gm2 <- NDepEMEP_Data[[i]]$NdepOxi_mgm2 / 1000
+  NDepEMEP_Data[[i]]$nhx_gm2 <- NDepEMEP_Data[[i]]$NdepRed_mgm2 / 1000
   NDepEMEP_Data[[i]]$NdepRed_mgm2 <- NULL
   NDepEMEP_Data[[i]]$NdepOxi_mgm2 <- NULL
 

@@ -1,9 +1,9 @@
 #------------------------------------------------------------------------------#
 # ISMIP2B NDEP
 #       Organize the single files to aggregate data
-#       1. Write a function to merge variables of the same dataset (site + product + scneario)
+#       1. Write a function to merge variables of the same dataset (site + forcingDataset + scneario)
 #           that ouputs the txt file
-#       2. Loop over site, product and scenario and feed the function
+#       2. Loop over site, forcingDataset and forcingConditions and feed the function
 #       3. 
 #
 #------------------------------------------------------------------------------#
@@ -16,10 +16,10 @@ outDir <- "./Processed/ISIMIPFT/"
 filenames <- list.files(inDir, full.names=TRUE, recursive = TRUE)
 
 # What we know a priori from the files and what we want to change
-products.raw <- c("GFDL-ESM2M", "HadGEM2-ES", "IPSL-CM5A-LR", "MIROC-ESM-CHEM", "NorESM1-M" )
-products.new <- c("GFDLESM2M", "HadGEM2ES", "IPSLCM5ALR", "MIROCESMCHEM", "NorESM1M" )
-scenarios.raw <- c("historical", "rcp2p6", "rcp4p5", "rcp6p0","rcp8p5" )
-scenarios.new <-scenarios.raw 
+forcingDatasets.raw <- c("GFDL-ESM2M", "HadGEM2-ES", "IPSL-CM5A-LR", "MIROC-ESM-CHEM", "NorESM1-M" )
+forcingDatasets.new <- c("GFDLESM2M", "HadGEM2ES", "IPSLCM5ALR", "MIROCESMCHEM", "NorESM1M" )
+forcingConditions.raw <- c("historical", "rcp2p6", "rcp4p5", "rcp6p0","rcp8p5" )
+forcingConditions.new <-forcingConditions.raw 
 
 variables.raw <- c("rhs", "pr", "ps",  "rsds", "wind", "tas", "tasmax", "tasmin")
 variables.new <- c("relhum_percent", "p_mm", "airpress_hPa", "rad_Jcm2day", "wind_ms",
@@ -32,7 +32,7 @@ sites.new <- c("BilyKriz", "Brasschaat", "Collelongo", "Espirra", "Hesse",
                    "Soro")
 
 # The function that binds and writes table function
-write.ISIMIPFT.climate <- function(suffix, outName, product, scenario, site){
+write.ISIMIPFT.climate <- function(suffix, outName, forcingDataset, forcingConditions, site){
   climateFiles <- paste("./", variables.raw,"_",  suffix, sep="")
   climateFiles <- lapply(1:length(climateFiles),
                          function(x){
@@ -40,8 +40,8 @@ write.ISIMIPFT.climate <- function(suffix, outName, product, scenario, site){
                            df <- read.table(filename, header = F, col.names = c("Time", variables.new[x]))
                          })
   climate <- Reduce(function(x, y) merge(x, y, all=TRUE), climateFiles)
-  climate$product <- product
-  climate$scenario <- scenario
+  climate$forcingDataset <- forcingDataset
+  climate$forcingConditions <- forcingConditions
   climate$site <- site
   climate$date <- as.Date(climate$Time, format =  "%Y-%m-%d")
   climate$Time <- NULL
@@ -56,16 +56,16 @@ write.ISIMIPFT.climate <- function(suffix, outName, product, scenario, site){
 
 # Create the data!!
 for (i in 1:length(sites.raw)){
- for (j in 1:length(products.raw)){
+ for (j in 1:length(forcingDatasets.raw)){
    # The target zipfile
-   zipFile <-  paste(file.path(inDir, paste(sites.raw[i], "_", products.raw[j],  ".zip", sep="")))
+   zipFile <-  paste(file.path(inDir, paste(sites.raw[i], "_", forcingDatasets.raw[j],  ".zip", sep="")))
    unzippedFiles <- unzip(zipFile)
-   for (k in 1:length(scenarios.raw)){
+   for (k in 1:length(forcingConditions.raw)){
      # The suffix for all unzipped file and the output name for the merged file
-     suffix <- paste( products.raw[j],"_", scenarios.raw[k], "_", sites.raw[i], ".txt", sep="")
-     outName <- paste( products.raw[j],"_", scenarios.raw[k], "_", sites.new[i], ".txt", sep="")
+     suffix <- paste( forcingDatasets.raw[j],"_", forcingConditions.raw[k], "_", sites.raw[i], ".txt", sep="")
+     outName <- paste( forcingDatasets.raw[j],"_", forcingConditions.raw[k], "_", sites.new[i], ".txt", sep="")
      # Call the own merge function and delete zipped files
-     write.ISIMIPFT.climate(suffix, outName, products.new[j], scenarios.new[k], sites.new[i] )
+     write.ISIMIPFT.climate(suffix, outName, forcingDatasets.new[j], forcingConditions.new[k], sites.new[i] )
    }
    sapply(unzippedFiles, file.remove)
  }

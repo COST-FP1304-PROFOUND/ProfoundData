@@ -1,7 +1,7 @@
 # Load libraries
-library(sqldf)
-library(DBI)
-library(RSQLite)
+require(sqldf)
+require(DBI)
+require(RSQLite)
 
 
 db <- dbConnect(SQLite(), dbname=myDB)

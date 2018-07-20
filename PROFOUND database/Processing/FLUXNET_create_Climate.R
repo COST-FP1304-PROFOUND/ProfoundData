@@ -10,10 +10,10 @@ require(plyr)
 # this functions calculates the quality flags
 qf_percent <- function(x){ length(x[x < 2])/length(x)}
 
-qf_percentHumidity <- function(vapor_qf, temperature_qf){
-  humidity_qf <- cbind(vapor_qf, temperature_qf)
-  humidity_qf <- sapply(1:nrow(humidity_qf), function(x){max(humidity_qf[x,])})
-  return(qf_percent(humidity_qf))
+qf_percentHumidity <- function(vapor_qc, temperature_qc){
+  humidity_qc <- cbind(vapor_qc, temperature_qc)
+  humidity_qc <- sapply(1:nrow(humidity_qc), function(x){max(humidity_qc[x,])})
+  return(qf_percent(humidity_qc))
 }
 
 # this functions cualculates the gaps
@@ -44,16 +44,16 @@ for (i in 1:length(FLUXNET_Meteo)){
                         p_mm = sum(P_F, na.rm=T),
                         airpress_hPa = mean(PA_F*10, na.rm=T),
                         wind_ms = mean(WS_F, na.rm=T),
-                        tmean_qf = qf_percent(TA_F_QC),
-                        tmin_qf = qf_percent(TA_F_QC),
-                        tmax_qf = qf_percent(TA_F_QC),
-                        shortwawe_qf =   qf_percent(SW_IN_F_QC),
-                        longwawe_qf =   qf_percent(LW_IN_F_QC),
-                        vpd_qf = qf_percent(VPD_F_QC), 
-                        p_qf = qf_percent(P_F_QC),
-                        airpress_qf = qf_percent(PA_F_QC),
-                        wind_qf = qf_percent(WS_F_QC),
-                        relhum_qf = qf_percentHumidity(VPD_F_QC, TA_F_QC),
+                        tmean_qc = qf_percent(TA_F_QC),
+                        tmin_qc = qf_percent(TA_F_QC),
+                        tmax_qc = qf_percent(TA_F_QC),
+                        shortwawe_qc =   qf_percent(SW_IN_F_QC),
+                        longwawe_qc =   qf_percent(LW_IN_F_QC),
+                        vpd_qc = qf_percent(VPD_F_QC), 
+                        p_qc = qf_percent(P_F_QC),
+                        airpress_qc = qf_percent(PA_F_QC),
+                        wind_qc = qf_percent(WS_F_QC),
+                        relhum_qc = qf_percentHumidity(VPD_F_QC, TA_F_QC),
                         t_gaps = gaps_count(TA_F),
                         shortwawe_gaps = gaps_count(SW_IN_F),
                         longwawe_gaps =  gaps_count(LW_IN_F),
@@ -89,10 +89,10 @@ for (i in 1:length(FLUXNET_Climate)){
   FLUXNET_Climate[[i]][['relhum_percent']] <- RH_from_vpd(FLUXNET_Climate[[i]][['vpd_hPa']]/10,
                                                         FLUXNET_Climate[[i]][['tmax_degC']],
                                                         FLUXNET_Climate[[i]][['tmin_degC']])
-#  FLUXNET_Climate[[i]][['relhum_qf']] <- FLUXNET_Climate[[i]][['vpd_qf']] # This is done above
+#  FLUXNET_Climate[[i]][['relhum_qc']] <- FLUXNET_Climate[[i]][['vpd_qc']] # This is done above
   
   FLUXNET_Climate[[i]][['rad_Jcm2day']]   <-   FLUXNET_Climate[[i]][['shortwawe_Jcm2day']]
-  FLUXNET_Climate[[i]][['rad_qf']]   <-   FLUXNET_Climate[[i]][['shortwawe_qf']] 
+  FLUXNET_Climate[[i]][['rad_qc']]   <-   FLUXNET_Climate[[i]][['shortwawe_qc']] 
 }
 
 save(FLUXNET_Climate, file = "./RData/FLUXNET_Climate.RData")
@@ -109,7 +109,7 @@ sink()
 # Get sites
 load("./RData/Sites.RData")
 # get the  locations
-Site <- Sites$name2
+Site <- Sites$site2
 Site.id <-  Sites$site_id
 names(Site.id) <- Site
 # variables to round
@@ -130,6 +130,6 @@ pre2011 <- climateSoro[climateSoro$year < 2011,]$year > 2011
 mask <- c(pre2011, gaps)
 
 FLUXNET_Climate$Soro[mask,]$p_mm <-climateSoro[mask,]$Precip_DMI_10x10
-FLUXNET_Climate$Soro[mask,]$p_qf <- 0
+FLUXNET_Climate$Soro[mask,]$p_qc <- 0
 
 save(FLUXNET_Climate, file = "./RData/FLUXNET_Climate.RData")

@@ -90,7 +90,7 @@ Climate_Data$Solling_305 <- Climate_Data$Solling_304
 # Get sites
 load("./RData/Sites.RData")
 # get the  locations
-Site <- Sites$name2
+Site <- Sites$site2
 Site.id <-  Sites$site_id
 names(Site.id) <- Site
 # variables to round
@@ -100,13 +100,16 @@ variables.round <- c("tmax_degC","tmean_degC", "tmin_degC", "p_mm", "relhum_perc
 
 # Homogenize variables and add Site names and ID
 for (i in  1:length(Climate_Data)){
-  for (k in 1:length(variables.names)){
-    if (variables.names[k] %in% names(Climate_Data[[i]]) == FALSE) {
-      Climate_Data[[i]][[variables.names[k]]] <- NA
+  for (k in 1:length(variables.round)){
+    if (variables.round[k] %in% names(Climate_Data[[i]]) == FALSE) {
+      Climate_Data[[i]][[variables.round[k]]] <- NA
     }
   }
   for (k in 1:length(variables.round)){
-    Climate_Data[[i]][[variables.round[k]]] <-   round( Climate_Data[[i]][[variables.round[k]]], 3)
+    if (sum(Climate_Data[[i]][[variables.round[k]]], na.rm = TRUE)!=0){
+      Climate_Data[[i]][[variables.round[k]]] <-   round( Climate_Data[[i]][[variables.round[k]]], 3)
+    }
+    
 
   }
 

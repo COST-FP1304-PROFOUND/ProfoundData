@@ -7,7 +7,7 @@ load("~/ownCloud/PROFOUND_Data/Processed/RData/METADATA_POLICY_SITES.RData")
 # Target variables
 #variables_names <- c( "RCP","year", "CO2")
 # Columns DB
-columns <- c("record_id","site_id", "dataset", "data.policy" )
+columns <- c("record_id","site_id", "dataset", "dataPolicy" )
 
 # Here a check
 #TODO if something missing stop it

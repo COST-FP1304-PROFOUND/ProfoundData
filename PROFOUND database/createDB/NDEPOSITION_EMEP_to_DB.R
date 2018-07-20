@@ -7,12 +7,12 @@ load( "~/ownCloud/PROFOUND_Data/Processed/RData/NDepEMEP_Data.RData")
 # Target variables
 #variables_names <- c( "RCP","year", "CO2")
 # Columns DB
-columns <- c("record_id", "site_id",  "year", "NdepOxi_gm2","NdepRed_gm2")
+columns <- c("record_id", "site_id",  "year", "noy_gm2","nhx_gm2")
 
 # loadsites
 load("~/ownCloud/PROFOUND_Data/Processed/RData/Sites.RData")
 # get the  locations
-site <- Sites$name2
+site <- Sites$site2
 site.id <-  Sites$site_id
 names(site.id) <- site
 

@@ -26,7 +26,7 @@ load("./RData/Sites.RData")
 # get the  locations
 
 site.id <-  Sites$site_id
-names(site.id) <- Sites$name2
+names(site.id) <- Sites$site2
 
 METADATA_POLICY$site_id <- sapply(as.character(METADATA_POLICY$site), FUN =function(x){site.id[x]})
 METADATA_POLICY$site_id <- ifelse(is.na(METADATA_POLICY$site_id), 99, METADATA_POLICY$site_id)

@@ -8,7 +8,7 @@ load("~/ownCloud/PROFOUND_Data/Processed/RData/FLUXNET_Climate.RData")
 # loadsites
 load("~/ownCloud/PROFOUND_Data/Processed/RData/Sites.RData")
 # get the  locations
-site <- Sites$name2
+site <- Sites$site2
 site.id <-  Sites$site_id
 names(site.id) <- site
 #------------------------------------------------------------------------------#
@@ -16,9 +16,9 @@ names(site.id) <- site
 #------------------------------------------------------------------------------#
 columns <- c("record_id", "site_id", "date", "day", "mo", "year","tmax_degC",
              "tmean_degC", "tmin_degC", "p_mm", "relhum_percent", "airpress_hPa",
-             "rad_Jcm2day", "wind_ms", "tmax_qf", "tmean_qf", "tmin_qf",
-             "p_qf", "relhum_qf", "airpress_qf", "rad_qf",
-             "wind_qf")
+             "rad_Jcm2day", "wind_ms", "tmax_qc", "tmean_qc", "tmin_qc",
+             "p_qc", "relhum_qc", "airpress_qc", "rad_qc",
+             "wind_qc")
 # Load libraries
 library(sqldf)
 library(DBI)

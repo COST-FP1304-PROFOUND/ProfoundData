@@ -10,7 +10,7 @@
 # loadsites
 load("~/ownCloud/PROFOUND_Data/Processed/RData/Sites.RData")
 # get the  locations
-site <- Sites$name2
+site <- Sites$site2
 site.id <-  Sites$site_id
 names(site.id) <- site
 
@@ -22,7 +22,7 @@ filenames <- list.files(inDir, full.names=TRUE, recursive = TRUE)
 print.progressGCM <- function(df){
   cat("\n");cat(rep("-", 30));cat("\n")
   cat(as.character(unique(df$site)));cat("\n")
-  cat(as.character(unique(df$product)));cat(": "); cat(as.character(unique(df$scenario))); cat("\n");cat("\n")
+  cat(as.character(unique(df$forcingDataset)));cat(": "); cat(as.character(unique(df$forcingConditions))); cat("\n");cat("\n")
 }
   
 
@@ -73,7 +73,7 @@ dbDisconnect(db)
 #------------------------------------------------------------------------------#
 #               ENTER DATA IN THE TABLE
 #------------------------------------------------------------------------------#
-columns <- c("record_id", "site_id", "date", "product", "scenario", "day", "mo",
+columns <- c("record_id", "site_id", "date", "forcingDataset", "forcingConditions", "day", "mo",
              "year","tmax_degC","tmean_degC", "tmin_degC", "p_mm", "relhum_percent",
              "airpress_hPa", "rad_Jcm2day", "wind_ms")
 

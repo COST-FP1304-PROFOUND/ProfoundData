@@ -234,7 +234,7 @@ site.id <-  Sites$site_id
 
 columns <- c("site", "site_id","size_m2",  "year", 
              "species", "age", "dbh1_cm", "dbh2_cm", "height1_m", "height2_m" )
-names(site.id)<-sites <- Sites$name2
+names(site.id)<-sites <- Sites$site2
 
 for (i in 1:length(Tree_Data)){
   file.site <- names(Tree_Data)[i]

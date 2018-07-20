@@ -4,11 +4,17 @@
 #
 #
 #------------------------------------------------------------------------------#
-setwd("~/Github/COST-FP1304-PROFOUND/TG2/createDB/")
+setwd("~/Github/COST-FP1304-PROFOUND/ProfoundData/PROFOUND database/createDB/")
 #myDB <- "~/ProfoundData.sqlite"
 #myDB <- "/home/ramiro/ownCloud/PROFOUND_Data/TESTVERSION/ProfoundData.sqlite"
 myDB <- "/home/ramiro/ownCloud/PROFOUND_Data/v0.1.13/ProfoundData.sqlite"
 #myDB <- "~/ownCloud/PROFOUND_Data/PI_Questions/ProfoundData.sqlite"
+# Load libraries
+library(sqldf)
+library(DBI)
+library(RSQLite)
+
+
 
 # still have to do this
 source("Version_to_DB.R")
