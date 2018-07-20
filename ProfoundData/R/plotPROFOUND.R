@@ -42,7 +42,7 @@ plotPROFOUND.TREE <-function(tmp){
       # Histrogram based on year
       # create positions for tick marks, one more than number of bars
       atYear <- 1:(length(unique(dataSpp$year)) + 1)
-      mp <- barplot(table(dataSpp$year),unique(dataSpp$year), main = paste( spp[i], ": Tree by inventories",  sep = ""),
+      mp <- barplot(table(dataSpp$year),unique(dataSpp$year), main = paste( spp[i], ": Trees by inventory",  sep = ""),
               xlab = "year", ylab = "N trees", col = NA,  xaxt = "n")
       # add x-axis with offset positions, with ticks, but without labels.
       axis(side = 1, at = mp, labels = FALSE)
@@ -184,7 +184,7 @@ plotPROFOUND.DAILY <-function(tmp, forcing = NULL){
       warning(paste(plotVariables[i], ": No data to plot", sep=""))
     }else{
       plot(data.ts[,  plotVariables[i]],
-           main =  paste( tmp[["dataset"]],forcing, ":", plotVariables[i], sep =" "),
+           main =  paste( tmp[["dataset"]], " ", forcing, ": ", plotVariables[i], sep =""),
            xlab = paste("Time period: ", as.character(min(data$date)),"-", as.character(max(data$date)),sep=" "),
            ylab = "Value")
       if(!is.null(aggText)){
@@ -238,7 +238,7 @@ plotPROFOUND.HALFHOURLY <- function(tmp){
       warning(paste(plotVariables[i], ": No data to plot", sep=""))
     }else{
       plot(data.ts[,  plotVariables[i]],
-           main =  paste( tmp[["dataset"]], ":", plotVariables[i], sep =" "),
+           main =  paste( tmp[["dataset"]], ": ", plotVariables[i], sep =""),
            xlab = paste("Time period: ", as.character(min(data$date)),"-", as.character(max(data$date)),sep=" "),
            ylab = "Value")
       if(!is.null(aggText)){
@@ -270,7 +270,7 @@ plotPROFOUND.YEARLY <- function(tmp, forcing = NULL){
       warning(paste(plotVariables[i], ": No data to plot", sep=""))
     }else{
       plot(data.ts[,  plotVariables[i]],
-           main =  paste( tmp[["dataset"]], forcing, ":", plotVariables[i], sep =" "),
+           main =  paste( tmp[["dataset"]]," ", forcing, ": ", plotVariables[i], sep =""),
            xlab = paste("Time period: ", as.character(min(data$date)),"-", as.character(max(data$date)),sep=" "),
            ylab = "Value")
     }
@@ -314,7 +314,7 @@ plotPROFOUND.MODIS <- function(tmp){
     }else{
       ylim <- range(data.ts[is.finite(data.ts[,  plotVariables[i]]),  plotVariables[i]], na.rm = T)
       plot(data.ts[,  plotVariables[i]],
-           main =  paste( tmp[["dataset"]], ":", plotVariables[i], sep =" "),
+           main =  paste( tmp[["dataset"]], ": ", plotVariables[i], sep =""),
            xlab = paste("Time period: ", as.character(min(data$date)),"-", as.character(max(data$date)),sep=" "),
            ylab = "Value", ylim = ylim)
     }
