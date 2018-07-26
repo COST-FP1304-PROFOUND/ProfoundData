@@ -7,7 +7,7 @@ output:
     toc: true
     toc_depth: 3
 vignette: >
-  %\VignetteIndexEntry{Describes the PROFOUND database and R package}
+  %\VignetteIndexEntry{Describes the PROFOUND database}
   %\VignetteEngine{knitr::rmarkdown}
   \usepackage[utf8](inputenc)
 --- 
@@ -76,11 +76,13 @@ The database makes also use of data files that you have gratefully provided us w
 
 ## Data policy
 
-The PROFOUND database combines data from existing data sources which are either freely available or available after registration. The added value of the PROFOUND database resides in the combination, harmonization and preparation of the different data types for forest ecosystem modelers. Therefore, the license is for the database while the rights for the individual raw datasets reside with the actual data owners. The PROFOUND database is only redistributing the data.
+The PROFOUND Database (PROFOUND DB) combines data from existing data sources which are either freely available or available after registration. The data have been made available for the PROFOUND DB with the consent and support of the data owners following the citation/licensing rules from every individual dataset. The added value of the PROFOUND DB resides in the combination, harmonization and preparation of the different data types for forest ecosystem modelers. Therefore, the license is valid for the data as part of the database while the rights for the individual raw datasets reside with the actual data owners. The data policy for these data are described in the PROFOUND DB and we expect users of the database to respect these policies. The authors cannot be held liable for any claims that arise as a result of your use of the material, neither referring to data usage nor faulty data which might be present in the database despite intensive quality checks.
 
-This work is available under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 license (CC BY 4.0). You are free to copy and redistribute the material in any medium or format and remix, transform, and build upon the material for any purpose, even commercially.
+The PROFOUND Database (PROFOUND DB) is available under the Creative Commons Attribution 4.0 license (CC-BY-NC-4.0). You must give appropriate credit, provide a link to the license, and indicate changes made. You may do so in any reasonable manner but not in any way that suggests the licensor endorses you or your use. Please cite the work as follows: 
+ 
+ - Reyer, CPO et al. (2018) The PROFOUND Database for evaluating vegetation models and simulating climate impacts on forest stands. Submitted to Earth System Science Data XXX:XXX-XXX. License: CC-BY-NC-4.0.
 
-**Attribution** — You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use. Please cite the work as follows: Reyer, CPO et al. (2017) The PROFOUND database for evaluating forest models for climate impact assessments at the stand scale. Earth System Science Data XXX:XXX-XXX. License: Creative Commons Attribution 4.0 (CC BY 4.0).
+- Reyer, CPO et al. (2018) The PROFOUND Database. Data Repository: GFZ-Data Services. DOI:XXX. License: CC-BY-NC-4.0.
 
 Further data policy statements of the individual datasets contained in the PROFOUND database are listed in the table below.
  
@@ -88,8 +90,9 @@ Further data policy statements of the individual datasets contained in the PROFO
 
 ```{r, echo=F, warning = F, message=F}
 library(ProfoundData)
-setDB("/home/ramiro/ownCloud/PROFOUND_Data/v0.1.13/ProfoundData.sqlite")
-#setDB("/home/ramiro/ownCloud/PROFOUND_Data/TESTVERSION/PROFOUNDData.sqlite")
+myDB <- path.expand("~/ownCloud/PROFOUND_Data/v0.1.13/ProfoundData.sqlite")
+setDB(myDB)
+
 description <- getData("SITEDESCRIPTION")
 df <- browseData("POLICY")
 df <- df[!df$dataset == "PROFOUND database" , ]
@@ -156,7 +159,8 @@ out <- NULL
 childs <- "ChildDatasetSummary.Rmd"
 out <- knit_child(childs)
 ```
-
+`r out <- c("Nothing here", "At all") `
+`r paste(out, collapse='\n')`
 
 
 
@@ -173,10 +177,8 @@ for (i in 1:length(overview$site_id)) {
   currentDescription <- description[description$site ==currentSiteName, ]$description
  out <- c(out, knit_child('ChildSiteSummary.Rmd'))
 }
-#`r paste(out, collapse='\n')`
-
 ```
-
+`r paste(out, collapse='\n')`
 
 
 
@@ -189,6 +191,7 @@ reference <- paste(df$reference, collapse = " ")
 reference <- unlist(strsplit(reference, split = "[+]"))
 reference <- reference[-1]
 reference <- sort(reference, decreasing = FALSE)
+reference <- reference[!duplicated(reference)]
 reference <- paste("\n +", reference)
 ``` 
 `r paste(reference, collapse="") `

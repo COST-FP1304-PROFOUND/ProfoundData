@@ -88,7 +88,8 @@ Once you have installed the package, it is time to use it. After loading Profoun
 
 ```{r, eval = T}
 library(ProfoundData)
-setDB("/home/ramiro/ownCloud/PROFOUND_Data/v0.1.13/ProfoundData.sqlite")
+myDB <- path.expand("~/ownCloud/PROFOUND_Data/v0.1.13/ProfoundData.sqlite")
+setDB(myDB)
 ```
 
 To check the database  you can use the use *getDB*, which returns the database path and also informs on the database version.
@@ -413,6 +414,13 @@ data <-summarizeData(dataset =  "CLIMATE_ISIMIP2B_IPSLCM5ALR_historical", locati
 kable(head(data), row.names = F)
 ```
 
+## TREE
+
+
+```{r, fig.show='hold', echo=T,  message= F, warning=F}
+data <-summarizeData(dataset =  "FLUX", location = "bily_kriz")
+kable(data, row.names = F)
+```
 
 # The queryDB function: parsing your own queries
 
