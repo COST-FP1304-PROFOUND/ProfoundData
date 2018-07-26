@@ -1,28 +1,43 @@
 \dontrun{
-# main directory
-mainDir <- "/some/absolute/path/mainDir"
-list.files(mainDir)
-[1] "guess" or "guesscmd.exe"  # link to the model executable
-[2] "gridlist.txt"      # list of gridcells
-[3] "global.ins"        # template1 (optional)
-[4] "global_cru.ins"    # template2 (optional)
+# See what data is included in the database and for what locations the data is available.
+overview <- browseData()
+# Hint: If *collapse* FALSE, full version of the overview table
+overview <- browseData(collapse = FALSE)
 
-# The run directory that is whithin the mainDir
-runDir <- "/some/absolute/path/mainDir/runDirectory"
+# Available datasets
+tables <- browseData(dataset = "DATASETS")
 
-## mode cru ##
-# The template2 of the model what is within the runDirectoy.
-template2 <- "global_cru.ins"
-template2 <- "europe_cru.ins"
+# Available variables for a given dataset
+variables <- browseData(dataset = "CLIMATE_LOCAL", variables = TRUE)
 
-# Call the model
-callLPJ(mainDir = mainDir, runDir = runDir, template2 = template2, mode = "cru")
+# Available locations for a given dataset
+available <- browseData(dataset = "CLIMATE_LOCAL")
 
-## mode cf ##
-# The template2 of the model what is within the runDirectoy.
-template2 <- "global_cf.ins"
-template2 <- "europe_cf.ins"
+# Available datasets for a given location
+available <- browseData(location ="le_bray")
 
-# Call the model
-callLPJ(mainDir = mainDir, runDir = runDir, template2 = template2, mode = "cf")
+# Whether a dataset is available for a specific location
+available <- browseData(location ="le_bray", dataset = "CLIMATE_LOCAL")
+
+# See version histoy
+version <- browseData(dataset = "VERSION")
+
+# Access metadata
+metadata <- browseData(dataset = "METADATA_DATASETS")
+metadata <- browseData(dataset = "METADATA_CLIMATE_LOCAL")
+
+# Access specific site metadata
+metadata <- browseData(dataset = "METADATA_TREE", location = "solling_spruce")
+
+# See data source
+source <- browseData(dataset = "SOURCE")
+
+# See specific site data source
+source <- browseData(dataset = "SOURCE", location = "solling_spruce")
+
+# See data policy
+source <- browseData(dataset = "POLICY")
+
+# See specific site data policy
+policy <- browseData(dataset = "POLICY", location = "solling_spruce")
 }

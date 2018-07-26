@@ -1,28 +1,19 @@
 \dontrun{
-# main directory
-mainDir <- "/some/absolute/path/mainDir"
-list.files(mainDir)
-[1] "guess" or "guesscmd.exe"  # link to the model executable
-[2] "gridlist.txt"      # list of gridcells
-[3] "global.ins"        # template1 (optional)
-[4] "global_cru.ins"    # template2 (optional)
+# Basic querz
+overview <- queryDB("SELECT * FROM OVERVIEW")
+tree <- queryDB("SELECT * FROM TREE")
 
-# The run directory that is whithin the mainDir
-runDir <- "/some/absolute/path/mainDir/runDirectory"
+# Site name or site_id
+myQuery <- queryDB("SELECT date, tmax_degC FROM CLIMATE_LOCAL WHERE site == 'hyytiala'")
+myQuery <- queryDB("SELECT date, tmax_degC FROM CLIMATE_LOCAL_12")
 
-## mode cru ##
-# The template2 of the model what is within the runDirectoy.
-template2 <- "global_cru.ins"
-template2 <- "europe_cru.ins"
+# Tree species
+myQuery <- queryDB("SELECT  * FROM TREE WHERE species == 'Picea abies'")
+myQuery <- queryDB("SELECT  * FROM TREE_piab")
 
-# Call the model
-callLPJ(mainDir = mainDir, runDir = runDir, template2 = template2, mode = "cru")
+# Specify variables
+myQuery <- queryDB("SELECT date, tmax_degC FROM CLIMATE_LOCAL WHERE tmax_degC > 20 AND site == 'hyytiala' AND year == 2010")
 
-## mode cf ##
-# The template2 of the model what is within the runDirectoy.
-template2 <- "global_cf.ins"
-template2 <- "europe_cf.ins"
 
-# Call the model
-callLPJ(mainDir = mainDir, runDir = runDir, template2 = template2, mode = "cf")
+
 }

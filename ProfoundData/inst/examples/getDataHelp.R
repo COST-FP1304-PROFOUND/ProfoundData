@@ -1,28 +1,61 @@
 \dontrun{
-# main directory
-mainDir <- "/some/absolute/path/mainDir"
-list.files(mainDir)
-[1] "guess" or "guesscmd.exe"  # link to the model executable
-[2] "gridlist.txt"      # list of gridcells
-[3] "global.ins"        # template1 (optional)
-[4] "global_cru.ins"    # template2 (optional)
+# Obtain site data
+sites <-getData(dataset =  "SITES")
 
-# The run directory that is whithin the mainDir
-runDir <- "/some/absolute/path/mainDir/runDirectory"
+# Obtain specific site data
+site <-getData(dataset =  "SITES", location = "soro")
 
-## mode cru ##
-# The template2 of the model what is within the runDirectoy.
-template2 <- "global_cru.ins"
-template2 <- "europe_cru.ins"
+# Obtain site descriptions
+sites <-getData(dataset =  "SITEDESCRIPTION"
 
-# Call the model
-callLPJ(mainDir = mainDir, runDir = runDir, template2 = template2, mode = "cru")
+# Obtain a specific site description
+site <-getData(dataset =  "SITEDESCRIPTION", location = "lebray")
 
-## mode cf ##
-# The template2 of the model what is within the runDirectoy.
-template2 <- "global_cf.ins"
-template2 <- "europe_cf.ins"
 
-# Call the model
-callLPJ(mainDir = mainDir, runDir = runDir, template2 = template2, mode = "cf")
+# Obtain any dataset for a location
+data <-getData( dataset =  "CLIMATE_LOCAL", location = "soro")
+
+# Obtain ISIMIP datasets as a list with dataframes
+data <- getData(dataset ="CLIMATE_ISIMIP2A", location = "soro", collapse = FALSE)
+
+# Obtain ISIMIP datasets as a list with dataframes
+data <- getData(dataset ="CLIMATE_ISIMIP2A", location = "soro", collapse = TRUE)
+data <- getData(dataset ="CLIMATE_ISIMIP2B", location = "soro", collapse = TRUE)
+data <- getData(dataset ="NDEP_ISIMIP2B", location = "soro", collapse = TRUE)
+
+# Obtain ISIMIP datasets as an unique data frame
+data <- getData(dataset ="CLIMATE_ISIMIP2A", location = "soro", collapse = FALSE)
+data <- getData(dataset ="CLIMATE_ISIMIP2B", location = "soro", collapse = FALSE)
+data <- getData(dataset ="NDEP_ISIMIP2B", location = "soro", collapse = FALSE)
+
+# Obtain SOIL data. Collapse FALSE is recommended.
+data <- getData(dataset ="SOIL", location = "soro", collapse = FALSE)
+
+# Dowloading specific forcing datasets and/or forcing conditions
+data <- getData( dataset ="CLIMATE_ISIMIP2B", location ="soro",
+                 forcingDataset="GFDLESM2M", forcingCondition ="rcp2p6")
+# Equivalent to
+data <- getData(dataset ="CLIMATE_ISIMIP2B_GFDLESM2M_rcp2p6", location ="soro")
+
+# Specify variables
+data <- getData(dataset ="CLIMATE_ISIMIP2B", location ="soro",
+                forcingDataset="GFDLESM2M", forcingCondition ="rcp2p6",
+              variables = "p_mm")
+
+# Specify species
+data <- getData(dataset ="TREE", location ="hyytiala", species = "Pinus sylvestris")
+data <- getData(dataset ="TREE", location ="hyytiala", species = "pisy")
+data <- getData(dataset ="STAND", location ="hyytiala", species = "Pinus sylvestris")
+data <- getData(dataset ="STAND", location ="hyytiala", species = "pisy")
+
+# Specify period
+data <- getData(dataset ="CLIMATE_ISIMIP2B", location ="soro",
+                forcingDataset="GFDLESM2M", forcingCondition ="rcp2p6",
+                period = c("2006-01-01","2006-12-31"))
+
+# Specify quality
+data <- getData(dataset = "CLIMATE_LOCAL", location = "soro",
+                quality = 1, decreasing = FALSE)
+data <- getData(dataset = "FLUX", location = "soro",
+                quality = 0, decreasing = TRUE)
 }
