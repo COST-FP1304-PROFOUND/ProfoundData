@@ -47,8 +47,7 @@ from the ProfoundData database.
 Plotting is not supported for datasets: OVERVIEW, SITES, SOIL. The aggregation of data
 relies on the function \code{\link{aggregate}} for \code{\link{zoo}} objects. The FUN parameter
 is passed to FUN from \code{\link{aggregate}}. Please check the help files of  \code{\link{aggregate}}
-for further information. For handling NAs we recommend to pass self-defined fuctions (see examples)
-the behavious
+for further information. For handling NAs we recommend to pass self-defined fuctions (see examples).
 }
 \note{
 To report errors in the package or the data, please use the issue tracker
@@ -58,16 +57,67 @@ or use this google form http://goo.gl/forms/e2ZQCiZz4x
 }
 \examples{
 \dontrun{
-plotData("TREE", location = "Soro")
-plotData("TREE", location = "Soro", automaticPanels=T)
-plotData("TREE", location = "Soro", automaticPanels=T, aggregate = T, FUN= mean)
-plotData("TREE", location = "Soro", automaticPanels=T, FUN = function(x)mean(x, na.rm=T))
-#' # Period options
-plotData("CLIMATE_LOCAL", location = "Collelongo", period = "1996-01-01")
-plotData("CLIMATE_LOCAL", location = "Collelongo", period = c("1996-01-01", "1996-12-31"))
-plotData("CLIMATE_LOCAL", location = "Collelongo", period = c(NA "1996-12-31"))
-plotData("CLIMATE_LOCAL", location = "Collelongo", period = c("1996-01-01", NA))
- }
+# Normal plotting
+plotData(dataset = "CLIMATE_LOCAL", location = "le_bray", automaticPanels = TRUE)
+plotData(dataset = "TREE", location = "solling_beech",   automaticPanels = TRUE)
+plotData(dataset = "CLIMATE_LOCAL", location = "le_bray", automaticPanels = FALSE)
+plotData(dataset = "TREE", location = "solling_beech",   automaticPanels = FALSE)
+
+
+# Plot specifics forcing datasets and conditions
+plotData(dataset ="CLIMATE_ISIMIP2B", location ="soro", forcingDataset="GFDLESM2M",
+         forcingCondition ="rcp2p6", automaticPanels = TRUE)
+
+# Plot specific variables
+plotData(dataset ="CLIMATE_ISIMIP2B",location ="soro", forcingDataset="GFDLESM2M",
+         forcingCondition ="rcp2p6", variables = "p_mm")
+plotData(dataset ="TREE",location ="solling_beech", variables = "dbh1_cm")
+
+# Plot specific species
+plotData(dataset ="TREE", location ="hyytiala", species = "Pinus sylvestris",
+         automaticPanels = TRUE)
+
+
+# Plot specific period
+plotData(dataset = "CLIMATE_LOCAL", location =  "soro",
+         period = c("2011-01-01","2012-12-31"))
+
+
+# Set quality treshold
+plotData(dataset = "CLIMATE_LOCAL", location = "soro",
+         period = c("2011-01-01","2012-12-31"), quality = 1, decreasing = FALSE)
+plotData(dataset = "FLUX", location = "soro", period = c("2011-01-01","2012-12-31"),
+         quality = 0, decreasing = TRUE)
+```
+# Plot aggregated data
+plotData(dataset = "CLIMATE_ISIMIP2B", location ="soro",  forcingDataset= "GFDLESM2M",
+         forcingCondition="rcp2p6", variables = "tmax_degC",
+         period = c("2020-01-01", "2022-01-01"),
+         aggregate = "month", FUN =median)
+plotData(dataset = "CLIMATE_ISIMIP2B", location ="soro",  forcingDataset= "GFDLESM2M",
+         forcingCondition="rcp2p6", variables = "p_mm",
+         period = c("2020-01-01", "2022-01-01"),
+         aggregate = "month", FUN =sum)
+
+# Plot aggregated data with self defined function
+# Compare month mean temperature of one year to mean of all period
+data <- getData(dataset = "CLIMATE_ISIMIP2B", location ="soro",  forcingDataset= "GFDLESM2M",
+                forcingCondition="rcp2p6", variables = "tmax_degC")
+meanTemperature <- mean(data$tmax_degC, na.rm = TRUE)
+difference <- function(x) {mean(x, na.rm = TRUE) -meanTemperature}
+
+plotData(dataset = "CLIMATE_ISIMIP2B", location ="soro",  forcingDataset= "GFDLESM2M",
+         forcingCondition="rcp2p6", variables = "tmax_degC",
+         period = c("2020-01-01", "2021-01-01"),
+         aggregate = "month", FUN =difference)
+abline(h = 0, col = "red")
+plotData(dataset = "CLIMATE_ISIMIP2B", location ="soro",  forcingDataset= "GFDLESM2M",
+         forcingCondition="rcp2p6", variables = "tmax_degC",
+         period = c("2021-01-01", "2022-01-01"),
+         aggregate = "month", FUN =difference)
+abline(h = 0, col = "red")
+
+}
 }
 \author{
 Ramiro Silveyra Gonzalez

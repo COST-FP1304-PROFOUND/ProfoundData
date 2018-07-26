@@ -19,9 +19,10 @@ in the github repository of TG2 https://github.com/COST-FP1304-PROFOUND/TG2/issu
 or use this google form http://goo.gl/forms/e2ZQCiZz4x
 }
 \examples{
- \dontrun{
-  getDB()
- }
+\dontrun{
+# Retrieve the database connection and version
+getDB()
+}
 }
 \author{
 Ramiro Silveyra Gonzalez

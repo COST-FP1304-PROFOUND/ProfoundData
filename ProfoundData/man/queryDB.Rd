@@ -19,16 +19,25 @@ in the github repository of TG2 https://github.com/COST-FP1304-PROFOUND/TG2/issu
 or use this google form http://goo.gl/forms/e2ZQCiZz4x
 }
 \examples{
- \dontrun{
- overview <- queryDB("SELECT * FROM OVERVIEW")
- tree <- queryDB("SELECT * FROM TREE")
- myQuery <- queryDB("SELECT  * FROM CLIMATE_LOCAL WHERE tmax_degC > 20 AND site == 'hyytiala'")
- myQuery <- queryDB("SELECT date, tmax_degC FROM CLIMATE_LOCAL WHERE site == 'hyytiala'")
- myQuery <- queryDB("SELECT date, tmax_degC FROM CLIMATE_LOCAL_12")
- myQuery <- queryDB("SELECT  * FROM TREE WHERE species == 'Picea abies'")
- myQuery <- queryDB("SELECT  * FROM TREE_piab"
+\dontrun{
+# Basic querz
+overview <- queryDB("SELECT * FROM OVERVIEW")
+tree <- queryDB("SELECT * FROM TREE")
 
- }
+# Site name or site_id
+myQuery <- queryDB("SELECT date, tmax_degC FROM CLIMATE_LOCAL WHERE site == 'hyytiala'")
+myQuery <- queryDB("SELECT date, tmax_degC FROM CLIMATE_LOCAL_12")
+
+# Tree species
+myQuery <- queryDB("SELECT  * FROM TREE WHERE species == 'Picea abies'")
+myQuery <- queryDB("SELECT  * FROM TREE_piab")
+
+# Specify variables
+myQuery <- queryDB("SELECT date, tmax_degC FROM CLIMATE_LOCAL WHERE tmax_degC > 20 AND site == 'hyytiala' AND year == 2010")
+
+
+
+}
 }
 \author{
 Ramiro Silveyra Gonzalez
