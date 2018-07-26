@@ -61,6 +61,12 @@ summarizeData <- function(dataset, location,  forcingDataset = NULL,
 
   if (!mode %in% c("data", "overview" )) stop("Invalid mode value")
 
+  if(dataset == "ENERGYBALANCE"){
+    warning("Dataset 'ENERGYBALANCE' is deprecated.\n Use 'ATMOSPHERICHEATCONDUCTION' instead.")
+    dataset <- "ATMOSPHERICHEATCONDUCTION"
+  }
+
+
   message("Parsing the query")
   tmp <- try(parseQuery(dataset=dataset, location=location, forcingDataset = forcingDataset,
                         forcingCondition = forcingCondition,collapse = T, period = period), F)

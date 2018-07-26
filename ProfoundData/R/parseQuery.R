@@ -21,7 +21,7 @@ parseQuery <- function(dataset, location,  forcingDataset = NULL,
   }else{
     RSQLite::dbDisconnect(conn)
   }
-  message("Parsing the query")
+  message("Parsing query")
   # Clean up the dataset and the dataset options
   dataset <- gsub(" ", "",  dataset)
   dataset <- gsub("-", "",  dataset)
@@ -52,7 +52,7 @@ parseQuery <- function(dataset, location,  forcingDataset = NULL,
       dataset <- paste(dataset, species, sep = "_")
     }
   }
-  message("Checking the dataset")
+  message("Checking dataset")
   # create the item.dataset
   tmp <- list( dataset = dataset, location = location,
                variables = variables,
@@ -69,7 +69,7 @@ parseQuery <- function(dataset, location,  forcingDataset = NULL,
   if (tmp[["dataset"]] == "VERSION" || grepl("METADATA", tmp[["dataset"]]) || tmp[["dataset"]] == "POLICY" || tmp[["dataset"]] == "SOURCE" ){
     stop(paste("Use browseData for accesing", tmp[["dataset"]]))
   }
-  message("Checking the location")
+  message("Checking location")
   if(is.null(tmp[["location"]])){
     if (tmp[["dataset"]] == "SITES" || tmp[["dataset"]] == "SITEDESCRIPTION" ){
       tmp[["item"]] <- paste( "SELECT * FROM", tmp[["dataset"]] ,sep = " ")
@@ -79,7 +79,7 @@ parseQuery <- function(dataset, location,  forcingDataset = NULL,
   }else if(!is.null(tmp[["location"]])){
     tmp[["location"]] <- getLocations(tmp[["location"]])
     if (!tmp[["location"]])stop("Invalid location. Please use browseData to see the available locations")
-    message("Checking the variables")
+    message("Checking variables")
   #  cat(tmp[["dataset"]]); cat(tmp[["variables"]])
     tmp[["variablesChecked"]] <- parseVariables(tmp[["dataset"]], tmp[["variables"]])
     # Here code for CO2 and SITES. Based on version do something or the other.

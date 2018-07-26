@@ -24,19 +24,7 @@
 #' in the github repository of TG2 https://github.com/COST-FP1304-PROFOUND/TG2/issues
 #' (preferred, but requires that you have access to our GitHub account) or
 #' or use this google form http://goo.gl/forms/e2ZQCiZz4x
-#' @examples
-#' \dontrun{
-#' overview <- browseData()
-#' overview <- browseData( collapse = F)
-#' browseData("TREE")
-#' browseData("METADATA_TREE")
-#' browseData("METADATA_TREE", location = "Soro")
-#' browseData("TREE", variables = T)
-#' browseData(location ="Soro")
-#' browseData("TREE", location ="Soro" )
-#' browseData("SOURCE",location = "Soro")
-#' browseData("POLICY",location = "Soro")
-#'  }
+#' @example /inst/examples/browseDataHelp.R
 #' @export
 browseData <- function(dataset = NULL, location = NULL,  variables  = FALSE, collapse = TRUE){
 
@@ -65,6 +53,11 @@ browseData <- function(dataset = NULL, location = NULL,  variables  = FALSE, col
     dataset <- gsub(" ", "",  dataset)
     dataset <- gsub("-", "",  dataset)
     dataset <- gsub("+", "",  dataset)
+    if(dataset == "ENERGYBALANCE"){
+      warning("Dataset 'ENERGYBALANCE' is deprecated.\n Use 'ATMOSPHERICHEATCONDUCTION' instead.")
+      dataset <- "ATMOSPHERICHEATCONDUCTION"
+    }
+
     # a. See all dataset
     if(dataset == "DATASETS"){
       table <- getDatasets()
@@ -89,6 +82,11 @@ browseData <- function(dataset = NULL, location = NULL,  variables  = FALSE, col
     }else if (dataset == "SITEDESCRIPTION" ){
      stop("Use getData to download this dataset")
     }else{
+      if(dataset == "ENERGYBALANCE"){
+        warning("Dataset 'ENERGYBALANCE' is deprecated.\n Use 'ATMOSPHERICHEATCONDUCTION' instead.")
+        dataset <- "ATMOSPHERICHEATCONDUCTION"
+      }
+
       if (!getDatasets(dataset)){stop("The dataset is not available. Please call getDatasets to see what datasets are available.")}
 
       # b. See all variables for all datast
@@ -107,7 +105,6 @@ browseData <- function(dataset = NULL, location = NULL,  variables  = FALSE, col
       }
     }
   }else if(is.null(dataset)){
-    #TODO
     location <- getLocations(location)
     # return the entire table
     if (!location){stop("The location is not available. Please call getLocations to see what locations are available.")}
@@ -121,6 +118,11 @@ browseData <- function(dataset = NULL, location = NULL,  variables  = FALSE, col
     dataset <- gsub(" ", "",  dataset)
     dataset <- gsub("-", "",  dataset)
     dataset <- gsub("+", "",  dataset)
+    if(dataset == "ENERGYBALANCE"){
+      warning("Dataset 'ENERGYBALANCE' is deprecated.\n Use 'ATMOSPHERICHEATCONDUCTION' instead.")
+      dataset <- "ATMOSPHERICHEATCONDUCTION"
+    }
+
     if (!getDatasets(dataset) || !location ){stop("Invalid dataset and/or location")}
     if (dataset == "VERSION"){
       table <- getVersion()

@@ -26,25 +26,18 @@
 #' @details Plotting is not supported for datasets: OVERVIEW, SITES, SOIL. The aggregation of data
 #' relies on the function \code{\link{aggregate}} for \code{\link{zoo}} objects. The FUN parameter
 #' is passed to FUN from \code{\link{aggregate}}. Please check the help files of  \code{\link{aggregate}}
-#' for further information. For handling NAs we recommend to pass self-defined fuctions (see examples)
-#' the behavious
+#' for further information. For handling NAs we recommend to pass self-defined fuctions (see examples).
 #' @export
-#' @examples
-#' \dontrun{
-#' plotData("TREE", location = "Soro")
-#' plotData("TREE", location = "Soro", automaticPanels=T)
-#' plotData("TREE", location = "Soro", automaticPanels=T, aggregate = T, FUN= mean)
-#' plotData("TREE", location = "Soro", automaticPanels=T, FUN = function(x)mean(x, na.rm=T))
-#' #' # Period options
-#' plotData("CLIMATE_LOCAL", location = "Collelongo", period = "1996-01-01")
-#' plotData("CLIMATE_LOCAL", location = "Collelongo", period = c("1996-01-01", "1996-12-31"))
-#' plotData("CLIMATE_LOCAL", location = "Collelongo", period = c(NA "1996-12-31"))
-#' plotData("CLIMATE_LOCAL", location = "Collelongo", period = c("1996-01-01", NA))
-#'  }
+#' @example /inst/examples/plotDataHelp.R
 #' @author Ramiro Silveyra Gonzalez
 plotData <- function(dataset, location,  forcingDataset = NULL,
                      forcingCondition = NULL, species = NULL, variables = NULL, period = NULL,
                      aggregated = NULL, FUN = mean, automaticPanels = T, quality = NULL , decreasing = TRUE){
+
+  if(dataset == "ENERGYBALANCE"){
+    warning("Dataset 'ENERGYBALANCE' is deprecated.\n Use 'ATMOSPHERICHEATCONDUCTION' instead.")
+    dataset <- "ATMOSPHERICHEATCONDUCTION"
+  }
 
   notSupportedDatasets <- c("OVERVIEW", "SITES", "SOIL", "POLICY", "SOURCE", "SITEDESCRITPION",
                             "OVERVIEW_EXTENDED")

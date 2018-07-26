@@ -30,20 +30,7 @@
 #' (preferred, but requires that you have access to our GitHub account) or
 #' or use this google form http://goo.gl/forms/e2ZQCiZz4x
 #' @export
-#' @examples
-#' \dontrun{
-#' getData("TREE", location = "Soro")
-#' getData("CLIMATE_ISIMIP2B", location = "Soro", collapse=T)
-#' getData("CLIMATE_ISIMIP2B", location = "Soro", collapse=F)
-#' getData("SOIL", location = "Kroof", collapse=F)
-#' getData("SOIL", location = "Kroof", collapse=T)
-#' getData("CLIMATE_LOCAL", location = "Collelongo")
-#' # Period options
-#' getData("CLIMATE_LOCAL", location = "Collelongo", period = "1996-01-01")
-#' getData("CLIMATE_LOCAL", location = "Collelongo", period = c("1996-01-01", "1996-12-31"))
-#' getData("CLIMATE_LOCAL", location = "Collelongo", period = c(NA "1996-12-31"))
-#' getData("CLIMATE_LOCAL", location = "Collelongo", period = c("1996-01-01", NA))
-#'  }
+#' @example /inst/examples/getDataHelp.R
 #' @author Ramiro Silveyra Gonzalez
 #'
 
@@ -51,6 +38,10 @@ getData <- function(dataset, location = NULL, forcingDataset = NULL,
                     forcingCondition = NULL, species = NULL, variables = NULL,
                     period = NULL, collapse = TRUE,
                     quality = NULL,  decreasing = TRUE){
+  if(dataset == "ENERGYBALANCE"){
+    warning("Dataset 'ENERGYBALANCE' is deprecated.\n Use 'ATMOSPHERICHEATCONDUCTION' instead.")
+    dataset <- "ATMOSPHERICHEATCONDUCTION"
+  }
   # parse and test the query
   tmp <- try(parseQuery(dataset =dataset, location = location,  forcingDataset = forcingDataset,
                         forcingCondition = forcingCondition, species = species,

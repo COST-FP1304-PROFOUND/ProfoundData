@@ -3,10 +3,7 @@
 #' @description A getDB funtion to return the filepath to the database
 #' @return a character string with filepath to the database
 #' @export
-#' @examples
-#'  \dontrun{
-#'   getDB()
-#'  }
+#' @example /inst/examples/getDBHelp.R
 #' @note To report errors in the package or the data, please use the issue tracker
 #' in the github repository of TG2 https://github.com/COST-FP1304-PROFOUND/TG2/issues
 #' (preferred, but requires that you have access to our GitHub account) or

@@ -17,7 +17,7 @@ startStopPROFOUND.YEARLY <- function(data){
   columnsYes <- colnames(data)[!colnames(data) %in% columnsNot]
   columnsYes <- columnsYes[!columnsYes %in% c("year")]
   colnamesCol <- c("site", "site_id",
-                   "variable", "first", "last", "year_first", "year_last", "obs")
+                   "variable", "first", "last", "min", "max", "mean", "year_first", "year_last", "obs")
   collector <-as.data.frame(matrix(rep(NA, length(columnsYes) * length(colnamesCol)),
                                      nrow = length(columnsYes), ncol = length(colnamesCol),
                                      dimnames = list(columnsYes, colnamesCol)))
@@ -28,6 +28,9 @@ startStopPROFOUND.YEARLY <- function(data){
   for (j in 1:length(columnsYes)){
       tmp <- data[!is.na(data[[columnsYes[j]]]), ]
       collector[columnsYes[j], 4:ncol(collector) ] <- c(tmp[[columnsYes[j]]][1],tmp[[columnsYes[j]]][nrow(tmp)],
+                                                        min(tmp[[columnsYes[j]]], na.rm = TRUE),
+                                                        max(tmp[[columnsYes[j]]], na.rm = TRUE),
+                                                        mean(tmp[[columnsYes[j]]], na.rm = TRUE),
                                                         tmp[["year"]][1], tmp[["year"]][nrow(tmp)], nrow(tmp))
   }
 
@@ -40,7 +43,7 @@ startStopPROFOUND.ISIMIP <- function(data){
   data$record_id <- NULL
   columnsNot <- c("site", "site_id")
   colnamesCol <- c("site", "site_id", "forcingDataset", "forcingConditions",
-                   "variable", "first", "last", "year_first", "year_last", "obs")
+                   "variable", "first", "last", "min", "max", "mean", "year_first", "year_last", "obs")
 
   if ("forcingDataset" %in% names(data)){
     if ("forcingConditions" %in% names(data)){
@@ -67,6 +70,9 @@ startStopPROFOUND.ISIMIP <- function(data){
             for (k in 1:length(columnsYes)){
               tmp <- df[!is.na(df[[columnsYes[k]]]), ]
               collector[columnsYes[k], 6:ncol(collector) ] <- c(tmp[[columnsYes[k]]][1],tmp[[columnsYes[k]]][nrow(tmp)],
+                                                                min(tmp[[columnsYes[k]]], na.rm = TRUE),
+                                                                max(tmp[[columnsYes[k]]], na.rm = TRUE),
+                                                                mean(tmp[[columnsYes[k]]], na.rm = TRUE),
                                                                 tmp[["year"]][1], tmp[["year"]][nrow(tmp)], nrow(tmp))
             }
             rownames(collector) <- NULL
@@ -99,6 +105,9 @@ startStopPROFOUND.ISIMIP <- function(data){
         for (k in 1:length(columnsYes)){
           tmp <- df[!is.na(df[[columnsYes[k]]]), ]
           collector[columnsYes[k], 5:ncol(collector) ] <- c(tmp[[columnsYes[k]]][1],tmp[[columnsYes[k]]][nrow(tmp)],
+                                                            min(tmp[[columnsYes[k]]], na.rm = TRUE),
+                                                            max(tmp[[columnsYes[k]]], na.rm = TRUE),
+                                                            mean(tmp[[columnsYes[k]]], na.rm = TRUE),
                                                             tmp[["year"]][1], tmp[["year"]][nrow(tmp)], nrow(tmp))
         }
         rownames(collector) <- NULL
@@ -141,7 +150,7 @@ startStopPROFOUND.STAND <- function(data){
   for (i in 1:length(species)){
     dummy <- data[data$species == species[i],]
     colnamesCol <- c("site", "site_id", "species", "species_id", "variable",
-                     "first", "last", "year_first", "year_last", "obs")
+                     "first", "last","min", "max", "mean", "year_first", "year_last", "obs")
     collector <-as.data.frame(matrix(rep(NA, length(columnsYes) * length(colnamesCol)),
                            nrow = length(columnsYes), ncol = length(colnamesCol),
                            dimnames = list(columnsYes, colnamesCol)))
@@ -154,7 +163,10 @@ startStopPROFOUND.STAND <- function(data){
     for (j in 1:length(columnsYes)){
       tmp <- dummy[!is.na(dummy[[columnsYes[j]]]), ]
       collector[columnsYes[j], 6:ncol(collector) ] <- c(tmp[[columnsYes[j]]][1],tmp[[columnsYes[j]]][nrow(tmp)],
-                    tmp[["year"]][1], tmp[["year"]][nrow(tmp)], nrow(tmp))
+                                                        min(tmp[[columnsYes[j]]], na.rm = TRUE),
+                                                        max(tmp[[columnsYes[j]]], na.rm = TRUE),
+                                                        mean(tmp[[columnsYes[j]]], na.rm = TRUE),
+                                                        tmp[["year"]][1], tmp[["year"]][nrow(tmp)], nrow(tmp))
     }
     all[[i]] <- collector
   }

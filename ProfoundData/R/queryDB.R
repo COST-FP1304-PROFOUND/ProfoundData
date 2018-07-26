@@ -3,17 +3,7 @@
 #' @description A queryDB funtion to  perform own queries to the Profound DB
 #' @param queryItem a character string providing the query
 #' @export
-#' @examples
-#'  \dontrun{
-#'  overview <- queryDB("SELECT * FROM OVERVIEW")
-#'  tree <- queryDB("SELECT * FROM TREE")
-#'  myQuery <- queryDB("SELECT  * FROM CLIMATE_LOCAL WHERE tmax_degC > 20 AND site == 'hyytiala'")
-#'  myQuery <- queryDB("SELECT date, tmax_degC FROM CLIMATE_LOCAL WHERE site == 'hyytiala'")
-#'  myQuery <- queryDB("SELECT date, tmax_degC FROM CLIMATE_LOCAL_12")
-#'  myQuery <- queryDB("SELECT  * FROM TREE WHERE species == 'Picea abies'")
-#'  myQuery <- queryDB("SELECT  * FROM TREE_piab"
-#'
-#'  }
+#' @example /inst/examples/queryDBHelp.R
 #' @note To report errors in the package or the data, please use the issue tracker
 #' in the github repository of TG2 https://github.com/COST-FP1304-PROFOUND/TG2/issues
 #' (preferred, but requires that you have access to our GitHub account) or
