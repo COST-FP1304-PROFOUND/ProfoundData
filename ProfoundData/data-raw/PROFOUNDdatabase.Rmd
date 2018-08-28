@@ -1,5 +1,5 @@
 ---
-title: "The PROFOUND database and R package"
+title: "The PROFOUND database"
 author: "Ramiro Silveyra Gonzalez, Christopher Reyer, Florian Hartig, Friedrich Bonn, Klara Dolos"
 date: "`r Sys.Date()`"
 output: 
@@ -69,14 +69,14 @@ set.seed(1)
 
 ## Rationale 
 
-Within the [COST Action FP1304 PROFOUND](http://cost-profound.eu/site/), we are developing a database that allows to test forest models against a wide range of observational data. This database will be part of a structured model comparison for several forest sites throughout Europe (10-15 forests) to unravel model uncertainties and to provide robust projections of climate change impacts. This model comparison should make use of the wide range of data types that have become available in recent years. We have therefore started compiling data from all kinds of sources in a database. However, in the long-term, the database is envisioned to be not only useful for the model comparison but to develop into a key benchmark dataset for forest models in general.
+Within the [COST Action FP1304 PROFOUND](http://cost-profound.eu/site/), we are developing a database that allows to test forest models against a wide range of observational data. This database will be part of a structured model comparison for several forest sites throughout Europe (10-15 forests) to unravel model uncertainties and to provide robust projections of climate change impacts. This model comparison should make use of the wide range of data types that have become available in recent years. We have therefore started compiling data from all kinds of sources in a database. However, in the long-term, the database is envisioned to be not only useful for the model comparison but to develop into a key benchmark data set for forest models in general.
 
 The database makes also use of data files that you have gratefully provided us with or that we have extracted from data repositories you are involved in. Our aim is to publish the database as part of a ”data paper for harmonized model evaluation” so that whenever a researcher wants to run a model, they could do so using the data as comprehensive test material. The added value of that database is that several data types are brought together (e.g. soil, tree, flux data, satellite and also climate data including scenarios etc...) and the data is harmonized as much as possible and prepared to be ready-to-use for modelers. We do not intend to replace larger database such as ICOS, Euroflux etc. but want provide a product targeted to modelers needs.
 
 
 ## Data policy
 
-The PROFOUND Database (PROFOUND DB) combines data from existing data sources which are either freely available or available after registration. The data have been made available for the PROFOUND DB with the consent and support of the data owners following the citation/licensing rules from every individual dataset. The added value of the PROFOUND DB resides in the combination, harmonization and preparation of the different data types for forest ecosystem modelers. Therefore, the license is valid for the data as part of the database while the rights for the individual raw datasets reside with the actual data owners. The data policy for these data are described in the PROFOUND DB and we expect users of the database to respect these policies. The authors cannot be held liable for any claims that arise as a result of your use of the material, neither referring to data usage nor faulty data which might be present in the database despite intensive quality checks.
+The PROFOUND Database (PROFOUND DB) combines data from existing data sources which are either freely available or available after registration. The data have been made available for the PROFOUND DB with the consent and support of the data owners following the citation/licensing rules from every individual data set. The added value of the PROFOUND DB resides in the combination, harmonization and preparation of the different data types for forest ecosystem modelers. Therefore, the license is valid for the data as part of the database while the rights for the individual raw data sets reside with the actual data owners. The data policy for these data are described in the PROFOUND DB and we expect users of the database to respect these policies. The authors cannot be held liable for any claims that arise as a result of your use of the material, neither referring to data usage nor faulty data which might be present in the database despite intensive quality checks.
 
 The PROFOUND Database (PROFOUND DB) is available under the Creative Commons Attribution 4.0 license (CC-BY-NC-4.0). You must give appropriate credit, provide a link to the license, and indicate changes made. You may do so in any reasonable manner but not in any way that suggests the licensor endorses you or your use. Please cite the work as follows: 
  
@@ -84,7 +84,7 @@ The PROFOUND Database (PROFOUND DB) is available under the Creative Commons Attr
 
 - Reyer, CPO et al. (2018) The PROFOUND Database. Data Repository: GFZ-Data Services. DOI:XXX. License: CC-BY-NC-4.0.
 
-Further data policy statements of the individual datasets contained in the PROFOUND database are listed in the table below.
+Further data policy statements of the individual data sets contained in the PROFOUND database are listed in the table below.
  
 
 
@@ -106,28 +106,27 @@ pander(df, adding = 0, missing = '**--**', round = 3,
 ``` 
 
 
-## SQL Database
+## Database structure
 
-The PROFOUND database is a relational SQLite database and it is made of several independent tables (see Fig. 1). From these tables many views are created that can be accessed and downloaded by users. We are also developing a R package to ease the queries of data from the database.
+The PROFOUND database is a relational SQLite database and it is made of several independent tables (see Fig. 1). From these tables views are created that can be accessed and downloaded by users. We are also developing an R-package to ease the queries of data from the database.
 
 
-## R package
+## Accessing the database
 
-We have developed a R package to ease the queries of data from the database. 
+We have developed an R-package to ease the queries of data from the database. 
 
 
 ## Database and package releases
 
-Both package and database are under development. The new database and package relases are published in the [PROFOUND repository](https://github.com/COST-FP1304-PROFOUND/TG2/releases). Users with no Github access are welcome to join the Github repository. 
+Both package and database are under development. The new database and package releases are published in the [PROFOUND repository](https://github.com/COST-FP1304-PROFOUND/TG2/releases). Users with no Github access are welcome to join the Github repository. 
 
 
 ![`r figCaption("Overview on the PROFOUND database and the R package.") `](../data-raw/ProfoundData.jpg)
 
 
 
-# The PROFOUND database
+# Site overview
 
-## Site overview
 ```{r, echo = F, message = F}
 df <- getData(dataset = "SITES")
 df <- df[, !colnames(df) %in% c("natVegetation_code1" ,	"natVegetation_code2" , "natVegetation_description")]
@@ -141,7 +140,7 @@ pander(df, adding = 0, missing = '**--**', round = 3, use.hyphening = TRUE, spli
         caption = tableCaption("Forest sites included in the database."))
 ```
 
-To provide the information on which data is available for each site, an overview table is created by combining all existing tables in the database.
+There is an overview table to provide the information on which data is available for each site. The table is created by combining all existing tables in the database.
 
 ```{r, fig.width= 7, echo = F, message = F}
 overview <- browseData()
@@ -151,47 +150,16 @@ pander(overview, adding = 0, missing = '**--**', round = 3, use.hyphening = TRUE
 
 
 
-## Data types
+# Datasets
 
 
-```{r dataTypes, include=FALSE, eval=F}
+```{r dataTypes, include=FALSE, eval=TRUE}
 out <- NULL
 childs <- "ChildDatasetSummary.Rmd"
 out <- knit_child(childs)
 ```
-`r out <- c("Nothing here", "At all") `
 `r paste(out, collapse='\n')`
 
 
 
 
-## Site by site information
-
-```{r sitesReport, include=FALSE, eval=F}
-out <- NULL
-
-for (i in 1:length(overview$site_id)) {
-  currentSiteID <- overview$site_id[i]
-  currentSiteID <- overview$site_id[i]
-  currentSiteName <- overview$site[i]
-  currentDescription <- description[description$site ==currentSiteName, ]$description
- out <- c(out, knit_child('ChildSiteSummary.Rmd'))
-}
-```
-`r paste(out, collapse='\n')`
-
-
-
-
-# References
-
-```{r, echo=F, warning = F, message=F}
-df <- getData("SITEDESCRIPTION")
-reference <- paste(df$reference, collapse = " ")
-reference <- unlist(strsplit(reference, split = "[+]"))
-reference <- reference[-1]
-reference <- sort(reference, decreasing = FALSE)
-reference <- reference[!duplicated(reference)]
-reference <- paste("\n +", reference)
-``` 
-`r paste(reference, collapse="") `
