@@ -1,9 +1,9 @@
 #' @title A function to write netCDF-files
-#' @description This function transformes simulation results into netCDF files following the ISIMIP2 protocol
+#' @description This function transforms simulation results into netCDF files following the ISIMIP2 protocol
 #'
-#' @param df A data.frame containing in the first three collumns longitude latitude
-#'  and time. These collumns are followed by collumns containing the output variables.
-#'   The collumns have to be named with the output variable name as required by the
+#' @param df A data.frame containing in the first three columns longitude latitude
+#'  and time. These columns are followed by columns containing the output variables.
+#'   The columns have to be named with the output variable name as required by the
 #'   protocol. See table 13.
 #' @param modelname The name of the used forest model
 #' @param GCM The climate model which created the used climate time series
@@ -18,13 +18,13 @@
 #' @param start the start year of the simulation. Default value: 1980.
 #' @param region the region or site of the simulation
 #' @param folder The folder in which all netCDF files will be written
-#' @param contact Your mail adress
+#' @param contact Your mail address
 #' @param institution Your institution
 #' @param comment1 Optional comment regarding your simulation
 #' @param comment2 Optional comment regarding your simulation
 #'
 #' @details
-#' The function transformes your simulation output data frame into several netCDF
+#' The function transforms your simulation output data frame into several netCDF
 #' -files and writes them into the indicated folder using the naming convention of
 #'  the ISIMIP2-protocol (https://www.isimip.org/protocol/). Units and long names
 #'  of variables  (table 13) will be created automatically.
