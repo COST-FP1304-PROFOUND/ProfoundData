@@ -4,13 +4,6 @@ startStopPROFOUND <- function(data){
 }
 
 
-#library(ProfoundData)
-#setDB("/home/ramiro/ownCloud/PROFOUND_Data/v0.1.13/ProfoundData.sqlite")
-# data <- summarizeData("FLUX", "kroof")
-#data <- summarizeData("FLUX", "le_bray", by = "years")
-
-
-
 startStopPROFOUND.YEARLY <- function(data){
   data$record_id <- NULL
   columnsNot <- c("site", "site_id")
