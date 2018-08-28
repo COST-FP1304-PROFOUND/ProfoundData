@@ -33,7 +33,8 @@ myQuery <- queryDB("SELECT  * FROM TREE WHERE species == 'Picea abies'")
 myQuery <- queryDB("SELECT  * FROM TREE_piab")
 
 # Specify variables
-myQuery <- queryDB("SELECT date, tmax_degC FROM CLIMATE_LOCAL WHERE tmax_degC > 20 AND site == 'hyytiala' AND year == 2010")
+myQuery <- queryDB("SELECT date, tmax_degC FROM CLIMATE_LOCAL WHERE
+                   tmax_degC > 20 AND site == 'hyytiala' AND year == 2010")
 
 
 

@@ -10,9 +10,9 @@ writeSim2netCDF(df, comment1 = NA, comment2 = NA, institution = "PIK",
   region = "Kroof", start = "1980", folder = "ISI-MIP")
 }
 \arguments{
-\item{df}{A data.frame containing in the first three collumns longitude latitude
-and time. These collumns are followed by collumns containing the output variables.
- The collumns have to be named with the output variable name as required by the
+\item{df}{A data.frame containing in the first three columns longitude latitude
+and time. These columns are followed by columns containing the output variables.
+ The columns have to be named with the output variable name as required by the
  protocol. See table 13.}
 
 \item{comment1}{Optional comment regarding your simulation}
@@ -21,7 +21,7 @@ and time. These collumns are followed by collumns containing the output variable
 
 \item{institution}{Your institution}
 
-\item{contact}{Your mail adress}
+\item{contact}{Your mail address}
 
 \item{modelname}{The name of the used forest model}
 
@@ -45,10 +45,10 @@ value: "co2const".}
 \item{folder}{The folder in which all netCDF files will be written}
 }
 \description{
-This function transformes simulation results into netCDF files following the ISIMIP2 protocol
+This function transforms simulation results into netCDF files following the ISIMIP2 protocol
 }
 \details{
-The function transformes your simulation output data frame into several netCDF
+The function transforms your simulation output data frame into several netCDF
 -files and writes them into the indicated folder using the naming convention of
  the ISIMIP2-protocol (https://www.isimip.org/protocol/). Units and long names
  of variables  (table 13) will be created automatically.

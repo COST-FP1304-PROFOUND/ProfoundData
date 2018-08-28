@@ -42,7 +42,7 @@ from the PROFOUND database.
 }
 \details{
 When using quality, please be aware that the threshold value is included
-in the returned data. Threshold works by removing data values taht are greater
+in the returned data. Threshold works by removing data values that are greater
  (decreasing = TRUE) or less(decreasing = FALSE) than the given value.
  The quality parameter is only relevant for datasets that have quality flags. These are
 ATMOSPHERICHEATCONDUCTION, SOILTS, FLUX, METEOROLOGICAL, and CLIMATE LOCAL for some sites. Please

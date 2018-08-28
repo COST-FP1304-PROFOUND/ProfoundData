@@ -10,7 +10,7 @@ getDB()
 a character string with filepath to the database
 }
 \description{
-A getDB funtion to return the filepath to the database
+A getDB function to return the filepath to the database
 }
 \note{
 To report errors in the package or the data, please use the issue tracker

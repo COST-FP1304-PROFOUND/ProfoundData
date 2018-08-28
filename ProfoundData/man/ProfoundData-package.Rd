@@ -8,9 +8,9 @@
 \description{
 The ProfoundData package provides functions to access the Profound
 database. The database is designed to provide data needed by forest
-models. The package allow users to explore the availables dataset and locations
-in the database, as well as download and visualize data. ProfoudnData should be particularly
-useful for users working with models on a R enviroment.
+models. The package allow users to explore the available dataset and locations
+in the database, as well as download and visualize data. ProfoundData should be particularly
+useful for users working with models on a R environment.
 
 Below is a list of the functions grouped by theme. See the vignette for more
 information and some examples (you can open it by running this command:

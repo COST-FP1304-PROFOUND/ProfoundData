@@ -23,9 +23,10 @@ data overview, if neither location nor dataset are passed to the function}
    \item if no arguments,  an overview of available data
    \item  if metadata, the requested metadata
    \item  if dataset and variables, available variables for a dataset
-   \item  if dataset, avalaible locations for the dataset
+   \item  if dataset, available locations for the dataset
    \item  if location, available datasets for a location
-   \item  if location and dataset,  retuns a integer. Availability is coded as 0 = no available and 1 = available, This is th quickest option to check availability.
+   \item  if location and dataset,  retuns a integer. Availability is coded as 0 = no available and 1 = available.
+    This is the quickest option to check availability.
    }
 }
 \description{
@@ -34,7 +35,7 @@ PROFOUND database
 }
 \details{
 Besides providing information on available data, this function allows
-to accces the database metadata, policy,  data sources and site descriptions.
+to access the database metadata, policy,  data sources and site descriptions.
 }
 \note{
 To report errors in the package or the data, please use the issue tracker
