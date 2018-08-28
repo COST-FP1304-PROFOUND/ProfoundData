@@ -26,7 +26,7 @@
 #' @details Plotting is not supported for datasets: OVERVIEW, SITES, SOIL. The aggregation of data
 #' relies on the function \code{\link{aggregate}} for \code{\link{zoo}} objects. The FUN parameter
 #' is passed to FUN from \code{\link{aggregate}}. Please check the help files of  \code{\link{aggregate}}
-#' for further information. For handling NAs we recommend to pass self-defined fuctions (see examples).
+#' for further information. For handling NAs we recommend to pass self-defined functions (see examples).
 #' @export
 #' @example /inst/examples/plotDataHelp.R
 #' @author Ramiro Silveyra Gonzalez
