@@ -15,7 +15,7 @@
 #' @param period a character array either start of the subset or start and end.
 #'  It must have the format YYYY-MM-DD.
 #' @param mode a character string whether to display the data summary or an overview.
-#' @details This function is under development and has limited fucntionality. At the
+#' @details This function is under development and has limited functionality. At the
 #' moment, it is possible to summarize daily climate datasets and tree data.
 #' @return a dataframe with the summary values
 #' @keywords ProfoundData
@@ -35,14 +35,14 @@
 #'    \item density_treeha is the number of tree per ha
 #'    \item dbhArit_cm is the arithmetic mean diameter
 #'    \item dbhBa_cm is the average diameter weighted by basal area calculated as dbhBA = (ba1*dbh1 + ba2*dbh2 + ... + bak*dbhk) / (ba1 + ba2+ ... + bak), where bai and dbhi are the basal area and dbh, respectively, of the tree i, and  i = 1, 2, . . , k
-#'    \item dbhDQ_cm is the mean squared diameter or quadratic mean diameter calculated as dbhDQ = sqrt( (dbh1^2 + dbh2^2+ ... + dbhk^2) / N),  where dbhi is the diameter at breat height of tree i,   i = 1, 2, . . , k, N is the total number of trees, and sqrt is the square root
+#'    \item dbhDQ_cm is the mean squared diameter or quadratic mean diameter calculated as dbhDQ = sqrt( (dbh1^2 + dbh2^2+ ... + dbhk^2) / N),  where dbhi is the diameter at breast height of tree i,   i = 1, 2, . . , k, N is the total number of trees, and sqrt is the square root
 #'    \item heightArith_m is the arithmetic mean height
-#'    \item heightArith_m is the verage height weighted by basal area or Loreys height calculated as heightBA = (ba1*h1 + ba2*h2 + ... + bak*hk) / (ba1 + ba2+ ... + bak), where bai and hi are the basal area and height, respectively, of the tree i, and  i = 1, 2, . . , k
+#'    \item heightArith_m is the average height weighted by basal area or Loreys height calculated as heightBA = (ba1*h1 + ba2*h2 + ... + bak*hk) / (ba1 + ba2+ ... + bak), where bai and hi are the basal area and height, respectively, of the tree i, and  i = 1, 2, . . , k
 #'    \item heightBA_m
 #'    \item ba_m2 is the basal area per hectare
 #'    }
 #' }
-#' @details Data are summarized by years. Radiation and precipation are provided as total yearly
+#' @details Data are summarized by years. Radiation and precipitation are provided as total yearly
 #' values, while the rest of climatic values are year mean values.  For ISIMIP datasets a summary for whole
 #' period will be returned if the dataset comprises more than one forcing datasets and one forcing conditions.
 #'
@@ -92,8 +92,11 @@ summarizeData <- function(dataset, location,  forcingDataset = NULL,
     }
   }else if (mode == "overview"){
     if(tmp[["dataset"]] == "STAND"){
-    data <- startStopPROFOUND.STAND(data)
-    }else if(tmp[["dataset"]] == "FLUX"){
+      data <- startStopPROFOUND.STAND(data)
+    }else if(tmp[["dataset"]] == "TREE"){
+      data <- summarizePROFOUND.TREE(data)
+      data <- startStopPROFOUND.STAND(data)
+      }else if(tmp[["dataset"]] == "FLUX"){
       data <- summarizePROFOUND.FLUX(data, by = "year")
       data <- startStopPROFOUND.YEARLY(data)
     }else if (tmp[["dataset"]] == "CLIMATE_LOCAL"){
