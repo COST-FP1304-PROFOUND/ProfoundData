@@ -1,7 +1,7 @@
-`r paste("### Site ", currentSiteName, collapse='\n')`
+`r paste("# Site ", currentSiteName, collapse='\n')`
 
 
-#### General info
+## General info
 
 `r paste(currentDescription, collapse='\n')`
 
@@ -9,12 +9,19 @@ The following data is available for the site
 ```{r, echo = F, echo=F, message= F, warning=F}
 dataAvailable <- overview[i,3:ncol(overview)]
 rownames(dataAvailable) <- NULL
-pander(dataAvailable, adding = 0, missing = '**--**', round = 3,
+
+dataAvailableShow <- as.data.frame(t(dataAvailable))
+colnames(dataAvailableShow) <-"availability"
+dataAvailableShow$dataset <- rownames(dataAvailableShow)
+dataAvailableShow <- dataAvailableShow[, c("dataset", "availability")]
+rownames(dataAvailableShow) <- NULL
+
+pander(dataAvailableShow, adding = 0, missing = '**--**', round = 3,
        use.hyphening = TRUE, split.cells = 3, caption = tableCaption(paste("Available data for ", currentSiteName, sep="")))
 
 ```
 
-#### Data
+## Data
 
 ```{r, eval = T, echo=F, message= F, warning=F, results='hide'}
 both <- c("CLIMATE_LOCAL")
