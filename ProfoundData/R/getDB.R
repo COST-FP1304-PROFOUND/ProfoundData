@@ -1,6 +1,6 @@
 #' @title A function to retun information the a database connection object
 #'
-#' @description A getDB funtion to return the filepath to the database
+#' @description A getDB function to return the filepath to the database
 #' @return a character string with filepath to the database
 #' @export
 #' @example /inst/examples/getDBHelp.R
