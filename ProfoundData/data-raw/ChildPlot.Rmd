@@ -1,5 +1,5 @@
 
-`r paste("##### ", currentDataset, collapse='\n')`
+`r paste("### ", currentDataset, collapse='\n')`
 
 ```{r, eval = T, echo=F, message= F, warning=F, results='hide'}
 plotSmall <- FALSE
