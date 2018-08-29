@@ -18,7 +18,7 @@ checkQuality <- function(rawdata, variables,  dataset, value, decreasing){
   # Figure out wether there is any variable with quality flag
   variablesQuality <- variablesQuality[variablesQuality %in% colnames(rawdata)]
   if (length(variablesQuality)==0){
-    warning("There are not quality flags for this specific dataset")
+    warning("There are not quality flags for this specific dataset", call. = FALSE)
   }else{
     if(decreasing){
       message(paste("Removing data points with quality >", value, sep =" "))
@@ -44,7 +44,7 @@ checkQuality <- function(rawdata, variables,  dataset, value, decreasing){
         }
       }
     }else{
-      warning("Report a bug!")
+      warning("You might have found a bug! Please report it", call. = FALSE)
     }
   }
   return(rawdata)
