@@ -8,7 +8,7 @@ Authors@R: c(person("Ramiro", "Silveyra Gonzalez",  email = "rasilgon@gmail.com"
             person("Friedrich", "Bohn", email = "friedrich.bohn@ufz.de", role = c("ctb")),
             person("Data", "Contributors",email = "contributor@data.com", role = c("ctb"))
             )
-Description: The ProfoundData R package is designed to work along with the
+Description: The ProfoundData R-package is designed to work along with the
     PROFOUND database.
 Depends:
     R (>= 3.1.0),
