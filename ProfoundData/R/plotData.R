@@ -1,41 +1,48 @@
 #' @title A function to plot data
 #'
-#' @description  A function to plot data of dataset for a location
-#' from the ProfoundData database.
-#' @param location a character string providing the name of the location
-#' @param dataset a character string providing the name one of the available datasets
-#' @param forcingDataset a character string providing the name of the a forcingDataset.
+#' @description  A function to plot data of a site
+#' from the PROFOUND database.
+#' @param site a character string providing the name of a site.
+#' @param location deprecated argument. Please use site instead.
+#' @param dataset a character string providing the name of a dataset
+#' @param forcingDataset a character string providing the name of a forcingDataset.
 #' Only relevant for ISIMIP datasets.
-#' @param forcingCondition a character string providing the name of the a forcingCondition.
+#' @param forcingCondition a character string providing the name of a forcingCondition.
 #' Only relevant for ISIMIP datasets.
 #' @param species a character string providing the species name or species id.
-#' @param variables  a character array holding the variables to be plotted. Default  is all variables.
+#' @param variables a character array holding the variables to be plotted. Default  is all variables.
 #' @param quality a number indicating the quality threshold to be used. Default is none.
 #' @param decreasing a boolean indicating whether the quality threshold should be applied up- or downwards
-#' @param period a character array either start of the subset or start and end
+#' @param period a character array with either start or start and end of the subset.
+#'  It must have the format "YYYY-MM-DD", or c("YYYY-MM-DD", "YYYY-MM-DD").
 #' @param aggregated a boolean indicating whether data should be aggregated for display.
 #' Possible values are date, day, month and year.
 #' @param FUN a function to use for aggregating the data
-#' @param automaticPanels should the function automatically create panels
-#' @return plots for the specified dataset, location and variables
+#' @param automaticPanels a boolean indicating whether the function automatically creates panels
+#' @return plots for the specified dataset, site and variables
 #' @keywords ProfoundData
 #' @note To report errors in the package or the data, please use the issue tracker
 #' in the github repository of TG2 https://github.com/COST-FP1304-PROFOUND/TG2/issues
 #' (preferred, but requires that you have access to our GitHub account) or
 #' or use this google form http://goo.gl/forms/e2ZQCiZz4x
-#' @details Plotting is not supported for datasets: OVERVIEW, SITES, SOIL. The aggregation of data
+#' @details Plotting is not supported for the following datasets: OVERVIEW, SITES, SOIL(more). The aggregation of data
 #' relies on the function \code{\link{aggregate}} for \code{\link{zoo}} objects. The FUN parameter
 #' is passed to FUN from \code{\link{aggregate}}. Please check the help files of  \code{\link{aggregate}}
 #' for further information. For handling NAs we recommend to pass self-defined functions (see examples).
 #' @export
 #' @example /inst/examples/plotDataHelp.R
 #' @author Ramiro Silveyra Gonzalez
-plotData <- function(dataset, location,  forcingDataset = NULL,
+plotData <- function(dataset, site, location,forcingDataset = NULL,
                      forcingCondition = NULL, species = NULL, variables = NULL, period = NULL,
                      aggregated = NULL, FUN = mean, automaticPanels = T, quality = NULL , decreasing = TRUE){
-
+  if (!missing(location)) {
+    warning("Argument location is deprecated.  Please use site instead.",
+            call. = FALSE)
+    site <- location
+  }
   if(dataset == "ENERGYBALANCE"){
-    warning("Dataset 'ENERGYBALANCE' is deprecated.\n Use 'ATMOSPHERICHEATCONDUCTION' instead.")
+    warning("Dataset 'ENERGYBALANCE' is deprecated.\n Use 'ATMOSPHERICHEATCONDUCTION' instead.",
+            call. = FALSE)
     dataset <- "ATMOSPHERICHEATCONDUCTION"
   }
 
@@ -43,14 +50,14 @@ plotData <- function(dataset, location,  forcingDataset = NULL,
                             "OVERVIEW_EXTENDED")
   if(dataset %in% notSupportedDatasets) stop("Plotting is not supported")
   # parse and test the query
-  tmp <- try(parseQuery(dataset =dataset, location = location,  forcingDataset = forcingDataset,
+  tmp <- try(parseQuery(dataset =dataset, site = site,  forcingDataset = forcingDataset,
                         forcingCondition = forcingCondition, species = species,
                         variables = variables, period = period,
                         aggregated = aggregated, FUN = FUN, automaticPanels = automaticPanels,
                         quality = quality , decreasing = decreasing, collapse = F), F)
   if ('try-error' %in% class(tmp))    stop("Could not parse the query")
   # Fetch the query
-  message(paste("Downloading data from" , dataset, "for the location", location,  sep = " "))
+  message(paste("Downloading data from" , dataset, "for the site", site,  sep = " "))
   tmp <- try(fetchQuery(tmp), F)
   if ('try-error' %in% class(tmp)) stop("Could not fetch the query")
   # Convert into time series
