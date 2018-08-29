@@ -7,26 +7,26 @@
 # @export
 # @keywords ProfoundData
 # @author Ramiro Silveyra Gonzalez
-getMetadata <- function(dataset, location = NULL){
+getMetadata <- function(dataset, site = NULL){
   firstVariables <- c("record_id", "site", "site2", "site_id", "species", "species_id",
                       "forcingConditions", "forcingDataset",
                       "description", "reference",  "date", "year", "mo", "day")
 
   conn <- try(makeConnection(), T)
   if ('try-error' %in% class(conn)){
-    stop("Invalid database connection")
+    stop("Invalid database connection", call. = FALSE)
   }
-  #message(dataset_location)
-  if(is.null(location)){
-    if (!getDatasets(dataset) ){stop("Invalid dataset")}
+  #message(dataset_site)
+  if(is.null(site)){
+    if (!getDatasets(dataset) ){stop("Invalid dataset", call. = FALSE)}
     table <- RSQLite::dbGetQuery(conn, paste("SELECT * FROM ", dataset, sep = ""))
     RSQLite::dbDisconnect(conn)
   }else{
-    location <- getLocations(location)
-    if (!getDatasets(dataset) || !location ){stop("Invalid dataset and/or location")}
-    if(!checkAvailable(dataset, location)){stop("Metadata is not available")}
-    dataset_location <- paste(dataset, location, sep="_")
-    table <- RSQLite::dbGetQuery(conn, paste("SELECT * FROM ", dataset_location, sep = ""))
+    site <- getsites(site)
+    if (!getDatasets(dataset) || !site ){stop("Invalid dataset and/or site", call. = FALSE)}
+    if(!checkAvailable(dataset, site)){stop("Metadata is not available", call. = FALSE)}
+    dataset_site <- paste(dataset, site, sep="_")
+    table <- RSQLite::dbGetQuery(conn, paste("SELECT * FROM ", dataset_site, sep = ""))
     RSQLite::dbDisconnect(conn)
   }
   tableVariables <- unique(table$variable)
