@@ -17,7 +17,7 @@
 getTreeSpecies <- function(species){
   conn <- try(makeConnection(), T)
   if ('try-error' %in% class(conn)){
-    stop("Invalid database connection")
+    stop("Invalid database connection", call. = FALSE)
   }
   table <- RSQLite::dbGetQuery(conn, "SELECT * FROM TREESPECIES")
   RSQLite::dbDisconnect(conn)
@@ -27,10 +27,10 @@ getTreeSpecies <- function(species){
     }else if(species %in% table[["species_id"]]){
       species_id <- table[table$species_id==species,]$species_id
     }else{
-      stop("Invalid tree species")
+      stop("Invalid tree species", call. = FALSE)
     }
   }else{
-    stop("Invalid tree species")
+    stop("Invalid tree species", call. = FALSE)
   }
   return(species_id)
 }
