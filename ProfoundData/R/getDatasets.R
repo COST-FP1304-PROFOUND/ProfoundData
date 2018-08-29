@@ -17,7 +17,7 @@
 getDatasets <- function(dataset = NULL){
   conn <- try(makeConnection(), T)
   if ('try-error' %in% class(conn)){
-    stop("Invalid database connection")
+    stop("Invalid database connection", call. = FALSE)
   }
   datasets.available <- RSQLite::dbListTables(conn)
   datasets.available <- datasets.available[!grepl("_master", datasets.available)]
