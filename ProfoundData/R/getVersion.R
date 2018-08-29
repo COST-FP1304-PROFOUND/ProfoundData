@@ -9,7 +9,7 @@
 getVersion <- function(){
   conn <- try(makeConnection(), T)
   if ('try-error' %in% class(conn)){
-    stop("Invalid database connection")
+    stop("Invalid database connection", call. = FALSE)
   }
   table <- RSQLite::dbGetQuery(conn, "SELECT * FROM VERSION")
   RSQLite::dbDisconnect(conn)
