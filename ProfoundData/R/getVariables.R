@@ -18,16 +18,16 @@ getVariables <- function(dataset,  quality = FALSE){
                       "description", "reference",  "date", "year", "mo", "day")
   conn <- try(makeConnection(), T)
   if ('try-error' %in% class(conn)){
-    stop("Invalid database connection")
+    stop("Invalid database connection", call. = FALSE)
   }else{
     RSQLite::dbDisconnect(conn)
   }
   if(is.null(dataset)){
-    stop("Please provide a dataset")
+    stop("Please provide a dataset", call. = FALSE)
   }
   datasets.available <- getDatasets()
   if(dataset == "error"){
-    stop("Please provide a valid dataset")
+    stop("Please provide a valid dataset", call. = FALSE)
   }
 
   conn <- makeConnection()
