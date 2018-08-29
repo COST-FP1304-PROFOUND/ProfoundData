@@ -1,17 +1,17 @@
 plotPROFOUND.TREE <-function(tmp){
   data <- tmp[["data"]]
-  if(!class(data)=="data.frame") stop(paste("Error when querying:", tmp[["item"]]))
+  if(!class(data)=="data.frame") stop(paste("Error when querying:", tmp[["item"]]), call. = FALSE)
   st.err <- function(x) {
     sd(x, na.rm = T)/sqrt(length(x))
   }
-  if(!"species" %in% colnames(data)) stop("Missing species!")
-  if(!"year" %in% colnames(data)) stop("Missing year!")
+  if(!"species" %in% colnames(data)) stop("Missing species!", call. = FALSE)
+  if(!"year" %in% colnames(data)) stop("Missing year!", call. = FALSE)
   spp <- unique(data$species)
   for (i in 1:length(spp)){
     dataSpp <- data[data$species == spp[i], ]
     years <- unique(dataSpp$year)
     if (length(years) ==1){
-      warning(paste("Can't plot data for ", spp[i], ". There is data only for one year!", sep = ""))
+      warning(paste("Can't plot data for ", spp[i], ". There is data only for one year!", sep = ""), call. = FALSE)
     }else{
       plotDBH <- FALSE
       plotHeight <- FALSE
@@ -110,17 +110,17 @@ plotPROFOUND.TREE <-function(tmp){
 
 plotPROFOUND.STAND <-function(tmp){
   data <- tmp[["data"]]
-  if(!class(data)=="data.frame") stop(paste("Error when querying:", tmp[["item"]]))
+  if(!class(data)=="data.frame") stop(paste("Error when querying:", tmp[["item"]]), call. = FALSE)
   standVariables <- c("foliageBiomass_kgha", "branchesBiomass_kgha", "stemBiomass_kgha",#"age",# age is too trivial
                       "rootBiomass_kgha", "stumpCoarseRootBiomass_kgha", "coarseBiomass_kgha",
                       "LAI", "lai", "height_m", "dbh_cm", "density_ha", "stem", "aboveGroundBiomass_kgha",
                       "dbhArith_cm", "dbhBA_cm", "dbhDQ_cm", "heightArith_m", "heightBA_m",
                       "ba_m2ha", "density_treeha")
 
-  if(!"species" %in% colnames(data)) stop("Missing species!")
-  if(!"year" %in% colnames(data)) stop("Missing year!")
+  if(!"species" %in% colnames(data)) stop("Missing species!", call. = FALSE)
+  if(!"year" %in% colnames(data)) stop("Missing year!", call. = FALSE)
   plotVariables <- standVariables[standVariables %in% colnames(data)]
-  if(length(plotVariables) < 1) stop("There is nothing to plot!")
+  if(length(plotVariables) < 1) stop("There is nothing to plot!", call. = FALSE)
   spp <- unique(data$species)
   for (i in 1:length(spp)){
     dataSpp <- data[data$species == spp[i], ]
@@ -149,11 +149,11 @@ plotPROFOUND.STAND <-function(tmp){
 
 plotPROFOUND.DAILY <-function(tmp, forcing = NULL){
   data <- tmp[["data"]]
-  if(!class(data)=="data.frame") stop(paste("Error when querying:", tmp[["item"]]))
-  if(!"date" %in% colnames(data)) stop("Missing date!")
-  if(!"year" %in% colnames(data)) stop("Missing year!")
-  if(!"mo" %in% colnames(data)) stop("Missing mo!")
-  if(!"day" %in% colnames(data)) stop("Missing day!")
+  if(!class(data)=="data.frame") stop(paste("Error when querying:", tmp[["item"]]), call. = FALSE)
+  if(!"date" %in% colnames(data)) stop("Missing date!", call. = FALSE)
+  if(!"year" %in% colnames(data)) stop("Missing year!", call. = FALSE)
+  if(!"mo" %in% colnames(data)) stop("Missing mo!", call. = FALSE)
+  if(!"day" %in% colnames(data)) stop("Missing day!", call. = FALSE)
   data$date <- as.Date(data$date, format = "%Y-%m-%d")
   data.ts <- ts(data, start=min(data$date), end= max(data$date), frequency=1)
   data.ts <- zoo::zoo(data.ts, data$date)
@@ -168,7 +168,7 @@ plotPROFOUND.DAILY <-function(tmp, forcing = NULL){
     }else if (tmp[["aggregated"]] == "year"){
       data.ts <- aggregate(data.ts, data$year, FUN = tmp[["FUN"]])
     }else{
-      warning("Invalid aggregate value")
+      warning("Invalid aggregate value", call. = FALSE)
       aggText <- NULL
     }
   }
@@ -197,11 +197,11 @@ plotPROFOUND.DAILY <-function(tmp, forcing = NULL){
 
 plotPROFOUND.HALFHOURLY <- function(tmp){
   data <- tmp[["data"]]
-  if(!class(data)=="data.frame") stop(paste("Error when querying:", tmp[["item"]]))
-  if(!"date" %in% colnames(data)) stop("Missing date!")
-  if(!"year" %in% colnames(data)) stop("Missing year!")
-  if(!"mo" %in% colnames(data)) stop("Missing mo!")
-  if(!"day" %in% colnames(data)) stop("Missing day!")
+  if(!class(data)=="data.frame") stop(paste("Error when querying:", tmp[["item"]]), call. = FALSE)
+  if(!"date" %in% colnames(data)) stop("Missing date!", call. = FALSE)
+  if(!"year" %in% colnames(data)) stop("Missing year!", call. = FALSE)
+  if(!"mo" %in% colnames(data)) stop("Missing mo!", call. = FALSE)
+  if(!"day" %in% colnames(data)) stop("Missing day!", call. = FALSE)
   data$date <- as.Date(data$date, format = "%Y-%m-%d")
   data.ts <- ts(data, start=min(data$date), end= max(data$date), frequency=48)
   data.ts <- zoo::zoo(data.ts, order.by = data$date, frequency=48)
@@ -218,7 +218,7 @@ plotPROFOUND.HALFHOURLY <- function(tmp){
     }else if (tmp[["aggregated"]] == "date"){
       data.ts <- aggregate(data.ts, data$date, FUN = tmp[["FUN"]])
     }else{
-      warning("Invalid aggregate value")
+      warning("Invalid aggregate value", call. = FALSE)
       aggText <- NULL
     }
   }else{
@@ -235,7 +235,7 @@ plotPROFOUND.HALFHOURLY <- function(tmp){
   }
   for (i in 1:length(plotVariables)){
     if(length(data.ts[,  plotVariables[i]][is.na(data.ts[,  plotVariables[i]])]) == length(data.ts[,  plotVariables[i]])){
-      warning(paste(plotVariables[i], ": No data to plot", sep=""))
+      warning(paste(plotVariables[i], ": No data to plot", sep=""), call. = FALSE)
     }else{
       plot(data.ts[,  plotVariables[i]],
            main =  paste( tmp[["dataset"]], ": ", plotVariables[i], sep =""),
@@ -252,8 +252,8 @@ plotPROFOUND.HALFHOURLY <- function(tmp){
 
 plotPROFOUND.YEARLY <- function(tmp, forcing = NULL){
   data <- tmp[["data"]]
-  if(!class(data)=="data.frame") stop(paste("Error when querying:", tmp[["item"]]))
-  if(!"year" %in% colnames(data)) stop("Missing year!")
+  if(!class(data)=="data.frame") stop(paste("Error when querying:", tmp[["item"]]), call. = FALSE)
+  if(!"year" %in% colnames(data)) stop("Missing year!", call. = FALSE)
   data$date <- data$year
   data.ts <- ts(data, start=min(data$date), end= max(data$date), frequency=1)
   data.ts <- zoo::zoo(data.ts, data$date)
@@ -267,7 +267,7 @@ plotPROFOUND.YEARLY <- function(tmp, forcing = NULL){
   }
   for (i in 1:length(plotVariables)){
     if(length(data.ts[,  plotVariables[i]][is.na(data.ts[,  plotVariables[i]])]) == length(data.ts[,  plotVariables[i]])){
-      warning(paste(plotVariables[i], ": No data to plot", sep=""))
+      warning(paste(plotVariables[i], ": No data to plot", sep=""), call. = FALSE)
     }else{
       plot(data.ts[,  plotVariables[i]],
            main =  paste( tmp[["dataset"]]," ", forcing, ": ", plotVariables[i], sep =""),
@@ -280,11 +280,11 @@ plotPROFOUND.YEARLY <- function(tmp, forcing = NULL){
 
 plotPROFOUND.MODIS <- function(tmp){
   data <- tmp[["data"]]
-  if(!class(data)=="data.frame") stop(paste("Error when querying:", tmp[["item"]]))
-  if(!"date" %in% colnames(data)) stop("Missing date!")
-  if(!"year" %in% colnames(data)) stop("Missing year!")
-  if(!"mo" %in% colnames(data)) stop("Missing mo!")
-  if(!"day" %in% colnames(data)) stop("Missing day!")
+  if(!class(data)=="data.frame") stop(paste("Error when querying:", tmp[["item"]]), call. = FALSE)
+  if(!"date" %in% colnames(data)) stop("Missing date!", call. = FALSE)
+  if(!"year" %in% colnames(data)) stop("Missing year!", call. = FALSE)
+  if(!"mo" %in% colnames(data)) stop("Missing mo!", call. = FALSE)
+  if(!"day" %in% colnames(data)) stop("Missing day!", call. = FALSE)
   data$date <- as.Date(data$date, format = "%Y-%m-%d")
   data.ts <- ts(data, start=min(data$date), end= max(data$date), frequency=1)
   data.ts <- zoo::zoo(data.ts, data$date)
@@ -310,7 +310,7 @@ plotPROFOUND.MODIS <- function(tmp){
   #par(mar=c(2,2,2,0.5)) #bltr
   for (i in 1:length(plotVariables)){
     if(length(data.ts[,  plotVariables[i]][is.na(data.ts[,  plotVariables[i]])]) == length(data.ts[,  plotVariables[i]])){
-      warning(paste(plotVariables[i], ": No data to plot", sep=""))
+      warning(paste(plotVariables[i], ": No data to plot", sep=""), call. = FALSE)
     }else{
       ylim <- range(data.ts[is.finite(data.ts[,  plotVariables[i]]),  plotVariables[i]], na.rm = T)
       plot(data.ts[,  plotVariables[i]],
@@ -360,7 +360,7 @@ plotPROFOUND.ISIMIP <- function(tmp){
         }
       }
     }else{
-      warning("Something went wrong")
+      warning("You might have found a bug! Please report it", call. = FALSE)
     }
   }
 }
