@@ -37,12 +37,12 @@ formatData <- function(tmp){
     }else if (tmp[["dataset"]]== "CLIMATE_LOCAL"){
       data <- formatPROFOUND.CLIMATELOCAL(tmp)
     }else{
-      if(!class(tmp[["query"]])=="data.frame") stop(paste("Error when querying:", tmp[["item"]]))
+      if(!class(tmp[["query"]])=="data.frame") stop(paste("Error when querying:", tmp[["item"]]), call. = FALSE)
       tmp[["query"]] <- tmp[["query"]][,colSums(is.na(tmp[["query"]]))<nrow(tmp[["query"]])]
       data <- tmp[["query"]]
     }
   }else if (tmp[["dataset"]]== "SITES" ){
-    if(!class(tmp[["query"]])=="data.frame") stop(paste("Error when querying:", tmp[["item"]]))
+    if(!class(tmp[["query"]])=="data.frame") stop(paste("Error when querying:", tmp[["item"]]), call. = FALSE)
     data <- tmp[["query"]]
   }
   return(data)
