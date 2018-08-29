@@ -12,16 +12,16 @@
 # @author Ramiro Silveyra Gonzalez
 
 fetchQuery <- function(tmp) {
-  # check the item, check if location is list or
+  # check the item, check if site is list or
   #run.function <- TRUE
 # now start the function itself
 # make connection
   conn <- makeConnection()
   # build query
   # send the query
-  if(is.null(tmp[["location"]]))    message(paste("Downloading data from" , tmp[["dataset"]],  sep = " "))
+  if(is.null(tmp[["site"]]))    message(paste("Downloading data from" , tmp[["dataset"]],  sep = " "))
  # }else{
-#    message(paste("Downloading data from" , tmp[["dataset"]], "for the location", tmp[["location"]],  sep = " "))
+#    message(paste("Downloading data from" , tmp[["dataset"]], "for the site", tmp[["site"]],  sep = " "))
 #  }
 
   queried <- try(RSQLite::dbGetQuery(conn, tmp[["item"]]))
