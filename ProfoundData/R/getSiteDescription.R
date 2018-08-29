@@ -1,4 +1,3 @@
-# @title A get version function
 # @description  A function to provide information on the version of the DB
 # @return a table with the versioning: version name, date and description
 # @examples \dontrun{
@@ -7,21 +6,21 @@
 # @export
 # @keywords ProfoundData
 # @author Ramiro Silveyra Gonzalez
-getSiteDescription <- function(dataset, location = NULL){
+getSiteDescription <- function(dataset, site = NULL){
   conn <- try(makeConnection(), T)
   if ('try-error' %in% class(conn)){
-    stop("Invalid database connection")
+    stop("Invalid database connection", call. = FALSE)
   }
-  if(is.null(location)){
-    if (!getDatasets(dataset) ){stop("Invalid dataset")}
+  if(is.null(site)){
+    if (!getDatasets(dataset) ){stop("Invalid dataset", call. = FALSE)}
     table <- RSQLite::dbGetQuery(conn, paste("SELECT * FROM ", dataset, sep = ""))
     RSQLite::dbDisconnect(conn)
   }else{
-    location <- getLocations(location)
-    if (!getDatasets(dataset) || !location ){stop("Invalid dataset and/or location")}
-    if(!checkAvailable(dataset, location)){stop("Location specific source is not available")}
-    dataset_location <- paste(dataset, location, sep="_")
-    table <- RSQLite::dbGetQuery(conn, paste("SELECT * FROM ", dataset_location, sep = ""))
+    site <- getsites(site)
+    if (!getDatasets(dataset) || !site ){stop("Invalid dataset and/or site", call. = FALSE)}
+    if(!checkAvailable(dataset, site)){stop("site specific source is not available", call. = FALSE)}
+    dataset_site <- paste(dataset, site, sep="_")
+    table <- RSQLite::dbGetQuery(conn, paste("SELECT * FROM ", dataset_site, sep = ""))
     RSQLite::dbDisconnect(conn)
   }
   return(table)
@@ -29,15 +28,15 @@ getSiteDescription <- function(dataset, location = NULL){
 
 
 
-# @title A get locations function
-# @description  A function to provide information on available locations in the
+# @title A get sites function
+# @description  A function to provide information on available sites in the
 # ProfoundData database
-# @param location a character string providing the name of the location (optional)
-# @return a table with the locations if not arguments are passed. Otherwise, it returns the
-# location ID.
+# @param site a character string providing the name of the site (optional)
+# @return a table with the sites if not arguments are passed. Otherwise, it returns the
+# site ID.
 # @export
 # @examples \dontrun{
-# locations <- getLocations()
+# sites <- getsites()
 # }
 # @note To report errors in the package or the data, please use the issue tracker
 # in the github repository of TG2 https://github.com/COST-FP1304-PROFOUND/TG2/issues
@@ -45,21 +44,21 @@ getSiteDescription <- function(dataset, location = NULL){
 # or use this google form http://goo.gl/forms/e2ZQCiZz4x
 # @keywords ProfoundData
 # @author Ramiro Silveyra Gonzalez
-getLocations <- function(location = NULL){
+getsites <- function(site = NULL){
   conn <- try(makeConnection(), T)
   if ('try-error' %in% class(conn)){
     stop("Invalid database connection")
   }
   table <- RSQLite::dbGetQuery(conn, "SELECT * FROM SITES")
   RSQLite::dbDisconnect(conn)
-  if(!is.null(location)){
-    if (location %in% table[["site"]]){
-      sites <- table[table$site==location,]$site_id
-    }else if(location %in% table[["site2"]]){
-      sites <- table[table$site2==location,]$site_id
+  if(!is.null(site)){
+    if (site %in% table[["site"]]){
+      sites <- table[table$site==site,]$site_id
+    }else if(site %in% table[["site2"]]){
+      sites <- table[table$site2==site,]$site_id
       sites <-  sites[!is.na(sites)]
-    }else if (location %in% table[["site_id"]]){
-      sites <- location
+    }else if (site %in% table[["site_id"]]){
+      sites <- site
     }else{
       sites <- 0
     }
