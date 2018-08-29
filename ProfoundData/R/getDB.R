@@ -1,7 +1,7 @@
-#' @title A function to retun information the a database connection object
+#' @title A function to return information of the database connection
 #'
-#' @description A getDB function to return the filepath to the database
-#' @return a character string with filepath to the database
+#' @description A function to return the filepath to the database.
+#' @return a character string with the filepath to the database
 #' @export
 #' @example /inst/examples/getDBHelp.R
 #' @note To report errors in the package or the data, please use the issue tracker
@@ -12,7 +12,7 @@
 getDB <- function(){
   conn <- try(makeConnection(), T)
   if ('try-error' %in% class(conn)){
-    stop("Invalid database connection")
+    stop("Invalid database connection", call. = FALSE)
   }else{
     RSQLite::dbDisconnect(conn)
   }
