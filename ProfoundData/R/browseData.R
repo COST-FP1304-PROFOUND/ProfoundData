@@ -1,20 +1,21 @@
 #' @title A browse database function
 #'
 #' @description  A function to provide information on available data in the
-#' PROFOUND database
-#' @param location a character string providing the name of the location (optional)
-#' @param dataset a character string providing the name of the dataset (optional)
+#' PROFOUND database.
+#' @param site a character string providing the name of the site (optional).
+#' @param location deprecated argument. Please use site instead.
+#' @param dataset a character string providing the name of the dataset (optional).
 #' @param variables a boolean indicating whether to return the variables of a dataset,
-#'  instead of the available locations
-#' @param collapse boolean indicating whether to return the compact (TRUE) or the extended (FALSE)
-#' data overview, if neither location nor dataset are passed to the function
+#'  instead of the available sites.
+#' @param collapse a boolean indicating whether to return the compact (TRUE) or the extended (FALSE)
+#' data overview, if neither site nor dataset are passed to the function.
 #' @return \itemize{
 #'    \item if no arguments,  an overview of available data
 #'    \item  if metadata, the requested metadata
 #'    \item  if dataset and variables, available variables for a dataset
-#'    \item  if dataset, available locations for the dataset
-#'    \item  if location, available datasets for a location
-#'    \item  if location and dataset,  retuns a integer. Availability is coded as 0 = no available and 1 = available.
+#'    \item  if dataset, available sites for the dataset
+#'    \item  if site, available datasets for a site
+#'    \item  if site and dataset,  returns an integer. Availability is coded as 0 = no available and 1 = available.
 #'     This is the quickest option to check availability.
 #'    }
 #'
@@ -23,11 +24,11 @@
 #' to access the database metadata, policy,  data sources and site descriptions.
 #' @note To report errors in the package or the data, please use the issue tracker
 #' in the github repository of TG2 https://github.com/COST-FP1304-PROFOUND/TG2/issues
-#' (preferred, but requires that you have access to our GitHub account) or
-#' or use this google form http://goo.gl/forms/e2ZQCiZz4x
+#' (preferred, but requires that you have access to the GitHub repository) or
+#'  use this google form http://goo.gl/forms/e2ZQCiZz4x.
 #' @example /inst/examples/browseDataHelp.R
 #' @export
-browseData <- function(dataset = NULL, location = NULL,  variables  = FALSE, collapse = TRUE){
+browseData <- function(dataset = NULL, site = NULL,  location = NULL, variables  = FALSE, collapse = TRUE){
 
   conn <- try(makeConnection(), T)
   if ('try-error' %in% class(conn)){
@@ -36,8 +37,14 @@ browseData <- function(dataset = NULL, location = NULL,  variables  = FALSE, col
     RSQLite::dbDisconnect(conn)
   }
 
-  # 1. See everythin for location
-  if(is.null(location) & is.null(dataset)){
+  if (!is.null(location)) {
+    warning("Argument location is   Please use site instead.",
+            call. = FALSE)
+    site <- location
+  }
+
+  # 1. See everything for site
+  if(is.null(site) & is.null(dataset)){
     conn <- makeConnection()
     if (collapse){
       table <- RSQLite::dbGetQuery(conn, "SELECT * FROM OVERVIEW")
@@ -49,13 +56,14 @@ browseData <- function(dataset = NULL, location = NULL,  variables  = FALSE, col
     # return the entire table
     #cat("Returning the overview table")
     # prepare the query
-  # 2. No location
-  }else if(is.null(location)){
+  # 2. No site
+  }else if(is.null(site)){
     dataset <- gsub(" ", "",  dataset)
     dataset <- gsub("-", "",  dataset)
     dataset <- gsub("+", "",  dataset)
     if(dataset == "ENERGYBALANCE"){
-      warning("Dataset 'ENERGYBALANCE' is deprecated.\n Use 'ATMOSPHERICHEATCONDUCTION' instead.")
+      warning("Dataset 'ENERGYBALANCE' is deprecated.\n Use 'ATMOSPHERICHEATCONDUCTION' instead.",
+              call. = FALSE)
       dataset <- "ATMOSPHERICHEATCONDUCTION"
     }
 
@@ -84,7 +92,8 @@ browseData <- function(dataset = NULL, location = NULL,  variables  = FALSE, col
      stop("Use getData to download this dataset")
     }else{
       if(dataset == "ENERGYBALANCE"){
-        warning("Dataset 'ENERGYBALANCE' is deprecated.\n Use 'ATMOSPHERICHEATCONDUCTION' instead.")
+        warning("Dataset 'ENERGYBALANCE' is deprecated.\n Use 'ATMOSPHERICHEATCONDUCTION' instead.",
+                call. = FALSE)
         dataset <- "ATMOSPHERICHEATCONDUCTION"
       }
 
@@ -97,7 +106,7 @@ browseData <- function(dataset = NULL, location = NULL,  variables  = FALSE, col
         #table <- cbind( rep(dataset, nrow(table)), table[,1])
         #colnames(table) <- c("dataset", "variables")
       }else{
-      # c. See what location have the dataset
+      # c. See what site have the dataset
         conn <- makeConnection()
         table <- RSQLite::dbGetQuery(conn, "SELECT * FROM OVERVIEW_EXTENDED")
         RSQLite::dbDisconnect(conn)
@@ -106,25 +115,26 @@ browseData <- function(dataset = NULL, location = NULL,  variables  = FALSE, col
       }
     }
   }else if(is.null(dataset)){
-    location <- getLocations(location)
+    site <- getsites(site)
     # return the entire table
-    if (!location){stop("The location is not available. Please call getLocations to see what locations are available.")}
+    if (!site){stop("The site is not available. Please call getsites to see what sites are available.")}
     conn <- makeConnection()
     table <- RSQLite::dbGetQuery(conn, "SELECT * FROM OVERVIEW_EXTENDED")
     RSQLite::dbDisconnect(conn)
-    table <- table[table$site_id == location, ] # c(1:14) THE entire table
+    table <- table[table$site_id == site, ] # c(1:14) THE entire table
 
   }else{
-    location <- getLocations(location)
+    site <- getsites(site)
     dataset <- gsub(" ", "",  dataset)
     dataset <- gsub("-", "",  dataset)
     dataset <- gsub("+", "",  dataset)
     if(dataset == "ENERGYBALANCE"){
-      warning("Dataset 'ENERGYBALANCE' is deprecated.\n Use 'ATMOSPHERICHEATCONDUCTION' instead.")
+      warning("Dataset 'ENERGYBALANCE' is deprecated.\n Use 'ATMOSPHERICHEATCONDUCTION' instead.",  call. = FALSE
+              )
       dataset <- "ATMOSPHERICHEATCONDUCTION"
     }
 
-    if (!getDatasets(dataset) || !location ){stop("Invalid dataset and/or location")}
+    if (!getDatasets(dataset) || !site ){stop("Invalid dataset and/or site")}
     if (dataset == "VERSION"){
       table <- getVersion()
 #    }else if (dataset == "CO2_ISIMIP"){
@@ -134,16 +144,16 @@ browseData <- function(dataset = NULL, location = NULL,  variables  = FALSE, col
 #      columns <- c("site_id", "name1", "name2", dataset)
 #      table <- table[table[[dataset]]==1, columns ]
     }else if (grepl("METADATA", dataset)){
-      table <- getMetadata(dataset, location)
+      table <- getMetadata(dataset, site)
       #table <- table[table$dataset == dataset, ]
     }else if (grepl("SOURCE", dataset)){
-      table <- getSource(dataset, location)
+      table <- getSource(dataset, site)
     }else if (grepl("POLICY", dataset)){
-      table <- getPolicy(dataset, location)
+      table <- getPolicy(dataset, site)
     }else if (dataset == "SITEDESCRIPTION" ){
       stop("Use getData to download this dataset")
     }else{
-      table <- checkAvailable(dataset, location)
+      table <- checkAvailable(dataset, site)
     }
   }
   return(table)
