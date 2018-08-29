@@ -1,6 +1,6 @@
 formatPROFOUND.SOIL <- function(tmp){
   data <- tmp[["query"]]
-  if(!class(data)=="data.frame") stop(paste("Error when querying:", tmp[["item"]]))
+  if(!class(data)=="data.frame") stop(paste("Error when querying:", tmp[["item"]]), call. = FALSE)
   if(tmp[["collapse"]]){
     result.list <- data[,colSums(is.na(data))<nrow(data)]
   }else{
@@ -20,7 +20,7 @@ formatPROFOUND.SOIL <- function(tmp){
 
 formatPROFOUND.FLUXNET <- function(tmp){
   data <- tmp[["query"]]
-  if(!class(data)=="data.frame") stop(paste("Error when querying:", tmp[["item"]]))
+  if(!class(data)=="data.frame") stop(paste("Error when querying:", tmp[["item"]]), call. = FALSE)
   if (!is.null(tmp[["quality"]]))  data <- checkQuality(rawdata= data, variables= tmp[["variablesChecked"]],
                                                         dataset= tmp[["dataset"]], value = tmp[["quality"]], tmp[["decreasing"]])
 
@@ -33,7 +33,7 @@ formatPROFOUND.FLUXNET <- function(tmp){
 }
 formatPROFOUND.CLIMATELOCAL <- function(tmp){
   data <- tmp[["query"]]
-  if(!class(data)=="data.frame") stop(paste("Error when querying:", tmp[["item"]]))
+  if(!class(data)=="data.frame") stop(paste("Error when querying:", tmp[["item"]]), call. = FALSE)
   if (!is.null(tmp[["quality"]]))  data <- checkQuality(rawdata= data, variables= tmp[["variablesChecked"]],
                                                         dataset= tmp[["dataset"]], value = tmp[["quality"]], tmp[["decreasing"]])
   if (!is.null(tmp[["period"]])){
@@ -46,7 +46,7 @@ formatPROFOUND.CLIMATELOCAL <- function(tmp){
 
 formatPROFOUND.MODIS <- function(tmp){
   data <- tmp[["query"]]
-  if(!class(data)=="data.frame") stop(paste("Error when querying:", tmp[["item"]]))
+  if(!class(data)=="data.frame") stop(paste("Error when querying:", tmp[["item"]]), call. = FALSE)
   if (!is.null(tmp[["quality"]]))  data <- checkQuality(rawdata= data, variables= tmp[["variablesChecked"]],
                                                         dataset= tmp[["dataset"]], value = tmp[["quality"]], tmp[["decreasing"]])
 
@@ -61,7 +61,7 @@ formatPROFOUND.MODIS <- function(tmp){
 
 
 formatPROFOUND.ISIMIPDatasetConditions <- function(tmp){
-  if(!class(tmp[["query"]])=="data.frame") stop(paste("Error when querying:", tmp[["item"]]))
+  if(!class(tmp[["query"]])=="data.frame") stop(paste("Error when querying:", tmp[["item"]]), call. = FALSE)
   if(tmp[["collapse"]]){
     data <- tmp[["query"]]
 
@@ -106,7 +106,7 @@ formatPROFOUND.ISIMIPDatasetConditions <- function(tmp){
 }
 
 formatPROFOUND.ISIMIPDataset <- function(tmp){
-  if(!class(tmp[["query"]])=="data.frame") stop(paste("Error when querying:", tmp[["item"]]))
+  if(!class(tmp[["query"]])=="data.frame") stop(paste("Error when querying:", tmp[["item"]]), call. = FALSE)
   if(tmp[["collapse"]]){
     data <- tmp[["query"]]
     if (!is.null(tmp[["period"]])){
@@ -141,7 +141,7 @@ formatPROFOUND.ISIMIPDataset <- function(tmp){
 }
 
 formatPROFOUND.ISIMIPConditions <- function(tmp){
-  if(!class(tmp[["query"]])=="data.frame") stop(paste("Error when querying:", tmp[["item"]]))
+  if(!class(tmp[["query"]])=="data.frame") stop(paste("Error when querying:", tmp[["item"]]), call. = FALSE)
   if(tmp[["collapse"]]){
     df <- tmp[["query"]]
     if (is.null(tmp[["period"]]) == TRUE){
