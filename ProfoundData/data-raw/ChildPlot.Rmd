@@ -17,9 +17,9 @@ if (currentDataset %in% smallDatasets){
 ```{r, eval = plotBig, echo=F, message= F, warning=F, results='hide'}
 
 
-plotData(location = currentSiteName, dataset = currentDataset, automaticPanels = T)
+plotData(site = currentSiteName, dataset = currentDataset, automaticPanels = T)
 ``` 
 
 ```{r, eval = plotSmall, echo=F, message= F, warning=F, results='hide', fig.height=5}
-plotData(location = currentSiteName, dataset = currentDataset, automaticPanels = T)
+plotData(site = currentSiteName, dataset = currentDataset, automaticPanels = T)
 ``` 

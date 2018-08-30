@@ -103,7 +103,7 @@ pander(df, adding = 0, missing = '**--**', round = 3,    use.hyphening = TRUE, s
 
 ## Dataset CLIMATE_LOCAL 
 
-The CLIMATE LOCAL data refers to climate data measured at each forest site or meteorological stations close to the location of the forest site. For those forest sites for which the data has been derived from half-hourly  [FLUXNET2015](http://fluxnet.fluxdata.org/) data, we also provide the original half-hourly data in the table METEOROLOGICAL.
+The CLIMATE LOCAL data refers to climate data measured at each forest site or meteorological stations close to the site of the forest site. For those forest sites for which the data has been derived from half-hourly  [FLUXNET2015](http://fluxnet.fluxdata.org/) data, we also provide the original half-hourly data in the table METEOROLOGICAL.
 
 When relative humidity was not part of the original data, we calculated it from the vapour pressure deficit and the daily temperatures as
 

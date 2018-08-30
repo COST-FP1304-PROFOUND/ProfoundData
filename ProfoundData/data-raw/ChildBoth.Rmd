@@ -2,9 +2,9 @@
 `r paste("### ", currentDataset, collapse='\n')`
 
 ```{r, eval = T, echo=F, message= F, warning=F, results='hide'}
-plotData(location = currentSiteName, dataset = currentDataset, automaticPanels = T)
-df <- summarizeData(location = currentSiteName, dataset = currentDataset)
-df2 <- summarizeData(location = currentSiteName, dataset = currentDataset, by="total")
+plotData(site = currentSiteName, dataset = currentDataset, automaticPanels = T)
+df <- summarizeData(site = currentSiteName, dataset = currentDataset)
+df2 <- summarizeData(site = currentSiteName, dataset = currentDataset, by="total")
 df <- rbind(df, df2)
 ``` 
 
