@@ -8,9 +8,9 @@
 # @author Ramiro Silveyra Gonzalez
 subsetPeriod <- function(data, period){
   if(!"date" %in% names(data)){
-    warning("This data cant be subset: no date column")
+    warning("This data cant be subset: no date column", call. = FALSE)
   }else{
-    if (all(is.na(period)))stop("Invalid period")
+    if (all(is.na(period)))stop("Invalid period", call. = FALSE)
     data$DateSubset <- as.Date(data$date, format = "%Y-%m-%d")
     # perfom subset
     if (length(period) ==1){
@@ -24,7 +24,7 @@ subsetPeriod <- function(data, period){
         }else if (which(is.na(period))==2){
           data <- subset(data, DateSubset >= period[1])
         }else{
-          warning("Bug!")
+          warning("Bug!", call. = FALSE)
         }
       }else{
         period <- period[order(period)]
