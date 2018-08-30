@@ -1,6 +1,6 @@
-#' @title A function to create the a database connection object
+#' @title A function to query the database
 #'
-#' @description A queryDB funtion to  perform own queries to the Profound DB
+#' @description A queryDB function to perform self-defined queries on the PROFOUND database.
 #' @param queryItem a character string providing the query
 #' @export
 #' @example /inst/examples/queryDBHelp.R
@@ -10,7 +10,7 @@
 #' or use this google form http://goo.gl/forms/e2ZQCiZz4x
 #' @author Ramiro Silveyra Gonzalez
 queryDB <- function(queryItem) {
-  # check the item, check if location is list or
+  # check the item, check if site is list or
   #run.function <- TRUE
   # now start the function itself
   # make connection
