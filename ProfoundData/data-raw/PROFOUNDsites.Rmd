@@ -5,9 +5,9 @@ date: "`r Sys.Date()`"
 output: 
   rmarkdown::html_vignette:
     toc: true
-    toc_depth: 3
+    toc_depth: 2
 vignette: >
-    %\VignetteIndexEntry{Describes the sites in the PROFOUND database}
+  %\VignetteIndexEntry{Describes the sites in the PROFOUND database}
   %\VignetteEngine{knitr::rmarkdown}
   \usepackage[utf8](inputenc)
 --- 
