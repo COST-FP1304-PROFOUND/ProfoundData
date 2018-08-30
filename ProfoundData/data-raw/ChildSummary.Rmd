@@ -2,7 +2,7 @@
 `r paste("### ", currentDataset, collapse='\n')`
 
 ```{r, eval = T, echo=F, message= F, warning=F, results='hide'}
-df <- summarizeData(location = currentSiteName, dataset = currentDataset)
+df <- summarizeData(site = currentSiteName, dataset = currentDataset)
 ``` 
 
 
