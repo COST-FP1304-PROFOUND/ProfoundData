@@ -1,23 +1,23 @@
-
 #' @title A function to summarize data from the database
 #'
-#' @description  This function allows to summarize datasets for a location
+#' @description  This function allows to summarize datasets for a site
 #' from the PROFOUND database.
-#' @param location a character string providing the name of the location
-#' @param dataset a character string providing the name one of the available
-#'  climatic datasets (CLIMATE_LOCAL, CLIMATE_ISIMIP, ...) or the tree dataset
-#' @param by a character string indicating how summarize the data. Currently supports
+#' @param site a character string providing the name of a site.
+#' @param location deprecated argument. Please use site instead.
+#' @param dataset a character string providing the name of a climatic dataset
+#' (CLIMATE_LOCAL, CLIMATE_ISIMIP, ...) or the tree dataset.(change this you )
+#' @param by a character string indicating how to summarize the data. Currently supports
 #' by year and total. The latter refers to the entire available period.
-#' @param forcingDataset a character string providing the name of the a forcingDataset.
+#' @param forcingDataset a character string providing the name of a forcingDataset.
 #' Only relevant for ISIMIP datasets.
-#' @param forcingCondition a character string providing the name of the a forcingCondition.
+#' @param forcingCondition a character string providing the name of a forcingCondition.
 #' Only relevant for ISIMIP datasets.
-#' @param period a character array either start of the subset or start and end.
-#'  It must have the format YYYY-MM-DD.
-#' @param mode a character string whether to display the data summary or an overview.
+#' @param period a character array with either start or start and end of the subset.
+#'  It must have the format "YYYY-MM-DD", or c("YYYY-MM-DD", "YYYY-MM-DD").
+#' @param mode a character string indicating whether to display the data summary or an overview.
 #' @details This function is under development and has limited functionality. At the
 #' moment, it is possible to summarize daily climate datasets and tree data.
-#' @return a dataframe with the summary values
+#' @return a data frame with the summary values
 #' @keywords ProfoundData
 #' @note To report errors in the package or the data, please use the issue tracker
 #' in the github repository of TG2 https://github.com/COST-FP1304-PROFOUND/TG2/issues
@@ -44,36 +44,43 @@
 #' }
 #' @details Data are summarized by years. Radiation and precipitation are provided as total yearly
 #' values, while the rest of climatic values are year mean values.  For ISIMIP datasets a summary for whole
-#' period will be returned if the dataset comprises more than one forcing datasets and one forcing conditions.
+#' period will be returned if the dataset comprises more than one forcing dataset and one forcing condition.
 #'
 #' @export
 #' @examples
 #' \dontrun{
-#' summarizeData("CLIMATE_ISIMIP2B", location = "Soro")
-#' summarizeData("CLIMATE_LOCAL", location = "Soro")
-#' summarizeData("TREE", location = "Soro")
+#' summarizeData("CLIMATE_ISIMIP2B", site = "Soro")
+#' summarizeData("CLIMATE_LOCAL", site = "Soro")
+#' summarizeData("TREE", site = "Soro")
 #' }
 #' @author Ramiro Silveyra Gonzalez
-summarizeData <- function(dataset, location,  forcingDataset = NULL,
+summarizeData <- function(dataset, site, location, forcingDataset = NULL,
                           forcingCondition = NULL,  by = "year",  period = NULL,
                           mode = "data"){
   if (!by %in% c("year", "total", "day" )) stop("Invalid by value")
 
   if (!mode %in% c("data", "overview" )) stop("Invalid mode value")
 
+  if (!missing(location)) {
+    warning("Argument location is deprecated.  Please use site instead.",
+            call. = FALSE)
+    site <- location
+  }
+
   if(dataset == "ENERGYBALANCE"){
-    warning("Dataset 'ENERGYBALANCE' is deprecated.\n Use 'ATMOSPHERICHEATCONDUCTION' instead.")
+    warning("Dataset 'ENERGYBALANCE' is deprecated.\n Use 'ATMOSPHERICHEATCONDUCTION' instead.",
+            call. = FALSE)
     dataset <- "ATMOSPHERICHEATCONDUCTION"
   }
 
 
   message("Parsing the query")
-  tmp <- try(parseQuery(dataset=dataset, location=location, forcingDataset = forcingDataset,
+  tmp <- try(parseQuery(dataset=dataset, site=site, forcingDataset = forcingDataset,
                         forcingCondition = forcingCondition,collapse = T, period = period), F)
   if ('try-error' %in% class(tmp))    stop("Could not parse the query")
   # get Data
   if (tmp[["dataset"]] == "SITES")  stop("Can't summarize SITES")
-  #message(paste("Downloading data from" , tmp[["dataset"]], "for the location", location,  sep = " "))
+  #message(paste("Downloading data from" , tmp[["dataset"]], "for the site", site,  sep = " "))
   tmp <- try(fetchQuery(tmp), F)
   if ('try-error' %in% class(tmp))    stop("Could not fetch the query")
   data <- formatData(tmp)
