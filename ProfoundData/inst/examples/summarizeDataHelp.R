@@ -1,28 +1,26 @@
 \dontrun{
-
 # Summarize by years
-data <-summarizeData(dataset =  "TREE", location = "bily_kriz", by = "year",
+data <-summarizeData(dataset =  "TREE", site = "bily_kriz", by = "year",
                      mode = "data")
-data <-summarizeData(dataset =  "CLIMATE_LOCAL", location = "bily_kriz", by = "year",
+data <-summarizeData(dataset =  "CLIMATE_LOCAL", site = "bily_kriz", by = "year",
                      mode = "data")
-data <-summarizeData(dataset =  "CLIMATE_ISIMIP2A", location = "bily_kriz", by = "year",
+data <-summarizeData(dataset =  "CLIMATE_ISIMIP2A", site = "bily_kriz", by = "year",
                      mode = "data")
 
 # Specify forcing dataset or condition
-data <-summarizeData(dataset ="CLIMATE_ISIMIP2B", location ="soro",
+data <-summarizeData(dataset ="CLIMATE_ISIMIP2B", site ="soro",
                      forcingDataset="GFDLESM2M", forcingCondition ="rcp2p6")
 
 
 # Summarize total period
-data <-summarizeData(dataset =  "TREE", location = "bily_kriz", by = "total",
+data <-summarizeData(dataset =  "TREE", site = "bily_kriz", by = "total",
                      mode = "data")
-data <-summarizeData(dataset =  "CLIMATE_LOCAL", location = "bily_kriz", by = "total",
+data <-summarizeData(dataset =  "CLIMATE_LOCAL", site = "bily_kriz", by = "total",
                      mode = "data")
 
 # Summarize overview
-data <-summarizeData(dataset =  "CLIMATE_LOCAL", location = "bily_kriz", mode = "overview")
-data <-summarizeData(dataset =  "FLUX", location = "bily_kriz", mode = "overview")
- # Here should do min, max, mean, first, last
-
-
+data <-summarizeData(dataset =  "CLIMATE_LOCAL", site = "bily_kriz", mode = "overview")
+data <-summarizeData(dataset =  "FLUX", site = "bily_kriz", mode = "overview")
+data <-summarizeData(dataset =  "TREE", site = "bily_kriz", mode = "overview")
+data <-summarizeData(dataset =  "STAND", site = "bily_kriz", mode = "overview")
 }

@@ -1,4 +1,4 @@
 \dontrun{
-# Retrieve the database connection and version
+# Retrieve the filepath to the database
 getDB()
 }
