@@ -42,7 +42,7 @@ set.seed(1)
 
 The ProfoundData package serves as interface to access the [PROFOUND database](PROFOUNDdatabase.html). Three main functions are included to achieve this goal: a browseData function for exploring the database, a getData function for downloading data form the database and a plotData function to quickly inspect any variable of the data sets.
 
-Currently, the functions allow to download data from one location and one data set at a time. For downloading data of more than one data set or of more than one location, the function should be called as many times as locations or data sets. Additionally, flags and other parameters can be passed to the functions.
+Currently, the functions allow to download data from one site and one data set at a time. For downloading data of more than one data set or of more than one site, the function should be called as many times as sites or data sets. Additionally, flags and other parameters can be passed to the functions.
 
 The package includes other functions to provide utilities related to inspecting the data (`summarizeData()`) or write netcdf files (link to function)
 
@@ -83,7 +83,7 @@ getDB()
 
 ## The browseData function
 
-The browseData function allows to see what data is included in the database and for what locations the data is available. 
+The browseData function allows to see what data is included in the database and for what sites the data is available. 
 
 ```{r, fig.width= 7}
 overview <- browseData()
@@ -112,23 +112,23 @@ tables <- browseData(dataset = "DATASETS")
 variables <- browseData(dataset = "CLIMATE_LOCAL", variables = T)
 ```
 
-+  available locations for a given data set
++  available sites for a given data set
 
 ```{r}
 available <- browseData(dataset = "CLIMATE_LOCAL")
 ```
 
 
-+  available data sets for a given location
++  available data sets for a given site
 
 ```{r}
-available <- browseData(location ="le_bray")
+available <- browseData(site ="le_bray")
 ```
 
-+  whether a data set is available for a specific location
++  whether a data set is available for a specific site
 
 ```{r}
-available <- browseData(location ="le_bray", dataset = "CLIMATE_LOCAL")
+available <- browseData(site ="le_bray", dataset = "CLIMATE_LOCAL")
 ```
 
 +  version history 
@@ -143,9 +143,9 @@ version <- browseData(dataset = "VERSION")
 metadata <- browseData(dataset = "METADATA_DATASETS")
 metadata <- browseData(dataset = "METADATA_CLIMATE_LOCAL")
 ```
-Hint: You can also pass a location to check the specific site metadata
+Hint: You can also pass a site to check the specific site metadata
 ```{r}
-metadata <- browseData(dataset = "METADATA_TREE", location = "solling_spruce")
+metadata <- browseData(dataset = "METADATA_TREE", site = "solling_spruce")
 ```
 
 +  source
@@ -153,9 +153,9 @@ metadata <- browseData(dataset = "METADATA_TREE", location = "solling_spruce")
 ```{r}
 source <- browseData(dataset = "SOURCE")
 ```
-Hint: You can also pass a location to check the specific site source
+Hint: You can also pass a site to check the specific site source
 ```{r}
-source <- browseData(dataset = "SOURCE", location = "solling_spruce")
+source <- browseData(dataset = "SOURCE", site = "solling_spruce")
 ```
 
 +  policy
@@ -163,10 +163,10 @@ source <- browseData(dataset = "SOURCE", location = "solling_spruce")
 ```{r}
 source <- browseData(dataset = "POLICY")
 ```
-Hint: You can also pass a location to check the specific site source
+Hint: You can also pass a site to check the specific site source
 
 ```{r}
-policy <- browseData(dataset = "POLICY", location = "solling_spruce")
+policy <- browseData(dataset = "POLICY", site = "solling_spruce")
 ```
 
 
@@ -177,7 +177,7 @@ policy <- browseData(dataset = "POLICY", location = "solling_spruce")
 The *summarizeData* allows to obtain data summaries and overview of the data, depending of **mode**. If you choose the mode overview, *summarizeDara* will return a data frame with the years and number of observations, the first as in the example below.
 
 ```{r, fig.show='hold', echo=T, message= F, warning=F}
-data <-summarizeData(dataset = "CLIMATE_LOCAL", location = "bily_kriz", mode = "overview")
+data <-summarizeData(dataset = "CLIMATE_LOCAL", site = "bily_kriz", mode = "overview")
 ```
 ```{r, fig.show='hold', echo=T, message= F, warning=F}
 kable(data, row.names = F)
@@ -186,7 +186,7 @@ kable(data, row.names = F)
 The overview tables for ISIMIP datasets containing more fields (forcing datasets and conditions). 
 
 ```{r, fig.show='hold', echo=T, message= F, warning=F}
-data <-summarizeData(dataset = "CLIMATE_ISIMIP2B", location = "bily_kriz", mode = "overview")
+data <-summarizeData(dataset = "CLIMATE_ISIMIP2B", site = "bily_kriz", mode = "overview")
 ```
 ```{r, fig.show='hold', echo=T, message= F, warning=F}
 kable(data, row.names = F)
@@ -194,7 +194,7 @@ kable(data, row.names = F)
 
 This options is also availabe for TREE and STAND data sets.
 ```{r, fig.show='hold', echo=T, message= F, warning=F}
-data <-summarizeData(dataset = "TREE", location = "solling_beech", mode = "overview")
+data <-summarizeData(dataset = "TREE", site = "solling_beech", mode = "overview")
 ```
 
 ```{r, fig.show='hold', echo=T, message= F, warning=F}
@@ -203,7 +203,7 @@ kable(data, row.names = F)
 
 Please note that the TREE overview table is first summarized by years, pulling all trees together as a stand. Thus, you might find coincidences between the STAND and the TREE overviews.
 ```{r, fig.show='hold', echo=T, message= F, warning=F}
-data <-summarizeData(dataset = "STAND", location = "solling_beech", mode = "overview")
+data <-summarizeData(dataset = "STAND", site = "solling_beech", mode = "overview")
 ```
 
 ```{r, fig.show='hold', echo=T, message= F, warning=F}
@@ -218,7 +218,7 @@ The other option of mode, **data**, sets the behaviour of *summarizeData* to to 
 
 
 ```{r, fig.show='hold', echo=T, message= F, warning=F}
-data <-summarizeData(dataset = "TREE", location = "bily_kriz")
+data <-summarizeData(dataset = "TREE", site = "bily_kriz")
 ```
 ```{r, fig.show='hold', echo=T, message= F, warning=F}
 kable(data, row.names = F)
@@ -230,7 +230,7 @@ kable(data, row.names = F)
 ##### CLIMATE_LOCAL
 
 ```{r, fig.show='hold', echo=T, message= F, warning=F}
-data <-summarizeData(dataset = "CLIMATE_LOCAL", location = "bily_kriz")
+data <-summarizeData(dataset = "CLIMATE_LOCAL", site = "bily_kriz")
 ```
 ```{r, fig.show='hold', echo=T, message= F, warning=F}
 kable(data, row.names = F)
@@ -241,7 +241,7 @@ kable(data, row.names = F)
 For several forcing data sets and/or forcing conditions
 
 ```{r, echo=T, message= F, warning=F}
-data <-summarizeData(dataset = "CLIMATE_ISIMIP2B", location = "bily_kriz")
+data <-summarizeData(dataset = "CLIMATE_ISIMIP2B", site = "bily_kriz")
 ```
 ```{r, echo=T, message= F, warning=F}
 kable(data, row.names = F)
@@ -249,7 +249,7 @@ kable(data, row.names = F)
 
 For only one forcing data set and forcing conditions 
 ```{r, echo=T, message= F, warning=F}
-data <-summarizeData(dataset = "CLIMATE_ISIMIP2B_IPSLCM5ALR_historical", location = "bily_kriz")
+data <-summarizeData(dataset = "CLIMATE_ISIMIP2B_IPSLCM5ALR_historical", site = "bily_kriz")
 ```
 ```{r, echo=T, message= F, warning=F}
 kable(head(data), row.names = F)
@@ -259,7 +259,7 @@ kable(head(data), row.names = F)
 
 
 ```{r, fig.show='hold', echo=T, message= F, warning=F}
-data <-summarizeData(dataset = "FLUX", location = "bily_kriz")
+data <-summarizeData(dataset = "FLUX", site = "bily_kriz")
 ```
 ```{r, echo=T, message= F, warning=F}
 kable(data, row.names = F)
@@ -286,7 +286,7 @@ names(data)
 Optionally, you can specify a site
 
 ```{r, fig.show='hold', echo=T, message= F, warning=F}
-data <-getData(dataset = "SITES", location = "soro")
+data <-getData(dataset = "SITES", site = "soro")
 ```
 ```{r, echo=T, message= F, warning=F}
 knitr::kable(data, row.names = F)
@@ -295,7 +295,7 @@ knitr::kable(data, row.names = F)
 A text description can be obtained from **SITEDESCRIPTION**
 
 ```{r, fig.show='hold', echo=T, message= F, warning=F}
-soro <-getData(dataset = "SITEDESCRIPTION", location = "soro")
+soro <-getData(dataset = "SITEDESCRIPTION", site = "soro")
 ```
 ```{r, echo=T, message= F, warning=F}
 soro$description
@@ -304,10 +304,10 @@ soro$description
 
 ## DATASETS
 
-To download any data set, you have to provide a data set name and a location
+To download any data set, you have to provide a data set name and a site
 
 ```{r, fig.show='hold', echo=T, message= F, warning=F}
-data <-getData( dataset = "CLIMATE_LOCAL", location = "soro")
+data <-getData( dataset = "CLIMATE_LOCAL", site = "soro")
 ```
 
 
@@ -318,7 +318,7 @@ This option specifies whether the returned data should be data frame or a list o
 For ISIMIP data sets, by setting collapse to FALSE you will obtain a list with data frames, named after the forcing data sets and conditions. Otherwise, the data will return in a unique data frame.
 
 ```{r, echo=T, message= F, warning=F}
-data <- getData(dataset ="CLIMATE_ISIMIP2A", location = "soro", collapse = FALSE)
+data <- getData(dataset ="CLIMATE_ISIMIP2A", site = "soro", collapse = FALSE)
 ```
 ```{r, echo=T, message= F, warning=F}
 names(data)
@@ -328,7 +328,7 @@ names(data[[1]])
 We recommend to use unset collapse when downloading SOIL data, because in many cases SOIL is a collection of tables.(improve)
 
 ```{r, echo=T, message= F, warning=F}
-data <- getData(dataset ="SOIL", location = "soro", collapse = FALSE)
+data <- getData(dataset ="SOIL", site = "soro", collapse = FALSE)
 ```
 ```{r, echo=T, message= F, warning=F}
 str(data, 1)
@@ -343,7 +343,7 @@ names(data[[1]])
 When downloading ISIMIP data sets, regardless of whether it is climate, nitrogen deposition or CO2 data, you might want to select specific forcing data sets and/or conditions. With the function arguments *forcingDataset* and *forcingConditions* is possible, respectively.
 
 ```{r, echo=T, message= F, warning=F}
-data <- getData( dataset ="CLIMATE_ISIMIP2B", location ="soro", forcingDataset="GFDLESM2M", forcingCondition ="rcp2p6")
+data <- getData( dataset ="CLIMATE_ISIMIP2B", site ="soro", forcingDataset="GFDLESM2M", forcingCondition ="rcp2p6")
 ```
 ```{r, echo=T, message= F, warning=F}
 knitr::kable(head(data), align = "l")
@@ -352,7 +352,7 @@ knitr::kable(head(data), align = "l")
 
 The abate getData call is actually equivalent to 
 ```{r, echo=T, message= F, warning=F}
-data <- getData(dataset ="CLIMATE_ISIMIP2B_GFDLESM2M_rcp2p6", location ="soro")
+data <- getData(dataset ="CLIMATE_ISIMIP2B_GFDLESM2M_rcp2p6", site ="soro")
 ```
 ```{r, echo=T, message= F, warning=F}
 knitr::kable(head(data), align = "l")
@@ -364,7 +364,7 @@ knitr::kable(head(data), align = "l")
 For any data set, it is possible to define the variable or variables to be downloaded
 
 ```{r, echo=T, message= F, warning=F}
-data <- getData(dataset ="CLIMATE_ISIMIP2B", location ="soro",
+data <- getData(dataset ="CLIMATE_ISIMIP2B", site ="soro",
                 forcingDataset="GFDLESM2M", forcingCondition ="rcp2p6",
                 variables = "p_mm")
 ```
@@ -374,21 +374,20 @@ knitr::kable(head(data),  align = "l")
 ```
 
 ### species
-
 When downloading TREE or STAND data, you can select species with the argument *species*. It takes both full species name or the species id.
 ```{r, echo=T,  message= F, warning=F}
-data <- getData(dataset ="TREE", location ="hyytiala",
+data <- getData(dataset ="TREE", site ="hyytiala",
                 species = "Pinus sylvestris")
 ```
 ```{r, echo=T,  message= F, warning=F}
-data <- getData(dataset ="TREE", location ="hyytiala",
+data <- getData(dataset ="TREE", site ="hyytiala",
                  species = "pisy")
 ```
 
 ### period
 For time series data, it is possible to subset the data to a specific period.
 ```{r, echo=T,  message= F, warning=F}
-data <- getData(dataset ="CLIMATE_ISIMIP2B", location ="soro",
+data <- getData(dataset ="CLIMATE_ISIMIP2B", site ="soro",
                 forcingDataset="GFDLESM2M", forcingCondition ="rcp2p6",
                 period = c("2006-01-01","2006-12-31"))
 ```
@@ -403,32 +402,32 @@ Some data sets, such as CLIMATE_LOCAL or FLUX, have quality flags to indicate ho
 When passing a quality flag value, you should also define how the threshold should be applied. Values out the selected range will be dropped from the data based on your query.
 
 ```{r, echo=T, message= F, warning=F}
-data <- getData(dataset = "CLIMATE_LOCAL", location = "soro",
+data <- getData(dataset = "CLIMATE_LOCAL", site = "soro",
                 period = c("2011-01-01","2012-12-31"), 
                 quality = 1, decreasing = FALSE)
 
 ```
 
 ```{r, echo=T, message= F, warning=F}
-data <- getData(dataset = "FLUX", location = "soro",
+data <- getData(dataset = "FLUX", site = "soro",
                 period = c("2011-01-01","2012-12-31"), 
                 quality = 0, decreasing = TRUE)
 ```
 # The plotData function
  
-The plotData function performs a query to the database, downloads the data, applies the desired options (time period, quality flag) and shapes the final data into a time series for plotting. It requires a data set name and a location. Check  the help files to see what data sets are supported. 
+The plotData function performs a query to the database, downloads the data, applies the desired options (time period, quality flag) and shapes the final data into a time series for plotting. It requires a data set name and a site. Check  the help files to see what data sets are supported. 
 
 ## Normal plotting
 
 A simple plot call looks like 
 
 ```{r, fig.show='hold', echo=T, results="hide", message= F, warning=F}
-plotData(dataset = "CLIMATE_LOCAL", location = "le_bray", automaticPanels = TRUE)
+plotData(dataset = "CLIMATE_LOCAL", site = "le_bray", automaticPanels = TRUE)
 ```
 
 Or for tree data
 ```{r, fig.show='hold',echo=T, results="hide", message= F, warning=F}
-plotData(dataset = "TREE", location = "solling_beech", automaticPanels = TRUE)
+plotData(dataset = "TREE", site = "solling_beech", automaticPanels = TRUE)
 ```
 Note that argument *automaticPanels* that defines whether the plot in a panel.
 
@@ -440,7 +439,7 @@ Besides, it support the same options as getData
 
 
 ```{r, echo=T, message= F, warning=F}
-plotData(dataset ="CLIMATE_ISIMIP2B", location ="soro",
+plotData(dataset ="CLIMATE_ISIMIP2B", site ="soro",
          forcingDataset="GFDLESM2M", forcingCondition ="rcp2p6",
          automaticPanels = TRUE)
 ```
@@ -449,7 +448,7 @@ plotData(dataset ="CLIMATE_ISIMIP2B", location ="soro",
 
 
 ```{r, echo=T, fig.height=4,  message= F, warning=F}
-plotData(dataset ="CLIMATE_ISIMIP2B",location ="soro", 
+plotData(dataset ="CLIMATE_ISIMIP2B",site ="soro", 
          forcingDataset="GFDLESM2M", forcingCondition ="rcp2p6",
          variables = "p_mm")
 ```
@@ -457,7 +456,7 @@ plotData(dataset ="CLIMATE_ISIMIP2B",location ="soro",
 ### species
 
 ```{r, echo=T, message= F, warning=F}
-plotData(dataset ="TREE", location ="hyytiala", species = "Pinus sylvestris",
+plotData(dataset ="TREE", site ="hyytiala", species = "Pinus sylvestris",
          automaticPanels = TRUE)
 ```
 
@@ -485,7 +484,7 @@ plotData("FLUX", "soro", period = c("2011-01-01","2012-12-31"),
 You can also aggregate data by defining *aggregate* and *FUN*. The data can be aggregated by day, month, year or date, and any statistic is supported such as median
 
 ```{r, fig.width=6, fig.height=4, warning = F,echo=T, results="hide", message= F}
-plotData(dataset = "CLIMATE_ISIMIP2B", location ="soro",
+plotData(dataset = "CLIMATE_ISIMIP2B", site ="soro",
          forcingDataset= "GFDLESM2M", forcingCondition="rcp2p6", 
          variables = "tmax_degC", period = c("2020-01-01", "2022-01-01"),
          aggregate = "month", FUN =median, automaticPanels = FALSE)
@@ -539,7 +538,7 @@ Creates a query item and validates it.
 
  2. Check the requested variables (parseVariables.R)
 The requested variables are proven for spelling mistakes.
-This is step is not included in the parseQuery function because it does not affect the query. All variables for the requested data set and location are download. Once download, only the selected variables will be displayed.
+This is step is not included in the parseQuery function because it does not affect the query. All variables for the requested data set and site are download. Once download, only the selected variables will be displayed.
 
 
  3. Fetch the Query and download the data (fetchQuery.R)
