@@ -111,7 +111,7 @@ startStopPROFOUND.ISIMIP <- function(data){
       collector <- as.data.frame(Reduce(f = function(...)rbind(...),x = collectorHolder))
     }
   }else{
-    stop("You are missing something!!!")
+    stop("You might have found a bug! Please report it", call. = FALSE)
   }
   return(collector)
 }
