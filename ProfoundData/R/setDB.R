@@ -1,7 +1,7 @@
-#' @title A function to create the a database connection object
+#' @title A function to set the connection to the database
 #'
 #' @description A setDB funtion to  create a database connection object
-#' @param db_name a character string providing the absolute path to the Profound DB.
+#' @param db_name a character string providing the absolute path to the PROFOUND database.
 #' @export
 #' @example /inst/examples/setDBHelp.R
 #' @note To report errors in the package or the data, please use the issue tracker
