@@ -1,0 +1,13 @@
+before_install:
+ - cd ProfoundData
+ 
+language: r
+
+# This only works if sudo = false.
+cache: packages
+
+r:
+  - oldrel
+  - release
+  - devel
+ 
