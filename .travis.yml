@@ -1,7 +1,13 @@
 before_install:
  - cd ProfoundData
- 
+
 language: r
+
+sudo: required
+
+apt_packages:
+  - libnetcdf-dev
+  - netcdf-bin
 
 # This only works if sudo = false.
 cache: packages
@@ -10,4 +16,4 @@ r:
   - oldrel
   - release
   - devel
- 
+
