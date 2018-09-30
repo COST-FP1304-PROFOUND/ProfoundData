@@ -61,7 +61,7 @@
 #' TODO
 #' @keywords package
 #' @keywords Profound DB
-#' @import methods sqldf RSQLite DBI stats utils graphics
+#' @import methods sqldf RSQLite DBI stats utils graphics RNetCDF
 
 globalVariables(c("table_id", "DateSubset"))
 
