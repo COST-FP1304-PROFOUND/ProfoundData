@@ -26,7 +26,7 @@ datasets <- c( "CLIMATE_ISIMIP2A","CLIMATE_ISIMIP2B", "CLIMATE_ISIMIP2BLBC",
 dataset <- sample(datasets, 1)
 
 
-test_that(paste( dataset, " - ", location, ": subset a complete period"), {
+test_that(paste( dataset, " : subset a complete period"), {
     #runtests
     skip_on_travis()
     skip_on_cran()
@@ -34,14 +34,14 @@ test_that(paste( dataset, " - ", location, ": subset a complete period"), {
     setDB("/home/ramiro/ownCloud/PROFOUND_Data/v0.1.13/ProfoundData.sqlite")
     #  cat("\n");cat(datasets[i]); cat("\n");cat(rep("-", 30), collpase="") ;cat("\n")
     suppressMessages(sites <- browseData(dataset = dataset))
-    location <- sample(sites$site, 1)
-    #  cat(location); cat("... ")
-    suppressMessages(tmp <- getData(dataset, location =location, collapse = T))
+    site <- sample(sites$site, 1)
+    #  cat(site); cat("... ")
+    suppressMessages(tmp <- getData(dataset, site =site, collapse = T))
     period <- sample(tmp$date, size = 2)
     #cat("\n");cat("Period: "); cat(period); cat("\n")
     period <- as.Date(period, format = "%Y-%m-%d")
     #
-    suppressMessages(tmp <- getData(dataset, location =location, collapse = T, period = period))
+    suppressMessages(tmp <- getData(dataset, site =site, collapse = T, period = period))
     testPeriod(tmp, period)
   })
 
@@ -49,7 +49,7 @@ test_that(paste( dataset, " - ", location, ": subset a complete period"), {
 
 dataset <- sample(datasets, 1)
 
-test_that(paste( dataset, " - ", location, ": subset period only with start"), {
+test_that(paste( dataset, " : subset period only with start"), {
     #runtests
     skip_on_travis()
     skip_on_cran()
@@ -57,14 +57,14 @@ test_that(paste( dataset, " - ", location, ": subset period only with start"), {
     setDB("/home/ramiro/ownCloud/PROFOUND_Data/v0.1.13/ProfoundData.sqlite")
     #  cat("\n");cat(datasets[i]); cat("\n");cat(rep("-", 30), collpase="") ;cat("\n")
     suppressMessages(sites <- browseData(dataset = dataset))
-    location <- sample(sites$site, 1)
-    #  cat(location); cat("... ")
-    suppressMessages(tmp <- getData(dataset, location =location, collapse = T))
+    site <- sample(sites$site, 1)
+    #  cat(site); cat("... ")
+    suppressMessages(tmp <- getData(dataset, site =site, collapse = T))
     period <- sample(tmp$date, size = 1)
     #cat("\n");cat("Period: "); cat(period); cat("\n")
     period <- as.Date(period, format = "%Y-%m-%d")
     #
-    suppressMessages(tmp <- getData(dataset, location =location, collapse = T, period = period))
+    suppressMessages(tmp <- getData(dataset, site =site, collapse = T, period = period))
     testPeriodStart(tmp, period)
   })
 
@@ -72,7 +72,7 @@ test_that(paste( dataset, " - ", location, ": subset period only with start"), {
 
 dataset <- sample(datasets, 1)
 
-test_that(paste( dataset, " - ", location, ": subset period with NA and end"), {
+test_that(paste( dataset, " : subset period with NA and end"), {
     #runtests
     skip_on_travis()
     skip_on_cran()
@@ -80,22 +80,22 @@ test_that(paste( dataset, " - ", location, ": subset period with NA and end"), {
     setDB("/home/ramiro/ownCloud/PROFOUND_Data/v0.1.13/ProfoundData.sqlite")
     # #  cat("\n");cat(datasets[i]); cat("\n");cat(rep("-", 30), collpase="") ;cat("\n")
     suppressMessages(sites <- browseData(dataset = dataset))
-    location <- sample(sites$site, 1)
-    #  cat(location); cat("... ")
-    suppressMessages(tmp <- getData(dataset, location =location, collapse = T))
+    site <- sample(sites$site, 1)
+    #  cat(site); cat("... ")
+    suppressMessages(tmp <- getData(dataset, site =site, collapse = T))
     period <- sample(tmp$date, size = 1)
     #cat("\n");cat("Period: "); cat(period); cat("\n")
     #period <- as.Date(period, format = "%Y-%m-%d")
     period <- c(NA, period)
     #
-    suppressMessages(tmp <- getData(dataset, location =location, collapse = T, period = period))
+    suppressMessages(tmp <- getData(dataset, site =site, collapse = T, period = period))
     testPeriodEnd(tmp, period[!is.na(period)])
   })
 
 
 dataset <- sample(datasets, 1)
 
-test_that(paste( dataset, " - ", location, ": subset period with start and NA"), {
+test_that(paste( dataset, " : subset period with start and NA"), {
     #runtests
     skip_on_travis()
     skip_on_cran()
@@ -103,15 +103,15 @@ test_that(paste( dataset, " - ", location, ": subset period with start and NA"),
     setDB("/home/ramiro/ownCloud/PROFOUND_Data/v0.1.13/ProfoundData.sqlite")
     #  cat("\n");cat(datasets[i]); cat("\n");cat(rep("-", 30), collpase="") ;cat("\n")
     suppressMessages(sites <- browseData(dataset = dataset))
-    location <- sample(sites$site, 1)
-    #cat(location); cat("... ")
-    suppressMessages(tmp <- getData(dataset, location =location, collapse = T))
+    site <- sample(sites$site, 1)
+    #cat(site); cat("... ")
+    suppressMessages(tmp <- getData(dataset, site =site, collapse = T))
     period <- sample(tmp$date, size = 1)
     #cat("\n");cat("Period: "); cat(period); cat("\n")
     #period <- as.Date(period, format = "%Y-%m-%d")
     period <- c(period, NA)
     #
-    suppressMessages(tmp <- getData(dataset, location =location, collapse = T, period = period))
+    suppressMessages(tmp <- getData(dataset, site =site, collapse = T, period = period))
     testPeriodStart(tmp, period[!is.na(period)])
   })
 

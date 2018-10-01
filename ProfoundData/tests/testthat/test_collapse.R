@@ -17,7 +17,6 @@ testCollapse <- function(tmp){
 }
 
 test_that("No collapse works", {
-
   skip_on_travis()
   skip_on_cran()
   # Please put here the path to the DB on your personal computer!!
@@ -28,16 +27,15 @@ test_that("No collapse works", {
   dataset <- sample(datasets, 1)
 #    cat("\n");cat(datasets[i]); cat("\n");cat(rep("-", 30), collpase="") ;cat("\n")
   suppressMessages(sites <- browseData(dataset = dataset))
-  location <- sample(sites$site, 1)
-#    cat(location); cat(", ")
-  suppressMessages(tmp <- getData(dataset, location =location, collapse = F))
+  site <- sample(sites$site, 1)
+#    cat(site); cat(", ")
+  suppressMessages(tmp <- getData(dataset, site =site, collapse = F))
       #runtests
   testNoCollapse(tmp)
 
 })
 
 test_that("Collapse works", {
-
   skip_on_travis()
   skip_on_cran()
   # Please put here the path to the DB on your personal computer!!
@@ -48,9 +46,9 @@ test_that("Collapse works", {
   dataset <- sample(datasets, 1)
    # cat("\n");cat(datasets[i]); cat("\n");cat(rep("-", 30), collpase="") ;cat("\n")
   suppressMessages(sites <- browseData(dataset = dataset))
-  location <- sample(sites$site, 1)
-#      cat(location); cat(", ")
-  suppressMessages(tmp <- getData(dataset, location =location, collapse = T))
+  site <- sample(sites$site, 1)
+#      cat(site); cat(", ")
+  suppressMessages(tmp <- getData(dataset, site =site, collapse = T))
       #runtests
   testCollapse(tmp)
 })
