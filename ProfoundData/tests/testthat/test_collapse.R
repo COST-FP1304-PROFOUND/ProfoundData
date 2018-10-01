@@ -7,8 +7,6 @@ set.seed(1)
 
 library(ProfoundData)
 
-# Please put here the path to the DB on your personal computer!!
-setDB(db_name = "~/ownCloud/PROFOUND_Data/v0.1.13/ProfoundData.sqlite")
 
 
 testNoCollapse <- function(tmp){
@@ -22,6 +20,9 @@ test_that("No collapse works", {
 
   skip_on_travis()
   skip_on_cran()
+  # Please put here the path to the DB on your personal computer!!
+  setDB(db_name = "~/ownCloud/PROFOUND_Data/v0.1.13/ProfoundData.sqlite")
+
   datasets <- c("CLIMATE_ISIMIP2A",  "CO2_ISIMIP", "CLIMATE_ISIMIP2B", "CLIMATE_ISIMIP2BLBC",
                 "NDEPOSITION_ISIMIP2B","CLIMATE_ISIMIPFT")
   dataset <- sample(datasets, 1)
@@ -39,6 +40,9 @@ test_that("Collapse works", {
 
   skip_on_travis()
   skip_on_cran()
+  # Please put here the path to the DB on your personal computer!!
+  setDB(db_name = "~/ownCloud/PROFOUND_Data/v0.1.13/ProfoundData.sqlite")
+
   datasets <- c("CLIMATE_ISIMIP2A",  "CO2_ISIMIP", #"CLIMATE_ISIMIP2B", #"CLIMATE_ISIMIP2BLBC"
                 "NDEPOSITION_ISIMIP2B","CLIMATE_ISIMIPFT")
   dataset <- sample(datasets, 1)
