@@ -4,48 +4,50 @@
 \alias{getData}
 \title{A function to get data}
 \usage{
-getData(dataset, location = NULL, forcingDataset = NULL,
+getData(dataset, site = NULL, location = NULL, forcingDataset = NULL,
   forcingCondition = NULL, species = NULL, variables = NULL,
   period = NULL, collapse = TRUE, quality = NULL, decreasing = TRUE)
 }
 \arguments{
-\item{dataset}{a character string providing the name one of the available datasets}
+\item{dataset}{a character string providing the name of a dataset.}
 
-\item{location}{a character string providing the name of the location}
+\item{site}{a character string providing the name of a site.}
 
-\item{forcingDataset}{a character string providing the name of the a forcingDataset.
+\item{location}{deprecated argument. Please use site instead.}
+
+\item{forcingDataset}{a character string providing the name of a forcingDataset.
 Only relevant for ISIMIP datasets.}
 
-\item{forcingCondition}{a character string providing the name of the a forcingCondition.
+\item{forcingCondition}{a character string providing the name of a forcingCondition.
 Only relevant for ISIMIP datasets.}
 
-\item{species}{a character string providing the species name or species id}
+\item{species}{a character string providing the species name or species id.}
 
 \item{variables}{a character array holding the variables to be plotted. Default  is all variables.}
 
-\item{period}{a character array either start of the subset or start and end.
-It must have the format YYYY-MM-DD.}
+\item{period}{a character array with either start or start and end of the subset.
+It must have the format "YYYY-MM-DD", or c("YYYY-MM-DD", "YYYY-MM-DD").}
 
 \item{collapse}{a boolean indicating whether the returned data should be a
-single dataframe (TRUE) or list of dataframes. Relevant when downloading SOIL and ISIMIP datasets.}
+single data frame (TRUE) or a list of data frames (FALSE). Relevant when downloading SOIL and ISIMIP datasets.}
 
 \item{quality}{a number indicating the quality threshold to be used. Default is none.}
 
-\item{decreasing}{a boolean indicating whether the quality threshold should be applied up- or downwards}
+\item{decreasing}{a boolean indicating whether the quality threshold should be applied up- or downwards.}
 }
 \value{
-a dataframe or list of dataframes, depending on collapse
+a data frame or a list of data frames, depending on collapse.
 }
 \description{
-This function allows to download datasets for a location
+A function to get datasets for a site
 from the PROFOUND database.
 }
 \details{
 When using quality, please be aware that the threshold value is included
-in the returned data. Threshold works by removing data values that are greater
- (decreasing = TRUE) or less(decreasing = FALSE) than the given value.
+in the returned data. Thresholding works by removing data values that are greater
+ (decreasing = TRUE) or smaller (decreasing = FALSE) than the given value.
  The quality parameter is only relevant for datasets that have quality flags. These are
-ATMOSPHERICHEATCONDUCTION, SOILTS, FLUX, METEOROLOGICAL, and CLIMATE LOCAL for some sites. Please
+ATMOSPHERICHEATCONDUCTION, SOILTS, FLUX, METEOROLOGICAL, and CLIMATE LOCAL. Please
 check the metadata of each dataset before using this parameter.
 }
 \note{
@@ -56,64 +58,63 @@ or use this google form http://goo.gl/forms/e2ZQCiZz4x
 }
 \examples{
 \dontrun{
-# Obtain site data
-sites <-getData(dataset =  "SITES")
+# Get SITES data
+sites <- getData(dataset =  "SITES")
 
-# Obtain specific site data
-site <-getData(dataset =  "SITES", location = "soro")
+# Get SITES data of a specific site
+site <- getData(dataset =  "SITES", site = "soro")
 
-# Obtain site descriptions
-sites <-getData(dataset =  "SITEDESCRIPTION"
+# Get SITEDESCRIPTION
+sites <- getData(dataset =  "SITEDESCRIPTION")
 
-# Obtain a specific site description
-site <-getData(dataset =  "SITEDESCRIPTION", location = "lebray")
+# Get SITEDESCRIPTION of a specific site
+site <- getData(dataset =  "SITEDESCRIPTION", site = "lebray")
 
+# Get any dataset for a site
+data <- getData(dataset =  "CLIMATE_LOCAL", site = "soro")
 
-# Obtain any dataset for a location
-data <-getData( dataset =  "CLIMATE_LOCAL", location = "soro")
+# Get ISIMIP datasets as a list with data frames
+data <- getData(dataset ="CLIMATE_ISIMIP2A", site = "soro", collapse = TRUE)
+data <- getData(dataset ="CLIMATE_ISIMIP2B", site = "soro", collapse = TRUE)
+data <- getData(dataset ="NDEPOSITION_ISIMIP2B", site = "soro", collapse = TRUE)
 
-# Obtain ISIMIP datasets as a list with dataframes
-data <- getData(dataset ="CLIMATE_ISIMIP2A", location = "soro", collapse = FALSE)
+# Get ISIMIP datasets as an unique data frame
+data <- getData(dataset ="CLIMATE_ISIMIP2A", site = "soro", collapse = FALSE)
+data <- getData(dataset ="CLIMATE_ISIMIP2B", site = "soro", collapse = FALSE)
+data <- getData(dataset ="NDEPOSITION_ISIMIP2B", site = "soro", collapse = FALSE)
 
-# Obtain ISIMIP datasets as a list with dataframes
-data <- getData(dataset ="CLIMATE_ISIMIP2A", location = "soro", collapse = TRUE)
-data <- getData(dataset ="CLIMATE_ISIMIP2B", location = "soro", collapse = TRUE)
-data <- getData(dataset ="NDEP_ISIMIP2B", location = "soro", collapse = TRUE)
+# Get SOIL data. Collapse FALSE is recommended.
+data <- getData(dataset ="SOIL", site = "soro", collapse = FALSE)
 
-# Obtain ISIMIP datasets as an unique data frame
-data <- getData(dataset ="CLIMATE_ISIMIP2A", location = "soro", collapse = FALSE)
-data <- getData(dataset ="CLIMATE_ISIMIP2B", location = "soro", collapse = FALSE)
-data <- getData(dataset ="NDEP_ISIMIP2B", location = "soro", collapse = FALSE)
-
-# Obtain SOIL data. Collapse FALSE is recommended.
-data <- getData(dataset ="SOIL", location = "soro", collapse = FALSE)
-
-# Dowloading specific forcing datasets and/or forcing conditions
-data <- getData( dataset ="CLIMATE_ISIMIP2B", location ="soro",
+# Get specific forcing datasets and/or forcing conditions
+data <- getData(dataset ="CLIMATE_ISIMIP2B", site ="soro",
                  forcingDataset="GFDLESM2M", forcingCondition ="rcp2p6")
-# Equivalent to
-data <- getData(dataset ="CLIMATE_ISIMIP2B_GFDLESM2M_rcp2p6", location ="soro")
+# which is equivalent to
+data <- getData(dataset ="CLIMATE_ISIMIP2B_GFDLESM2M_rcp2p6", site ="soro")
 
 # Specify variables
-data <- getData(dataset ="CLIMATE_ISIMIP2B", location ="soro",
+data <- getData(dataset ="CLIMATE_ISIMIP2B", site ="soro",
                 forcingDataset="GFDLESM2M", forcingCondition ="rcp2p6",
-              variables = "p_mm")
+                variables = "p_mm")
+data <- getData(dataset ="CLIMATE_ISIMIP2B", site ="soro",
+                forcingDataset="GFDLESM2M", forcingCondition ="rcp2p6",
+                variables = c("tmax_degC","p_mm"))
 
 # Specify species
-data <- getData(dataset ="TREE", location ="hyytiala", species = "Pinus sylvestris")
-data <- getData(dataset ="TREE", location ="hyytiala", species = "pisy")
-data <- getData(dataset ="STAND", location ="hyytiala", species = "Pinus sylvestris")
-data <- getData(dataset ="STAND", location ="hyytiala", species = "pisy")
+data <- getData(dataset ="TREE", site ="hyytiala", species = "Pinus sylvestris")
+data <- getData(dataset ="TREE", site ="hyytiala", species = "pisy")
+data <- getData(dataset ="STAND", site ="hyytiala", species = "Picea abies")
+data <- getData(dataset ="STAND", site ="hyytiala", species = "piab")
 
 # Specify period
-data <- getData(dataset ="CLIMATE_ISIMIP2B", location ="soro",
+data <- getData(dataset ="CLIMATE_ISIMIP2B", site ="soro",
                 forcingDataset="GFDLESM2M", forcingCondition ="rcp2p6",
                 period = c("2006-01-01","2006-12-31"))
 
 # Specify quality
-data <- getData(dataset = "CLIMATE_LOCAL", location = "soro",
+data <- getData(dataset = "CLIMATE_LOCAL", site = "soro",
                 quality = 1, decreasing = FALSE)
-data <- getData(dataset = "FLUX", location = "soro",
+data <- getData(dataset = "FLUX", site = "soro",
                 quality = 0, decreasing = TRUE)
 }
 }

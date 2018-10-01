@@ -2,7 +2,7 @@
 % Please edit documentation in R/queryDB.R
 \name{queryDB}
 \alias{queryDB}
-\title{A function to create the a database connection object}
+\title{A function to query the database}
 \usage{
 queryDB(queryItem)
 }
@@ -10,7 +10,7 @@ queryDB(queryItem)
 \item{queryItem}{a character string providing the query}
 }
 \description{
-A queryDB funtion to  perform own queries to the Profound DB
+A queryDB function to perform self-defined queries on the PROFOUND database.
 }
 \note{
 To report errors in the package or the data, please use the issue tracker
@@ -20,7 +20,7 @@ or use this google form http://goo.gl/forms/e2ZQCiZz4x
 }
 \examples{
 \dontrun{
-# Basic querz
+# Basic query
 overview <- queryDB("SELECT * FROM OVERVIEW")
 tree <- queryDB("SELECT * FROM TREE")
 
@@ -35,9 +35,6 @@ myQuery <- queryDB("SELECT  * FROM TREE_piab")
 # Specify variables
 myQuery <- queryDB("SELECT date, tmax_degC FROM CLIMATE_LOCAL WHERE
                    tmax_degC > 20 AND site == 'hyytiala' AND year == 2010")
-
-
-
 }
 }
 \author{

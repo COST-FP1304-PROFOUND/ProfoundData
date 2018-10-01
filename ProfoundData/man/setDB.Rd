@@ -2,12 +2,12 @@
 % Please edit documentation in R/setDB.R
 \name{setDB}
 \alias{setDB}
-\title{A function to create the a database connection object}
+\title{A function to set the connection to the database}
 \usage{
 setDB(db_name)
 }
 \arguments{
-\item{db_name}{a character string providing the absolute path to the Profound DB.}
+\item{db_name}{a character string providing the absolute path to the PROFOUND database.}
 }
 \description{
 A setDB funtion to  create a database connection object
@@ -20,11 +20,11 @@ or use this google form http://goo.gl/forms/e2ZQCiZz4x
 }
 \examples{
 \dontrun{
-# Define path to database. It must be an absolute path.
+# Define the path to the database. It must be an absolute path.
 myDB <- "/home/ownCloud/PROFOUND_Data/v0.1.13/ProfoundData.sqlite"
 myDB <- path.expand("~/ownCloud/PROFOUND_Data/v0.1.13/ProfoundData.sqlite")
 
-# Set the path with using the pacakge setDB function
+# Set the connection using the setDB function
 setDB(myDB)
 }
 }

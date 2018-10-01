@@ -4,34 +4,36 @@
 \alias{browseData}
 \title{A browse database function}
 \usage{
-browseData(dataset = NULL, location = NULL, variables = FALSE,
-  collapse = TRUE)
+browseData(dataset = NULL, site = NULL, location = NULL,
+  variables = FALSE, collapse = TRUE)
 }
 \arguments{
-\item{dataset}{a character string providing the name of the dataset (optional)}
+\item{dataset}{a character string providing the name of the dataset (optional).}
 
-\item{location}{a character string providing the name of the location (optional)}
+\item{site}{a character string providing the name of the site (optional).}
+
+\item{location}{deprecated argument. Please use site instead.}
 
 \item{variables}{a boolean indicating whether to return the variables of a dataset,
-instead of the available locations}
+instead of the available sites.}
 
-\item{collapse}{boolean indicating whether to return the compact (TRUE) or the extended (FALSE)
-data overview, if neither location nor dataset are passed to the function}
+\item{collapse}{a boolean indicating whether to return the compact (TRUE) or the extended (FALSE)
+data overview, if neither site nor dataset are passed to the function.}
 }
 \value{
 \itemize{
    \item if no arguments,  an overview of available data
    \item  if metadata, the requested metadata
    \item  if dataset and variables, available variables for a dataset
-   \item  if dataset, available locations for the dataset
-   \item  if location, available datasets for a location
-   \item  if location and dataset,  retuns a integer. Availability is coded as 0 = no available and 1 = available.
+   \item  if dataset, available sites for the dataset
+   \item  if site, available datasets for a site
+   \item  if site and dataset,  returns an integer. Availability is coded as 0 = no available and 1 = available.
     This is the quickest option to check availability.
    }
 }
 \description{
 A function to provide information on available data in the
-PROFOUND database
+PROFOUND database.
 }
 \details{
 Besides providing information on available data, this function allows
@@ -40,12 +42,12 @@ to access the database metadata, policy,  data sources and site descriptions.
 \note{
 To report errors in the package or the data, please use the issue tracker
 in the github repository of TG2 https://github.com/COST-FP1304-PROFOUND/TG2/issues
-(preferred, but requires that you have access to our GitHub account) or
-or use this google form http://goo.gl/forms/e2ZQCiZz4x
+(preferred, but requires that you have access to the GitHub repository) or
+ use this google form http://goo.gl/forms/e2ZQCiZz4x.
 }
 \examples{
 \dontrun{
-# See what data is included in the database and for what locations the data is available.
+# See available data of the database
 overview <- browseData()
 # Hint: If *collapse* FALSE, full version of the overview table
 overview <- browseData(collapse = FALSE)
@@ -56,36 +58,36 @@ tables <- browseData(dataset = "DATASETS")
 # Available variables for a given dataset
 variables <- browseData(dataset = "CLIMATE_LOCAL", variables = TRUE)
 
-# Available locations for a given dataset
+# Available sites for a given dataset
 available <- browseData(dataset = "CLIMATE_LOCAL")
 
-# Available datasets for a given location
-available <- browseData(location ="le_bray")
+# Available datasets for a given site
+available <- browseData(site ="le_bray")
 
-# Whether a dataset is available for a specific location
-available <- browseData(location ="le_bray", dataset = "CLIMATE_LOCAL")
+# Whether a dataset is available for a specific site
+available <- browseData(site ="le_bray", dataset = "CLIMATE_LOCAL")
 
-# See version histoy
+# See version history
 version <- browseData(dataset = "VERSION")
 
-# Access metadata
+# See metadata
 metadata <- browseData(dataset = "METADATA_DATASETS")
 metadata <- browseData(dataset = "METADATA_CLIMATE_LOCAL")
 
-# Access specific site metadata
-metadata <- browseData(dataset = "METADATA_TREE", location = "solling_spruce")
+# See metadata of a specific site
+metadata <- browseData(dataset = "METADATA_TREE", site = "solling_spruce")
 
 # See data source
 source <- browseData(dataset = "SOURCE")
 
-# See specific site data source
-source <- browseData(dataset = "SOURCE", location = "solling_spruce")
+# See data source of a specific site
+source <- browseData(dataset = "SOURCE", site = "solling_spruce")
 
 # See data policy
 source <- browseData(dataset = "POLICY")
 
-# See specific site data policy
-policy <- browseData(dataset = "POLICY", location = "solling_spruce")
+# See data policy of a specific site
+policy <- browseData(dataset = "POLICY", site = "solling_spruce")
 }
 }
 \keyword{ProfoundData}

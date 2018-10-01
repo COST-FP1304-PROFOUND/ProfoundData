@@ -4,34 +4,36 @@
 \alias{summarizeData}
 \title{A function to summarize data from the database}
 \usage{
-summarizeData(dataset, location, forcingDataset = NULL,
+summarizeData(dataset, site, location, forcingDataset = NULL,
   forcingCondition = NULL, by = "year", period = NULL, mode = "data")
 }
 \arguments{
-\item{dataset}{a character string providing the name one of the available
-climatic datasets (CLIMATE_LOCAL, CLIMATE_ISIMIP, ...) or the tree dataset}
+\item{dataset}{a character string providing the name of a climatic dataset
+(CLIMATE_LOCAL, CLIMATE_ISIMIP, ...) or the tree dataset.(change this you )}
 
-\item{location}{a character string providing the name of the location}
+\item{site}{a character string providing the name of a site.}
 
-\item{forcingDataset}{a character string providing the name of the a forcingDataset.
+\item{location}{deprecated argument. Please use site instead.}
+
+\item{forcingDataset}{a character string providing the name of a forcingDataset.
 Only relevant for ISIMIP datasets.}
 
-\item{forcingCondition}{a character string providing the name of the a forcingCondition.
+\item{forcingCondition}{a character string providing the name of a forcingCondition.
 Only relevant for ISIMIP datasets.}
 
-\item{by}{a character string indicating how summarize the data. Currently supports
+\item{by}{a character string indicating how to summarize the data. Currently supports
 by year and total. The latter refers to the entire available period.}
 
-\item{period}{a character array either start of the subset or start and end.
-It must have the format YYYY-MM-DD.}
+\item{period}{a character array with either start or start and end of the subset.
+It must have the format "YYYY-MM-DD", or c("YYYY-MM-DD", "YYYY-MM-DD").}
 
-\item{mode}{a character string whether to display the data summary or an overview.}
+\item{mode}{a character string indicating whether to display the data summary or an overview.}
 }
 \value{
-a dataframe with the summary values
+a data frame with the summary values
 }
 \description{
-This function allows to summarize datasets for a location
+This function allows to summarize datasets for a site
 from the PROFOUND database.
 }
 \details{
@@ -40,7 +42,7 @@ moment, it is possible to summarize daily climate datasets and tree data.
 
 Data are summarized by years. Radiation and precipitation are provided as total yearly
 values, while the rest of climatic values are year mean values.  For ISIMIP datasets a summary for whole
-period will be returned if the dataset comprises more than one forcing datasets and one forcing conditions.
+period will be returned if the dataset comprises more than one forcing dataset and one forcing condition.
 }
 \note{
 To report errors in the package or the data, please use the issue tracker
@@ -71,9 +73,9 @@ or use this google form http://goo.gl/forms/e2ZQCiZz4x
 }
 \examples{
 \dontrun{
-summarizeData("CLIMATE_ISIMIP2B", location = "Soro")
-summarizeData("CLIMATE_LOCAL", location = "Soro")
-summarizeData("TREE", location = "Soro")
+summarizeData("CLIMATE_ISIMIP2B", site = "Soro")
+summarizeData("CLIMATE_LOCAL", site = "Soro")
+summarizeData("TREE", site = "Soro")
 }
 }
 \author{

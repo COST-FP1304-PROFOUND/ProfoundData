@@ -4,47 +4,51 @@
 \alias{plotData}
 \title{A function to plot data}
 \usage{
-plotData(dataset, location, forcingDataset = NULL, forcingCondition = NULL,
-  species = NULL, variables = NULL, period = NULL, aggregated = NULL,
-  FUN = mean, automaticPanels = T, quality = NULL, decreasing = TRUE)
+plotData(dataset, site, location, forcingDataset = NULL,
+  forcingCondition = NULL, species = NULL, variables = NULL,
+  period = NULL, aggregated = NULL, FUN = mean, automaticPanels = T,
+  quality = NULL, decreasing = TRUE)
 }
 \arguments{
-\item{dataset}{a character string providing the name one of the available datasets}
+\item{dataset}{a character string providing the name of a dataset}
 
-\item{location}{a character string providing the name of the location}
+\item{site}{a character string providing the name of a site.}
 
-\item{forcingDataset}{a character string providing the name of the a forcingDataset.
+\item{location}{deprecated argument. Please use site instead.}
+
+\item{forcingDataset}{a character string providing the name of a forcingDataset.
 Only relevant for ISIMIP datasets.}
 
-\item{forcingCondition}{a character string providing the name of the a forcingCondition.
+\item{forcingCondition}{a character string providing the name of a forcingCondition.
 Only relevant for ISIMIP datasets.}
 
 \item{species}{a character string providing the species name or species id.}
 
 \item{variables}{a character array holding the variables to be plotted. Default  is all variables.}
 
-\item{period}{a character array either start of the subset or start and end}
+\item{period}{a character array with either start or start and end of the subset.
+It must have the format "YYYY-MM-DD", or c("YYYY-MM-DD", "YYYY-MM-DD").}
 
 \item{aggregated}{a boolean indicating whether data should be aggregated for display.
 Possible values are date, day, month and year.}
 
 \item{FUN}{a function to use for aggregating the data}
 
-\item{automaticPanels}{should the function automatically create panels}
+\item{automaticPanels}{a boolean indicating whether the function automatically creates panels}
 
 \item{quality}{a number indicating the quality threshold to be used. Default is none.}
 
 \item{decreasing}{a boolean indicating whether the quality threshold should be applied up- or downwards}
 }
 \value{
-plots for the specified dataset, location and variables
+plots for the specified dataset, site and variables
 }
 \description{
-A function to plot data of dataset for a location
-from the ProfoundData database.
+A function to plot data of a site
+from the PROFOUND database.
 }
 \details{
-Plotting is not supported for datasets: OVERVIEW, SITES, SOIL. The aggregation of data
+Plotting is not supported for the following datasets: OVERVIEW, SITES, SOIL(more). The aggregation of data
 relies on the function \code{\link{aggregate}} for \code{\link{zoo}} objects. The FUN parameter
 is passed to FUN from \code{\link{aggregate}}. Please check the help files of  \code{\link{aggregate}}
 for further information. For handling NAs we recommend to pass self-defined functions (see examples).
@@ -58,65 +62,56 @@ or use this google form http://goo.gl/forms/e2ZQCiZz4x
 \examples{
 \dontrun{
 # Normal plotting
-plotData(dataset = "CLIMATE_LOCAL", location = "le_bray", automaticPanels = TRUE)
-plotData(dataset = "TREE", location = "solling_beech",   automaticPanels = TRUE)
-plotData(dataset = "CLIMATE_LOCAL", location = "le_bray", automaticPanels = FALSE)
-plotData(dataset = "TREE", location = "solling_beech",   automaticPanels = FALSE)
+plotData(dataset = "CLIMATE_LOCAL", site = "le_bray", automaticPanels = TRUE)
+plotData(dataset = "TREE", site = "solling_beech",   automaticPanels = TRUE)
+plotData(dataset = "CLIMATE_LOCAL", site = "le_bray", automaticPanels = FALSE)
+plotData(dataset = "TREE", site = "solling_beech",   automaticPanels = FALSE)
 
-
-# Plot specifics forcing datasets and conditions
-plotData(dataset ="CLIMATE_ISIMIP2B", location ="soro", forcingDataset="GFDLESM2M",
+# Plot specific forcing datasets and conditions
+plotData(dataset ="CLIMATE_ISIMIP2B", site ="soro", forcingDataset="GFDLESM2M",
          forcingCondition ="rcp2p6", automaticPanels = TRUE)
 
 # Plot specific variables
-plotData(dataset ="CLIMATE_ISIMIP2B",location ="soro", forcingDataset="GFDLESM2M",
+plotData(dataset ="CLIMATE_ISIMIP2B",site ="soro", forcingDataset="GFDLESM2M",
          forcingCondition ="rcp2p6", variables = "p_mm")
-plotData(dataset ="TREE",location ="solling_beech", variables = "dbh1_cm")
+plotData(dataset ="TREE",site ="solling_beech", variables = "dbh1_cm")
 
 # Plot specific species
-plotData(dataset ="TREE", location ="hyytiala", species = "Pinus sylvestris",
+plotData(dataset ="TREE", site ="hyytiala", species = "Pinus sylvestris",
          automaticPanels = TRUE)
 
-
 # Plot specific period
-plotData(dataset = "CLIMATE_LOCAL", location =  "soro",
+plotData(dataset = "CLIMATE_LOCAL", site =  "soro",
          period = c("2011-01-01","2012-12-31"))
 
-
-# Set quality treshold
-plotData(dataset = "CLIMATE_LOCAL", location = "soro",
+# Set quality threshold
+plotData(dataset = "CLIMATE_LOCAL", site = "soro",
          period = c("2011-01-01","2012-12-31"), quality = 1, decreasing = FALSE)
-plotData(dataset = "FLUX", location = "soro", period = c("2011-01-01","2012-12-31"),
+plotData(dataset = "FLUX", site = "soro", period = c("2011-01-01","2012-12-31"),
          quality = 0, decreasing = TRUE)
-```
+
 # Plot aggregated data
-plotData(dataset = "CLIMATE_ISIMIP2B", location ="soro",  forcingDataset= "GFDLESM2M",
+plotData(dataset = "CLIMATE_ISIMIP2B", site ="soro",  forcingDataset= "GFDLESM2M",
          forcingCondition="rcp2p6", variables = "tmax_degC",
          period = c("2020-01-01", "2022-01-01"),
          aggregate = "month", FUN =median)
-plotData(dataset = "CLIMATE_ISIMIP2B", location ="soro",  forcingDataset= "GFDLESM2M",
+plotData(dataset = "CLIMATE_ISIMIP2B", site ="soro",  forcingDataset= "GFDLESM2M",
          forcingCondition="rcp2p6", variables = "p_mm",
          period = c("2020-01-01", "2022-01-01"),
          aggregate = "month", FUN =sum)
 
-# Plot aggregated data with self defined function
-# Compare month mean temperature of one year to mean of all period
-data <- getData(dataset = "CLIMATE_ISIMIP2B", location ="soro",  forcingDataset= "GFDLESM2M",
+# Plot aggregated data with self-defined function. In this case, compare month
+# mean temperature of one year to mean of all period
+data <- getData(dataset = "CLIMATE_ISIMIP2B", site ="soro",  forcingDataset= "GFDLESM2M",
                 forcingCondition="rcp2p6", variables = "tmax_degC")
 meanTemperature <- mean(data$tmax_degC, na.rm = TRUE)
 difference <- function(x) {mean(x, na.rm = TRUE) -meanTemperature}
 
-plotData(dataset = "CLIMATE_ISIMIP2B", location ="soro",  forcingDataset= "GFDLESM2M",
+plotData(dataset = "CLIMATE_ISIMIP2B", site ="soro",  forcingDataset= "GFDLESM2M",
          forcingCondition="rcp2p6", variables = "tmax_degC",
          period = c("2020-01-01", "2021-01-01"),
          aggregate = "month", FUN =difference)
 abline(h = 0, col = "red")
-plotData(dataset = "CLIMATE_ISIMIP2B", location ="soro",  forcingDataset= "GFDLESM2M",
-         forcingCondition="rcp2p6", variables = "tmax_degC",
-         period = c("2021-01-01", "2022-01-01"),
-         aggregate = "month", FUN =difference)
-abline(h = 0, col = "red")
-
 }
 }
 \author{

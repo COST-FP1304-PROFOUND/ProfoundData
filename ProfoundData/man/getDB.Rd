@@ -2,15 +2,15 @@
 % Please edit documentation in R/getDB.R
 \name{getDB}
 \alias{getDB}
-\title{A function to retun information the a database connection object}
+\title{A function to return information of the database connection}
 \usage{
 getDB()
 }
 \value{
-a character string with filepath to the database
+a character string with the filepath to the database
 }
 \description{
-A getDB function to return the filepath to the database
+A function to return the filepath to the database.
 }
 \note{
 To report errors in the package or the data, please use the issue tracker
@@ -20,7 +20,7 @@ or use this google form http://goo.gl/forms/e2ZQCiZz4x
 }
 \examples{
 \dontrun{
-# Retrieve the database connection and version
+# Retrieve the filepath to the database
 getDB()
 }
 }
