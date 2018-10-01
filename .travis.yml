@@ -7,9 +7,11 @@ sudo: required
 
 apt_packages:
   - libnetcdf-dev
-    udunits-bin
+  -  udunits-bin
   - libudunits2-dev
-    netcdf-bin
+  - netcdf-bin
+  - tcl8.5-dev
+  - tk8.5-dev
 
 # This only works if sudo = false.
 cache: packages
