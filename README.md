@@ -1,11 +1,10 @@
-# PROFOUND
+# ProfoundData
 
-# PROFOUND database
+ProfoundData is an R package for downloading and exploring data from the PROFOUND database.
 
-A package for downloading and exploring data from the PROFOUND database.
+## The PROFOUND database
 
 The database is openly available after request at [PIK](http://pmd.gfz-potsdam.de/panmetaworks/review/8993fe318f6828555d421a3a86c47f80a410ffaba6120fe0de97de1d02a3bdfc-pik/)
-
 
 ## Getting the ProfoundData R package
 
