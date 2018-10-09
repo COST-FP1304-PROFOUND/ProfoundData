@@ -6,6 +6,8 @@ ProfoundData is an R package for downloading and exploring data from the PROFOUN
 
 The database is openly available after request at [PIK](http://pmd.gfz-potsdam.de/panmetaworks/review/8993fe318f6828555d421a3a86c47f80a410ffaba6120fe0de97de1d02a3bdfc-pik/)
 
+You can find news / version infos about the database [here](./PROFOUND database/NEWS.md)
+
 ## Getting the ProfoundData R package
 
 ### Installing the R package from CRAN
@@ -32,7 +34,7 @@ To install a specific (older) release, or a particular branch, decide for the ve
 devtools::install_github(repo = "COST-FP1304-PROFOUND/ProfoundData", subdir = "ProfoundData", 
 ref = "v0.0.2.1", dependencies = T, build_vignettes = T)
 ```
-with the appropriate version number / branch as argument to ref. 
+with the appropriate version number / branch as argument to ref. You can find the news file (info about changes for each release) [here](./ProfoundData/NEWS.md)
 
 ### Getting started
 
