@@ -10,19 +10,25 @@
 #' or use this google form http://goo.gl/forms/e2ZQCiZz4x
 #' @author Ramiro Silveyra Gonzalez
 setDB <- function(db_name){
-  db <- list()
-  #db_name <- normalizePath(db_name)
   if (file.exists(db_name)){
-    db[["path"]] <- db_name
-    message(db[["path"]])
+    #ProfoundData.env <- new.env()
+    #dbConnection() <- list(dbname = "somepath", driver = "somedriver")
     if(grepl("sqlite", db_name)){
-      db[["driver"]] <- SQLite()
+      #dbConnection[["driver"]] <- SQLite()
+      temp <- RSQLite::SQLite()
+    }else{
+      stop("Unkown driver")
     }
-    assignInNamespace("db", db,   pos ="package:ProfoundData")
-    versionHelp()
+    #dbConnection[["dbname"]] <- db_name
+    #ProfoundData.env$dbConnection <- dbConnection
   }else{
     stop("Please provide a valid path to DB")
   }
+  dbConnection(dbname = db_name, driver = temp)
 }
+
+
+dbConnection <- settings::options_manager(dbname="somename", driver=RSQLite::SQLite())
+
 
 

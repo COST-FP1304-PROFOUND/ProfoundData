@@ -15,9 +15,8 @@ makeConnection <- function() {
     stop("Pkg needed for this function to work. Please install it.",
          call. = FALSE)
   }else{
-    #path.to.db <- system.file("extdata", "ProfoundData.sqlite", package="ProfoundData")
-    #path.to.db <-"/home/trashtos/GitHub/TG2/ProfoundData/inst/extdata/ProfoundData.sqlite"
-    conn <- try(RSQLite::dbConnect(db$drive, dbname = db$path), T)
+    conn <- try(RSQLite::dbConnect(drv = dbConnection()$driver,
+                                   dbname = dbConnection()$dbname), TRUE)
     if ('try-error' %in% class(conn)){
       stop("Invalid database connection")
     }

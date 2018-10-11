@@ -17,6 +17,7 @@ getDB <- function(){
     RSQLite::dbDisconnect(conn)
   }
   versionHelp()
-  return(getFromNamespace("db",  pos =  "package:ProfoundData")$path)
+  #return(getFromNamespace("db",  pos =  "package:ProfoundData")$path)
+  return(dbConnection()$dbname)
 }
 
