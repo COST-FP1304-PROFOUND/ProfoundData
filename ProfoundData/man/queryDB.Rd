@@ -40,4 +40,3 @@ myQuery <- queryDB("SELECT date, tmax_degC FROM CLIMATE_LOCAL WHERE
 \author{
 Ramiro Silveyra Gonzalez
 }
-

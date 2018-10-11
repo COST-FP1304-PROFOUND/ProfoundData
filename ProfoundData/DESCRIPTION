@@ -26,4 +26,4 @@ Suggests:
     R.rsp (>= 0.40.0),
     testthat (>= 1.0.2)
 VignetteBuilder: R.rsp
-RoxygenNote: 5.0.1
+RoxygenNote: 6.1.0

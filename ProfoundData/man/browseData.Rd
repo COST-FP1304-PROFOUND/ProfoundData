@@ -91,4 +91,3 @@ policy <- browseData(dataset = "POLICY", site = "solling_spruce")
 }
 }
 \keyword{ProfoundData}
-

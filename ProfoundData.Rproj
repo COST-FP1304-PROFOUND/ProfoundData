@@ -1,7 +1,7 @@
 Version: 1.0
 
-RestoreWorkspace: No
-SaveWorkspace: No
+RestoreWorkspace: Default
+SaveWorkspace: Default
 AlwaysSaveHistory: Default
 
 EnableCodeIndexing: Yes
@@ -11,13 +11,9 @@ Encoding: UTF-8
 
 RnwWeave: Sweave
 LaTeX: pdfLaTeX
-RootDocument: vignettes/ProfoundDataVignetteTry.Rnw
-
-AutoAppendNewline: Yes
-StripTrailingWhitespace: Yes
 
 BuildType: Package
 PackageUseDevtools: Yes
-PackageInstallArgs: --lock --no-multiarch --with-keep.source
-PackageCheckArgs: --as-cran
+PackagePath: ProfoundData
+PackageInstallArgs: --no-multiarch --with-keep.source
 PackageRoxygenize: rd,collate,namespace,vignette

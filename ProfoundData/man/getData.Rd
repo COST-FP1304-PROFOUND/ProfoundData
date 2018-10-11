@@ -6,7 +6,8 @@
 \usage{
 getData(dataset, site = NULL, location = NULL, forcingDataset = NULL,
   forcingCondition = NULL, species = NULL, variables = NULL,
-  period = NULL, collapse = TRUE, quality = NULL, decreasing = TRUE)
+  period = NULL, collapse = TRUE, quality = NULL,
+  decreasing = TRUE)
 }
 \arguments{
 \item{dataset}{a character string providing the name of a dataset.}
@@ -122,4 +123,3 @@ data <- getData(dataset = "FLUX", site = "soro",
 Ramiro Silveyra Gonzalez
 }
 \keyword{ProfoundData}
-

@@ -2,8 +2,8 @@
 % Please edit documentation in R/ProfoundData.R
 \docType{package}
 \name{ProfoundData-package}
-\alias{ProfoundData}
 \alias{ProfoundData-package}
+\alias{ProfoundData}
 \title{Overview of the functions in the ProfoundData package}
 \description{
 The ProfoundData package provides functions to explore, visualize and get data from the PROFOUND
@@ -69,6 +69,7 @@ vignette for more information and examples (\code{vignette('ProfoundData')}).
 
 TODO
 }
+
 \author{
 Except where indicated otherwise, the functions in this package were
  written by Ramiro Silveyra Gonzalez.
@@ -76,4 +77,3 @@ Except where indicated otherwise, the functions in this package were
 \keyword{DB}
 \keyword{Profound}
 \keyword{package}
-

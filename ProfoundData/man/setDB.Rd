@@ -31,4 +31,3 @@ setDB(myDB)
 \author{
 Ramiro Silveyra Gonzalez
 }
-

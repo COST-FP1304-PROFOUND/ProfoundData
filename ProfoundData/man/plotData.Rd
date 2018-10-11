@@ -6,8 +6,8 @@
 \usage{
 plotData(dataset, site, location, forcingDataset = NULL,
   forcingCondition = NULL, species = NULL, variables = NULL,
-  period = NULL, aggregated = NULL, FUN = mean, automaticPanels = T,
-  quality = NULL, decreasing = TRUE)
+  period = NULL, aggregated = NULL, FUN = mean,
+  automaticPanels = T, quality = NULL, decreasing = TRUE)
 }
 \arguments{
 \item{dataset}{a character string providing the name of a dataset}
@@ -118,4 +118,3 @@ abline(h = 0, col = "red")
 Ramiro Silveyra Gonzalez
 }
 \keyword{ProfoundData}
-

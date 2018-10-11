@@ -5,7 +5,8 @@
 \title{A function to summarize data from the database}
 \usage{
 summarizeData(dataset, site, location, forcingDataset = NULL,
-  forcingCondition = NULL, by = "year", period = NULL, mode = "data")
+  forcingCondition = NULL, by = "year", period = NULL,
+  mode = "data")
 }
 \arguments{
 \item{dataset}{a character string providing the name of a climatic dataset
@@ -71,6 +72,7 @@ or use this google form http://goo.gl/forms/e2ZQCiZz4x
    }
 }
 }
+
 \examples{
 \dontrun{
 summarizeData("CLIMATE_ISIMIP2B", site = "Soro")
@@ -82,4 +84,3 @@ summarizeData("TREE", site = "Soro")
 Ramiro Silveyra Gonzalez
 }
 \keyword{ProfoundData}
-

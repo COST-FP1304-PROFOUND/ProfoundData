@@ -27,4 +27,3 @@ getDB()
 \author{
 Ramiro Silveyra Gonzalez
 }
-
