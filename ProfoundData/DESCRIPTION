@@ -11,12 +11,14 @@ Authors@R: c(person("Ramiro", "Silveyra Gonzalez",  email = "rasilgon@gmail.com"
 Description: The ProfoundData R-package is designed to work along with the
     PROFOUND database.
 Depends:
-    R (>= 3.1.0),
+    R (>= 3.1.0)
+Imports:
     methods (>= 3.3.2),
     sqldf (>= 0.4-10),
     DBI (>= 0.5-1),
     RSQLite (>= 1.1-2),
     RNetCDF (>= 1.9-1),
+    settings (>= 0.2.4),
     zoo (>= 1.7-14)
 License: file LICENSE
 LazyData: true
