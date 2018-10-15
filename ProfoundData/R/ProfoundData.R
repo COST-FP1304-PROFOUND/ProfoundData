@@ -56,7 +56,7 @@
 #' }
 #'
 #' @author Except where indicated otherwise, the functions in this package were
-#'  written by Ramiro Silveyra Gonzalez.
+#'  written by Ramiro Silveyra Gonzalez, Christopher Reyer and Florian Hartig.
 #' @section Acknowledgements:
 #' TODO
 #' @keywords package
