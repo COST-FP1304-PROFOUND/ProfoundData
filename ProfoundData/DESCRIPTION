@@ -27,3 +27,4 @@ Suggests:
     testthat (>= 1.0.2)
 VignetteBuilder: R.rsp
 RoxygenNote: 6.1.0
+Encoding: UTF-8
