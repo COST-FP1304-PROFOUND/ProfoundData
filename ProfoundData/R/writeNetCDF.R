@@ -266,7 +266,7 @@ write.netCDF<-function(df
                        ,region="Kroof"
                        ,folder="ISI-MIP"){
   # cheques
-  if (colnames(df)[1] != "lon" && colnames(df)[1] != "lat" && colnames(df)[1] != "time") {
+  if (colnames(df)[1] != "lon" && colnames(df)[2] != "lat" && colnames(df)[3] != "time") {
     message('Error: First 3 columns must be named "lon", "lat", "time".')
     return(FALSE)
   }
