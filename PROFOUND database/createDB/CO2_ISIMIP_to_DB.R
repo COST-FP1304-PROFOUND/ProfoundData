@@ -4,9 +4,9 @@
 #------------------------------------------------------------------------------#
 load("~/ownCloud/PROFOUND_Data/Processed/RData/CO2_ISIMIP_Data.RData")
 # Target variables
-#variables_names <- c( "forcingConditions","year", "CO2_ISIMIP")
+#variables_names <- c( "forcingCondition","year", "CO2_ISIMIP")
 # Columns DB
-columns <- c("record_id",  "site_id" , "year","forcingConditions",  "co2_ppm")
+columns <- c("record_id",  "site_id" , "year","forcingCondition",  "co2_ppm")
 
 # Here a check
 #TODO if something missing stop it
@@ -27,7 +27,7 @@ dbSendQuery(conn = db,
        (record_id INTEGER NOT NULL,
         site_id INTEGER NOT NULL,
         year INTEGER NOT NULL,
-        forcingConditions TEXT NOT NULL,
+        forcingCondition TEXT NOT NULL,
         co2_ppm REAL CHECK(co2_ppm>0),
         PRIMARY KEY (record_id),
         FOREIGN KEY (site_id) REFERENCES SITESID_master(site_id)
@@ -56,9 +56,9 @@ dbDisconnect(db)
 #}
 # create index
 db <- dbConnect(SQLite(), dbname=myDB)
-# create index for variables we are going to query: so far location, gcm, forcingConditions
+# create index for variables we are going to query: so far location, gcm, forcingCondition
 # --> change names to include the table
-dbGetQuery(db,"CREATE INDEX index_CO2_ISIMIP_master_forcingConditions ON CO2_ISIMIP_master (forcingConditions)")
+dbGetQuery(db,"CREATE INDEX index_CO2_ISIMIP_master_forcingCondition ON CO2_ISIMIP_master (forcingCondition)")
 dbGetQuery(db,"CREATE INDEX index_CO2_ISIMIP_master_site_id ON CO2_ISIMIP_master(site_id)")
 dbDisconnect(db)
 
