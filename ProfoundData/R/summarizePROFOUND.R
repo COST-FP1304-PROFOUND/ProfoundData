@@ -46,21 +46,21 @@ summarizePROFOUND.ISIMIP <- function(data, by ="total"){
                  "wind_ms")
   # or do a long table
   if ("forcingDataset" %in% names(data)){
-    if ("forcingConditions" %in% names(data)){
+    if ("forcingCondition" %in% names(data)){
       forcingDataset <- unique(data$forcingDataset)
-      forcingConditions <- unique(data$forcingConditions)
-      headers <- c("forcingDataset", "forcingConditions",variables)
-      summaryISIMIP <- as.data.frame(matrix(ncol = length(headers) , nrow = length(forcingDataset)*length(forcingConditions)))
+      forcingCondition <- unique(data$forcingCondition)
+      headers <- c("forcingDataset", "forcingCondition",variables)
+      summaryISIMIP <- as.data.frame(matrix(ncol = length(headers) , nrow = length(forcingDataset)*length(forcingCondition)))
       colnames(summaryISIMIP) <- headers
       index <- 1
-      if(length(forcingDataset) == 1 & length(forcingConditions) == 1){
+      if(length(forcingDataset) == 1 & length(forcingCondition) == 1){
         summaryISIMIP <-  summarizePROFOUND.CLIMATE(data, by)
       }else{
         for (i in 1:length(forcingDataset)){
-          for(j in 1:length(forcingConditions)){
-            df <- data[data$forcingDataset == forcingDataset[i] & data$forcingConditions == forcingConditions[j], ]
+          for(j in 1:length(forcingCondition)){
+            df <- data[data$forcingDataset == forcingDataset[i] & data$forcingCondition == forcingCondition[j], ]
             total <- summarizePROFOUND.CLIMATE(df, by = "total")
-            total <- c(forcingDataset[i], forcingConditions[j], total[, variables])
+            total <- c(forcingDataset[i], forcingCondition[j], total[, variables])
             summaryISIMIP[index, ] <- total
             index <- index + 1
           }
