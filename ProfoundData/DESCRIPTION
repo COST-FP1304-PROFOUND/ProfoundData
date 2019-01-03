@@ -1,5 +1,5 @@
 Package: ProfoundData
-Title: A package for downloading and exploring data from the PROFOUND database
+Title: A Package for Downloading and Exploring Data from the PROFOUND Database
 Version: 0.2.0
 Authors@R: c(person("Ramiro", "Silveyra Gonzalez",  email = "rasilgon@gmail.com", role = c("aut", "cre")),
             person("Christopher", "Reyer", email = "reyer@pik-potsdam.de", role = c("aut")),
