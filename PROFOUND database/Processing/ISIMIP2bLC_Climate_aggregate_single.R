@@ -18,8 +18,8 @@ filenames <- list.files(inDir, full.names=TRUE, recursive = TRUE)
 # What we know a priori from the files and what we want to change
 forcingDatasets.raw <- c("GFDL-ESM2M", "IPSL-CM5A-LR", "MIROC5", "HadGEM2-ES")
 forcingDatasets.new <- c("GFDLESM2M", "IPSLCM5ALR", "MIROC5", "HadGEM2ES")
-forcingConditionss.raw <- c("historical", "piControl", "rcp26", "rcp45","rcp60", "rcp85")
-forcingConditionss.new <- c("historical", "piControl", "rcp2p6","rcp4p5", "rcp6p0", "rcp8p5")
+forcingConditions.raw <- c("historical", "piControl", "rcp26", "rcp45","rcp60", "rcp85")
+forcingConditions.new <- c("historical", "piControl", "rcp2p6","rcp4p5", "rcp6p0", "rcp8p5")
 
 
 variables.raw <- c("hurs", "pr", "ps",  "rsds", "sfcWind", "tas", "tasmax", "tasmin")
@@ -34,7 +34,7 @@ sites.new <- c("BilyKriz", "Brasschaat", "Collelongo",
                "Solling_305","Soro")
 
 # The function that binds and writes table function
-write.ISIMIP2B.climate <- function(suffix, outName, forcingDataset, forcingConditions, site){
+write.ISIMIP2B.climate <- function(suffix, outName, forcingDataset, forcingCondition, site){
   climateFiles <- paste(variables.raw,"_day_",  suffix, sep="")
   climateFiles <- sapply(climateFiles, function(x){
     dummy <- filenames[grepl(x, filenames)]
@@ -53,7 +53,7 @@ write.ISIMIP2B.climate <- function(suffix, outName, forcingDataset, forcingCondi
                          })
   climate <- Reduce(function(x, y) merge(x, y, all=TRUE), climateFiles)
   climate$forcingDataset <- forcingDataset
-  climate$forcingConditions <- forcingConditions
+  climate$forcingCondition <- forcingCondition
   climate$site <- site
   climate$date <- as.Date(climate$Time, format =  "%Y-%m-%d")
   climate$Time <- NULL
@@ -81,12 +81,12 @@ for (j in 1:length(forcingDatasets.raw)){
   for (i in 1:length(sites.raw)){
    # The target zipfile
 #    for (i in 6:length(sites.raw)){
-  for (k in 1:length(forcingConditionss.raw)){
+  for (k in 1:length(forcingConditions.raw)){
      # The suffix for all unzipped file and the output name for the merged file
-     suffix <- paste( forcingDatasets.raw[j],"_", forcingConditionss.raw[k], "_r1i1p1_Forests", sites.raw[i], sep="")
-     outName <- paste( forcingDatasets.raw[j],"_", forcingConditionss.raw[k], "_", sites.new[i], ".txt", sep="")
+     suffix <- paste( forcingDatasets.raw[j],"_", forcingConditions.raw[k], "_r1i1p1_Forests", sites.raw[i], sep="")
+     outName <- paste( forcingDatasets.raw[j],"_", forcingConditions.raw[k], "_", sites.new[i], ".txt", sep="")
      # Call the own merge function and delete zipped files
-     write.ISIMIP2B.climate(suffix, outName, forcingDatasets.new[j], forcingConditionss.new[k], sites.new[i] )
+     write.ISIMIP2B.climate(suffix, outName, forcingDatasets.new[j], forcingConditions.new[k], sites.new[i] )
    }
  }
 }
