@@ -173,7 +173,8 @@ df <- df[, !colnames(df) %in% c("comments")]
 
 
 
-ISIMIP climatic datasets contain additionally one or both of these variables
+ISIMIP climatic datasets contain additionally one or both of the variables *forcingCondition* and *forcingDataset*.
+
 ```{r, echo=F, warning = F, message=F}
 df <- browseData("METADATA_CLIMATE_ISIMIP2B")
 df <- df[, !colnames(df) %in% c("source")]
@@ -208,7 +209,7 @@ df <- df[df$dataset=="NDEPOSITION_EMEP",]
 rownames(df) <- NULL
 ``` 
 
-`r paste("The NDEPOSITION_EMEP data were obtained from ", df$reference, sep='') `
+`r paste("The NDEPOSITION_EMEP data were obtained from ", df$reference, ".",  sep='') `
 
 
 ## Dataset NDEPOSITION_ISIMIP2B
@@ -218,10 +219,10 @@ df <- df[df$dataset=="NDEPOSITION_ISIMIP2B",]
 rownames(df) <- NULL
 ``` 
 
-`r paste("The NDEPOSITION_EMEP data were extracted for for each forest site from the corresponding gridcell in the ISIMIP data described in ", df$reference, ". The dataset contains additionally the variable *forcingConditions*.", sep='') `
+`r paste("The NDEPOSITION_EMEP data were extracted for for each forest site from the corresponding gridcell in the ISIMIP data described in ", df$reference, ". The dataset contains additionally the variable *forcingCondition*.", sep='') `
 ```{r, echo=F, warning = F, message=F}
 df <- browseData("METADATA_NDEPOSITION_ISIMIP2B")
-df <- df[df$variable == "forcingConditions", ]
+df <- df[df$variable == "forcingCondition", ]
 rownames(df)<- NULL
 ``` 
 
@@ -264,7 +265,7 @@ pander(df, adding = 0, missing = '**--**', round = 3,    use.hyphening = TRUE, s
 
 ## Dataset FLUX
 
-The energy balance data contains half-hourly measurements of the variables listed in the table below and was obtained from  [FLUXNET2015](http://fluxnet.fluxdata.org/) data.
+The FLUX data contains half-hourly measurements of the variables listed in the table below and was obtained from  [FLUXNET2015](http://fluxnet.fluxdata.org/) data.
 
 ```{r, echo=F, warning = F, message=F}
 df <- browseData("METADATA_FLUX")
@@ -274,6 +275,20 @@ rownames(df) <- NULL
 
 ```{r, echo=F, warning = F, message=F}
 pander(df, adding = 0, missing = '**--**', round = 3, use.hyphening = TRUE, split.cells = 3, split.tables = Inf, caption = tableCaption("Description of FLUX variables included in the database."))
+``` 
+
+## Dataset METEOROLOGICAL
+
+The METEOROLOGICAL data contains half-hourly measurements of the variables listed in the table below and was obtained from  [FLUXNET2015](http://fluxnet.fluxdata.org/) data.
+
+```{r, echo=F, warning = F, message=F}
+df <- browseData("METADATA_METEOROLOGICAL")
+df <- df[, !colnames(df) %in% c("source")]
+rownames(df) <- NULL
+``` 
+
+```{r, echo=F, warning = F, message=F}
+pander(df, adding = 0, missing = '**--**', round = 3, use.hyphening = TRUE, split.cells = 3, split.tables = Inf, caption = tableCaption("Description of METEOROLOGICAL variables included in the database."))
 ``` 
 
 
