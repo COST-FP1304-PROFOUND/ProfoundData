@@ -22,7 +22,7 @@ filenames <- list.files(inDir, full.names=TRUE, recursive = TRUE)
 print.progressGCM <- function(df){
   cat("\n");cat(rep("-", 30));cat("\n")
   cat(as.character(unique(df$site)));cat("\n")
-  cat(as.character(unique(df$forcingDataset)));cat(": "); cat(as.character(unique(df$forcingConditions))); cat("\n");cat("\n")
+  cat(as.character(unique(df$forcingDataset)));cat(": "); cat(as.character(unique(df$forcingCondition))); cat("\n");cat("\n")
 }
   
 
@@ -45,7 +45,7 @@ dbSendQuery(conn = db,
         site_id INTEGER NOT NULL,
         date TEXT CHECK(date <> ''),
         forcingDataset TEXT CHECK(forcingDataset <> ''),
-        forcingConditions TEXT CHECK(forcingConditions <> ''),
+        forcingCondition TEXT CHECK(forcingCondition <> ''),
         day INTEGER CHECK(NULL OR  day >= 0 AND day <= 31),
         mo INTEGER CHECK(NULL OR mo >= 0 AND mo <= 12),
         year INTEGER CHECK(NULL OR year >= 0 AND year < 9999),
@@ -73,7 +73,7 @@ dbDisconnect(db)
 #------------------------------------------------------------------------------#
 #               ENTER DATA IN THE TABLE
 #------------------------------------------------------------------------------#
-columns <- c("record_id", "site_id", "date", "forcingDataset", "forcingConditions", "day", "mo",
+columns <- c("record_id", "site_id", "date", "forcingDataset", "forcingCondition", "day", "mo",
              "year","tmax_degC","tmean_degC", "tmin_degC", "p_mm", "relhum_percent",
              "airpress_hPa", "rad_Jcm2day", "wind_ms")
 
@@ -138,10 +138,10 @@ for (i in 1:length(filenames)){
 # Connect to table and creating indexes for fast querying
 # open connection to DB
 db <- dbConnect(SQLite(), dbname=myDB)
-# create index for variables we are going to query: so far location, forcingDataset, forcingConditions
+# create index for variables we are going to query: so far location, forcingDataset, forcingCondition
 # --> change names to include the table
 dbGetQuery(db,"CREATE INDEX index_CLIMATE_ISIMIP2B_master_site_id ON CLIMATE_ISIMIP2B_master (site_id)")
 dbGetQuery(db,"CREATE INDEX index_CLIMATE_ISIMIP2B_master_forcingDataset ON CLIMATE_ISIMIP2B_master (forcingDataset)")
-dbGetQuery(db,"CREATE INDEX index_CLIMATE_ISIMIP2B_master_forcingConditions ON CLIMATE_ISIMIP2B_master (forcingConditions)")
+dbGetQuery(db,"CREATE INDEX index_CLIMATE_ISIMIP2B_master_forcingCondition ON CLIMATE_ISIMIP2B_master (forcingCondition)")
 db <- dbConnect(SQLite(), dbname=myDB)
 
