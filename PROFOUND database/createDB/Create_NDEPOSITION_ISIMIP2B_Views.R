@@ -13,7 +13,7 @@ dbGetQuery(db, "CREATE VIEW NDEPOSITION_ISIMIP2B AS
            SELECT NDEPOSITION_ISIMIP2B_master.record_id,
            SITESID_master.site,
            NDEPOSITION_ISIMIP2B_master.site_id,
-           NDEPOSITION_ISIMIP2B_master.forcingConditions,
+           NDEPOSITION_ISIMIP2B_master.forcingCondition,
            NDEPOSITION_ISIMIP2B_master.year,
            NDEPOSITION_ISIMIP2B_master.noy_gm2,
            NDEPOSITION_ISIMIP2B_master.nhx_gm2
@@ -33,7 +33,7 @@ for (i in 1:length(ids[,1])){
                        "SELECT NDEPOSITION_ISIMIP2B_master.record_id, ",
                        "SITESID_master.site, ",
                        "NDEPOSITION_ISIMIP2B_master.site_id, ",
-                       "NDEPOSITION_ISIMIP2B_master.forcingConditions, ",
+                       "NDEPOSITION_ISIMIP2B_master.forcingCondition, ",
                        "NDEPOSITION_ISIMIP2B_master.year, ",
                        "NDEPOSITION_ISIMIP2B_master.noy_gm2, ",
                        "NDEPOSITION_ISIMIP2B_master.nhx_gm2 ",
@@ -47,20 +47,20 @@ dbDisconnect(db)
 
 
 db <- dbConnect(SQLite(), dbname=myDB)
-forcingConditions <- dbGetQuery(db, "SELECT forcingConditions FROM (SELECT DISTINCT forcingConditions FROM NDEPOSITION_ISIMIP2B_master)"  )[,1]
+forcingCondition <- dbGetQuery(db, "SELECT forcingCondition FROM (SELECT DISTINCT forcingCondition FROM NDEPOSITION_ISIMIP2B_master)"  )[,1]
 
-for (i in 1:length(forcingConditions)){
-  if ( paste("NDEPOSITION_ISIMIP2B_", forcingConditions[i], sep = "") %in% dbListTables(db))  dbSendQuery(db, paste("DROP VIEW NDEPOSITION_ISIMIP2B_", forcingConditions[i], sep = ""))
-  dbGetQuery(db,  paste("CREATE VIEW NDEPOSITION_ISIMIP2B_", forcingConditions[i], " AS ",
+for (i in 1:length(forcingCondition)){
+  if ( paste("NDEPOSITION_ISIMIP2B_", forcingCondition[i], sep = "") %in% dbListTables(db))  dbSendQuery(db, paste("DROP VIEW NDEPOSITION_ISIMIP2B_", forcingCondition[i], sep = ""))
+  dbGetQuery(db,  paste("CREATE VIEW NDEPOSITION_ISIMIP2B_", forcingCondition[i], " AS ",
                         "SELECT NDEPOSITION_ISIMIP2B_master.record_id, ",
                         "SITESID_master.site, ",
                         "NDEPOSITION_ISIMIP2B_master.site_id, ",
-                        "NDEPOSITION_ISIMIP2B_master.forcingConditions, ",
+                        "NDEPOSITION_ISIMIP2B_master.forcingCondition, ",
                         "NDEPOSITION_ISIMIP2B_master.year, ",
                         "NDEPOSITION_ISIMIP2B_master.noy_gm2, ",
                         "NDEPOSITION_ISIMIP2B_master.nhx_gm2 ",
-                        "FROM NDEPOSITION_ISIMIP2B_master INNER JOIN SITESID_master ON NDEPOSITION_ISIMIP2B_master.site_id = SITESID_master.site_id   WHERE NDEPOSITION_ISIMIP2B_master.forcingConditions = '",
-                        forcingConditions[i], "'", sep = "")  )
+                        "FROM NDEPOSITION_ISIMIP2B_master INNER JOIN SITESID_master ON NDEPOSITION_ISIMIP2B_master.site_id = SITESID_master.site_id   WHERE NDEPOSITION_ISIMIP2B_master.forcingCondition = '",
+                        forcingCondition[i], "'", sep = "")  )
 }
 dbDisconnect(db)
 
@@ -68,24 +68,24 @@ dbDisconnect(db)
 
 db <- dbConnect(SQLite(), dbname=myDB)
 
-for (i in 1:length(forcingConditions)){
-  ids <- dbGetQuery(db, paste("SELECT site_id FROM (SELECT DISTINCT site_id FROM NDEPOSITION_ISIMIP2B_master WHERE forcingConditions = '", 
-                              forcingConditions[i], "')", sep = "")  )
-  forcingConditions <- dbGetQuery(db, "SELECT forcingConditions FROM (SELECT DISTINCT forcingConditions FROM NDEPOSITION_ISIMIP2B_master)"  )[,1]
+for (i in 1:length(forcingCondition)){
+  ids <- dbGetQuery(db, paste("SELECT site_id FROM (SELECT DISTINCT site_id FROM NDEPOSITION_ISIMIP2B_master WHERE forcingCondition = '", 
+                              forcingCondition[i], "')", sep = "")  )
+  forcingCondition <- dbGetQuery(db, "SELECT forcingCondition FROM (SELECT DISTINCT forcingCondition FROM NDEPOSITION_ISIMIP2B_master)"  )[,1]
   
   for (j in 1:length(ids[, 1])){
-    if ( paste("NDEPOSITION_ISIMIP2B_", forcingConditions[i],"_",  ids[j,],  sep = "") %in% dbListTables(db))  dbSendQuery(db, paste("DROP VIEW NDEPOSITION_ISIMIP2B_", forcingConditions[i],"_",  ids[j,],  sep = ""))
+    if ( paste("NDEPOSITION_ISIMIP2B_", forcingCondition[i],"_",  ids[j,],  sep = "") %in% dbListTables(db))  dbSendQuery(db, paste("DROP VIEW NDEPOSITION_ISIMIP2B_", forcingCondition[i],"_",  ids[j,],  sep = ""))
     
-    dbGetQuery(db,  paste("CREATE VIEW NDEPOSITION_ISIMIP2B_", forcingConditions[i],"_",  ids[j,],  " AS ",
+    dbGetQuery(db,  paste("CREATE VIEW NDEPOSITION_ISIMIP2B_", forcingCondition[i],"_",  ids[j,],  " AS ",
                           "SELECT NDEPOSITION_ISIMIP2B_master.record_id, ",
                           "SITESID_master.site, ",
                           "NDEPOSITION_ISIMIP2B_master.site_id, ",
-                          "NDEPOSITION_ISIMIP2B_master.forcingConditions, ",
+                          "NDEPOSITION_ISIMIP2B_master.forcingCondition, ",
                           "NDEPOSITION_ISIMIP2B_master.year, ",
                           "NDEPOSITION_ISIMIP2B_master.noy_gm2, ",
                           "NDEPOSITION_ISIMIP2B_master.nhx_gm2 ",
-                          "FROM NDEPOSITION_ISIMIP2B_master INNER JOIN SITESID_master ON NDEPOSITION_ISIMIP2B_master.site_id = SITESID_master.site_id   WHERE NDEPOSITION_ISIMIP2B_master.forcingConditions = '",
-                          forcingConditions[i], "' AND NDEPOSITION_ISIMIP2B_master.site_id = '", ids[j,], "'", sep = "") )
+                          "FROM NDEPOSITION_ISIMIP2B_master INNER JOIN SITESID_master ON NDEPOSITION_ISIMIP2B_master.site_id = SITESID_master.site_id   WHERE NDEPOSITION_ISIMIP2B_master.forcingCondition = '",
+                          forcingCondition[i], "' AND NDEPOSITION_ISIMIP2B_master.site_id = '", ids[j,], "'", sep = "") )
   }
 }
 dbDisconnect(db)
