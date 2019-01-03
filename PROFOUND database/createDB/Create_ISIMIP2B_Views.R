@@ -8,7 +8,7 @@ dbGetQuery(db, "CREATE VIEW CLIMATE_ISIMIP2B AS
            CLIMATE_ISIMIP2B_master.site_id,
            CLIMATE_ISIMIP2B_master.date ,
            CLIMATE_ISIMIP2B_master.forcingDataset,
-           CLIMATE_ISIMIP2B_master.forcingConditions,
+           CLIMATE_ISIMIP2B_master.forcingCondition,
            CLIMATE_ISIMIP2B_master.day,
            CLIMATE_ISIMIP2B_master.mo,
            CLIMATE_ISIMIP2B_master.year,
@@ -36,7 +36,7 @@ for (j in 1:length(ids[, 1])){
                         "CLIMATE_ISIMIP2B_master.site_id, ",
                         "CLIMATE_ISIMIP2B_master.date, ",
                         "CLIMATE_ISIMIP2B_master.forcingDataset, ",
-                        "CLIMATE_ISIMIP2B_master.forcingConditions, ",
+                        "CLIMATE_ISIMIP2B_master.forcingCondition, ",
                         "CLIMATE_ISIMIP2B_master.day, ",
                         "CLIMATE_ISIMIP2B_master.mo, ",
                         "CLIMATE_ISIMIP2B_master.year, ",
@@ -69,7 +69,7 @@ for (i in 1:length(forcingDataset)){
                         "CLIMATE_ISIMIP2B_master.site_id, ",
                         "CLIMATE_ISIMIP2B_master.date, ",
                         "CLIMATE_ISIMIP2B_master.forcingDataset, ",
-                        "CLIMATE_ISIMIP2B_master.forcingConditions, ",
+                        "CLIMATE_ISIMIP2B_master.forcingCondition, ",
                         "CLIMATE_ISIMIP2B_master.day, ",
                         "CLIMATE_ISIMIP2B_master.mo, ",
                         "CLIMATE_ISIMIP2B_master.year, ",
@@ -103,7 +103,7 @@ for (i in 1:length(forcingDataset)){
                           "CLIMATE_ISIMIP2B_master.site_id, ",
                           "CLIMATE_ISIMIP2B_master.date, ",
                           "CLIMATE_ISIMIP2B_master.forcingDataset, ",
-                          "CLIMATE_ISIMIP2B_master.forcingConditions, ",
+                          "CLIMATE_ISIMIP2B_master.forcingCondition, ",
                           "CLIMATE_ISIMIP2B_master.day, ",
                           "CLIMATE_ISIMIP2B_master.mo, ",
                           "CLIMATE_ISIMIP2B_master.year, ",
@@ -121,7 +121,7 @@ for (i in 1:length(forcingDataset)){
 }
 dbDisconnect(db)
 
-# DO forcingDataset WISHT forcingConditions
+# DO forcingDataset WISHT forcingCondition
 db <- dbConnect(SQLite(), dbname=myDB)
 
 forcingDataset <- dbGetQuery(db, "SELECT forcingDataset FROM (SELECT DISTINCT forcingDataset FROM CLIMATE_ISIMIP2B_master)"  )[,1]
@@ -129,17 +129,17 @@ forcingDataset <- dbGetQuery(db, "SELECT forcingDataset FROM (SELECT DISTINCT fo
 for (i in 1:length(forcingDataset)){
   ids <- dbGetQuery(db, paste("SELECT site_id FROM (SELECT DISTINCT site_id FROM CLIMATE_ISIMIP2B_master WHERE forcingDataset = '", 
                               forcingDataset[i], "')", sep = "")  )
-  forcingConditions <- dbGetQuery(db, paste("SELECT forcingConditions FROM (SELECT DISTINCT forcingConditions FROM CLIMATE_ISIMIP2B_master WHERE forcingDataset = '", 
+  forcingCondition <- dbGetQuery(db, paste("SELECT forcingCondition FROM (SELECT DISTINCT forcingCondition FROM CLIMATE_ISIMIP2B_master WHERE forcingDataset = '", 
                                             forcingDataset[i], "')", sep = "")  )[,1]
-  for (k in 1:length(forcingConditions)){
-    if ( paste("CLIMATE_ISIMIP2B_", forcingDataset[i],"_",  forcingConditions[k], sep="") %in% dbListTables(db))  dbSendQuery(db, paste("DROP VIEW CLIMATE_ISIMIP2B_",forcingDataset[i],"_", forcingConditions[k], sep="") )
-    dbGetQuery(db,  paste("CREATE VIEW CLIMATE_ISIMIP2B_", forcingDataset[i],"_",  forcingConditions[k],  " AS ",
+  for (k in 1:length(forcingCondition)){
+    if ( paste("CLIMATE_ISIMIP2B_", forcingDataset[i],"_",  forcingCondition[k], sep="") %in% dbListTables(db))  dbSendQuery(db, paste("DROP VIEW CLIMATE_ISIMIP2B_",forcingDataset[i],"_", forcingCondition[k], sep="") )
+    dbGetQuery(db,  paste("CREATE VIEW CLIMATE_ISIMIP2B_", forcingDataset[i],"_",  forcingCondition[k],  " AS ",
                           "SELECT CLIMATE_ISIMIP2B_master.record_id, ",
                           "SITESID_master.site, ",
                           "CLIMATE_ISIMIP2B_master.site_id, ",
                           "CLIMATE_ISIMIP2B_master.date, ",
                           "CLIMATE_ISIMIP2B_master.forcingDataset, ",
-                          "CLIMATE_ISIMIP2B_master.forcingConditions, ",
+                          "CLIMATE_ISIMIP2B_master.forcingCondition, ",
                           "CLIMATE_ISIMIP2B_master.day, ",
                           "CLIMATE_ISIMIP2B_master.mo, ",
                           "CLIMATE_ISIMIP2B_master.year, ",
@@ -152,16 +152,16 @@ for (i in 1:length(forcingDataset)){
                           "CLIMATE_ISIMIP2B_master.rad_Jcm2day, ",
                           "CLIMATE_ISIMIP2B_master.wind_ms ",
                           "FROM CLIMATE_ISIMIP2B_master INNER JOIN SITESID_master ON CLIMATE_ISIMIP2B_master.site_id = SITESID_master.site_id  WHERE CLIMATE_ISIMIP2B_master.forcingDataset = '",
-                          forcingDataset[i], "' AND CLIMATE_ISIMIP2B_master.forcingConditions = '", forcingConditions[k], "'", sep = "") )
+                          forcingDataset[i], "' AND CLIMATE_ISIMIP2B_master.forcingCondition = '", forcingCondition[k], "'", sep = "") )
     for (j in 1:length(ids[, 1])){
-      if ( paste("CLIMATE_ISIMIP2B_", forcingDataset[i],"_",  forcingConditions[k],"_",  ids[j,], sep="") %in% dbListTables(db))  dbSendQuery(db, paste("DROP VIEW CLIMATE_ISIMIP2B_",forcingDataset[i],"_", forcingConditions[k],"_",  ids[j,] , sep="") )
-      dbGetQuery(db,  paste("CREATE VIEW CLIMATE_ISIMIP2B_", forcingDataset[i],"_",  forcingConditions[k], "_",  ids[j,],  " AS ",
+      if ( paste("CLIMATE_ISIMIP2B_", forcingDataset[i],"_",  forcingCondition[k],"_",  ids[j,], sep="") %in% dbListTables(db))  dbSendQuery(db, paste("DROP VIEW CLIMATE_ISIMIP2B_",forcingDataset[i],"_", forcingCondition[k],"_",  ids[j,] , sep="") )
+      dbGetQuery(db,  paste("CREATE VIEW CLIMATE_ISIMIP2B_", forcingDataset[i],"_",  forcingCondition[k], "_",  ids[j,],  " AS ",
                             "SELECT CLIMATE_ISIMIP2B_master.record_id, ",
                             "SITESID_master.site, ",
                             "CLIMATE_ISIMIP2B_master.site_id, ",
                             "CLIMATE_ISIMIP2B_master.date, ",
                             "CLIMATE_ISIMIP2B_master.forcingDataset, ",
-                            "CLIMATE_ISIMIP2B_master.forcingConditions, ",
+                            "CLIMATE_ISIMIP2B_master.forcingCondition, ",
                             "CLIMATE_ISIMIP2B_master.day, ",
                             "CLIMATE_ISIMIP2B_master.mo, ",
                             "CLIMATE_ISIMIP2B_master.year, ",
@@ -174,7 +174,7 @@ for (i in 1:length(forcingDataset)){
                             "CLIMATE_ISIMIP2B_master.rad_Jcm2day, ",
                             "CLIMATE_ISIMIP2B_master.wind_ms ",
                             "FROM CLIMATE_ISIMIP2B_master INNER JOIN SITESID_master ON CLIMATE_ISIMIP2B_master.site_id = SITESID_master.site_id  WHERE CLIMATE_ISIMIP2B_master.forcingDataset = '",
-                            forcingDataset[i], "' AND CLIMATE_ISIMIP2B_master.forcingConditions = '", forcingConditions[k], "' AND CLIMATE_ISIMIP2B_master.site_id = '", ids[j,], "'", sep = "") )
+                            forcingDataset[i], "' AND CLIMATE_ISIMIP2B_master.forcingCondition = '", forcingCondition[k], "' AND CLIMATE_ISIMIP2B_master.site_id = '", ids[j,], "'", sep = "") )
       
     }
   }
