@@ -4,7 +4,7 @@
 \alias{summarizeData}
 \title{A function to summarize data from the database}
 \usage{
-summarizeData(dataset, site, location, forcingDataset = NULL,
+summarizeData(dataset, site, location = NULL, forcingDataset = NULL,
   forcingCondition = NULL, by = "year", period = NULL,
   mode = "data")
 }

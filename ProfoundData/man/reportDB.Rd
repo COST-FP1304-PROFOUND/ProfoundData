@@ -15,9 +15,12 @@ used as output directory.}
 a html file with the database report
 }
 \description{
-This functions creates a summary site by site of all data avalaible
+This functions creates a site-by-site report of all avalaible data
 in the PROFOUND database. The summary is created with a rmarkdown document, which
 is rendered and saved as a html document.
+}
+\details{
+Please note that creating the report it might take several minutes.
 }
 \note{
 To report errors in the package or the data, please use the issue tracker

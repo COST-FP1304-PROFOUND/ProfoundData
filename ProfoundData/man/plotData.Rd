@@ -4,7 +4,7 @@
 \alias{plotData}
 \title{A function to plot data}
 \usage{
-plotData(dataset, site, location, forcingDataset = NULL,
+plotData(dataset, site, location = NULL, forcingDataset = NULL,
   forcingCondition = NULL, species = NULL, variables = NULL,
   period = NULL, aggregated = NULL, FUN = mean,
   automaticPanels = T, quality = NULL, decreasing = TRUE)
