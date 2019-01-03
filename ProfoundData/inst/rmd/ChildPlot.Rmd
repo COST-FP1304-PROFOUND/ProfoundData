@@ -1,0 +1,25 @@
+
+`r paste("### ", currentDataset, collapse='\n')`
+
+```{r, eval = T, echo=F, message= F, warning=F, results='hide'}
+plotSmall <- FALSE
+plotBig <- TRUE
+smallDatasets <- c("ATMOSPHERICHEATCONDUNCTION", "NDEPOSITION_EMEP", "NDEPOSITION_ISIMIP2B",
+                   "MODIS_MOD15A2", "MODIS_MOD11A2", "MODIS_MOD13Q1", "MODIS_MOD17A2")
+
+if (currentDataset %in% smallDatasets){
+  plotSmall <- T
+  plotBig <- F
+} 
+
+``` 
+
+```{r, eval = plotBig, echo=F, message= F, warning=F, results='hide'}
+
+
+plotData(site = currentSiteName, dataset = currentDataset, automaticPanels = T)
+``` 
+
+```{r, eval = plotSmall, echo=F, message= F, warning=F, results='hide', fig.height=5}
+plotData(site = currentSiteName, dataset = currentDataset, automaticPanels = T)
+``` 

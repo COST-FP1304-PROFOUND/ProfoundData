@@ -1,0 +1,129 @@
+---
+title: "The PROFOUND sites"
+author: "Ramiro Silveyra Gonzalez, Christopher Reyer, Florian Hartig"
+date: "`r Sys.Date()`"
+output: 
+  rmarkdown::html_vignette:
+    toc: true
+    toc_depth: 2
+params:
+  myDB: "myDb_dummy"
+
+--- 
+  
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(fig.width=10, fig.height=10, warning=FALSE, cache = F)
+```
+
+
+```{r setup, echo=F, warning = F, message=F, results = 'hide'}
+set.seed(1)
+library(pander)
+panderOptions('table.alignment.default', function(df)
+    ifelse(sapply(df, is.numeric), 'right', 'left'))
+panderOptions('table.split.table', Inf)
+#panderOptions('big.mark', ",")
+panderOptions('keep.trailing.zeros', TRUE)
+#set.alignment('left', row.names = 'right')
+
+tableCaption <- local({
+  tableid <- 0
+  function(x=NULL){
+    if(is.null(x)){
+      return(tableid)
+    }else{
+      tableid <<- tableid + 1
+      paste("Table ", tableid, ": ", x , sep = "")  
+    }
+  }
+})
+
+figCaption <- local({
+  figureid <- 0
+  function(x) {
+    figureid <<- figureid + 1
+    paste('Figure ', figureid, ': ', x, sep = '')
+  }
+})
+
+subsectionNumbering <- local({
+  sectionid <- 0
+  function(x, y) {
+    sectionid <<- sectionid + 1
+    paste('## ', y, ".", sectionid, '. ', x, "\n\n", sep = '')
+  }
+})
+
+library(knitr)
+library(plyr)
+
+set.seed(1)
+
+
+``` 
+
+
+```{r, echo=F, warning = F, message=F}
+library(ProfoundData)
+setDB(params$myDB)
+description <- getData("SITEDESCRIPTION")
+df <- browseData("POLICY")
+df <- df[!df$dataset == "PROFOUND database" , ]
+df <- df[!df$dataset == "CLIMATEFLUXNET" , ]
+rownames(df) <- NULL
+``` 
+
+# Site overview
+```{r, echo = F, message = F}
+df <- getData(dataset = "SITES")
+df <- df[, !colnames(df) %in% c("natVegetation_code1" ,	"natVegetation_code2" , "natVegetation_description")]
+df <- df[!df$site_id ==99, ]
+```
+
+`r paste( "The PROFOUND database includes ", nrow(df), " forest sites. They are listed in the table below.", sep = "") `
+
+```{r, echo = F, message = F}
+pander(df, adding = 0, missing = '**--**', round = 3, use.hyphening = TRUE, split.cells = 3, split.tables = 200,
+        caption = tableCaption("Forest sites included in the database."))
+```
+
+To provide the information on which data is available for each site, an overview table is created by combining all existing tables in the database.
+
+```{r, fig.width= 7, echo = F, message = F}
+overview <- browseData()
+pander(overview, adding = 0, missing = '**--**', round = 3, use.hyphening = TRUE, split.cells = 3, split.tables =  Inf,
+        caption = tableCaption("Overview of sites and datasets"))
+```
+
+
+
+
+```{r sitesReport, include=FALSE, eval=TRUE}
+out <- NULL
+
+for (i in 1:length(overview$site_id)) {
+  currentSiteID <- overview$site_id[i]
+  currentSiteID <- overview$site_id[i]
+  currentSiteName <- overview$site[i]
+  currentDescription <- description[description$site ==currentSiteName, ]$description
+ out <- c(out, knit_child(system.file("rmd", "ChildSiteSummary.Rmd", package = "ProfoundData")))
+}
+```
+`r paste(out, collapse='\n')`
+
+
+
+
+# References
+
+```{r, echo=F, warning = F, message=F}
+df <- getData("SITEDESCRIPTION")
+reference <- paste(df$reference, collapse = " ")
+reference <- unlist(strsplit(reference, split = "[+]"))
+reference <- reference[-1]
+reference <- sort(reference, decreasing = FALSE)
+reference <- reference[!duplicated(reference)]
+reference <- paste("\n +", reference)
+``` 
+`r paste(reference, collapse="") `
