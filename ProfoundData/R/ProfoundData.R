@@ -7,8 +7,6 @@
 #'
 #' A brief description of the PROFOUND database is avalaible in the vignette 'PROFOUNDdatabase' (
 #' you can open it by running this command: \code{vignette('PROFOUNDdatabase')}).
-#' A report of the data contained in the database is
-#' provided in the vignette 'PROFOUNDsites' (\code{vignette('PROFOUNDsites')}).
 #'
 #' Below is a list of the package's functions grouped by theme. See the package
 #' vignette for more information and examples (\code{vignette('ProfoundData')}).
@@ -52,13 +50,12 @@
 #'  \item \code{\link{setDB}} To set the connection to the database
 #'  \item \code{\link{getDB}} To retrieve the filepath to the database
 #'   \item \code{\link{queryDB}} To pass self-defined queries
+#'  \item \code{\link{reportDB}} To create a site-by-site report of the database
 #'   \item \code{\link{writeSim2netCDF}} To write netCDF-files
 #' }
 #'
 #' @author Except where indicated otherwise, the functions in this package were
 #'  written by Ramiro Silveyra Gonzalez, Christopher Reyer and Florian Hartig.
-#' @section Acknowledgements:
-#' TODO
 #' @keywords package
 #' @keywords Profound DB
 #' @import methods sqldf RSQLite DBI stats utils graphics RNetCDF settings
