@@ -40,7 +40,7 @@ sites.new <- c("BilyKriz",  "Collelongo",
                "Soro")
 
 # The function that binds and writes table function
-write.ISIMIP2B.climate <- function(suffix, outName, forcingDataset, forcingConditions, site){
+write.ISIMIP2B.climate <- function(suffix, outName, forcingDataset, forcingCondition, site){
   climateFiles <- paste("./", variables.raw,"_",  suffix, sep="")
   climateFiles <- lapply(1:length(climateFiles),
                          function(x){
@@ -49,7 +49,7 @@ write.ISIMIP2B.climate <- function(suffix, outName, forcingDataset, forcingCondi
                          })
   climate <- Reduce(function(x, y) merge(x, y, all=TRUE), climateFiles)
   climate$forcingDataset <- forcingDataset
-  climate$forcingConditions <- forcingConditions
+  climate$forcingCondition <- forcingCondition
   climate$site <- site
   climate$date <- as.Date(climate$Time, format =  "%Y-%m-%d")
   climate$Time <- NULL
