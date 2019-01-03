@@ -22,26 +22,23 @@
 #' @return plots for the specified dataset, site and variables
 #' @keywords ProfoundData
 #' @note To report errors in the package or the data, please use the issue tracker
-#' in the github repository of TG2 https://github.com/COST-FP1304-PROFOUND/TG2/issues
-#' (preferred, but requires that you have access to our GitHub account) or
-#' or use this google form http://goo.gl/forms/e2ZQCiZz4x
+#' in the GitHub repository of ProfoundData \url{https://github.com/COST-FP1304-PROFOUND/ProfoundData}
 #' @details Plotting is not supported for the following datasets: OVERVIEW, SITES, SOIL(more). The aggregation of data
 #' relies on the function \code{\link{aggregate}} for \code{\link{zoo}} objects. The FUN parameter
 #' is passed to FUN from \code{\link{aggregate}}. Please check the help files of  \code{\link{aggregate}}
 #' for further information. For handling NAs we recommend to pass self-defined functions (see examples).
 #' @export
 #' @example /inst/examples/plotDataHelp.R
-#' @author Ramiro Silveyra Gonzalez
-plotData <- function(dataset, site, location,forcingDataset = NULL,
+plotData <- function(dataset, site, location=NULL,forcingDataset = NULL,
                      forcingCondition = NULL, species = NULL, variables = NULL, period = NULL,
                      aggregated = NULL, FUN = mean, automaticPanels = T, quality = NULL , decreasing = TRUE){
-  if (!missing(location)) {
-    warning("Argument location is deprecated.  Please use site instead.",
+  if (!is.null(location)) {
+    warning("Argument location is deprecated.\nPlease use site instead.",
             call. = FALSE)
     site <- location
   }
   if(dataset == "ENERGYBALANCE"){
-    warning("Dataset 'ENERGYBALANCE' is deprecated.\n Use 'ATMOSPHERICHEATCONDUCTION' instead.",
+    warning("Dataset 'ENERGYBALANCE' is deprecated.\nUse 'ATMOSPHERICHEATCONDUCTION' instead.",
             call. = FALSE)
     dataset <- "ATMOSPHERICHEATCONDUCTION"
   }
