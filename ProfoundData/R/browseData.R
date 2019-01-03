@@ -23,9 +23,7 @@
 #' @details  Besides providing information on available data, this function allows
 #' to access the database metadata, policy,  data sources and site descriptions.
 #' @note To report errors in the package or the data, please use the issue tracker
-#' in the github repository of TG2 https://github.com/COST-FP1304-PROFOUND/TG2/issues
-#' (preferred, but requires that you have access to the GitHub repository) or
-#'  use this google form http://goo.gl/forms/e2ZQCiZz4x.
+#' in the GitHub repository of ProfoundData \url{https://github.com/COST-FP1304-PROFOUND/ProfoundData}
 #' @example /inst/examples/browseDataHelp.R
 #' @export
 browseData <- function(dataset = NULL, site = NULL,  location = NULL, variables  = FALSE, collapse = TRUE){
@@ -38,7 +36,7 @@ browseData <- function(dataset = NULL, site = NULL,  location = NULL, variables 
   }
 
   if (!is.null(location)) {
-    warning("Argument location is   Please use site instead.",
+    warning("Argument location is deprecated.\nPlease use site instead.",
             call. = FALSE)
     site <- location
   }
@@ -62,7 +60,7 @@ browseData <- function(dataset = NULL, site = NULL,  location = NULL, variables 
     dataset <- gsub("-", "",  dataset)
     dataset <- gsub("+", "",  dataset)
     if(dataset == "ENERGYBALANCE"){
-      warning("Dataset 'ENERGYBALANCE' is deprecated.\n Use 'ATMOSPHERICHEATCONDUCTION' instead.",
+      warning("Dataset 'ENERGYBALANCE' is deprecated.\nUse 'ATMOSPHERICHEATCONDUCTION' instead.",
               call. = FALSE)
       dataset <- "ATMOSPHERICHEATCONDUCTION"
     }
@@ -92,7 +90,7 @@ browseData <- function(dataset = NULL, site = NULL,  location = NULL, variables 
      stop("Use getData to download this dataset")
     }else{
       if(dataset == "ENERGYBALANCE"){
-        warning("Dataset 'ENERGYBALANCE' is deprecated.\n Use 'ATMOSPHERICHEATCONDUCTION' instead.",
+        warning("Dataset 'ENERGYBALANCE' is deprecated.\nUse 'ATMOSPHERICHEATCONDUCTION' instead.",
                 call. = FALSE)
         dataset <- "ATMOSPHERICHEATCONDUCTION"
       }
@@ -129,7 +127,7 @@ browseData <- function(dataset = NULL, site = NULL,  location = NULL, variables 
     dataset <- gsub("-", "",  dataset)
     dataset <- gsub("+", "",  dataset)
     if(dataset == "ENERGYBALANCE"){
-      warning("Dataset 'ENERGYBALANCE' is deprecated.\n Use 'ATMOSPHERICHEATCONDUCTION' instead.",  call. = FALSE
+      warning("Dataset 'ENERGYBALANCE' is deprecated.\nUse 'ATMOSPHERICHEATCONDUCTION' instead.",  call. = FALSE
               )
       dataset <- "ATMOSPHERICHEATCONDUCTION"
     }
