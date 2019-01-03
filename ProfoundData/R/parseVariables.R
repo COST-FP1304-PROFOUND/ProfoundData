@@ -15,7 +15,7 @@ parseVariables <- function(dataset, variables = NULL){
   # the valid variables list for each dataset this only refers what it can be plot
   variablesDrop <- c("record_id", "site", "site_id", "date", "year", "day", "mo", "hour", "DoY",
                      "species","species_id",
-                      "timestampStart", "timestampEnd", "forcingDataset", "forcingConditions")
+                      "timestampStart", "timestampEnd", "forcingDataset", "forcingCondition")
   variablesAvailable <- getVariables(dataset)
   if (is.null(variables)){
     variablesChecked <- variablesAvailable
