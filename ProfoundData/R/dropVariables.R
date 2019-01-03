@@ -16,7 +16,7 @@ dropVariables <- function(data, variables, dataset){
   #cat(variables, collapse =", ");cat("\n")
   # the valid variables list for each dataset
   variablesKeep <- c("record_id", "site", "site_id", "date", "year", "day", "mo", "hour", "DoY",
-                      "timestampStart", "timestampEnd", "forcingDataset", "forcingConditions",
+                      "timestampStart", "timestampEnd", "forcingDataset", "forcingCondition",
                       "species", "species_id")
   # The quality flags variables
   # Check the quality flags that must be kept based on variables
