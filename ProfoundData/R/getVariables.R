@@ -14,7 +14,7 @@
 # @author Ramiro Silveyra Gonzalez
 getVariables <- function(dataset,  quality = FALSE){
   firstVariables <- c("record_id", "site", "site2", "site_id", "species", "species_id",
-                      "forcingConditions", "forcingDataset",
+                      "forcingCondition", "forcingDataset",
                       "description", "reference",  "date", "year", "mo", "day")
   conn <- try(makeConnection(), T)
   if ('try-error' %in% class(conn)){
