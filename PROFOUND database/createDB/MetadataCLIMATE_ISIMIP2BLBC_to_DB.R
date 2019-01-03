@@ -1,6 +1,6 @@
 
 
-load("~/ownCloud/PROFOUND_Data/Processed/RData/METADATA_CLIMATE_ISIMIP2BLC.RData")
+load("~/ownCloud/PROFOUND_Data/Processed/RData/METADATA_CLIMATE_ISIMIP2BLBC.RData")
   
 #------------------------------------------------------------------------------#
 #                   METADATA_CLIMATE_ISIMIP2BLBC_master
@@ -34,7 +34,7 @@ dbListFields(db, "METADATA_CLIMATE_ISIMIP2BLBC_master") # The fields in the tabl
 dbDisconnect(db)
 # Loop over files adds data to DB, could also add it to list and then do.call(rbind, listDf)
 #for (i in 1:length(CLIMATE_ISIMIP2BLBC_Data)){
-df <- METADATA_CLIMATE_ISIMIP2BLC[METADATA_CLIMATE_ISIMIP2BLC$site_id==99,]
+df <- METADATA_CLIMATE_ISIMIP2BLBC[METADATA_CLIMATE_ISIMIP2BLBC$site_id==99,]
 df$record_id <- c(1:length(df[,1]))
 # open connection to DB
 db <- dbConnect(SQLite(), dbname= myDB)
