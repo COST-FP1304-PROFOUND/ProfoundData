@@ -35,21 +35,21 @@ startStopPROFOUND.YEARLY <- function(data){
 startStopPROFOUND.ISIMIP <- function(data){
   data$record_id <- NULL
   columnsNot <- c("site", "site_id")
-  colnamesCol <- c("site", "site_id", "forcingDataset", "forcingConditions",
+  colnamesCol <- c("site", "site_id", "forcingDataset", "forcingCondition",
                    "variable", "first", "last", "min", "max", "mean", "year_first", "year_last", "obs")
 
   if ("forcingDataset" %in% names(data)){
-    if ("forcingConditions" %in% names(data)){
+    if ("forcingCondition" %in% names(data)){
       forcingDataset <- unique(data$forcingDataset)
-      forcingConditions <- unique(data$forcingConditions)
-      collectorHolder <- vector("list", length = length(forcingDataset)*length(forcingConditions))
+      forcingCondition <- unique(data$forcingCondition)
+      collectorHolder <- vector("list", length = length(forcingDataset)*length(forcingCondition))
       index <- 0
       for (i in 1:length(forcingDataset)){
-          for(j in 1:length(forcingConditions)){
+          for(j in 1:length(forcingCondition)){
             index <- index + 1
             columnsYes <- colnames(data)[!colnames(data) %in% columnsNot]
             columnsYes <- colnames(data)[!colnames(data) %in% columnsNot]
-            columnsYes <- columnsYes[!columnsYes %in% c("year", "mo", "date", "day", "forcingDataset", "forcingConditions")]
+            columnsYes <- columnsYes[!columnsYes %in% c("year", "mo", "date", "day", "forcingDataset", "forcingCondition")]
             collector <-as.data.frame(matrix(rep(NA, length(columnsYes) * length(colnamesCol)),
                                              nrow = length(columnsYes), ncol = length(colnamesCol),
                                              dimnames = list(columnsYes, colnamesCol)))
@@ -57,8 +57,8 @@ startStopPROFOUND.ISIMIP <- function(data){
             collector$site <- unique(data$site)
             collector$site_id <- unique(data$site_id)
             collector$forcingDataset <- forcingDataset[i]
-            collector$forcingConditions <- forcingConditions[j]
-            df <- data[data$forcingDataset == forcingDataset[i] & data$forcingConditions == forcingConditions[j], ]
+            collector$forcingCondition <- forcingCondition[j]
+            df <- data[data$forcingDataset == forcingDataset[i] & data$forcingCondition == forcingCondition[j], ]
             df <- summarizePROFOUND.CLIMATE(df, by = "year")
             for (k in 1:length(columnsYes)){
               tmp <- df[!is.na(df[[columnsYes[k]]]), ]
@@ -84,7 +84,7 @@ startStopPROFOUND.ISIMIP <- function(data){
         index <- index + 1
         columnsYes <- colnames(data)[!colnames(data) %in% columnsNot]
         columnsYes <- colnames(data)[!colnames(data) %in% columnsNot]
-        columnsYes <- columnsYes[!columnsYes %in% c("year",  "mo", "date", "day",  "forcingDataset", "forcingConditions")]
+        columnsYes <- columnsYes[!columnsYes %in% c("year",  "mo", "date", "day",  "forcingDataset", "forcingCondition")]
         collector <-as.data.frame(matrix(rep(NA, length(columnsYes) * length(colnamesCol)),
                                          nrow = length(columnsYes), ncol = length(colnamesCol),
                                          dimnames = list(columnsYes, colnamesCol)))
@@ -92,7 +92,7 @@ startStopPROFOUND.ISIMIP <- function(data){
         collector$site <- unique(data$site)
         collector$site_id <- unique(data$site_id)
         collector$forcingDataset <- forcingDataset[i]
-        collector$forcingConditions <- NULL
+        collector$forcingCondition <- NULL
         df <- data[data$forcingDataset == forcingDataset[i], ]
         df <- summarizePROFOUND.CLIMATE(df, by = "year")
         for (k in 1:length(columnsYes)){
