@@ -1,6 +1,6 @@
 #' @title A function report data
 #'
-#' @description This functions creates a summary site by site of all data avalaible
+#' @description This functions creates a site-by-site report of all avalaible data
 #' in the PROFOUND database. The summary is created with a rmarkdown document, which
 #' is rendered and saved as a html document.
 #' @param outDir a character string indicating the output directory in which the
@@ -9,8 +9,9 @@
 #' @return a html file with the database report
 #' @export
 #' @example /inst/examples/reportDBHelp.R
+#' @details Please note that creating the report it might take several minutes.
 #' @note To report errors in the package or the data, please use the issue tracker
-#' in the github repository of TG2 https://github.com/COST-FP1304-PROFOUND/TG2/issues
+#' in the GitHub repository of ProfoundData \url{https://github.com/COST-FP1304-PROFOUND/ProfoundData}
 reportDB <- function(outDir=NULL){
   if(is.null(outDir)==TRUE){
     outDir <- getwd()
