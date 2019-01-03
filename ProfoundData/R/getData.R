@@ -27,26 +27,24 @@
 #' ATMOSPHERICHEATCONDUCTION, SOILTS, FLUX, METEOROLOGICAL, and CLIMATE LOCAL. Please
 #' check the metadata of each dataset before using this parameter.
 #' @note To report errors in the package or the data, please use the issue tracker
-#' in the github repository of TG2 https://github.com/COST-FP1304-PROFOUND/TG2/issues
-#' (preferred, but requires that you have access to our GitHub account) or
-#' or use this google form http://goo.gl/forms/e2ZQCiZz4x
+#' in the GitHub repository of ProfoundData \url{https://github.com/COST-FP1304-PROFOUND/ProfoundData}
 #' @export
 #' @example /inst/examples/getDataHelp.R
-#' @author Ramiro Silveyra Gonzalez
 getData <- function(dataset, site = NULL, location = NULL, forcingDataset = NULL,
                     forcingCondition = NULL, species = NULL, variables = NULL,
                     period = NULL, collapse = TRUE,
                     quality = NULL,  decreasing = TRUE){
   if (!is.null(location)) {
-    warning("Argument location is deprecated.  Please use site instead.",
+    warning("Argument location is deprecated.\nPlease use site instead.",
             call. = FALSE)
     site <- location
   }
   if(dataset == "ENERGYBALANCE"){
-    warning("Dataset 'ENERGYBALANCE' is deprecated.\n  Please use 'ATMOSPHERICHEATCONDUCTION' instead.",
+    warning("Dataset 'ENERGYBALANCE' is deprecated.\nPlease use 'ATMOSPHERICHEATCONDUCTION' instead.",
             call. = FALSE)
     dataset <- "ATMOSPHERICHEATCONDUCTION"
   }
+  
   # parse and test the query
   tmp <- try(parseQuery(dataset =dataset, site = site,  forcingDataset = forcingDataset,
                         forcingCondition = forcingCondition, species = species,
