@@ -80,19 +80,19 @@ formatPROFOUND.ISIMIPDatasetConditions <- function(tmp){
       message(forcingDataset[i])
       message("---------------")
       rawData <- tmp[["query"]][which( tmp[["query"]]$forcingDataset==forcingDataset[i]), ]
-      forcingConditions <- unique(rawData$forcingConditions)
-      forcingConditions.list <- vector("list", length(forcingConditions))
-      names(forcingConditions.list) <- forcingConditions
-      for(j in 1:length(forcingConditions)){
-        df <- rawData[which( rawData$forcingConditions==forcingConditions[j]), ]
+      forcingCondition <- unique(rawData$forcingCondition)
+      forcingCondition.list <- vector("list", length(forcingCondition))
+      names(forcingCondition.list) <- forcingCondition
+      for(j in 1:length(forcingCondition)){
+        df <- rawData[which( rawData$forcingCondition==forcingCondition[j]), ]
         # period subset
         if (!is.null(tmp[["period"]])){
           message("Subsetting data to the requested time period")
           df <- subsetPeriod(df, tmp[["period"]])
         }
-        forcingConditions.list[[forcingConditions[j]]] <- df
+        forcingCondition.list[[forcingCondition[j]]] <- df
       }
-      result.list[[forcingDataset[i]]] <- forcingConditions.list
+      result.list[[forcingDataset[i]]] <- forcingCondition.list
     }
     # collapse dimension: droplevels if empty
     if (length(result.list) == 1){
@@ -151,19 +151,19 @@ formatPROFOUND.ISIMIPConditions <- function(tmp){
     }
     result.list <- df
   }else{
-    forcingConditions <- unique(tmp[["query"]]$forcingConditions)
-    result.list <- vector("list", length(forcingConditions))
-    names(result.list) <- forcingConditions
-    for (i in 1:length(forcingConditions)){
+    forcingCondition <- unique(tmp[["query"]]$forcingCondition)
+    result.list <- vector("list", length(forcingCondition))
+    names(result.list) <- forcingCondition
+    for (i in 1:length(forcingCondition)){
       message("---------------")
-      message(forcingConditions[i])
+      message(forcingCondition[i])
       message("---------------")
-      df <- tmp[["query"]][tmp[["query"]]$forcingConditions==forcingConditions[i], ]
+      df <- tmp[["query"]][tmp[["query"]]$forcingCondition==forcingCondition[i], ]
       if (!is.null(tmp[["period"]])){
         message("Subsetting data to the requested time period")
         df <- subsetPeriod(df, tmp[["period"]])
       }
-      result.list[[forcingConditions[i]]] <-df
+      result.list[[forcingCondition[i]]] <-df
     }
     # collapse dimension: droplevels if empty
     if (length(result.list) == 1){
