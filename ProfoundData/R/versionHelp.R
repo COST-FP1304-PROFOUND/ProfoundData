@@ -17,7 +17,7 @@ versionHelp <- function(){
   }else{
     version <- getVersion()
     currentVersion <- version[nrow(version), "version"]
-    if(compareVersion(currentVersion, "0.1.13") < 0){
+    if(compareVersion(currentVersion, "0.2.0") < 0){
       warning("DB is outdated. Please update you local DB version", call. = FALSE)
       warning("Package functionality could be compromised", call. = FALSE)
     }
