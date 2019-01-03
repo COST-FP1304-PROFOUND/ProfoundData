@@ -4,7 +4,7 @@
 #------------------------------------------------------------------------------#
 # Target variables
 # Columns DB
-columns <- c("record_id", "site_id", "forcingConditions",  "year", "noy_gm2","nhx_gm2")
+columns <- c("record_id", "site_id", "forcingCondition",  "year", "noy_gm2","nhx_gm2")
 
 # Read all zip files
 inDir <- "~/ownCloud/PROFOUND_Data/Processed/ISIMIP2B/NDEP/new"
@@ -13,7 +13,7 @@ filenames <- list.files(inDir, full.names=TRUE, recursive = TRUE)
 print.progressNDEP <- function(df){
   cat("\n");cat(rep("-", 30));cat("\n")
   cat(as.character(unique(df$site)));cat("\n")
-  cat(as.character(unique(df$forcingConditions))); cat("\n");cat("\n")
+  cat(as.character(unique(df$forcingCondition))); cat("\n");cat("\n")
 }
 # Here a check
 # loadsites
@@ -40,7 +40,7 @@ dbSendQuery(conn = db,
             "CREATE TABLE NDEPOSITION_ISIMIP2B_master
             (record_id INTEGER NOT NULL,
             site_id INTEGER NOT NULL,
-            forcingConditions TEXT CHECK(forcingConditions <> ''),
+            forcingCondition TEXT CHECK(forcingCondition <> ''),
             year INTEGER CHECK(NULL OR year >= 0 AND year < 9999),
             noy_gm2 REAL CHECK(noy_gm2>0),
             nhx_gm2 REAL CHECK(nhx_gm2>0),
@@ -110,7 +110,7 @@ for (i in 1:length(filenames)){
 db <- dbConnect(SQLite(), dbname=myDB)
 # create index for variables we are going to query: so far location, gcm, rcp
 # --> change names to include the table
-dbGetQuery(db,"CREATE INDEX index_NDEPOSITION_ISIMIP2B_master_forcingConditions ON NDEPOSITION_ISIMIP2B_master (forcingConditions)")
+dbGetQuery(db,"CREATE INDEX index_NDEPOSITION_ISIMIP2B_master_forcingCondition ON NDEPOSITION_ISIMIP2B_master (forcingCondition)")
 dbGetQuery(db,"CREATE INDEX index_NDEPOSITION_ISIMIP2B_master_site_id ON NDEPOSITION_ISIMIP2B_master (site_id)")
 ## Close connnection to db
 dbDisconnect(db)
