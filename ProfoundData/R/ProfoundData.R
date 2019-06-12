@@ -10,7 +10,8 @@
 #'
 #' Below is a list of the package's functions grouped by theme. See the package
 #' vignette for more information and examples (\code{vignette('ProfoundData')}).
-#'
+#' 
+#' Note: before you can use the package, you need to register the database location via \code{\link{setDB}} 
 #'
 #' @section I. Browse the database: Functions to explore the database.
 #' \itemize{
@@ -34,9 +35,9 @@
 #'
 #' }
 #'
-#' @section II. Download data: Functions to download data. Data can be downloaded for one site and one dataset at a time.
+#' @section II. Extract data: Functions to extract data. Data can be extracted for one site and one dataset at a time.
 #' \itemize{
-#'  \item \code{\link{getData}} To download data
+#'  \item \code{\link{getData}} To extract data
 #' }
 #'
 #'

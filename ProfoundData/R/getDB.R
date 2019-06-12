@@ -3,7 +3,7 @@
 #' @description A function to return the filepath to the database.
 #' @return a character string with the filepath to the database
 #' @export
-#' @example /inst/examples/getDBHelp.R
+#' @example /inst/examples/setDBHelp.R
 #' @note To report errors in the package or the data, please use the issue tracker
 #' in the github repository of TG2 https://github.com/COST-FP1304-PROFOUND/TG2/issues
 #' (preferred, but requires that you have access to our GitHub account) or

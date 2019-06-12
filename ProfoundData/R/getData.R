@@ -1,6 +1,6 @@
-#' @title A function to get data
+#' @title A function to extract data
 #'
-#' @description  A function to get datasets for a site
+#' @description  A function to extract datasets for a site
 #' from the PROFOUND database.
 #' @param dataset a character string providing the name of a dataset.
 #' @param site a character string providing the name of a site.

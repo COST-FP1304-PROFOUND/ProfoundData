@@ -5,4 +5,6 @@ myDB <- path.expand("~/ownCloud/PROFOUND_Data/v0.1.13/ProfoundData.sqlite")
 
 # Set the connection using the setDB function
 setDB(myDB)
+# check if database is available
+getDB()
 }

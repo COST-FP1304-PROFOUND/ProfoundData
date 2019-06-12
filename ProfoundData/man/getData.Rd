@@ -2,7 +2,7 @@
 % Please edit documentation in R/getData.R
 \name{getData}
 \alias{getData}
-\title{A function to get data}
+\title{A function to extract data}
 \usage{
 getData(dataset, site = NULL, location = NULL, forcingDataset = NULL,
   forcingCondition = NULL, species = NULL, variables = NULL,
@@ -40,7 +40,7 @@ single data frame (TRUE) or a list of data frames (FALSE). Relevant when downloa
 a data frame or a list of data frames, depending on collapse.
 }
 \description{
-A function to get datasets for a site
+A function to extract datasets for a site
 from the PROFOUND database.
 }
 \details{
