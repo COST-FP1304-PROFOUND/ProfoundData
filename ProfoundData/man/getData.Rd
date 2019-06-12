@@ -53,9 +53,7 @@ check the metadata of each dataset before using this parameter.
 }
 \note{
 To report errors in the package or the data, please use the issue tracker
-in the github repository of TG2 https://github.com/COST-FP1304-PROFOUND/TG2/issues
-(preferred, but requires that you have access to our GitHub account) or
-or use this google form http://goo.gl/forms/e2ZQCiZz4x
+in the GitHub repository of ProfoundData \url{https://github.com/COST-FP1304-PROFOUND/ProfoundData}
 }
 \examples{
 \dontrun{
@@ -118,8 +116,5 @@ data <- getData(dataset = "CLIMATE_LOCAL", site = "soro",
 data <- getData(dataset = "FLUX", site = "soro",
                 quality = 0, decreasing = TRUE)
 }
-}
-\author{
-Ramiro Silveyra Gonzalez
 }
 \keyword{ProfoundData}

@@ -12,7 +12,12 @@ The PROFOUND database is a collection of data for calibrating, validating and be
 
 - The code to clean the data / create the database is available [here](./PROFOUND%20database/).   
 - News / version infos / changes of the code [here](./PROFOUND%20database/NEWS.md)
-- The database itself is available on request via [PIK](http://pmd.gfz-potsdam.de/panmetaworks/review/8993fe318f6828555d421a3a86c47f80a410ffaba6120fe0de97de1d02a3bdfc-pik/)
+- The database itself is hosted by the Potsdam Institute for Climate Research [PIK](http://www.pik-potsdam.de/). You can dowload the database via 
+
+```{r}
+library(ProfoundData)
+downloadDatabase()
+```
 
 ## The ProfoundData R package
 

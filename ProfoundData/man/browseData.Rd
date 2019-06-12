@@ -41,9 +41,7 @@ to access the database metadata, policy,  data sources and site descriptions.
 }
 \note{
 To report errors in the package or the data, please use the issue tracker
-in the github repository of TG2 https://github.com/COST-FP1304-PROFOUND/TG2/issues
-(preferred, but requires that you have access to the GitHub repository) or
- use this google form http://goo.gl/forms/e2ZQCiZz4x.
+in the GitHub repository of ProfoundData \url{https://github.com/COST-FP1304-PROFOUND/ProfoundData}
 }
 \examples{
 \dontrun{

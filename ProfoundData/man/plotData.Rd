@@ -55,9 +55,7 @@ for further information. For handling NAs we recommend to pass self-defined func
 }
 \note{
 To report errors in the package or the data, please use the issue tracker
-in the github repository of TG2 https://github.com/COST-FP1304-PROFOUND/TG2/issues
-(preferred, but requires that you have access to our GitHub account) or
-or use this google form http://goo.gl/forms/e2ZQCiZz4x
+in the GitHub repository of ProfoundData \url{https://github.com/COST-FP1304-PROFOUND/ProfoundData}
 }
 \examples{
 \dontrun{
@@ -113,8 +111,5 @@ plotData(dataset = "CLIMATE_ISIMIP2B", site ="soro",  forcingDataset= "GFDLESM2M
          aggregate = "month", FUN =difference)
 abline(h = 0, col = "red")
 }
-}
-\author{
-Ramiro Silveyra Gonzalez
 }
 \keyword{ProfoundData}

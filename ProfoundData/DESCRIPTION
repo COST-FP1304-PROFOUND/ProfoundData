@@ -17,7 +17,8 @@ Imports:
     RSQLite (>= 1.1-2),
     RNetCDF (>= 1.9-1),
     settings (>= 0.2.4),
-    zoo (>= 1.7-14)
+    zoo (>= 1.7-14),
+    tcltk
 License: GPL-3
 LazyData: true
 Suggests:
@@ -26,5 +27,5 @@ Suggests:
     R.rsp (>= 0.40.0),
     testthat (>= 1.0.2)
 VignetteBuilder: R.rsp
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
 Encoding: UTF-8

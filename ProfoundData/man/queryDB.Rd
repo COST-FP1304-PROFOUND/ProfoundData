@@ -14,9 +14,7 @@ A queryDB function to perform self-defined queries on the PROFOUND database.
 }
 \note{
 To report errors in the package or the data, please use the issue tracker
-in the github repository of TG2 https://github.com/COST-FP1304-PROFOUND/TG2/issues
-(preferred, but requires that you have access to our GitHub account) or
-or use this google form http://goo.gl/forms/e2ZQCiZz4x
+in the GitHub repository of ProfoundData \url{https://github.com/COST-FP1304-PROFOUND/ProfoundData}
 }
 \examples{
 \dontrun{
@@ -36,7 +34,4 @@ myQuery <- queryDB("SELECT  * FROM TREE_piab")
 myQuery <- queryDB("SELECT date, tmax_degC FROM CLIMATE_LOCAL WHERE
                    tmax_degC > 20 AND site == 'hyytiala' AND year == 2010")
 }
-}
-\author{
-Ramiro Silveyra Gonzalez
 }

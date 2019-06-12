@@ -28,7 +28,7 @@ by year and total. The latter refers to the entire available period.}
 \item{period}{a character array with either start or start and end of the subset.
 It must have the format "YYYY-MM-DD", or c("YYYY-MM-DD", "YYYY-MM-DD").}
 
-\item{mode}{a character string indicating whether to display the data summary or an overview.}
+\item{mode}{a character string indicating whether to display the data summary (data) or an overview (overview).}
 }
 \value{
 a data frame with the summary values
@@ -47,9 +47,7 @@ period will be returned if the dataset comprises more than one forcing dataset a
 }
 \note{
 To report errors in the package or the data, please use the issue tracker
-in the github repository of TG2 https://github.com/COST-FP1304-PROFOUND/TG2/issues
-(preferred, but requires that you have access to our GitHub account) or
-or use this google form http://goo.gl/forms/e2ZQCiZz4x
+in the GitHub repository of ProfoundData \url{https://github.com/COST-FP1304-PROFOUND/ProfoundData}
 }
 \section{Summary values}{
  Summary is calculated by year
@@ -79,8 +77,5 @@ summarizeData("CLIMATE_ISIMIP2B", site = "Soro")
 summarizeData("CLIMATE_LOCAL", site = "Soro")
 summarizeData("TREE", site = "Soro")
 }
-}
-\author{
-Ramiro Silveyra Gonzalez
 }
 \keyword{ProfoundData}

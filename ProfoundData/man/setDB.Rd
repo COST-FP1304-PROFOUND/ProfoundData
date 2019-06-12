@@ -14,9 +14,7 @@ A setDB funtion to  create a database connection object
 }
 \note{
 To report errors in the package or the data, please use the issue tracker
-in the github repository of TG2 https://github.com/COST-FP1304-PROFOUND/TG2/issues
-(preferred, but requires that you have access to our GitHub account) or
-or use this google form http://goo.gl/forms/e2ZQCiZz4x
+in the GitHub repository of ProfoundData \url{https://github.com/COST-FP1304-PROFOUND/ProfoundData}
 }
 \examples{
 \dontrun{
@@ -27,7 +25,4 @@ myDB <- path.expand("~/ownCloud/PROFOUND_Data/v0.1.13/ProfoundData.sqlite")
 # Set the connection using the setDB function
 setDB(myDB)
 }
-}
-\author{
-Ramiro Silveyra Gonzalez
 }
