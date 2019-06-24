@@ -1,5 +1,7 @@
 # The Profound Database for checking and benchmarking of dynamic vegetation models
 
+# About the database
+
 The PROFOUND database is a collection of data for calibrating, validating and benchmarking dynamic vegetation models. 
 
 - The code to clean the data / create the database is available [here](./PROFOUND%20database/).   
@@ -11,11 +13,11 @@ library(ProfoundData)
 downloadDatabase()
 ```
 
-# The ProfoundData R package
+## The ProfoundData R package
 
 The ProfoundData R package helps users to download and explore the PROFOUND database from the R environment. 
 
-## Installing the package 
+### Installing the package 
 
 CRAN install will come soon. If you want to install the current (development) version from this repository, run
 
@@ -28,7 +30,7 @@ Below the status of the automatic Travis CI tests on the master branch (if this 
 [![Build Status](https://travis-ci.org/COST-FP1304-PROFOUND/ProfoundData.svg?branch=master)](https://travis-ci.org/COST-FP1304-PROFOUND/ProfoundData)
 
 
-## First steps
+### First steps
 
 To get an overview about its functionality once the package is installed, run
 
