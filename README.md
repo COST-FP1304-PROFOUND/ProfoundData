@@ -1,4 +1,4 @@
-# The Profound Database for checking and benchmarking of dynamic vegetation models
+# The Profound Data for checking and benchmarking of dynamic vegetation models
 
 # About the database
 
