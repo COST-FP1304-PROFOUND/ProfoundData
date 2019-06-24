@@ -22,7 +22,9 @@ The ProfoundData R package helps users to download and explore the PROFOUND data
 CRAN install will come soon. If you want to install the current (development) version from this repository, run
 
 ```{r}
-devtools::install_github(repo = "COST-FP1304-PROFOUND/ProfoundData", subdir = "ProfoundData", 
+# requires package devtools installed
+devtools::install_github(repo = "COST-FP1304-PROFOUND/ProfoundData", 
+subdir = "ProfoundData", 
 dependencies = T, build_vignettes = T)
 ```
 Below the status of the automatic Travis CI tests on the master branch (if this doesn load see [here](https://travis-ci.org/COST-FP1304-PROFOUND/ProfoundData))
