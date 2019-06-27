@@ -1,11 +1,11 @@
-# @title Dowloads the PROFOUND databse
-# @description  A function to provide information on the version of the DB
-# @return a string with the location of the sql database
-# @examples \dontrun{
-# versionDB <- getVersion()
-# }
-# @export
-# @author Florian Hartig
+#' Downloads the PROFOUND database 
+#' 
+#' @description This function downloads the PROFOUND database
+#' @details This is a convenience function to quickly download the PROFOUND database. The function will query you to ask about the path to store the databse, and will return a string with the location, for use in setDB
+#' @return a string with the location of the sql database
+#' @example /inst/examples/download-set-get-DBHelp.R
+#' @export
+#' @author Florian Hartig
 downloadDatabase<- function(location=NULL){
   if(is.null(location)) location = choose_directory()
   file = paste(location, "/ProfoundData.zip", sep = "")

@@ -3,10 +3,12 @@
 #' @description A setDB funtion to  create a database connection object
 #' @param db_name a character string providing the absolute path to the PROFOUND database.
 #' @export
-#' @example /inst/examples/setDBHelp.R
+#' @example /inst/examples/download-set-get-DBHelp.R
 #' @note To report errors in the package or the data, please use the issue tracker
 #' in the GitHub repository of ProfoundData \url{https://github.com/COST-FP1304-PROFOUND/ProfoundData}
-setDB <- function(db_name){
+setDB <- function(db_name = NULL){
+  if(is.null(db_name)) db_name <- file.choose()
+  
   if (file.exists(db_name)){
     #ProfoundData.env <- new.env()
     #dbConnection() <- list(dbname = "somepath", driver = "somedriver")
