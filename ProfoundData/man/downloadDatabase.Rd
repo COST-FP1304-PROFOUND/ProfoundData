@@ -6,6 +6,9 @@
 \usage{
 downloadDatabase(location = NULL)
 }
+\arguments{
+\item{location}{file system location to store the database}
+}
 \value{
 a string with the location of the sql database
 }

@@ -2,6 +2,7 @@
 #' 
 #' @description This function downloads the PROFOUND database
 #' @details This is a convenience function to quickly download the PROFOUND database. The function will query you to ask about the path to store the databse, and will return a string with the location, for use in setDB
+#' @param location file system location to store the database
 #' @return a string with the location of the sql database
 #' @example /inst/examples/download-set-get-DBHelp.R
 #' @export
