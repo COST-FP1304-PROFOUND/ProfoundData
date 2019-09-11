@@ -12,30 +12,8 @@ a character string with the filepath to the database
 \description{
 A function to return the filepath to the database.
 }
-\note{
-To report errors in the package or the data, please use the issue tracker
-in the github repository of TG2 https://github.com/COST-FP1304-PROFOUND/TG2/issues
-(preferred, but requires that you have access to our GitHub account) or
-or use this google form http://goo.gl/forms/e2ZQCiZz4x
-}
 \examples{
-\dontrun{
-  
-# For downloading the data, use 
-downloadDatabase()
-# The function will query you to ask about the path to store the databse
-  
-# Define the path to the database. 
-myDB <- "/home/ownCloud/PROFOUND_Data/v0.1.13/ProfoundData.sqlite"
-# myDB must be an absolute paths, so you should expand relative paths
-myDB <- path.expand("~/ownCloud/PROFOUND_Data/v0.1.13/ProfoundData.sqlite")
-
-# Set the connection using the setDB function
-setDB(myDB)
-
-# check if database is available
-getDB()
-}
+/inst/examples/download-set-get-DBHelp.R
 }
 \author{
 Ramiro Silveyra Gonzalez

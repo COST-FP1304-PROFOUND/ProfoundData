@@ -8,10 +8,6 @@
 # @examples \dontrun{
 # datasets <- getDatasets()
 # }
-# @note To report errors in the package or the data, please use the issue tracker
-# in the github repository of TG2 https://github.com/COST-FP1304-PROFOUND/TG2/issues
-# (preferred, but requires that you have access to our GitHub account) or
-# or use this google form http://goo.gl/forms/e2ZQCiZz4x
 # @keywords ProfoundData
 # @author Ramiro Silveyra Gonzalez
 getDatasets <- function(dataset = NULL){
