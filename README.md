@@ -1,8 +1,8 @@
 # The Profound dataset for checking and benchmarking of dynamic vegetation models
 
-# About the database
+## About the database
 
-The PROFOUND database is a collection of data for calibrating, validating and benchmarking dynamic vegetation models, created by [Cost Action FP1304 PROFOUND](https://twitter.com/FP1304Profound).
+The PROFOUND database is a collection of data for calibrating, validating and benchmarking dynamic vegetation models, created by [Cost Action FP1304 PROFOUND](https://twitter.com/FP1304Profound)
 
 - The code to clean the data / create the database is available [here](https://github.com/COST-FP1304-PROFOUND/ProfoundData/tree/master/PROFOUND%20database).   
 - News / version infos / changes of the code [here](./PROFOUND%20database/NEWS.md)
@@ -22,7 +22,6 @@ The ProfoundData R package helps users to download and explore the PROFOUND data
 CRAN install will come soon. If you want to install the current (development) version from this repository, run
 
 ```{r}
-# requires package devtools installed
 devtools::install_github(repo = "COST-FP1304-PROFOUND/ProfoundData", 
 subdir = "ProfoundData", 
 dependencies = T, build_vignettes = T)
