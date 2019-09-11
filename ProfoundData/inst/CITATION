@@ -1,0 +1,25 @@
+citHeader("To cite the 'ProfoundData' package in publications use:")
+
+year <- sub(".*(2[[:digit:]]{3})-.*", "\\1", meta$Date, perl = TRUE)
+vers <- paste("R package version", meta$Version)
+
+citEntry(
+  entry = "Article",
+	title = "The PROFOUND Database for evaluating vegetation models and simulating climate impacts on forest stands",
+	journal = "Submitted to Earth System Science Data",
+	author = "Reyer, CPO et al.",
+	year = "2019",
+	textVersion  = "Reyer, C. (2019). The PROFOUND Database for evaluating vegetation models and simulating climate impacts on forest stands. Submitted to Earth System Science Data."
+)
+
+citEntry(
+  entry = "Misc",
+	title = "The PROFOUND database for evaluating vegetation models and simulating climate impacts on forests",
+	copyright = "Data Licence: CC Attribution 4.0 (CC BY-NC 4.0)",
+	url = "http://dataservices.gfz-potsdam.de/pik/showshort.php?id=escidoc:2549901",
+	publisher = "GFZ Data Services",
+	author = "Reyer, Christopher and Silveyra Gonzalez, Ramiro and Dolos, Klara and Hartig, Florian and Hauf, Ylva and Noack, Matthias and Lasch-Born, Petra and Rötzer, Thomas and Pretzsch, Hans and Meesenburg, Henning and Fleck, Stefan and Wagner, Markus and Bolte, Andreas and Sanders, Tanja and Kolari, Pasi and Mäkelä, Annikki and Vesala, Timo and Mammarella, Ivan and Pumpanen, Jukka and Matteucci, Giorgio and Collalti, Alessio and D’Andrea, Ettore and Foltýnová, Lenka and Krejza, Jan and Ibrom, Andreas and Pilegaard, Kim and Loustau, Denis and Bonnefond, Jean-Marc and Berbigier, Paul and Picart, Delphine and Lafont, Sébastien and Dietze, Michael and Cameron, David and Vieno, Massimo and Tian, Hanqin and Palacios, Alicia and Cicuendez, Victor and Recuero, Laura and Wieze, Klaus and Büchner, Matthias and Lange, Stefan and Volkholz, Jan and Kim, Hyungjun and Weedon, Graham and Sheffield, Justin and Vega del Valle, Iliusi and Suckow, Felicitas and Horemans, Joanna and Martel, Simon and Bohn, Friedrich and Steinkamp, Jörg and Chikalanov, Alexandre and Frieler, Katja",
+	year = "2019",
+	doi = "10.5880/pik.2019.008",
+	textVersion  = "Reyer, C., Silveyra Gonzalez, R., Dolos, K., Hartig, F., Hauf, Y., Noack, M., … Frieler, K. (2019). The PROFOUND database for evaluating vegetation models and simulating climate impacts on forests [Data set]. https://doi.org/10.5880/pik.2019.008"
+)
