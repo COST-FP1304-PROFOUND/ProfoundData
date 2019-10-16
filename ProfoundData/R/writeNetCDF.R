@@ -3,8 +3,8 @@
 #'
 #' @param df A data.frame containing in the first three columns longitude latitude
 #'  and time. These columns are followed by columns containing the output variables.
-#'   The columns have to be named with the output variable name as required by the
-#'   protocol. See table 13.
+#'   The columns have to be named with the output variable name as required by the 2B
+#'   protocol. See table 21.
 #' @param modelname The name of the used forest model
 #' @param GCM The climate model which created the used climate time series
 #' @param RCP The RCP scenario
@@ -26,8 +26,8 @@
 #' @details
 #' The function transforms your simulation output data frame into several netCDF
 #' -files and writes them into the indicated folder using the naming convention of
-#'  the ISIMIP2-protocol (https://www.isimip.org/protocol/). Units and long names
-#'  of variables  (table 13) will be created automatically.
+#'  the ISIMIP2(B)-protocol (https://www.isimip.org/protocol/). Units and long names
+#'  of variables (table 21) will be created automatically.
 #' @note To report errors in the package or the data, please use the issue tracker
 #' in the GitHub repository of ProfoundData \url{https://github.com/COST-FP1304-PROFOUND/ProfoundData}
 #' @export
@@ -59,28 +59,22 @@ writeSim2netCDF<-function(df
         {switch(code[1],
                 dbh={
                   unit<-"cm"
-                  variable_long<-"mean DBH"
+                  variable_long<-"Mean DBH"
                 },
-                Dbh={
+                dbhdomhei={
                   unit<-"cm"
                   variable_long<-"Mean DBH of 100 highest trees"
                 },
-                height={
+                hei={
                   unit<-"m"
-                  variable_long<-"Stand Height "
+                  variable_long<-"Stand Height"
                 },
-                Dbh={
-                  unit<-"c
-                  m"
-                  variable_long<-"Mean DBH of 100
-                  highest trees "
-                },
-                dom={
+                domhei={
                   unit<-"m"
                   variable_long<-"Dominant Height"
                 },
                 density={
-                  unit<-"Trees ha-1"
+                  unit<-"ha-1"
                   variable_long<-"Stand Density"
                 },
                 ba={
@@ -88,31 +82,31 @@ writeSim2netCDF<-function(df
                   variable_long<-"Basal Area"
                 },
                 mort={
-                  unit<-"m-3 ha-1"
+                  unit<-"m3 ha-1"
                   variable_long<-"Volume of Dead Trees"
                 },
                 harv={
-                  unit<-"m-3 ha-1"
+                  unit<-"m3 ha-1"
                   variable_long<-"Harvest by dbh-class"
                 },
                 stemno={
-                  unit<-"Trees ha-1"
+                  unit<-"ha-1"
                   variable_long<-"Remaining stem number after disturbance and management by dbh class"
                 },
                 vol={
                   unit<-"m3 ha-1"
-                  variable_long<-"Stand Volum"
+                  variable_long<-"Stand Volume"
                 },
                 cveg={
-                  unit<-"kg C m2"
+                  unit<-"kg m-2"
                   variable_long<-"Carbon Mass in Vegetation biomass"
                 },
                 clitter={
-                  unit<-"kg C m2"
+                  unit<-"kg m-2"
                   variable_long<-"Carbon Mass in Litter Pool"
                 },
                 csoil={
-                  unit<-"kg C m2"
+                  unit<-"kg m-2"
                   variable_long<-"Carbon Mass in Soil Pool"
                 },
                 age={
