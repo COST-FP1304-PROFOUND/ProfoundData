@@ -169,6 +169,62 @@ writeSim2netCDF<-function(df
                   unit<-"kg m-2"
                   variable_long<-"Soil Moisture"
                 },
+                mortstemno={
+                  unit<-"ha-1"
+                  variable_long<-"Removed stem numbers by size class by natural mortality"
+                },
+                harvstemno={
+                  unit<-"ha-1"
+                  variable_long<-"Removed stem numbers by size class by natural management"
+                },
+                dist={
+                  unit<-"m3 ha-1"
+                  variable_long<-"Volume of disturbance damage"
+                },
+                nlit={
+                  unit<-"g m-2 a-1"
+                  variable_long<-"Nitrogen of annual Litter"
+                },
+                nsoil={
+                  unit<-"g m-2 a-1"
+                  variable_long<-"Nitrogen in Soil"
+                },
+                nppleaf={
+                  unit<-"kg m-2 s-1"
+                  variable_long<-"Net Primary Production allocated to leaf biomass"
+                },
+                npproot={
+                  unit<-"kg m-2 s-1"
+                  variable_long<-"Net Primary Production allocated to fine root biomass"
+                },
+                nppagwood={
+                  unit<-"kg m-2 s-1"
+                  variable_long<-"Net Primary Production allocated to above ground wood biomass"
+                },
+                nppbgwood={
+                  unit<-"kg m-2 s-1"
+                  variable_long<-"Net Primary Production allocated to below ground wood biomass"
+                },
+                rr={
+                  unit<-"kg m-2 s-1"
+                  variable_long<-"Root autotrophic respiration"
+                },
+                cleaf={
+                  unit<-"kg m-2"
+                  variable_long<-"Carbon Mass in Leaves"
+                },
+                cwood={
+                  unit<-"kg m-2"
+                  variable_long<-"Carbon Mass in Wood"
+                },
+                croot={
+                  unit<-"kg m-2"
+                  variable_long<-"Carbon Mass in Roots"
+                },
+                tsl={
+                  unit<-"K"
+                  variable_long<-"Temperature of Soil"
+                },
                 {
                   message(paste("error:colname",variable,"does not correspond to the ISI-MIP convention of the ISI.MIP simulation protocol 2.1"))
                   return(FALSE)
