@@ -318,7 +318,7 @@ write.netCDF<-function(df
   timestep="annual"
   start<-df$time[1]
   end<-df$time[nrow(df)]
-  filename<-paste(modelname,GCM,RCP,ses,ss,variable,region,timestep,start,end,sep="_")
+  filename<-paste(modelname,GCM,RCP,ses,ss,gsub("_", "-", variable),region,timestep,start,end,sep="_")
   filename<-paste0(folder,"/",filename,".nc")
   title<-paste(modelname,GCM,RCP,ses,ss)
   #df$time<-paste0(df$time,"-01-01")
