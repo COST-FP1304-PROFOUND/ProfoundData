@@ -18,7 +18,8 @@ Imports:
     RNetCDF (>= 1.9-1),
     settings (>= 0.2.4),
     zoo (>= 1.7-14),
-    tcltk
+    tcltk,
+	BayesianTools (>= 0.1.6)
 License: GPL-3
 LazyData: true
 Suggests:
