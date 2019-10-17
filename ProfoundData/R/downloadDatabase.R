@@ -13,9 +13,10 @@ downloadDatabase<- function(location=NULL){
   download.file("http://www.pik-potsdam.de/data/doi/10.5880/PIK.2019.008/ProfoundData.zip"
 , file)
   if(file.exists(file)) message("dowload successfull, trying to unzip. This may not work on some operating systems. In this case, unzip by hand.")
-  oldWd <- setwd(location)
+  oldWd <- getwd()
+  setwd(location)
   decompression <- system2("unzip", args = c("-o", file), stdout = TRUE)
-  setsd(setwd(location))
+  setwd(oldWd)
   
   sqlFile <- paste(location, "/ProfoundData.sqlite", sep = "")
   if(file.exists(sqlFile)) message(paste("unzip successfull, your databse file is at", sqlFile, ". Please store this location for initializing the PROFOUND R functions"))
