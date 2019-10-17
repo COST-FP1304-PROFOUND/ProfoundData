@@ -4,7 +4,7 @@
 # @param rawdata dataframe to be susbet
 # @param variables  a character array holding the variables to be plotted. Default  is all variables.
 # @param dataset a character string providing the name one of the available datasets.
-# @param value a character string providing the name one of the available datasets.
+# @param value a number indicating the quality threshold to be used.
 # @param decreasing a boolean indicated whether ther quality treshold should be applied up or downwards.
 # @return a subset of the raw data dataframe
 # @author Ramiro Silveyra Gonzalez

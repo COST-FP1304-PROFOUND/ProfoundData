@@ -11,7 +11,8 @@
 #' Below is a list of the package's functions grouped by theme. See the package
 #' vignette for more information and examples (\code{vignette('ProfoundData')}).
 #' 
-#' Note: before you can use the package, you need to register the database location via \code{\link{setDB}} 
+#' Note: before you can use the package, you need to download the database via \code{\link{downloadDatabase}} and 
+#' register the database location via \code{\link{setDB}} 
 #'
 #' @section I. Browse the database: Functions to explore the database.
 #' \itemize{
@@ -48,6 +49,7 @@
 #'
 #' @section IV. Utilities: Miscellanous
 #' \itemize{
+#'  \item \code{\link{downloadDatabase}} To download the database
 #'  \item \code{\link{setDB}} To set the connection to the database
 #'  \item \code{\link{getDB}} To retrieve the filepath to the database
 #'   \item \code{\link{queryDB}} To pass self-defined queries

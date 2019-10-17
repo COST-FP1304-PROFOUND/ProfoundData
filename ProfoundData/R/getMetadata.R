@@ -1,8 +1,8 @@
-# @title A get version function
-# @description  A function to provide information on the version of the DB
-# @return a table with the versioning: version name, date and description
+# @title A get metadata function
+# @description  A function to provide metadata for the dataset
+# @return a table with the metadata for the specified dataset and site
 # @examples \dontrun{
-# versionDB <- getVersion()
+# dataMetadata <- getMetadata(dataset ="CLIMATE_ISIMIP2A", site = "soro")
 # }
 # @export
 # @keywords ProfoundData

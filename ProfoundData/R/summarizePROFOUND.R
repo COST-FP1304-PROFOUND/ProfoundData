@@ -134,7 +134,7 @@ summarizePROFOUND.FLUX <- function(data, by = "total"){
     # Convert half hourly average to the time period of 30 min (60s/m * 30 min = 1800s)
     x <- x*60*30
     # result is umolCO2m2
-    # do the sum of whhatever is available: day or year
+    # do the sum of whatever is available: day or year
     x <-sum(x, na.rm = T)
     # Calculate the C part of the molecule
       # 1 atom O 15,999 u, 1 atom C 12.0096
@@ -145,7 +145,7 @@ summarizePROFOUND.FLUX <- function(data, by = "total"){
     # result is gC/m2
     return(x)
   }
-  # This fucntions creates the new variables.
+  # These functions create the new variables.
   summaryFLUX <- function(subData, by){
     neeCutRef_gCm2 <- ifelse("neeCutRef_umolCO2m2s1" %in% colnames(subData), sumHalfhourly(subData$neeCutRef_umolCO2m2s1),NA)
     neeVutRef_gCm2 <- ifelse("neeVutRef_umolCO2m2s1" %in% colnames(subData), sumHalfhourly(subData$neeVutRef_umolCO2m2s1),NA)

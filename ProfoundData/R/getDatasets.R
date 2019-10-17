@@ -2,7 +2,7 @@
 # @description  A function to provide information on available datasets in the
 # ProfoundData database
 # @param dataset a character string providing the name of the dataset (optional)
-# @return a vector with the available datasets if not arguments are passed. Otherwise,
+# @return a vector with the available datasets if no arguments are passed. Otherwise,
 # it returns a numeric boolean.
 # @export
 # @examples \dontrun{
