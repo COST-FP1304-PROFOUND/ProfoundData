@@ -3,7 +3,8 @@
 #' @description A function to return the filepath to the database.
 #' @return a character string with the filepath to the database
 #' @author Ramiro Silveyra Gonzalez
-#' @examples /inst/examples/download-set-get-DBHelp.R
+#' @seealso \code{\link{setDB}}, \code{\link{downloadDatabase}}  
+#' @example /inst/examples/download-set-get-DBHelp.R
 #' @export
 getDB <- function(){
   conn <- try(makeConnection(), T)
@@ -22,6 +23,7 @@ getDB <- function(){
 #' @description A setDB funtion to  create a database connection object
 #' @param db_name a character string providing the absolute path to the PROFOUND database.
 #' @export
+#' @seealso \code{\link{getDB}}, \code{\link{downloadDatabase}}  
 #' @example /inst/examples/download-set-get-DBHelp.R
 #' @note To report errors in the package or the data, please use the issue tracker
 #' in the GitHub repository of ProfoundData \url{https://github.com/COST-FP1304-PROFOUND/ProfoundData}
@@ -55,6 +57,7 @@ dbConnection <- settings::options_manager(dbname="somename", driver=RSQLite::SQL
 #' @details This is a convenience function to quickly download the PROFOUND database. The function will query you to ask about the path to store the databse, and will return a string with the location, for use in setDB
 #' @param location file system location to store the database. If not provide, the function will use the current working directory. 
 #' @return a string with the location of the sql database
+#' @seealso \code{\link{getDB}}, \code{\link{setDB}} 
 #' @example /inst/examples/download-set-get-DBHelp.R
 #' @export
 #' @author Florian Hartig

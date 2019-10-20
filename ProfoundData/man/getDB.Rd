@@ -13,7 +13,20 @@ a character string with the filepath to the database
 A function to return the filepath to the database.
 }
 \examples{
-/inst/examples/download-set-get-DBHelp.R
+\dontrun{
+  
+# For downloading the data, use 
+dbfile <- downloadDatabase()
+
+# Set the connection using the setDB function
+setDB(dbfile)
+
+# check if database is available
+getDB()
+}
+}
+\seealso{
+\code{\link{setDB}}, \code{\link{downloadDatabase}}
 }
 \author{
 Ramiro Silveyra Gonzalez
