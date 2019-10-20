@@ -32,9 +32,9 @@ plotPROFOUND.TREE <-function(tmp){
       epsilon <- 0.1
       yearRange <- range(dataSpp$year, na.rm = T)
      # cat("There are ");cat(overviewPlots);cat(" plots")
-      #if(tmp[["automaticPanels"]] == T) oldpar <- par(mfrow = getPanels(overviewPlots+length(years) ))
+      #if(tmp[["automaticPanels"]] == T) oldpar <- par(mfrow = BayesianTools:::getPanels(overviewPlots+length(years) ))
       if(tmp[["automaticPanels"]] == T){
-        oldpar <- par(mfrow = getPanels(overviewPlots), mar=c(2,2,2,0.5))
+        oldpar <- par(mfrow = BayesianTools:::getPanels(overviewPlots), mar=c(2,2,2,0.5))
       }else{
         oldpar <- par(mfrow = c(1,1), mar=c(4,4,4,2))
       }
@@ -126,7 +126,7 @@ plotPROFOUND.STAND <-function(tmp){
     dataSpp <- data[data$species == spp[i], ]
     yearRange <- range(dataSpp$year, na.rm = T)
     if(tmp[["automaticPanels"]] == T){
-      oldpar <- par(mfrow = getPanels(length(plotVariables)), mar=c(2,2,2,0.5))
+      oldpar <- par(mfrow = BayesianTools:::getPanels(length(plotVariables)), mar=c(2,2,2,0.5))
     }else{
       oldpar <- par(mfrow = c(1,1), mar=c(4,4,4,2))
     }
@@ -175,7 +175,7 @@ plotPROFOUND.DAILY <-function(tmp, forcing = NULL){
   plotVariables <- tmp[["variablesChecked"]][!grepl("_qc$",tmp[["variablesChecked"]] )]
   plotVariables <- plotVariables[plotVariables %in% names(data.ts) ]
   if(tmp[["automaticPanels"]] == T){
-    oldpar <- par(mfrow = getPanels(length(plotVariables)), mar=c(2,2,2,0.5))
+    oldpar <- par(mfrow = BayesianTools:::getPanels(length(plotVariables)), mar=c(2,2,2,0.5))
   }else{
     oldpar <- par(mfrow = c(1,1), mar=c(4,4,4,2))
   }
@@ -229,7 +229,7 @@ plotPROFOUND.HALFHOURLY <- function(tmp){
   plotVariables <- tmp[["variablesChecked"]][!grepl("_qc$",tmp[["variablesChecked"]] )]
   plotVariables <- plotVariables[plotVariables %in% names(data.ts) ]
   if(tmp[["automaticPanels"]] == T){
-    oldpar <- par(mfrow = getPanels(length(plotVariables)), mar=c(2,2,2,0.5))
+    oldpar <- par(mfrow = BayesianTools:::getPanels(length(plotVariables)), mar=c(2,2,2,0.5))
   }else{
     oldpar <- par(mfrow = c(1,1), mar=c(4,4,4,2))
   }
@@ -261,7 +261,7 @@ plotPROFOUND.YEARLY <- function(tmp, forcing = NULL){
   plotVariables <- tmp[["variablesChecked"]][!grepl("_qc$",tmp[["variablesChecked"]] )]
   plotVariables <- plotVariables[plotVariables %in% names(data.ts) ]
   if(tmp[["automaticPanels"]] == T){
-    oldpar <- par(mfrow = getPanels(length(plotVariables)), mar=c(2,2,2,0.5))
+    oldpar <- par(mfrow = BayesianTools:::getPanels(length(plotVariables)), mar=c(2,2,2,0.5))
   }else{
     oldpar <- par(mfrow = c(1,1), mar=c(4,4,4,2))
   }
@@ -302,7 +302,7 @@ plotPROFOUND.MODIS <- function(tmp){
   plotVariables <- plotVariables[!grepl("Cor$",plotVariables )]
   plotVariables <- plotVariables[plotVariables %in% names(data.ts) ]
   if(tmp[["automaticPanels"]] == T){
-    oldpar <- par(mfrow = getPanels(length(plotVariables)), mar=c(2,2,2,0.5))
+    oldpar <- par(mfrow = BayesianTools:::getPanels(length(plotVariables)), mar=c(2,2,2,0.5))
   }else{
     oldpar <- par(mfrow = c(1,1), mar=c(4,4,4,2))
   }
