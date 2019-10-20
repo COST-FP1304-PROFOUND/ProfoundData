@@ -49,22 +49,23 @@ setDB <- function(db_name = NULL){
 dbConnection <- settings::options_manager(dbname="somename", driver=RSQLite::SQLite())
 
 
-
 #' Downloads the PROFOUND database 
 #' 
 #' @description This function downloads the PROFOUND database
 #' @details This is a convenience function to quickly download the PROFOUND database. The function will query you to ask about the path to store the databse, and will return a string with the location, for use in setDB
-#' @param location file system location to store the database
+#' @param location file system location to store the database. If not provide, the function will use the current working directory. 
 #' @return a string with the location of the sql database
 #' @example /inst/examples/download-set-get-DBHelp.R
 #' @export
 #' @author Florian Hartig
 downloadDatabase<- function(location=NULL){
-  if(is.null(location)) location = choose_directory()
+  
+  #if(is.null(location)) location = choose_directory()
+  if(is.null(location)) location = getwd()
   file = paste(location, "/ProfoundData.zip", sep = "")
   download.file("http://www.pik-potsdam.de/data/doi/10.5880/PIK.2019.008/ProfoundData.zip"
                 , file)
-  if(file.exists(file)) message("download successfull, trying to unzip. This may not work on some operating systems. In this case, unzip by hand.")
+  if(file.exists(file)) message("download successfull, trying to unzip. This may not work on some operating systems. In this case, locate the downloaded file and unzip by hand.")
   oldWd <- getwd()
   setwd(location)
   decompression <- system2("unzip", args = c("-o", file), stdout = TRUE)
@@ -76,6 +77,7 @@ downloadDatabase<- function(location=NULL){
 }
 
 
+# currently not used because it didn't seem to work on all OS without problems
 choose_directory = function(caption = 'Select database download directory') {
   if (exists('utils::choose.dir')) {
     choose.dir(caption = caption) 
