@@ -31,8 +31,6 @@ library(knitr)
 library(plyr)
 
 set.seed(1)
-
-
 ``` 
 
 
@@ -41,7 +39,7 @@ set.seed(1)
 
 The ProfoundData package serves as interface to access the [PROFOUND database](PROFOUNDdatabase.html). Three main functions are included to achieve this goal: a browseData function for exploring the database, a getData function for downloading data fromm the database and a plotData function to quickly inspect any variable of the datasets.
 
-Currently, the functions allow to download data from one site and one dataset at a time. For downloading data of more than one dataset or of more than one site, the function should be called as many times as the number of desired sites or datasets. Additionally, flags and other parameters can be passed to the functions.
+The functions allow to retrieve only data from one site and one dataset at a time. For downloading data of more than one dataset or of more than one site, the function should be called as many times as the number of desired sites or datasets. Additionally, flags and other parameters can be passed to the functions.
 
 The package also includes utilities functions to do tasks such as inspecting the data or writing NetCDF files. 
 
@@ -54,9 +52,19 @@ citation("ProfoundData")
 
 # First Steps
 
+## Database download 
+
+Profound database is provided in SQLite and can be downloaded either by hand at [http://doi.org/10.5880/PIK.2019.008](http://doi.org/10.5880/PIK.2019.008) or via the 
+
+```{r, eval = F}
+sqlfile = downloadDatabase()
+```
+
+Per default, the database is downloaded into the currrent working directory, but you can specify another location in the function. The function returns the current databse location, which can be passed on the the setDB function (see below).
+
 ## Database connection
 
-After loading ProfoundData, the first step is to call the *setDB*. This function will create a database object. It requires from you a **valid absolute path to the PROFOUND database**.
+For using a locally stored database with the ProfoundData package, the first step is to call the *setDB*. The function requires a **valid absolute path to the PROFOUND database**. 
 
 ```{r, eval = T}
 myDB <- path.expand("~/ownCloud/PROFOUND_Data/v0.2.0/ProfoundData.sqlite")
