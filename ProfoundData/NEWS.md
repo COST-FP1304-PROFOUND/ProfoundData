@@ -1,4 +1,23 @@
-# v0.2.0 - Release Notes
+# ProfoundData 0.2.1 
+
+New features
+
+- 
+
+Major changes
+
+- None
+
+Minor changes
+
+- Add
+
+Bugfixes 
+
+- Add, ideally with issue / commit
+
+
+# ProfoundData 0.2.0 
 
 ## Modifications to adapt to new ProfoundData database version (v0.2.0) 
 
