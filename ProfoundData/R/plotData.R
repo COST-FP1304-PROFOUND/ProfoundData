@@ -77,7 +77,7 @@ plotData <- function(dataset, site, location=NULL,forcingDataset = NULL,
   }else if (!"date" %in% names(data)){
     #cat("\n");cat("yearly");cat("\n")
     plotPROFOUND.YEARLY(tmp)
-      # this is any dayly data
+      # this is any daily data
   }else{
     #cat("\n");cat("daily");cat("\n")
     plotPROFOUND.DAILY(tmp)

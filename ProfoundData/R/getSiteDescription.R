@@ -1,7 +1,7 @@
-# @description  A function to provide information on the version of the DB
-# @return a table with the versioning: version name, date and description
+# @description  A function to provide information on site
+# @return a table with the site description
 # @examples \dontrun{
-# versionDB <- getVersion()
+# dataSiteDescription <- getSiteDescription(dataset ="CLIMATE_ISIMIP2A", site = "soro")
 # }
 # @export
 # @keywords ProfoundData

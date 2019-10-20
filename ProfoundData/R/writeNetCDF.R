@@ -3,8 +3,8 @@
 #'
 #' @param df A data.frame containing in the first three columns longitude latitude
 #'  and time. These columns are followed by columns containing the output variables.
-#'   The columns have to be named with the output variable name as required by the
-#'   protocol. See table 13.
+#'   The columns have to be named with the output variable name as required by the 2B
+#'   protocol. See table 21.
 #' @param modelname The name of the used forest model
 #' @param GCM The climate model which created the used climate time series
 #' @param RCP The RCP scenario
@@ -26,10 +26,11 @@
 #' @details
 #' The function transforms your simulation output data frame into several netCDF
 #' -files and writes them into the indicated folder using the naming convention of
-#'  the ISIMIP2-protocol (https://www.isimip.org/protocol/). Units and long names
-#'  of variables  (table 13) will be created automatically.
+#'  the ISIMIP2(B)-protocol (https://www.isimip.org/protocol/). Units and long names
+#'  of variables (table 21) will be created automatically.
 #' @note To report errors in the package or the data, please use the issue tracker
 #' in the GitHub repository of ProfoundData \url{https://github.com/COST-FP1304-PROFOUND/ProfoundData}
+#' @example /inst/examples/writeSim2netCDFHelp.R
 #' @export
 #' @author Friedrich J. Bohn
 
@@ -66,28 +67,22 @@ writeSim2netCDF<-function(df
         {switch(code[1],
                 dbh={
                   unit<-"cm"
-                  variable_long<-"mean DBH"
+                  variable_long<-"Mean DBH"
                 },
-                Dbh={
+                dbhdomhei={
                   unit<-"cm"
                   variable_long<-"Mean DBH of 100 highest trees"
                 },
-                height={
+                hei={
                   unit<-"m"
-                  variable_long<-"Stand Height "
+                  variable_long<-"Stand Height"
                 },
-                Dbh={
-                  unit<-"c
-                  m"
-                  variable_long<-"Mean DBH of 100
-                  highest trees "
-                },
-                dom={
+                domhei={
                   unit<-"m"
                   variable_long<-"Dominant Height"
                 },
                 density={
-                  unit<-"Trees ha-1"
+                  unit<-"ha-1"
                   variable_long<-"Stand Density"
                 },
                 ba={
@@ -95,27 +90,27 @@ writeSim2netCDF<-function(df
                   variable_long<-"Basal Area"
                 },
                 mort={
-                  unit<-"m-3 ha-1"
+                  unit<-"m3 ha-1"
                   variable_long<-"Volume of Dead Trees"
                 },
                 harv={
-                  unit<-"m-3 ha-1"
+                  unit<-"m3 ha-1"
                   variable_long<-"Harvest by dbh-class"
                 },
                 stemno={
-                  unit<-"Trees ha-1"
+                  unit<-"ha-1"
                   variable_long<-"Remaining stem number after disturbance and management by dbh class"
                 },
                 vol={
                   unit<-"m3 ha-1"
-                  variable_long<-"Stand Volum"
+                  variable_long<-"Stand Volume"
                 },
                 cveg={
-                  unit<-"kg C m2"
+                  unit<-"kg m-2"
                   variable_long<-"Carbon Mass in Vegetation biomass"
                 },
                 clitter={
-                  unit<-"kg C m2"
+                  unit<-"kg m-2"
                   variable_long<-"Carbon Mass in Litter Pool"
                 },
                 cvegag = {
@@ -126,7 +121,7 @@ writeSim2netCDF<-function(df
                   variable_long <- "Carbon Mass in belowground vegetation biomass"
                 },
                 csoil={
-                  unit<-"kg C m2"
+                  unit<-"kg m-2"
                   variable_long<-"Carbon Mass in Soil Pool"
                 },
                 age={
@@ -188,6 +183,62 @@ writeSim2netCDF<-function(df
                 soilmoist={
                   unit<-"kg m-2"
                   variable_long<-"Soil Moisture"
+                },
+                mortstemno={
+                  unit<-"ha-1"
+                  variable_long<-"Removed stem numbers by size class by natural mortality"
+                },
+                harvstemno={
+                  unit<-"ha-1"
+                  variable_long<-"Removed stem numbers by size class by natural management"
+                },
+                dist={
+                  unit<-"m3 ha-1"
+                  variable_long<-"Volume of disturbance damage"
+                },
+                nlit={
+                  unit<-"g m-2 a-1"
+                  variable_long<-"Nitrogen of annual Litter"
+                },
+                nsoil={
+                  unit<-"g m-2 a-1"
+                  variable_long<-"Nitrogen in Soil"
+                },
+                nppleaf={
+                  unit<-"kg m-2 s-1"
+                  variable_long<-"Net Primary Production allocated to leaf biomass"
+                },
+                npproot={
+                  unit<-"kg m-2 s-1"
+                  variable_long<-"Net Primary Production allocated to fine root biomass"
+                },
+                nppagwood={
+                  unit<-"kg m-2 s-1"
+                  variable_long<-"Net Primary Production allocated to above ground wood biomass"
+                },
+                nppbgwood={
+                  unit<-"kg m-2 s-1"
+                  variable_long<-"Net Primary Production allocated to below ground wood biomass"
+                },
+                rr={
+                  unit<-"kg m-2 s-1"
+                  variable_long<-"Root autotrophic respiration"
+                },
+                cleaf={
+                  unit<-"kg m-2"
+                  variable_long<-"Carbon Mass in Leaves"
+                },
+                cwood={
+                  unit<-"kg m-2"
+                  variable_long<-"Carbon Mass in Wood"
+                },
+                croot={
+                  unit<-"kg m-2"
+                  variable_long<-"Carbon Mass in Roots"
+                },
+                tsl={
+                  unit<-"K"
+                  variable_long<-"Temperature of Soil"
                 },
                 {
                   message(paste("error:colname",variable,"does not correspond to the ISI-MIP convention of the ISI.MIP simulation protocol 2.1"))
@@ -281,7 +332,7 @@ write.netCDF<-function(df
   timestep="annual"
   start<-df$time[1]
   end<-df$time[nrow(df)]
-  filename<-paste(modelname,GCM,RCP,ses,ss,variable,region,timestep,start,end,sep="_")
+  filename<-paste(modelname,GCM,RCP,ses,ss,gsub("_", "-", variable),region,timestep,start,end,sep="_")
   filename<-paste0(folder,"/",filename,".nc")
   title<-paste(modelname,GCM,RCP,ses,ss)
   #df$time<-paste0(df$time,"-01-01")
