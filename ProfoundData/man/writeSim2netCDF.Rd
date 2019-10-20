@@ -13,8 +13,8 @@ writeSim2netCDF(df, comment1 = NA, comment2 = NA,
 \arguments{
 \item{df}{A data.frame containing in the first three columns longitude latitude
 and time. These columns are followed by columns containing the output variables.
- The columns have to be named with the output variable name as required by the
- protocol. See table 13.}
+ The columns have to be named with the output variable name as required by the 2B
+ protocol. See table 21.}
 
 \item{comment1}{Optional comment regarding your simulation}
 
@@ -51,12 +51,39 @@ This function transforms simulation results into netCDF files following the ISIM
 \details{
 The function transforms your simulation output data frame into several netCDF
 -files and writes them into the indicated folder using the naming convention of
- the ISIMIP2-protocol (https://www.isimip.org/protocol/). Units and long names
- of variables  (table 13) will be created automatically.
+ the ISIMIP2(B)-protocol (https://www.isimip.org/protocol/). Units and long names
+ of variables (table 21) will be created automatically.
 }
 \note{
 To report errors in the package or the data, please use the issue tracker
 in the GitHub repository of ProfoundData \url{https://github.com/COST-FP1304-PROFOUND/ProfoundData}
+}
+\examples{
+\dontrun{
+# Produce sample data 
+df <- data.frame(lat = rep(20, 10),
+                 lon = rep(30, 10),
+                 time = seq(1920, 2010, 10),
+                 dbh_total = c(10:19),
+                 nee_total = rnorm(10, -0.5, 0.25),
+                 evap = rnorm(10, 0.001, 0.0001),
+                 cwood_fasy = seq(40, 85, 5))
+
+# Convert multi-variable data.frame into single-variable netCDFs using ISIMIP naming conventions
+writeSim2netCDF(df = df,
+                comment1 = NA,
+                comment2 = NA,
+                institution = 'PIK',
+                contact = 'isi-mip@pik-potsdam.de',
+                modelname = "formind",
+                GCM = "hadgem",
+                RCP = "rcp85",
+                ses = "nat",
+                ss = "co2const",
+                region = "Kroof",
+                start = '1920',
+                folder = "ISI-MIP")
+}
 }
 \author{
 Friedrich J. Bohn
