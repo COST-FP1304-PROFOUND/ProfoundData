@@ -47,6 +47,13 @@ writeSim2netCDF<-function(df
                           , region="Kroof"
                           , start='1980'
                           , folder="ISI-MIP"){
+  
+  # cheque if data frame
+  if ( !class(df)[1] %in% 'data.frame') {
+    message( paste('Error: input data must be a data.frame, not a ', class(df)[1]))
+    return(FALSE)
+  }
+  
   if(length(comment1)==1)
 
     if(is.na(comment1))comment1<-rep("",length(colnames(df)))
@@ -105,6 +112,13 @@ writeSim2netCDF<-function(df
                 clitter={
                   unit<-"kg m-2"
                   variable_long<-"Carbon Mass in Litter Pool"
+                },
+                cvegag = {
+                  unit <- "kg C m2"
+                  variable_long <- "Carbon Mass in aboveground vegetation biomass"
+                },cvegbg = {
+                  unit <- "kg C m2"
+                  variable_long <- "Carbon Mass in belowground vegetation biomass"
                 },
                 csoil={
                   unit<-"kg m-2"
@@ -305,7 +319,7 @@ write.netCDF<-function(df
                        ,region="Kroof"
                        ,folder="ISI-MIP"){
   # cheques
-  if (colnames(df)[1] != "lon" && colnames(df)[1] != "lat" && colnames(df)[1] != "time") {
+  if (colnames(df)[1] != "lon" || colnames(df)[2] != "lat" || colnames(df)[3] != "time") {
     message('Error: First 3 columns must be named "lon", "lat", "time".')
     return(FALSE)
   }

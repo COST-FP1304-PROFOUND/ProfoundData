@@ -45,27 +45,18 @@ Currently, the functions allow to download data from one site and one dataset at
 
 The package also includes utilities functions to do tasks such as inspecting the data or writing NetCDF files. 
 
+To cite the package, run
+
+```{r}
+library(ProfoundData)
+citation("ProfoundData")
+```
 
 # First Steps
 
-## Package requriments
-
-Before installing the package, you should have the following packages installed:
-
-* sqldf
-* RSQLite
-* zoo
-* RNetCDF 
-* settings
-
 ## Database connection
 
-After loading ProfoundData, the first step is to call the *setDB*. 
-```{r, eval = T, message=FALSE, warning=FALSE}
-library(ProfoundData)
-```
-
-This function will create a database object. It requires from you a **valid absolute path to the PROFOUND database**.
+After loading ProfoundData, the first step is to call the *setDB*. This function will create a database object. It requires from you a **valid absolute path to the PROFOUND database**.
 
 ```{r, eval = T}
 myDB <- path.expand("~/ownCloud/PROFOUND_Data/v0.2.0/ProfoundData.sqlite")
