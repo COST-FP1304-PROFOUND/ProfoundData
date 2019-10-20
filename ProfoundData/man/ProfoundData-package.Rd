@@ -6,16 +6,17 @@
 \alias{ProfoundData}
 \title{Overview of the functions in the ProfoundData package}
 \description{
-The ProfoundData package provides functions to explore, visualize and get data from the PROFOUND
-database. The package is particularly convenient for working with forest models on an R environment.
+The ProfoundData R package provides functions to explore, visualize and get data from the PROFOUND database. 
 
 A brief description of the PROFOUND database is avalaible in the vignette 'PROFOUNDdatabase' (
 you can open it by running this command: \code{vignette('PROFOUNDdatabase')}).
 
+To use the R package, you first have to download the database, and then register its location via \code{\link{setDB}} 
+
 Below is a list of the package's functions grouped by theme. See the package
 vignette for more information and examples (\code{vignette('ProfoundData')}).
 
-Note: before you can use the package, you need to register the database location via \code{\link{setDB}}
+The development of the PROFOUND database and the ProfoundData R package was faciliated by COST Action FP1304 PROFOUND.
 }
 \section{I. Browse the database}{
  Functions to explore the database.
@@ -67,8 +68,7 @@ Note: before you can use the package, you need to register the database location
 }
 
 \author{
-Except where indicated otherwise, the functions in this package were
- written by Ramiro Silveyra Gonzalez, Christopher Reyer and Florian Hartig.
+Except where indicated otherwise, the functions in this package were written by Ramiro Silveyra Gonzalez, Christopher Reyer and Florian Hartig.
 }
 \keyword{DB}
 \keyword{Profound}
