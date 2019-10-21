@@ -6,17 +6,16 @@
 \alias{ProfoundData}
 \title{Overview of the functions in the ProfoundData package}
 \description{
-The ProfoundData R package provides functions to explore, visualize and get data from the PROFOUND database. 
+The ProfoundData R package provides functions to explore, visualize and get data from the PROFOUND database.  The development of the PROFOUND database and the ProfoundData R package was faciliated by COST Action FP1304 PROFOUND.
 
 A brief description of the PROFOUND database is avalaible in the vignette 'PROFOUNDdatabase' (
 you can open it by running this command: \code{vignette('PROFOUNDdatabase')}).
 
-To use the R package, you first have to download the database, and then register its location via \code{\link{setDB}} 
+Note: before you can use the package, you need to download the database via \code{\link{downloadDatabase}} and
+register the database location via \code{\link{setDB}}
 
 Below is a list of the package's functions grouped by theme. See the package
 vignette for more information and examples (\code{vignette('ProfoundData')}).
-
-The development of the PROFOUND database and the ProfoundData R package was faciliated by COST Action FP1304 PROFOUND.
 }
 \section{I. Browse the database}{
  Functions to explore the database.
@@ -59,6 +58,7 @@ The development of the PROFOUND database and the ProfoundData R package was faci
 \section{IV. Utilities}{
  Miscellanous
 \itemize{
+ \item \code{\link{downloadDatabase}} To download the database
  \item \code{\link{setDB}} To set the connection to the database
  \item \code{\link{getDB}} To retrieve the filepath to the database
   \item \code{\link{queryDB}} To pass self-defined queries

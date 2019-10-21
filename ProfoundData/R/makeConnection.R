@@ -1,6 +1,6 @@
 # @title A function to ensure that the queried variables exist in the DB
 #
-# @description TODO
+# @description The function ensures that the queried variables exist in the DB
 # @return a connection to the database
 # @author Ramiro Silveyra Gonzalez
 makeConnection <- function() {

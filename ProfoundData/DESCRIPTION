@@ -1,10 +1,12 @@
 Package: ProfoundData
 Title: A Package for Downloading and Exploring Data from the PROFOUND Database
-Version: 0.2.0
+Version: 0.2.1
+Date: 2019-10-25
 Authors@R: c(person("Ramiro", "Silveyra Gonzalez",  email = "rasilgon@gmail.com", role = c("aut", "cre")),
             person("Christopher", "Reyer", email = "reyer@pik-potsdam.de", role = c("aut")),
             person("Florian", "Hartig", email = "florian.hartig@biom.uni-freiburg.de ", role = c("aut")),
-            person("Friedrich", "Bohn", email = "friedrich.bohn@ufz.de", role = c("ctb"))
+            person("Friedrich", "Bohn", email = "friedrich.bohn@ufz.de", role = c("ctb")),
+            person("Mahnken", "Mats", email = "mahnken@pik-potsdam.de", role = c("ctb"))
             )
 Description: The ProfoundData R-package is designed to work along with the
     PROFOUND database.
@@ -19,7 +21,7 @@ Imports:
     settings (>= 0.2.4),
     zoo (>= 1.7-14),
     tcltk,
-	BayesianTools (>= 0.1.6)
+	  BayesianTools (>= 0.1.6)
 License: GPL-3
 LazyData: true
 Suggests:
@@ -28,6 +30,7 @@ Suggests:
     R.rsp (>= 0.40.0),
     testthat (>= 1.0.2)
 VignetteBuilder: R.rsp
+URL: http://dataservices.gfz-potsdam.de/pik/showshort.php?id=escidoc:2549901
 BugReports: https://github.com/COST-FP1304-PROFOUND/ProfoundData/issues
 RoxygenNote: 6.1.1
 Encoding: UTF-8
