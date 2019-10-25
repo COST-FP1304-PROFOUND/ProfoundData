@@ -37,6 +37,9 @@ PlotSize_Data[PlotSize_Data$site_id == 16,]$size_m2 <- ifelse(is.na(PlotSize_Dat
 
 PlotSize_Data[PlotSize_Data$site_id == 12,]$size_m2 <- ifelse(is.na(PlotSize_Data[PlotSize_Data$site_id == 12,]$size_m2),
                                                               7600, PlotSize_Data[PlotSize_Data$site_id == 12,]$size_m2)
+
+PlotSize_Data <- PlotSize_Data[which(!duplicated(PlotSize_Data)),]
+
 save(PlotSize_Data, file="./RData/PlotSize_Data.RData")
 
 

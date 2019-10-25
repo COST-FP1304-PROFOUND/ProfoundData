@@ -1,8 +1,8 @@
 # @title A function to query data from a DB
 #
-# @description This function performs queries data on DB and returns
-# @param tmp a named list containing TODO
-# @return TODO
+# @description This function queries data on DB and returns the query
+# @param tmp a named list containing needed parameters for executing the query
+# @return tmp an object containing the queried data
 # @keywords ProfoundData
 # @author Ramiro Silveyra Gonzalez
 
