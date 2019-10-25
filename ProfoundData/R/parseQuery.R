@@ -1,6 +1,6 @@
 # @title A function to parse query data from a DB
 #
-# @description TODO
+# @description This function parses a query to the DB and checks if the query is valid
 # @param site a character string providing the name of the site
 # @param dataset a character string providing the name one of the available datasets
 # @return tmp a object containing only needed parameters for executing the query

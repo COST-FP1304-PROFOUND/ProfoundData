@@ -1,6 +1,6 @@
 # @title A function to ensure that the queried variables exist in the DB
 #
-# @description TODO
+# @description This function checks if the queried variables exist in the respective dataset
 # @param dataset a character string providing the name of an available dataset
 # @param variables a character array with the variables to check
 # @return variablesChecked  a character array holding a valid list of variables
