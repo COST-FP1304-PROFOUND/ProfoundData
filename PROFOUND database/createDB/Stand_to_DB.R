@@ -17,8 +17,6 @@ colnamesDummy <- unique(unlist(sapply(Stand_Data, function(x)names(x))))
 columns[!columns %in% colnamesDummy] 
 colnamesDummy[!colnamesDummy %in% columns] 
 
-# Here a check
-#TODO if something missing stop it
 #------------------------------------------------------------------------------#
 #                    CREATE   SQL    TABLE
 #------------------------------------------------------------------------------#

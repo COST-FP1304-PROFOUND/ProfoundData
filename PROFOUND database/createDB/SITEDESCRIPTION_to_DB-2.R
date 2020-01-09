@@ -10,9 +10,6 @@ load("~/ownCloud/PROFOUND_Data/Processed/RData/SiteDescription_Data.RData")
 columns <- c("record_id", "site_id", "description", "reference")
 
 
-
-# Here a check
-#TODO if something missing stop it
 #------------------------------------------------------------------------------#
 #                    CREATE   SQL    TABLE
 #------------------------------------------------------------------------------#

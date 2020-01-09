@@ -11,8 +11,6 @@ columns <- c("record_id", "site_id", "year",
              "species_id", "dbh1_cm", "height1_m" )
 
 
-# Here a check
-#TODO if something missing stop it
 #------------------------------------------------------------------------------#
 #                    CREATE   SQL    TABLE
 #------------------------------------------------------------------------------#

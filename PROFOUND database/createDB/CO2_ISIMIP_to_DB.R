@@ -8,8 +8,6 @@ load("~/ownCloud/PROFOUND_Data/Processed/RData/CO2_ISIMIP_Data.RData")
 # Columns DB
 columns <- c("record_id",  "site_id" , "year","forcingCondition",  "co2_ppm")
 
-# Here a check
-#TODO if something missing stop it
 #------------------------------------------------------------------------------#
 #                    CREATE   SQL    TABLE
 #------------------------------------------------------------------------------#
