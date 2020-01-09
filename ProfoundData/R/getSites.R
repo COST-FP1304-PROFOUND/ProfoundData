@@ -13,7 +13,7 @@
 getsites <- function(site = NULL){
   conn <- try(makeConnection(), T)
   if ('try-error' %in% class(conn)){
-    stop("Invalid database connection", call. = FALSE)
+    stop("Invalid database connection. Please use setDB() to connect to a valid DB", call. = FALSE)
   }
   table <- RSQLite::dbGetQuery(conn, "SELECT * FROM SITES")
   RSQLite::dbDisconnect(conn)

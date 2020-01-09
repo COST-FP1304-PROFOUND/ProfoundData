@@ -30,7 +30,7 @@ browseData <- function(dataset = NULL, site = NULL,  location = NULL, variables 
 
   conn <- try(makeConnection(), T)
   if ('try-error' %in% class(conn)){
-    stop("Invalid database connection")
+    stop("Invalid database connection. Please use setDB() to connect to a valid DB")
   }else{
     RSQLite::dbDisconnect(conn)
   }

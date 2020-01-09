@@ -10,7 +10,7 @@
 getPolicy <- function(dataset, site = NULL){
   conn <- try(makeConnection(), T)
   if ('try-error' %in% class(conn)){
-    stop("Invalid database connection")
+    stop("Invalid database connection. Please use setDB() to connect to a valid DB")
   }
   if(is.null(site)){
     if (!getDatasets(dataset) ){stop("Invalid dataset", call. = FALSE)}
