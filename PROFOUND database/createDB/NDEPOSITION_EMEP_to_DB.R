@@ -17,8 +17,6 @@ site.id <-  Sites$site_id
 names(site.id) <- site
 
 
-# Here a check
-#TODO if something missing stop it
 #------------------------------------------------------------------------------#
 #                    CREATE   SQL    TABLE
 #------------------------------------------------------------------------------#

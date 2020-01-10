@@ -8,8 +8,6 @@ load("~/ownCloud/PROFOUND_Data/Processed/RData/PlotSize_Data.RData")
 # Columns DB
 columns <- c("record_id","site_id", "year", "size_m2")
 
-# Here a check
-#TODO if something missing stop it
 #------------------------------------------------------------------------------#
 #                    CREATE   SQL    TABLE
 #------------------------------------------------------------------------------#

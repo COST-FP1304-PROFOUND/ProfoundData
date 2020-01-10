@@ -15,14 +15,14 @@ print.progressNDEP <- function(df){
   cat(as.character(unique(df$site)));cat("\n")
   cat(as.character(unique(df$forcingCondition))); cat("\n");cat("\n")
 }
-# Here a check
+
 # loadsites
 load("~/ownCloud/PROFOUND_Data/Processed/RData/Sites.RData")
 # get the  locations
 site <- Sites$site2
 site.id <-  Sites$site_id
 names(site.id) <- site
-#TODO if something missing stop it
+
 #------------------------------------------------------------------------------#
 #                    CREATE   SQL    TABLE
 #------------------------------------------------------------------------------#

@@ -9,8 +9,6 @@ load("~/ownCloud/PROFOUND_Data/Processed/RData/METADATA_SOURCE_SITES.RData")
 # Columns DB
 columns <- c("record_id","site_id", "dataset", "source", "reference", "comments" )
 
-# Here a check
-#TODO if something missing stop it
 #------------------------------------------------------------------------------#
 #                    CREATE   SQL    TABLE
 #------------------------------------------------------------------------------#

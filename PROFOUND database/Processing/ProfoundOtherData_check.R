@@ -134,8 +134,6 @@ str(Hyytiala.new$VegetationData)
 ### P: The first sentence tells that tere are individual tree measurements.
 # This is not true!! Now it is
 
-# TODO
-
 ### New structure for Hyytiala
 str(Hyytiala.new)
 Hyytiala.new <- Hyytiala.new$VegetationData

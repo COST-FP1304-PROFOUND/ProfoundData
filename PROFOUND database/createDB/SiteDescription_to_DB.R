@@ -8,8 +8,6 @@ load("~/ownCloud/PROFOUND_Data/Processed/RData/SiteDescription_Data.RData")
 # Columns DB
 columns <- c("IDrecord","site_id", "description", "reference" )
 
-# Here a check
-#TODO if something missing stop it
 #------------------------------------------------------------------------------#
 #                    CREATE   SQL    TABLE
 #------------------------------------------------------------------------------#

@@ -10,8 +10,6 @@ load("~/ownCloud/PROFOUND_Data/Processed/RData/TreeSpecies_Data.RData")
 columns <- c("species_id", "species")
 
 
-# Here a check
-#TODO if something missing stop it
 #------------------------------------------------------------------------------#
 #                    CREATE   SQL    TABLE
 #------------------------------------------------------------------------------#
