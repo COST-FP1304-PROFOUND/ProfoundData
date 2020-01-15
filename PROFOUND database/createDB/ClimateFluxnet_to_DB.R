@@ -16,7 +16,7 @@ names(site.id) <- site
 #------------------------------------------------------------------------------#
 columns <- c("record_id", "site_id", "date", "day", "mo", "year","tmax_degC",
              "tmean_degC", "tmin_degC", "p_mm", "relhum_percent", "airpress_hPa",
-             "rad_Jcm2day", "wind_ms", "tmax_qc", "tmean_qc", "tmin_qc",
+             "rad_Jcm2", "wind_ms", "tmax_qc", "tmean_qc", "tmin_qc",
              "p_qc", "relhum_qc", "airpress_qc", "rad_qc",
              "wind_qc")
 # Load libraries
@@ -45,7 +45,7 @@ dbSendQuery(conn = db,
               p_mm REAL  CHECK(NULL OR p_mm >=0 AND p_mm <= 2000),
               relhum_percent REAL CHECK(NULL OR relhum_percent > 0 AND relhum_percent <= 100),
               airpress_hPa REAL CHECK(NULL OR airpress_hPa > 500 AND airpress_hPa < 1200),
-              rad_Jcm2day REAL CHECK(NULL OR rad_Jcm2day >= 0 AND rad_Jcm2day < 4320),
+              rad_Jcm2 REAL CHECK(NULL OR rad_Jcm2 >= 0 AND rad_Jcm2 < 4320),
               wind_ms REAL CHECK(NULL OR wind_ms >= 0 AND wind_ms <= 120),
               tmax_qc REAL  CHECK(NULL OR tmax_qc >= 0 AND tmax_qc <= 1),
               tmean_qc REAL CHECK(NULL OR tmean_qc >= 0 AND tmean_qc <= 1),

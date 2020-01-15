@@ -18,7 +18,7 @@ dbGetQuery(db, "CREATE VIEW CLIMATE_ISIMIPFT AS
            CLIMATE_ISIMIPFT_master.p_mm,
            CLIMATE_ISIMIPFT_master.relhum_percent,
            CLIMATE_ISIMIPFT_master.airpress_hPa,
-           CLIMATE_ISIMIPFT_master.rad_Jcm2day,
+           CLIMATE_ISIMIPFT_master.rad_Jcm2,
            CLIMATE_ISIMIPFT_master.wind_ms
            FROM CLIMATE_ISIMIPFT_master INNER JOIN SITESID_master ON CLIMATE_ISIMIPFT_master.site_id = SITESID_master.site_id"
 )
@@ -46,7 +46,7 @@ for (j in 1:length(ids[, 1])){
                         "CLIMATE_ISIMIPFT_master.p_mm, ",
                         "CLIMATE_ISIMIPFT_master.relhum_percent, ",
                         "CLIMATE_ISIMIPFT_master.airpress_hPa, ",
-                        "CLIMATE_ISIMIPFT_master.rad_Jcm2day, ",
+                        "CLIMATE_ISIMIPFT_master.rad_Jcm2, ",
                         "CLIMATE_ISIMIPFT_master.wind_ms ",
                         "FROM CLIMATE_ISIMIPFT_master INNER JOIN SITESID_master ON CLIMATE_ISIMIPFT_master.site_id = SITESID_master.site_id  WHERE CLIMATE_ISIMIPFT_master.site_id = '",
                         ids[j,], "'", sep = "") )
@@ -76,7 +76,7 @@ for (i in 1:length(forcingDataset)){
                         "CLIMATE_ISIMIPFT_master.p_mm, ",
                         "CLIMATE_ISIMIPFT_master.relhum_percent, ",
                         "CLIMATE_ISIMIPFT_master.airpress_hPa, ",
-                        "CLIMATE_ISIMIPFT_master.rad_Jcm2day, ",
+                        "CLIMATE_ISIMIPFT_master.rad_Jcm2, ",
                         "CLIMATE_ISIMIPFT_master.wind_ms ",
                         "FROM CLIMATE_ISIMIPFT_master INNER JOIN SITESID_master ON CLIMATE_ISIMIPFT_master.site_id = SITESID_master.site_id   WHERE CLIMATE_ISIMIPFT_master.forcingDataset = '",
                         forcingDataset[i], "'", sep = "")  )
@@ -111,7 +111,7 @@ for (i in 1:length(forcingDataset)){
                           "CLIMATE_ISIMIPFT_master.p_mm, ",
                           "CLIMATE_ISIMIPFT_master.relhum_percent, ",
                           "CLIMATE_ISIMIPFT_master.airpress_hPa, ",
-                          "CLIMATE_ISIMIPFT_master.rad_Jcm2day, ",
+                          "CLIMATE_ISIMIPFT_master.rad_Jcm2, ",
                           "CLIMATE_ISIMIPFT_master.wind_ms ",
                           "FROM CLIMATE_ISIMIPFT_master INNER JOIN SITESID_master ON CLIMATE_ISIMIPFT_master.site_id = SITESID_master.site_id  WHERE CLIMATE_ISIMIPFT_master.forcingDataset = '",
                           forcingDataset[i], "' AND CLIMATE_ISIMIPFT_master.site_id = '", ids[j,], "'", sep = "") )
@@ -147,7 +147,7 @@ for (i in 1:length(forcingDataset)){
                           "CLIMATE_ISIMIPFT_master.p_mm, ",
                           "CLIMATE_ISIMIPFT_master.relhum_percent, ",
                           "CLIMATE_ISIMIPFT_master.airpress_hPa, ",
-                          "CLIMATE_ISIMIPFT_master.rad_Jcm2day, ",
+                          "CLIMATE_ISIMIPFT_master.rad_Jcm2, ",
                           "CLIMATE_ISIMIPFT_master.wind_ms ",
                           "FROM CLIMATE_ISIMIPFT_master INNER JOIN SITESID_master ON CLIMATE_ISIMIPFT_master.site_id = SITESID_master.site_id  WHERE CLIMATE_ISIMIPFT_master.forcingDataset = '",
                           forcingDataset[i], "' AND CLIMATE_ISIMIPFT_master.forcingCondition = '", forcingCondition[k], "'", sep = "") )
@@ -169,7 +169,7 @@ for (i in 1:length(forcingDataset)){
                             "CLIMATE_ISIMIPFT_master.p_mm, ",
                             "CLIMATE_ISIMIPFT_master.relhum_percent, ",
                             "CLIMATE_ISIMIPFT_master.airpress_hPa, ",
-                            "CLIMATE_ISIMIPFT_master.rad_Jcm2day, ",
+                            "CLIMATE_ISIMIPFT_master.rad_Jcm2, ",
                             "CLIMATE_ISIMIPFT_master.wind_ms ",
                             "FROM CLIMATE_ISIMIPFT_master INNER JOIN SITESID_master ON CLIMATE_ISIMIPFT_master.site_id = SITESID_master.site_id  WHERE CLIMATE_ISIMIPFT_master.forcingDataset = '",
                             forcingDataset[i], "' AND CLIMATE_ISIMIPFT_master.forcingCondition = '", forcingCondition[k], "' AND CLIMATE_ISIMIPFT_master.site_id = '", ids[j,], "'", sep = "") )

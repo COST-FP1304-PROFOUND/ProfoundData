@@ -24,7 +24,7 @@ for (i in 1:length(ids[,1])){
                          "CLIMATEFLUXNET_master.p_mm, ",
                          "CLIMATEFLUXNET_master.relhum_percent, ",
                          "CLIMATEFLUXNET_master.airpress_hPa, ",
-                         "CLIMATEFLUXNET_master.rad_Jcm2day, ",
+                         "CLIMATEFLUXNET_master.rad_Jcm2, ",
                          "CLIMATEFLUXNET_master.wind_ms, ",
                          "CLIMATEFLUXNET_master.tmax_qc, ",
                          "CLIMATEFLUXNET_master.tmean_qc, ",

@@ -21,7 +21,7 @@ forcingDatasets.new <- c("GSWP3", "WATCH", "WATCHWFDEI", "PRINCETON")
 
 
 variables.raw <- c("rhs", "pr", "ps",  "rsds", "wind", "tas", "tasmax", "tasmin")
-variables.new <- c("relhum_percent", "p_mm", "airpress_hPa", "rad_Jcm2day", "wind_ms",
+variables.new <- c("relhum_percent", "p_mm", "airpress_hPa", "rad_Jcm2", "wind_ms",
                    "tmean_degC", "tmax_degC", "tmin_degC")
 sites.raw <- c("Bily_Kriz", #"Brasschaat", 
                "Collelongo", #"Espirra", "Hesse", 
