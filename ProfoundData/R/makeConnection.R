@@ -14,7 +14,13 @@ makeConnection <- function() {
     conn <- try(RSQLite::dbConnect(drv = dbConnection()$driver,
                                    dbname = dbConnection()$dbname), TRUE)
     if ('try-error' %in% class(conn)){
-      stop("Invalid database connection. Please use setDB() to connect to a valid DB")
+      message("Invalid database connection. Please select a valid DB")
+      setDB()
+    }
+    conn <- try(RSQLite::dbConnect(drv = dbConnection()$driver,
+                                   dbname = dbConnection()$dbname), TRUE)
+    if ('try-error' %in% class(conn)){
+      stop("Invalid database connection. Please us setDB() to connect to a valid DB")
     }
 
     return(conn)
