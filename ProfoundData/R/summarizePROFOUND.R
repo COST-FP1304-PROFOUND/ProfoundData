@@ -11,10 +11,10 @@ summarizePROFOUND.CLIMATE <- function(data, by = "total"){
     p_mm <- ifelse("p_mm" %in% colnames(subData),sum(subData$p_mm, na.rm = T),NA)
     relhum_percent <- ifelse("relhum_percent" %in% colnames(subData), mean(subData$relhum_percent, na.rm = T),NA)
     airpress_hPa <- ifelse("airpress_hPa" %in% colnames(subData), mean(subData$airpress_hPa, na.rm = T),NA)
-    rad_Jcm2day <-  ifelse("rad_Jcm2day" %in% colnames(subData), sum(subData$rad_Jcm2day, na.rm = T),NA)
+    rad_Jcm2 <-  ifelse("rad_Jcm2" %in% colnames(subData), sum(subData$rad_Jcm2, na.rm = T),NA)
     wind_ms <-  ifelse("wind_ms" %in% colnames(subData), mean(subData$wind_ms, na.rm = T),NA)
     subSummary <- cbind(site, site_id, year, tmax_degC, tmean_degC, tmin_degC, p_mm,
-                        relhum_percent, airpress_hPa, rad_Jcm2day, wind_ms)
+                        relhum_percent, airpress_hPa, rad_Jcm2, wind_ms)
     return(subSummary)
   }
   # Summarize
@@ -42,7 +42,7 @@ summarizePROFOUND.CLIMATE <- function(data, by = "total"){
 
 summarizePROFOUND.ISIMIP <- function(data, by ="total"){
   #by <- "total"
-  variables <- c("year", "tmax_degC","tmean_degC","tmin_degC","p_mm","relhum_percent","airpress_hPa","rad_Jcm2day",
+  variables <- c("year", "tmax_degC","tmean_degC","tmin_degC","p_mm","relhum_percent","airpress_hPa","rad_Jcm2",
                  "wind_ms")
   # or do a long table
   if ("forcingDataset" %in% names(data)){

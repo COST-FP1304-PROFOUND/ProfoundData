@@ -25,7 +25,7 @@
 #' \itemize{
 #'   \item Climatic datasets
 #'   \itemize{
-#'    \item  p_mm and rad_Jcm2day are total yearly values
+#'    \item  p_mm and rad_Jcm2 are total yearly values
 #'    \item  tmax_degC,  tmean_degC, tmin_degC, relhum_percent, airpress_hPa  and wind_ms are mean yearly values
 #'    }
 #'   \item TREE dataset
