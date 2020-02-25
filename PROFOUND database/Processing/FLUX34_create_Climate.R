@@ -65,7 +65,7 @@ Hyytiala.meteo.new<- ddply(Hyytiala.meteo, .(Month, Day, Year), transform,
                            p_mm = sum(Precipitation_mm_includes_snow, na.rm=T),
                            relhum_percent = mean(Relative_humidity, na.rm=T),
                            airpress_hPA = mean(Atmospheric_pressure_hPa, na.rm=T),
-                           rad_Jcm2day = sum(Global_shortwave_radiation_Wm2*(30*60)/10000, na.rm=T),
+                           rad_Jcm2 = sum(Global_shortwave_radiation_Wm2*(30*60)/10000, na.rm=T),
                            wind_ms = mean(Wind_speed_at_34m_ms, na.rm=T),
                            #
                            tmax_qf = qf_percent(Air_temperature_quality_flag_0measured_1gapfilled),
@@ -84,7 +84,7 @@ Hyytiala.meteo.new <-subset(Hyytiala.meteo.new, !duplicated(Date))
 
 
 variables <- c("tmean_degC", "tmax_degC", "tmin_degC","p_mm","relhum_percent",
-               "rad_Jcm2day", "wind_ms", "airpress_hPA", "tmax_qf","tmin_qf",
+               "rad_Jcm2", "wind_ms", "airpress_hPA", "tmax_qf","tmin_qf",
                "tmean_qf",
                "relhum_qf")
 for (j in 1:length(variables)){
@@ -144,7 +144,7 @@ Soro.meteo.new<- ddply(Soro.meteo, .(Month, Day, Year), transform,
                        tmin_degC=min(Ta_f, na.rm=T),
                        p_mm = sum(Precip, na.rm=T),
                        relhum_percent = mean(Rh, na.rm=T),
-                       rad_Jcm2day = sum(Rg_f*(30*60)/10000, na.rm=T),                       
+                       rad_Jcm2 = sum(Rg_f*(30*60)/10000, na.rm=T),                       
                        wind_ms = mean(WS, na.rm=T),
                        #
                        tmax_qf = qf_percent(Ta_fqc),
@@ -162,7 +162,7 @@ Soro.meteo.new <-subset(Soro.meteo.new, !duplicated(Date))
 
 
 variables <- c("tmean_degC", "tmax_degC", "tmin_degC","p_mm","relhum_percent",
-               "rad_Jcm2day", "wind_ms", "tmax_qf","tmin_qf", "tmean_qf",
+               "rad_Jcm2", "wind_ms", "tmax_qf","tmin_qf", "tmean_qf",
                "rad_qf")
 for (j in 1:length(variables)){
   Soro.meteo.new[[variables[j]]] <- ifelse(is.infinite(Soro.meteo.new[[variables[j]]]),
@@ -219,7 +219,7 @@ LeBray.meteo.new<- ddply(LeBray.meteo, .(Month, Day, Year), transform,
                          tmin_degC=min(Ta_f, na.rm=T),
                          p_mm = sum(Precip, na.rm=T),
                          relhum_percent = mean(Rh, na.rm=T),
-                         rad_Jcm2day = sum(Rg_f*(30*60)/10000, na.rm=T),
+                         rad_Jcm2 = sum(Rg_f*(30*60)/10000, na.rm=T),
                          wind_ms = mean(WS, na.rm=T),
                          #
                          tmax_qf = qf_percent(Ta_fqc),
@@ -238,7 +238,7 @@ LeBray.meteo.new <-subset(LeBray.meteo.new, !duplicated(Date))
 
 
 variables <- c("tmean_degC", "tmax_degC", "tmin_degC","p_mm","relhum_percent",
-               "rad_Jcm2day", "wind_ms", "tmax_qf","tmin_qf", "tmean_qf",
+               "rad_Jcm2", "wind_ms", "tmax_qf","tmin_qf", "tmean_qf",
                "rad_qf")
 for (j in 1:length(variables)){
   LeBray.meteo.new[[variables[j]]] <- ifelse(is.infinite(LeBray.meteo.new[[variables[j]]]),
@@ -292,7 +292,7 @@ Puechabon.meteo.new<- ddply(Puechabon.meteo, .(Month, Day, Year), transform,
                             tmin_degC=min(Ta_f, na.rm=T),
                             p_mm = sum(Precip, na.rm=T),
                             relhum_percent = mean(Rh, na.rm=T),
-                            rad_Jcm2day = sum(Rg_f*(30*60)/10000, na.rm=T),
+                            rad_Jcm2 = sum(Rg_f*(30*60)/10000, na.rm=T),
                             wind_ms = mean(WS, na.rm=T),
                             tmax_qf = qf_percent(Ta_fqc),
                             tmin_qf =   qf_percent(Ta_fqc),
@@ -309,7 +309,7 @@ Puechabon.meteo.new <-subset(Puechabon.meteo.new, !duplicated(Date))
 
 
 variables <- c("tmean_degC", "tmax_degC", "tmin_degC","p_mm","relhum_percent",
-               "rad_Jcm2day", "wind_ms", "tmax_qf","tmin_qf", "tmean_qf",
+               "rad_Jcm2", "wind_ms", "tmax_qf","tmin_qf", "tmean_qf",
                "rad_qf")
 for (j in 1:length(variables)){
   Puechabon.meteo.new[[variables[j]]] <- ifelse(is.infinite(Puechabon.meteo.new[[variables[j]]]),

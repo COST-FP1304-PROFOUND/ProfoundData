@@ -23,7 +23,7 @@ forcingConditions.new <- c("historical", "piControl", "rcp2p6","rcp4p5", "rcp6p0
 
 
 variables.raw <- c("hurs", "pr", "ps",  "rsds", "sfcWind", "tas", "tasmax", "tasmin")
-variables.new <- c("relhum_percent", "p_mm", "airpress_hPa", "rad_Jcm2day", "wind_ms",
+variables.new <- c("relhum_percent", "p_mm", "airpress_hPa", "rad_Jcm2", "wind_ms",
                    "tmean_degC", "tmax_degC", "tmin_degC")
 names(variables.new) <- variables.raw
 sites.raw <-c("BilyKriz", "Brasschaat", "Collelongo", 
@@ -67,7 +67,7 @@ write.ISIMIP2B.climate <- function(suffix, outName, forcingDataset, forcingCondi
   }else{
     climate$airpress_hPa <- NA
   }
-  climate$rad_Jcm2day <-   climate$rad_Jcm2day * (86400 / 10000)  #W m-2
+  climate$rad_Jcm2 <-   climate$rad_Jcm2 * (86400 / 10000)  #W m-2
   climate$tmean_degC <- climate$tmean_degC - 273.15 
   climate$tmax_degC <- climate$tmax_degC - 273.15 
   climate$tmin_degC <- climate$tmin_degC - 273.15 

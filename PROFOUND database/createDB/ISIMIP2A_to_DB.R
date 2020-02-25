@@ -54,7 +54,7 @@ dbSendQuery(conn = db,
         p_mm REAL  CHECK(NULL OR p_mm >=0 AND p_mm <= 2000),
         relhum_percent REAL CHECK(NULL OR relhum_percent > 0 AND relhum_percent <= 100),
         airpress_hPa REAL CHECK(NULL OR airpress_hPa > 500 AND airpress_hPa < 1200),
-        rad_Jcm2day REAL CHECK(NULL OR rad_Jcm2day >= 0 AND rad_Jcm2day < 4320),
+        rad_Jcm2 REAL CHECK(NULL OR rad_Jcm2 >= 0 AND rad_Jcm2 < 4320),
         wind_ms REAL CHECK(NULL OR wind_ms >= 0 AND wind_ms <= 120),
         PRIMARY KEY (record_id),
         FOREIGN KEY (site_id) REFERENCES SITESID_master(site_id)
@@ -75,7 +75,7 @@ dbDisconnect(db)
 #------------------------------------------------------------------------------#
 columns <- c("record_id", "site_id", "date", "forcingDataset","day", "mo",
              "year","tmax_degC","tmean_degC", "tmin_degC", "p_mm", "relhum_percent",
-             "airpress_hPa", "rad_Jcm2day", "wind_ms")
+             "airpress_hPa", "rad_Jcm2", "wind_ms")
 columns.master[!columns.master %in% columns ]
 
 id <- 0

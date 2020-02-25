@@ -22,7 +22,7 @@ forcingConditions.raw <- c("historical", "rcp2p6", "rcp4p5", "rcp6p0","rcp8p5" )
 forcingConditions.new <-forcingConditions.raw 
 
 variables.raw <- c("rhs", "pr", "ps",  "rsds", "wind", "tas", "tasmax", "tasmin")
-variables.new <- c("relhum_percent", "p_mm", "airpress_hPa", "rad_Jcm2day", "wind_ms",
+variables.new <- c("relhum_percent", "p_mm", "airpress_hPa", "rad_Jcm2", "wind_ms",
                    "tmean_degC", "tmax_degC", "tmin_degC")
 sites.raw <- c("Bily_Kriz", "Brasschaat", "Collelongo", "Espirra", "Hesse", 
                    "Hyytiälä", "Kroof", "Le_Bray", "Peitz", "Puechabon", "Solling",
