@@ -48,7 +48,7 @@ setDB <- function(db_name = NULL){
 }
 
 
-dbConnection <- settings::options_manager(dbname="somename", driver=RSQLite::SQLite())
+dbConnection <- settings::options_manager(dbname=NA, driver=RSQLite::SQLite())
 
 
 #' Downloads the PROFOUND database 
