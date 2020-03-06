@@ -93,7 +93,7 @@ df <- df[df$source != "FLUXNET",]
 df <- df[, !colnames(df) %in% c("source", "comments")]
 rownames(df) <- NULL
 
-maskVariables <- c( "site_id", "date","year", "mo","day","airpress_hPa","p_mm", "rad_Jcm2", "record_id", "relhum_percent", "tmax_degC", "tmean_degC","tmin_degC", "wind_ms")
+maskVariables <- c( "site_id", "date","year", "mo","day","airpress_hPa","p_mm", "rad_Jcm2day", "record_id", "relhum_percent", "tmax_degC", "tmean_degC","tmin_degC", "wind_ms")
 ``` 
 
  
