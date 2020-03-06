@@ -4,9 +4,16 @@
 \alias{summarizeData}
 \title{A function to summarize data from the database}
 \usage{
-summarizeData(dataset, site, location = NULL, forcingDataset = NULL,
-  forcingCondition = NULL, by = "year", period = NULL,
-  mode = "data")
+summarizeData(
+  dataset,
+  site,
+  location = NULL,
+  forcingDataset = NULL,
+  forcingCondition = NULL,
+  by = "year",
+  period = NULL,
+  mode = "data"
+)
 }
 \arguments{
 \item{dataset}{a character string providing the name of a climatic dataset

@@ -4,10 +4,21 @@
 \alias{plotData}
 \title{A function to plot data}
 \usage{
-plotData(dataset, site, location = NULL, forcingDataset = NULL,
-  forcingCondition = NULL, species = NULL, variables = NULL,
-  period = NULL, aggregated = NULL, FUN = mean,
-  automaticPanels = T, quality = NULL, decreasing = TRUE)
+plotData(
+  dataset,
+  site,
+  location = NULL,
+  forcingDataset = NULL,
+  forcingCondition = NULL,
+  species = NULL,
+  variables = NULL,
+  period = NULL,
+  aggregated = NULL,
+  FUN = mean,
+  automaticPanels = T,
+  quality = NULL,
+  decreasing = TRUE
+)
 }
 \arguments{
 \item{dataset}{a character string providing the name of a dataset}

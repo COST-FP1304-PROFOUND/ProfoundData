@@ -4,8 +4,13 @@
 \alias{browseData}
 \title{A browse database function}
 \usage{
-browseData(dataset = NULL, site = NULL, location = NULL,
-  variables = FALSE, collapse = TRUE)
+browseData(
+  dataset = NULL,
+  site = NULL,
+  location = NULL,
+  variables = FALSE,
+  collapse = TRUE
+)
 }
 \arguments{
 \item{dataset}{a character string providing the name of the dataset (optional).}

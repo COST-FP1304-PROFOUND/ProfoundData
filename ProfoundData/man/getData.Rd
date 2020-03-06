@@ -4,10 +4,19 @@
 \alias{getData}
 \title{A function to extract data}
 \usage{
-getData(dataset, site = NULL, location = NULL, forcingDataset = NULL,
-  forcingCondition = NULL, species = NULL, variables = NULL,
-  period = NULL, collapse = TRUE, quality = NULL,
-  decreasing = TRUE)
+getData(
+  dataset,
+  site = NULL,
+  location = NULL,
+  forcingDataset = NULL,
+  forcingCondition = NULL,
+  species = NULL,
+  variables = NULL,
+  period = NULL,
+  collapse = TRUE,
+  quality = NULL,
+  decreasing = TRUE
+)
 }
 \arguments{
 \item{dataset}{a character string providing the name of a dataset.}

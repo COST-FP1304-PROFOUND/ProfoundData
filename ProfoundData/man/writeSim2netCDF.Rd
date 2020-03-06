@@ -4,11 +4,21 @@
 \alias{writeSim2netCDF}
 \title{A function to write netCDF-files}
 \usage{
-writeSim2netCDF(df, comment1 = NA, comment2 = NA,
-  institution = "PIK", contact = "isi-mip@pik-potsdam.de",
-  modelname = "formind", GCM = "hadgem", RCP = "rcp85",
-  ses = "nat", ss = "co2const", region = "Kroof", start = "1980",
-  folder = "ISI-MIP")
+writeSim2netCDF(
+  df,
+  comment1 = NA,
+  comment2 = NA,
+  institution = "PIK",
+  contact = "isi-mip@pik-potsdam.de",
+  modelname = "formind",
+  GCM = "hadgem",
+  RCP = "rcp85",
+  ses = "nat",
+  ss = "co2const",
+  region = "Kroof",
+  start = "1980",
+  folder = "ISI-MIP"
+)
 }
 \arguments{
 \item{df}{A data.frame containing in the first three columns longitude latitude
