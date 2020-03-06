@@ -21,7 +21,7 @@ Imports:
     settings (>= 0.2.4),
     zoo (>= 1.7-14),
     tcltk,
-	  BayesianTools (>= 0.1.6)
+	BayesianTools (>= 0.1.6)
 License: GPL-3
 LazyData: true
 Suggests:
@@ -30,7 +30,7 @@ Suggests:
     R.rsp (>= 0.40.0),
     testthat (>= 1.0.2)
 VignetteBuilder: R.rsp
-URL: http://dataservices.gfz-potsdam.de/pik/showshort.php?id=escidoc:2549901
+URL: https://cost-fp1304-profound.github.io/ProfoundData/
 BugReports: https://github.com/COST-FP1304-PROFOUND/ProfoundData/issues
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.2.9000
 Encoding: UTF-8
