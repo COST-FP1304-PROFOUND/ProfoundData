@@ -1,3 +1,4 @@
+
 # Load libraries
 library(sqldf)
 library(DBI)
@@ -27,7 +28,7 @@ dbGetQuery(db, "CREATE VIEW CLIMATE_ISIMIP2A AS
            CLIMATE_ISIMIP2A_master.p_mm,
            CLIMATE_ISIMIP2A_master.relhum_percent,
            CLIMATE_ISIMIP2A_master.airpress_hPa,
-           CLIMATE_ISIMIP2A_master.rad_Jcm2day,
+           CLIMATE_ISIMIP2A_master.rad_Jcm2,
            CLIMATE_ISIMIP2A_master.wind_ms
            FROM CLIMATE_ISIMIP2A_master INNER JOIN SITESID_master ON CLIMATE_ISIMIP2A_master.site_id = SITESID_master.site_id"
 )
@@ -54,7 +55,7 @@ for (j in 1:length(ids[, 1])){
                         "CLIMATE_ISIMIP2A_master.p_mm, ",
                         "CLIMATE_ISIMIP2A_master.relhum_percent, ",
                         "CLIMATE_ISIMIP2A_master.airpress_hPa, ",
-                        "CLIMATE_ISIMIP2A_master.rad_Jcm2day, ",
+                        "CLIMATE_ISIMIP2A_master.rad_Jcm2, ",
                         "CLIMATE_ISIMIP2A_master.wind_ms ",
                         "FROM CLIMATE_ISIMIP2A_master INNER JOIN SITESID_master ON CLIMATE_ISIMIP2A_master.site_id = SITESID_master.site_id  WHERE CLIMATE_ISIMIP2A_master.site_id = '",
                         ids[j,], "'", sep = "") )
@@ -86,7 +87,7 @@ for (i in 1:length(forcingDataset)){
                         "CLIMATE_ISIMIP2A_master.p_mm, ",
                         "CLIMATE_ISIMIP2A_master.relhum_percent, ",
                         "CLIMATE_ISIMIP2A_master.airpress_hPa, ",
-                        "CLIMATE_ISIMIP2A_master.rad_Jcm2day, ",
+                        "CLIMATE_ISIMIP2A_master.rad_Jcm2, ",
                         "CLIMATE_ISIMIP2A_master.wind_ms ",
                         "FROM CLIMATE_ISIMIP2A_master INNER JOIN SITESID_master ON CLIMATE_ISIMIP2A_master.site_id = SITESID_master.site_id   WHERE CLIMATE_ISIMIP2A_master.forcingDataset = '",
                         forcingDataset[i], "'", sep = "")  )
@@ -119,7 +120,7 @@ for (i in 1:length(forcingDataset)){
                           "CLIMATE_ISIMIP2A_master.p_mm, ",
                           "CLIMATE_ISIMIP2A_master.relhum_percent, ",
                           "CLIMATE_ISIMIP2A_master.airpress_hPa, ",
-                          "CLIMATE_ISIMIP2A_master.rad_Jcm2day, ",
+                          "CLIMATE_ISIMIP2A_master.rad_Jcm2, ",
                           "CLIMATE_ISIMIP2A_master.wind_ms ",
                           "FROM CLIMATE_ISIMIP2A_master INNER JOIN SITESID_master ON CLIMATE_ISIMIP2A_master.site_id = SITESID_master.site_id  WHERE CLIMATE_ISIMIP2A_master.forcingDataset = '",
                           forcingDataset[i], "' AND CLIMATE_ISIMIP2A_master.site_id = '", ids[j,], "'", sep = "") )

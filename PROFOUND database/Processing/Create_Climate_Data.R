@@ -42,7 +42,7 @@ summary(df)
 
 
 names(df)<-c("day", "mo", "year", "tmax_degC", "tmean_degC", "tmin_degC",  "p_mm",
-             "relhum_percent","airpress_hPa", "rad_Jcm2day",  "wind_ms")
+             "relhum_percent","airpress_hPa", "rad_Jcm2",  "wind_ms")
 df$date <- as.Date(strptime(paste(df$year, df$mo, df$day,sep=""), format="%Y%m%d%"))
 Climate_Data$Kroof <-df
 # Peitz
@@ -52,7 +52,7 @@ summary(ProfoundOtherData.new$Peitz$ClimateData)
 Climate_Data$Peitz <-ProfoundOtherData.new$Peitz$ClimateData[,2:ncol(ProfoundOtherData.new$Peitz$ClimateData)]
 names(Climate_Data$Peitz)
 names(Climate_Data$Peitz) <- c("day", "mo", "year", "tmax_degC", "tmean_degC", "tmin_degC",
-                               "p_mm", "relhum_percent","airpress_hPa", "rad_Jcm2day",
+                               "p_mm", "relhum_percent","airpress_hPa", "rad_Jcm2",
                                "wind_ms")
 Climate_Data$Peitz$date <- as.Date(strptime(paste(Climate_Data$Peitz$year,
                                                   Climate_Data$Peitz$mo,
@@ -65,10 +65,10 @@ Climate_Data$Solling_304[,] <- lapply(Climate_Data$Solling_304[,], as.numeric)
 
 names(Climate_Data$Solling_304)
 names(Climate_Data$Solling_304) <- c("tmin_degC", "tmax_degC", "tmean_degC",
-                                      "p_mm", "relhum_percent", "rad_Jcm2day",
+                                      "p_mm", "relhum_percent", "rad_Jcm2",
                                      "wind_ms", "day", "mo", "year")
 
-Climate_Data$Solling_304$rad_Jcm2day <- Climate_Data$Solling_304$rad_Jcm2day * (60*60*24)/10000
+Climate_Data$Solling_304$rad_Jcm2 <- Climate_Data$Solling_304$rad_Jcm2 * (60*60*24)/10000
 Climate_Data$Solling_304$date <- as.Date(strptime(paste(Climate_Data$Solling_304$year, 
                                                         Climate_Data$Solling_304$mo,
                                                         Climate_Data$Solling_304$day,sep=""), format="%Y%m%d%"))
@@ -96,7 +96,7 @@ names(Site.id) <- Site
 # variables to round
 
 variables.round <- c("tmax_degC","tmean_degC", "tmin_degC", "p_mm", "relhum_percent", "airpress_hPa",
-             "rad_Jcm2day", "wind_ms")
+             "rad_Jcm2", "wind_ms")
 
 # Homogenize variables and add Site names and ID
 for (i in  1:length(Climate_Data)){

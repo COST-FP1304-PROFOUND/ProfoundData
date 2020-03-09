@@ -91,7 +91,7 @@ for (i in 1:length(FLUXNET_Climate)){
                                                         FLUXNET_Climate[[i]][['tmin_degC']])
 #  FLUXNET_Climate[[i]][['relhum_qc']] <- FLUXNET_Climate[[i]][['vpd_qc']] # This is done above
   
-  FLUXNET_Climate[[i]][['rad_Jcm2day']]   <-   FLUXNET_Climate[[i]][['shortwawe_Jcm2day']]
+  FLUXNET_Climate[[i]][['rad_Jcm2']]   <-   FLUXNET_Climate[[i]][['shortwawe_Jcm2']]
   FLUXNET_Climate[[i]][['rad_qc']]   <-   FLUXNET_Climate[[i]][['shortwawe_qc']] 
 }
 
