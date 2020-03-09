@@ -42,6 +42,12 @@ names(df) <-  c("year", "species_id", "site_id", "dbhArith_cm", "ba_m2ha", "age"
                 "stemBiomass_kgha", "rootBiomass_kgha")
 df$stem <- NULL
 
+# biomass stock variables from t/ha into kg/ha because raw data values are in t/ha 
+df$foliageBiomass_kgha <- df$foliageBiomass_kgha * 1000
+df$branchesBiomass_kgha <- df$branchesBiomass_kgha * 1000
+df$stemBiomass_kgha <- df$stemBiomass_kgha * 1000
+df$rootBiomass_kgha <- df$rootBiomass_kgha * 1000
+
 #df <- dropDuplicates(df, Tree_Data$BilyKriz)
 #df <- df[ df$year %in% unique(Tree_Data$BilyKriz$year), ]
 Stand_Data$BilyKriz <- df
