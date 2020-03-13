@@ -56,7 +56,7 @@
 #'   \item \code{\link{writeSim2netCDF}} To write netCDF-files
 #' }
 #'
-#' @author Except where indicated otherwise, the functions in this package were written by Ramiro Silveyra Gonzalez, Christopher Reyer and Florian Hartig.
+#' @author Except where indicated otherwise, the functions in this package were written by Ramiro Silveyra Gonzalez, Christopher Reyer, Florian Hartig and Mahnken. Ramiro Silveyra Gonzalez was the main developer of the package. Florian Hartig is currently the maintainer. 
 #' @keywords package
 #' @keywords Profound DB
 #' @import methods sqldf RSQLite DBI stats utils graphics RNetCDF settings

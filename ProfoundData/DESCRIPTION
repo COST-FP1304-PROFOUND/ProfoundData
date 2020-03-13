@@ -1,15 +1,19 @@
 Package: ProfoundData
-Title: A Package for Downloading and Exploring Data from the PROFOUND Database
+Title: A Package for downloading and exploring data from the PROFOUND database
 Version: 0.2.1
-Date: 2019-10-25
-Authors@R: c(person("Ramiro", "Silveyra Gonzalez",  email = "rasilgon@gmail.com", role = c("aut", "cre")),
+Date: 2020-03-08
+Authors@R: c(person("Ramiro", "Silveyra Gonzalez",  email = "rasilgon@gmail.com", role = c("aut")),
             person("Christopher", "Reyer", email = "reyer@pik-potsdam.de", role = c("aut")),
-            person("Florian", "Hartig", email = "florian.hartig@biom.uni-freiburg.de ", role = c("aut")),
+            person("Florian", "Hartig", email = "florian.hartig@biologie.uni-regensburg.de", role = c("aut", "cre"), comment=c(ORCID="0000-0002-6255-9059")),
             person("Friedrich", "Bohn", email = "friedrich.bohn@ufz.de", role = c("ctb")),
             person("Mahnken", "Mats", email = "mahnken@pik-potsdam.de", role = c("ctb"))
             )
-Description: The ProfoundData R-package is designed to work along with the
-    PROFOUND database.
+Description: The ProfoundData R-package is provides an R interface for the PROFOUND database.
+    The PROFOUND database (PROFOUND DB) brings together data from a wide range of data sources 
+    to evaluate vegetation models and simulate climate impacts at the forest stand scale. It includes
+    9 forest sites across Europe, and provides for them a site description as well as soil, climate, 
+    CO2, Nitrogen deposition, tree-level, forest stand-level and remote sensing data. Moreover, 
+    for a subset of 5 sites, also time series of carbon fluxes, energy balances and soil water are available. 
 Depends:
     R (>= 3.1.0)
 Imports:
@@ -20,15 +24,15 @@ Imports:
     RNetCDF (>= 1.9-1),
     settings (>= 0.2.4),
     zoo (>= 1.7-14),
-    tcltk,
-	BayesianTools (>= 0.1.6)
+    tcltk
 License: GPL-3
 LazyData: true
 Suggests:
     knitr (>= 1.15.1),
     rmarkdown (>= 1.3),
     R.rsp (>= 0.40.0),
-    testthat (>= 1.0.2)
+    testthat (>= 1.0.2),
+    BayesianTools (>= 0.1.6)
 VignetteBuilder: R.rsp
 URL: https://cost-fp1304-profound.github.io/ProfoundData/
 BugReports: https://github.com/COST-FP1304-PROFOUND/ProfoundData/issues
