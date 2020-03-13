@@ -31,7 +31,7 @@ test_that(paste( dataset, " : subset a complete period"), {
     skip_on_travis()
     skip_on_cran()
     # Please put here the path to the DB on your personal computer!!
-    setDB("/home/ramiro/ownCloud/PROFOUND_Data/v0.1.13/ProfoundData.sqlite")
+    setDB(databaseLocation)
     #  cat("\n");cat(datasets[i]); cat("\n");cat(rep("-", 30), collpase="") ;cat("\n")
     suppressMessages(sites <- browseData(dataset = dataset))
     site <- sample(sites$site, 1)
@@ -54,7 +54,7 @@ test_that(paste( dataset, " : subset period only with start"), {
     skip_on_travis()
     skip_on_cran()
     # Please put here the path to the DB on your personal computer!!
-    setDB("/home/ramiro/ownCloud/PROFOUND_Data/v0.1.13/ProfoundData.sqlite")
+    setDB(databaseLocation)
     #  cat("\n");cat(datasets[i]); cat("\n");cat(rep("-", 30), collpase="") ;cat("\n")
     suppressMessages(sites <- browseData(dataset = dataset))
     site <- sample(sites$site, 1)
@@ -77,7 +77,7 @@ test_that(paste( dataset, " : subset period with NA and end"), {
     skip_on_travis()
     skip_on_cran()
     # Please put here the path to the DB on your personal computer!!
-    setDB("/home/ramiro/ownCloud/PROFOUND_Data/v0.1.13/ProfoundData.sqlite")
+    setDB(databaseLocation)
     # #  cat("\n");cat(datasets[i]); cat("\n");cat(rep("-", 30), collpase="") ;cat("\n")
     suppressMessages(sites <- browseData(dataset = dataset))
     site <- sample(sites$site, 1)
@@ -100,7 +100,7 @@ test_that(paste( dataset, " : subset period with start and NA"), {
     skip_on_travis()
     skip_on_cran()
     # Please put here the path to the DB on your personal computer!!
-    setDB("/home/ramiro/ownCloud/PROFOUND_Data/v0.1.13/ProfoundData.sqlite")
+    setDB(databaseLocation)
     #  cat("\n");cat(datasets[i]); cat("\n");cat(rep("-", 30), collpase="") ;cat("\n")
     suppressMessages(sites <- browseData(dataset = dataset))
     site <- sample(sites$site, 1)
