@@ -1,13 +1,14 @@
 ---
-title: "The PROFOUND R-package: ProfoundData"
-author: "Ramiro Silveyra Gonzalez, Christopher Reyer, Florian Hartig"
+title: "The ProfoundData R-package"
+author: "Ramiro Silveyra Gonzalez, Christopher Reyer, Mats Mahnken, Florian Hartig"
 date: "`r Sys.Date()`"
+abstract: "This vignette provides an overview of the Profound data R package. For an overview about the database, see the separate vignette PROFOUNDdatabase. \n \n \n"
 output: 
   rmarkdown::html_vignette:
     toc: true
     toc_depth: 3
 vignette: >
-  %\VignetteIndexEntry{Describes the PROFOUND R-package}
+  %\VignetteIndexEntry{Vignette for the ProfoundData R-package}
   %\VignetteEngine{knitr::rmarkdown}
   \usepackage[utf8](inputenc)
 --- 
@@ -39,11 +40,9 @@ set.seed(1)
 
 The ProfoundData package serves as interface to access the [PROFOUND database](PROFOUNDdatabase.html). Three main functions are included to achieve this goal: a browseData function for exploring the database, a getData function for downloading data fromm the database and a plotData function to quickly inspect any variable of the datasets.
 
-The functions allow to retrieve only data from one site and one dataset at a time. For downloading data of more than one dataset or of more than one site, the function should be called as many times as the number of desired sites or datasets. Additionally, flags and other parameters can be passed to the functions.
+The functions allow to retrieve only data from one site and one dataset at a time. For downloading data of more than one dataset or of more than one site, the function should be called as many times as the number of desired sites or datasets. Additionally, flags and other parameters can be passed to the functions. The package also includes utilities functions to do tasks such as inspecting the data or writing NetCDF files. 
 
-The package also includes utilities functions to do tasks such as inspecting the data or writing NetCDF files. 
-
-To cite the package, run
+To see the suggested ciation for the package, run
 
 ```{r}
 library(ProfoundData)
@@ -67,7 +66,7 @@ Per default, the database is downloaded into the currrent working directory, but
 For using a locally stored database with the ProfoundData package, the first step is to call the *setDB*. The function requires a **valid absolute path to the PROFOUND database**. 
 
 ```{r, eval = T}
-myDB <- path.expand("~/ownCloud/PROFOUND_Data/v0.2.0/ProfoundData.sqlite")
+myDB <- path.expand("/Users/florian/Downloads/ProfoundData.sqlite 2")
 setDB(myDB)
 ```
 

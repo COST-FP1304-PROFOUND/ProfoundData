@@ -68,7 +68,7 @@ vignette for more information and examples (\code{vignette('ProfoundData')}).
 }
 
 \author{
-Except where indicated otherwise, the functions in this package were written by Ramiro Silveyra Gonzalez, Christopher Reyer and Florian Hartig.
+Except where indicated otherwise, the functions in this package were written by Ramiro Silveyra Gonzalez, Christopher Reyer, Florian Hartig and Mahnken. Ramiro Silveyra Gonzalez was the main developer of the package. Florian Hartig is currently the maintainer.
 }
 \keyword{DB}
 \keyword{Profound}

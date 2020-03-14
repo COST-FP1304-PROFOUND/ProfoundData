@@ -34,7 +34,7 @@ Bugfixes
 ## Other changes
 
 * Information of the DB connection is no longer stored as a variable in the package environment,
-but as an option relying on the [settings R-package](https://cran.r-project.org/web/packages/settings/index.html). Thus, there is a new package dependency.
+but as an option relying on the [settings R-package](https://cran.r-project.org/package=settings). Thus, there is a new package dependency.
 
 * The package vignette has been restructured and its content distributed into three different documents: profoundData.html, PROFOUNDdatabase.html and PROFOUNDsites.html. The latter must be created by the user with the function reportDB.
 
