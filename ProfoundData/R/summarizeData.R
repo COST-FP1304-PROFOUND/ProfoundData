@@ -45,13 +45,7 @@
 #' period will be returned if the dataset comprises more than one forcing dataset and one forcing condition.
 #'
 #' @export
-#' @examples
-#' \dontrun{
-#' summarizeData("CLIMATE_ISIMIP2B", site = "Soro")
-#' summarizeData("CLIMATE_LOCAL", site = "Soro")
-#' summarizeData("TREE", site = "Soro")
-#' }
-
+#' @example inst/examples/summarizeDataHelp.R
 summarizeData <- function(dataset, site, location=NULL, forcingDataset = NULL,
                           forcingCondition = NULL,  by = "year",  period = NULL,
                           mode = "data"){

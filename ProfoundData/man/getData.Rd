@@ -65,6 +65,9 @@ To report errors in the package or the data, please use the issue tracker
 in the GitHub repository of ProfoundData \url{https://github.com/COST-FP1304-PROFOUND/ProfoundData}
 }
 \examples{
+# example requires that a sql DB is registered via setDB(dbfile)
+# when run without a registered DB, you will get a file query (depending on OS)
+
 \dontrun{
 # Get SITES data
 sites <- getData(dataset =  "SITES")

@@ -28,8 +28,6 @@
 #' -files and writes them into the indicated folder using the naming convention of
 #'  the ISIMIP2(B)-protocol (https://www.isimip.org/protocol/). Units and long names
 #'  of variables (table 21) will be created automatically.
-#' @note To report errors in the package or the data, please use the issue tracker
-#' in the GitHub repository of ProfoundData \url{https://github.com/COST-FP1304-PROFOUND/ProfoundData}
 #' @example /inst/examples/writeSim2netCDFHelp.R
 #' @export
 #' @author Friedrich J. Bohn

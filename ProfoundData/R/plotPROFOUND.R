@@ -35,8 +35,10 @@ plotPROFOUND.TREE <-function(tmp){
       #if(tmp[["automaticPanels"]] == T) oldpar <- par(mfrow = BayesianTools:::getPanels(overviewPlots+length(years) ))
       if(tmp[["automaticPanels"]] == T){
         oldpar <- par(mfrow = getPanels(overviewPlots), mar=c(2,2,2,0.5))
+        on.exit(par(oldpar)) 
       }else{
         oldpar <- par(mfrow = c(1,1), mar=c(4,4,4,2))
+        on.exit(par(oldpar)) 
       }
       if (plotCombined){
       # Histrogram based on year
@@ -101,7 +103,6 @@ plotPROFOUND.TREE <-function(tmp){
              xlab = "dbh1_cm", ylab = "height1_m", xlim = HDBHRange, ylim= HDBHRange,
              pch = 3)
       }
-      par(oldpar)
     }
   }
 }
@@ -127,8 +128,10 @@ plotPROFOUND.STAND <-function(tmp){
     yearRange <- range(dataSpp$year, na.rm = T)
     if(tmp[["automaticPanels"]] == T){
       oldpar <- par(mfrow = getPanels(length(plotVariables)), mar=c(2,2,2,0.5))
+      on.exit(par(oldpar)) 
     }else{
       oldpar <- par(mfrow = c(1,1), mar=c(4,4,4,2))
+      on.exit(par(oldpar)) 
     }
     for (j in 1:length(plotVariables)){
       lenghtVariable <- length(dataSpp[,plotVariables[j]][!is.na(dataSpp[,plotVariables[j]])])
@@ -142,7 +145,6 @@ plotPROFOUND.STAND <-function(tmp){
  #     if (lenghtVariable == 1 )  text(floor(mean(dataSpp$year, na.rm = T)), floor(mean(dataSpp[,plotVariables[j]], na.rm = T)), paste(spp[i], "has ", plotVariables[j] , "data only for one year!", sep=" "))
      # if (lenghtVariable == 0 )   text(floor(mean(dataSpp$year, na.rm = T)), floor(mean(dataSpp[,plotVariables[j]], na.rm = T)), paste(spp[i], "has no",  plotVariables[j] ,"data!", sep=" "))
     }
-    par(oldpar)
   }
 }
 
@@ -176,8 +178,10 @@ plotPROFOUND.DAILY <-function(tmp, forcing = NULL){
   plotVariables <- plotVariables[plotVariables %in% names(data.ts) ]
   if(tmp[["automaticPanels"]] == T){
     oldpar <- par(mfrow = getPanels(length(plotVariables)), mar=c(2,2,2,0.5))
+    on.exit(par(oldpar)) 
   }else{
     oldpar <- par(mfrow = c(1,1), mar=c(4,4,4,2))
+    on.exit(par(oldpar)) 
   }
   for (i in 1:length(plotVariables)){
     if(length(data.ts[,  plotVariables[i]][is.na(data.ts[,  plotVariables[i]])]) == length(data.ts[,  plotVariables[i]])){
@@ -192,7 +196,6 @@ plotPROFOUND.DAILY <-function(tmp, forcing = NULL){
       }
     }
   }
- par(oldpar)
 }
 
 plotPROFOUND.HALFHOURLY <- function(tmp){
@@ -230,8 +233,10 @@ plotPROFOUND.HALFHOURLY <- function(tmp){
   plotVariables <- plotVariables[plotVariables %in% names(data.ts) ]
   if(tmp[["automaticPanels"]] == T){
     oldpar <- par(mfrow = getPanels(length(plotVariables)), mar=c(2,2,2,0.5))
+    on.exit(par(oldpar)) 
   }else{
     oldpar <- par(mfrow = c(1,1), mar=c(4,4,4,2))
+    on.exit(par(oldpar)) 
   }
   for (i in 1:length(plotVariables)){
     if(length(data.ts[,  plotVariables[i]][is.na(data.ts[,  plotVariables[i]])]) == length(data.ts[,  plotVariables[i]])){
@@ -246,7 +251,6 @@ plotPROFOUND.HALFHOURLY <- function(tmp){
       }
     }
   }
-  par(oldpar)
 }
 
 
@@ -262,8 +266,10 @@ plotPROFOUND.YEARLY <- function(tmp, forcing = NULL){
   plotVariables <- plotVariables[plotVariables %in% names(data.ts) ]
   if(tmp[["automaticPanels"]] == T){
     oldpar <- par(mfrow = getPanels(length(plotVariables)), mar=c(2,2,2,0.5))
+    on.exit(par(oldpar)) 
   }else{
     oldpar <- par(mfrow = c(1,1), mar=c(4,4,4,2))
+    on.exit(par(oldpar)) 
   }
   for (i in 1:length(plotVariables)){
     if(length(data.ts[,  plotVariables[i]][is.na(data.ts[,  plotVariables[i]])]) == length(data.ts[,  plotVariables[i]])){
@@ -275,7 +281,6 @@ plotPROFOUND.YEARLY <- function(tmp, forcing = NULL){
            ylab = "Value")
     }
   }
-  par(oldpar)
 }
 
 plotPROFOUND.MODIS <- function(tmp){
@@ -303,8 +308,10 @@ plotPROFOUND.MODIS <- function(tmp){
   plotVariables <- plotVariables[plotVariables %in% names(data.ts) ]
   if(tmp[["automaticPanels"]] == T){
     oldpar <- par(mfrow = getPanels(length(plotVariables)), mar=c(2,2,2,0.5))
+    on.exit(par(oldpar)) 
   }else{
     oldpar <- par(mfrow = c(1,1), mar=c(4,4,4,2))
+    on.exit(par(oldpar)) 
   }
   #par(mar=c(4,4,4,2)) #bltr
   #par(mar=c(2,2,2,0.5)) #bltr
@@ -319,7 +326,6 @@ plotPROFOUND.MODIS <- function(tmp){
            ylab = "Value", ylim = ylim)
     }
   }
-  par(oldpar)
 }
 
 plotPROFOUND.ISIMIP <- function(tmp){

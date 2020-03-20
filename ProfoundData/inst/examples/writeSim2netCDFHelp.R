@@ -1,4 +1,3 @@
-\dontrun{
 # Produce sample data 
 df <- data.frame(lat = rep(20, 10),
                  lon = rep(30, 10),
@@ -21,5 +20,4 @@ writeSim2netCDF(df = df,
                 ss = "co2const",
                 region = "Kroof",
                 start = '1920',
-                folder = "ISI-MIP")
-}
+                folder = "tempdir")

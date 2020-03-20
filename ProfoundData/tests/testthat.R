@@ -4,8 +4,8 @@ Sys.setenv("R_TESTS" = "")
 library(ProfoundData)
 library(testthat)
 
-# Replace this with zyour for local tests!
-databaseLocation = "/Users/florian/Downloads/ProfoundData.sqlite 2"
+# Replace this with your for local tests!
+databaseLocation = "/Users/florian/temp/ProfoundData.sqlite"
 
 test_check("ProfoundData")
 

@@ -1,5 +1,5 @@
 Package: ProfoundData
-Title: A Package for downloading and exploring data from the PROFOUND database
+Title: Downloading and Exploring Data from the PROFOUND Database
 Version: 0.2.1
 Date: 2020-03-13
 Authors@R: c(person("Ramiro", "Silveyra Gonzalez",  email = "rasilgon@gmail.com", role = c("aut")),
@@ -8,12 +8,12 @@ Authors@R: c(person("Ramiro", "Silveyra Gonzalez",  email = "rasilgon@gmail.com"
             person("Florian", "Hartig", email = "florian.hartig@biologie.uni-regensburg.de", role = c("aut", "cre"), comment=c(ORCID="0000-0002-6255-9059")),
             person("Friedrich", "Bohn", email = "friedrich.bohn@ufz.de", role = c("ctb"))
             )
-Description: The ProfoundData R-package is provides an R interface for the PROFOUND database.
-    The PROFOUND database (PROFOUND DB) brings together data from a wide range of data sources 
-    to evaluate vegetation models and simulate climate impacts at the forest stand scale. It includes
-    9 forest sites across Europe, and provides for them a site description as well as soil, climate, 
-    CO2, Nitrogen deposition, tree-level, forest stand-level and remote sensing data. Moreover, 
-    for a subset of 5 sites, also time series of carbon fluxes, energy balances and soil water are available. 
+Description: Provides an R interface for the PROFOUND database <http://doi.org/10.5880/PIK.2019.008>. The 
+    PROFOUND database contains a wide range of data  to evaluate vegetation models and simulate climate 
+    impacts at the forest stand scale. It includes 9 forest sites across Europe, and provides for them a site 
+    description as well as soil, climate, CO2, Nitrogen deposition, tree-level, forest stand-level 
+    and remote sensing data. Moreover, for a subset of 5 sites, also time series of carbon fluxes, 
+    energy balances and soil water are available. 
 Depends:
     R (>= 3.1.0)
 Imports:

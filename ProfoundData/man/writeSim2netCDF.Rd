@@ -64,12 +64,7 @@ The function transforms your simulation output data frame into several netCDF
  the ISIMIP2(B)-protocol (https://www.isimip.org/protocol/). Units and long names
  of variables (table 21) will be created automatically.
 }
-\note{
-To report errors in the package or the data, please use the issue tracker
-in the GitHub repository of ProfoundData \url{https://github.com/COST-FP1304-PROFOUND/ProfoundData}
-}
 \examples{
-\dontrun{
 # Produce sample data 
 df <- data.frame(lat = rep(20, 10),
                  lon = rep(30, 10),
@@ -92,8 +87,7 @@ writeSim2netCDF(df = df,
                 ss = "co2const",
                 region = "Kroof",
                 start = '1920',
-                folder = "ISI-MIP")
-}
+                folder = "tempdir")
 }
 \author{
 Friedrich J. Bohn

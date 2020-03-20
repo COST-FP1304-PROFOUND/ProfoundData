@@ -16,6 +16,9 @@ Bugfixes
 
 - Add, ideally with issue / commit
 
+# ProfoundData 0.2.1 
+
+small updates and improcement of user-experience
 
 # ProfoundData 0.2.0 
 
@@ -37,8 +40,6 @@ Bugfixes
 but as an option relying on the [settings R-package](https://cran.r-project.org/package=settings). Thus, there is a new package dependency.
 
 * The package vignette has been restructured and its content distributed into three different documents: profoundData.html, PROFOUNDdatabase.html and PROFOUNDsites.html. The latter must be created by the user with the function reportDB.
-
-
 
 
 # v0.1.6 - Release Notes
