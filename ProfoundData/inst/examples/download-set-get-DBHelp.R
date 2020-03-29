@@ -1,7 +1,7 @@
 \dontrun{
   
 # For downloading the data, use 
-dbfile <- downloadDatabase()
+dbfile <- downloadDatabase(location = tempdir())
 
 # Set the connection using the setDB function
 setDB(dbfile)

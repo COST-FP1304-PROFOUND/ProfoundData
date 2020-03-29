@@ -66,7 +66,7 @@ Per default, the database is downloaded into the currrent working directory, but
 For using a locally stored database with the ProfoundData package, the first step is to call the *setDB*. The function requires a **valid absolute path to the PROFOUND database**. 
 
 ```{r, eval = T}
-myDB <- path.expand("/Users/florian/Downloads/ProfoundData.sqlite 2")
+myDB <- path.expand("/Users/florian/temp/ProfoundData.sqlite")
 setDB(myDB)
 ```
 
@@ -532,7 +532,7 @@ This function makes possible to create reates a site-by-site report of all avala
 The function requires a path where to save the html document. If no path is specified, the working directory will be used as output directory.
 
 ```{r, eval=F, echo=T, results="hide", message= F, warning=F}
-reportDB(outDir = "/home/database/")
+reportDB(outDir = tempdir())
 ```
 
 Please note that creating the report it might take several minutes.

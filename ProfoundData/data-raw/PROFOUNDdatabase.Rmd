@@ -81,7 +81,7 @@ The PROFOUND Database (DB) is available under the Creative Commons Attribution-N
 
 ```{r, echo=F, warning = F, message=F}
 library(ProfoundData)
-myDB <- path.expand("/Users/florian/Downloads/ProfoundData.sqlite 2")
+myDB <- path.expand("/Users/florian/temp/ProfoundData.sqlite")
 setDB(myDB)
 
 description <- getData("SITEDESCRIPTION")

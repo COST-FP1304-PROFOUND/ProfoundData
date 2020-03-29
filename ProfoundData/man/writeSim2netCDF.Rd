@@ -87,7 +87,7 @@ writeSim2netCDF(df = df,
                 ss = "co2const",
                 region = "Kroof",
                 start = '1920',
-                folder = "tempdir")
+                folder = tempdir())
 }
 \author{
 Friedrich J. Bohn

@@ -16,7 +16,7 @@ A function to return the filepath to the database.
 \dontrun{
   
 # For downloading the data, use 
-dbfile <- downloadDatabase()
+dbfile <- downloadDatabase(location = tempdir())
 
 # Set the connection using the setDB function
 setDB(dbfile)
