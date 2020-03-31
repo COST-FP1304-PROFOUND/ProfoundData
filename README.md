@@ -2,14 +2,9 @@
 
 The PROFOUND database is a collection of data for calibrating, validating and benchmarking dynamic vegetation models, created by [Cost Action FP1304 PROFOUND](https://twitter.com/FP1304Profound). The database itself, including document and description of the dasta, is hosted by the Potsdam Institute for Climate Research [http://doi.org/10.5880/PIK.2019.008](http://doi.org/10.5880/PIK.2019.008). You can dowload the database either there, or, via the R pacakge (see below). The source code that was used to create the database is available [here](https://github.com/COST-FP1304-PROFOUND/ProfoundData/tree/master/PROFOUND%20database).   
 
+## Installing the ProfoundData R package
 
-# The ProfoundData R package
-
-The ProfoundData R package helps users to download and explore the PROFOUND database from the R environment. 
-
-## Installing the package 
-
-The ProfoundData R package is available from CRAN. To install the (typically more stable) CRAN version, just type:
+The ProfoundData R package helps users to download and explore the PROFOUND database from the R environment. The package is available from CRAN. To install the (typically more stable) CRAN version, just type:
 
 ```{r}
 install.packages("ProfoundData")
