@@ -183,7 +183,7 @@ summarizePROFOUND.FLUX <- function(data, by = "total"){
     if (by == "year" || by == "total"){
       # Convert to tC/ha
       colnames(subSummary) <- gsub("_gCm2", "_tCha1", colnames(subSummary))
-      subSummary <-apply(subSummary, c(1,2), function(x) x*(1/1000000)*(100000/1))
+      subSummary <-apply(subSummary, c(1,2), function(x) x*(1/1000000)*(10000/1))
       subSummary <- as.data.frame(cbind(site, site_id, year,subSummary))
     }else if (by == "day"){
       mo <- unique(subData$mo)
