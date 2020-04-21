@@ -206,7 +206,7 @@ Tree_Data$Solling_305 <- df
 #------------------------------------------------------------------------------#
 # Soro
 #------------------------------------------------------------------------------#
-tree_file <- "./Soro/treedata_for_database_soroe_20-03-2017.txt"
+tree_file <- "./Soro/treedata_for_database_soroe_16-04-2020.txt"
 df <- read.table(tree_file, header=T, sep="\t")
 # description says height and dbh in  m. Dbh it is in cm!!!
 names(df)
