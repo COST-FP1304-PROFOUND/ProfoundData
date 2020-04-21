@@ -180,6 +180,9 @@ cat(Soroe_LAI_2000_2013.df.des)
 # Description is all  there
 df <- Soroe_LAI_2000_2013.df
 df$species_id <- "fasy"
+# reduce to single lai measurement per year: 
+# use only July measurements since most often lai is measured in July in Soro
+df <- df[which(!duplicated(df$year)),]
 head(df)
 names(df) <- gsub("LAI", "lai", names(df))
 Stand_Data$Soro<- df
