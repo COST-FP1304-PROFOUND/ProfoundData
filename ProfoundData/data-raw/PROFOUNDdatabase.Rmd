@@ -2,7 +2,7 @@
 title: "The PROFOUND database"
 author: "Ramiro Silveyra Gonzalez, Christopher Reyer, Mats Mahnken, Florian Hartig"
 date: "`r Sys.Date()`"
-abstract: "This vignette provides an overview of the Profound databse for benchmarking forest vegetation models, in particular database structure, content, data policy and an overview of each forest site contained in the database. \n \n \n"
+abstract: "This vignette provides an overview of the Profound database for benchmarking forest vegetation models, in particular database structure, content, data policy and an overview of each forest site contained in the database. \n \n \n"
 output: 
   rmarkdown::html_vignette:
     toc: true
@@ -67,9 +67,9 @@ set.seed(1)
 
 # Overview
 
-The PROFOUND database (PROFOUND DB) brings together data from a wide range of data sources  to evaluate vegetation models and simulate climate impacts at the forest stand scale. It includes 9 forest sites across Europe, and provides for them a site description as well as soil, climate, CO2, Nitrogen deposition, tree-level, forest stand-level and remote sensing data. Moreover, for a subset of 5 sites, also time series of carbon fluxes, energy balances and soil water are available. 
+The PROFOUND database (PROFOUND DB) brings together data from a wide range of data sources to evaluate vegetation models and simulate climate impacts at the forest stand scale. It includes 9 forest sites across Europe, and provides for them a site description as well as soil, climate, CO2, Nitrogen deposition, tree-level, forest stand-level and remote sensing data. Moreover, for a subset of 5 sites, also time series of carbon fluxes, energy balances and soil water are available. 
 
-For more details, see the [ProfoundData website](http://doi.org/10.5880/PIK.2019.008), as well as Reyer et al, The PROFOUND database for evaluating vegetation models and simulating climate impacts on forests, Earth Syst. Sci. Data Discuss., [https://doi.org/10.5194/essd-2019-220](https://doi.org/10.5194/essd-2019-220), in review, 2019.
+For more details, see the [ProfoundData website](http://doi.org/10.5880/PIK.2020.006), as well as Reyer et al, The PROFOUND database for evaluating vegetation models and simulating climate impacts on forests, Earth Syst. Sci. Data Discuss., [https://doi.org/10.5194/essd-2019-220](https://doi.org/10.5194/essd-2019-220), in review, 2019.
 
 
 # Data Policy

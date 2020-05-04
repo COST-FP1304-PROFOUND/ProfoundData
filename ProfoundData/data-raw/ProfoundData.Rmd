@@ -38,11 +38,11 @@ set.seed(1)
 
 # ProfoundData R-package: using the PROFOUND database from R 
 
-The ProfoundData package serves as interface to access the [PROFOUND database](PROFOUNDdatabase.html). Three main functions are included to achieve this goal: a browseData function for exploring the database, a getData function for downloading data fromm the database and a plotData function to quickly inspect any variable of the datasets.
+The ProfoundData package serves as interface to access the [PROFOUND database](PROFOUNDdatabase.html). Three main functions are included to achieve this goal: a browseData function for exploring the database, a getData function for downloading data from the database and a plotData function to quickly inspect any variable of the datasets.
 
 The functions allow to retrieve only data from one site and one dataset at a time. For downloading data of more than one dataset or of more than one site, the function should be called as many times as the number of desired sites or datasets. Additionally, flags and other parameters can be passed to the functions. The package also includes utilities functions to do tasks such as inspecting the data or writing NetCDF files. 
 
-To see the suggested ciation for the package, run
+To see the suggested citation for the package, run
 
 ```{r}
 library(ProfoundData)
@@ -53,24 +53,24 @@ citation("ProfoundData")
 
 ## Database download 
 
-Profound database is provided in SQLite and can be downloaded either by hand at [http://doi.org/10.5880/PIK.2019.008](http://doi.org/10.5880/PIK.2019.008) or via the 
+The Profound database is provided in SQLite and can be downloaded either by hand at [http://doi.org/10.5880/PIK.2020.006](http://doi.org/10.5880/PIK.2020.006) or via 
 
 ```{r, eval = F}
 sqlfile = downloadDatabase()
 ```
 
-Per default, the database is downloaded into the currrent working directory, but you can specify another location in the function. The function returns the current databse location, which can be passed on the the setDB function (see below).
+Per default, the database is downloaded into the current working directory, but you can specify another location in the function. The function returns the current database location, which can be passed on to the setDB function (see below).
 
 ## Database connection
 
-For using a locally stored database with the ProfoundData package, the first step is to call the *setDB*. The function requires a **valid absolute path to the PROFOUND database**. 
+For using a locally stored database with the ProfoundData package, the first step is to call *setDB*. The function requires a **valid absolute path to the PROFOUND database**. 
 
 ```{r, eval = T}
 myDB <- path.expand("/Users/florian/temp/ProfoundData.sqlite")
 setDB(myDB)
 ```
 
-To check the database connection you can use the use *getDB*, which returns the database path and also informs about the database version.
+To check the database connection you can use *getDB*, which returns the database path and also informs about the database version.
 
 ```{r, eval = T}
 getDB()
@@ -171,7 +171,7 @@ policy <- browseData(dataset = "POLICY", site = "solling_spruce")
 
 ### Data overviews of the available data
 
-The *summarizeData* function allows to obtain data summaries and overviews of the data depending on **mode**. If you choose the mode overview, *summarizeData* will return a data frame with the years and number of observations, the first  and last value, and the  min and max value, as in the example below.
+The *summarizeData* function allows to obtain data summaries and overviews of the data depending on **mode**. If you choose the mode overview, *summarizeData* will return a data frame with the years and number of observations, the first and last value, and the min and max value, as in the example below.
 
 ```{r, fig.show='hold', echo=T, message= F, warning=F}
 data <-summarizeData(dataset = "CLIMATE_LOCAL", site = "bily_kriz", mode = "overview")
@@ -412,7 +412,7 @@ data <- getData(dataset = "FLUX", site = "soro",
 ```
 # The plotData function
  
-The plotData function performs a query to the database, downloads the data, applies the desired options (time period, quality flag, etc.) and shapes the final data into a time series for plotting. It requires a dataset name and a site. Check  the help files to see what datasets are supported. 
+The plotData function performs a query to the database, downloads the data, applies the desired options (time period, quality flag, etc.) and shapes the final data into a time series for plotting. It requires a dataset name and a site. Check the help files to see what datasets are supported. 
 
 ## Normal plotting
 
@@ -426,7 +426,7 @@ Or for TREE data
 ```{r, fig.show='hold',echo=T, results="hide", message= F, warning=F}
 plotData(dataset = "TREE", site = "solling_beech", automaticPanels = TRUE)
 ```
-Note that the argument *automaticPanels* defines whether the plot in a panel.
+Note that the argument *automaticPanels* defines whether to plot in a panel.
 
 ## Additional options
 
@@ -527,7 +527,7 @@ Hint: Check the last section for further information about SQL syntax's.
 
 # The reportDB function
 
-This function makes possible to create reates a site-by-site report of all avalaible data in the PROFOUND database. The summary is created with a rmarkdown document, which is rendered and saved as a html document. The report provdes an exhaustive description and visualization of the PROFOUND database. 
+This function permits creating a site-by-site report of all avalaible data in the PROFOUND database. The summary is created with a rmarkdown document, which is rendered and saved as a html document. The report provides an exhaustive description and visualization of the PROFOUND database. 
 
 The function requires a path where to save the html document. If no path is specified, the working directory will be used as output directory.
 
@@ -535,9 +535,9 @@ The function requires a path where to save the html document. If no path is spec
 reportDB(outDir = tempdir())
 ```
 
-Please note that creating the report it might take several minutes.
+Please note that creating the report might take several minutes.
 
-# Using the databse via sql 
+# Using the database via sql 
 
 To access the database you can use an SQLite database explorer such as [SQLiteStudio](http://sqlitestudio.pl/). Such software allows to visualize and download data through an interface, as well as writing SQL statements. Further information on SQLite characteristics can be found on the [SQLite website](https://www.sqlite.org/lang.html). Besides, there are plenty of resources about using SQL like [this one](http://www.w3schools.com/sql/default.asp) 
 

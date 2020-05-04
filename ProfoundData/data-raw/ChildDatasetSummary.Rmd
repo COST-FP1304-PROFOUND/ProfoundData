@@ -11,7 +11,7 @@ df <- df[, !colnames(df) %in% c("source")]
 rownames(df) <- NULL
 ``` 
 
-The sites parameters were provided by the local site data responsibles. The sites variables that we included in the database are listed in the table below.
+The site parameters were provided by the local site data responsibles. The site variables that we included in the database are listed in the table below.
 
  
 ```{r, echo=F, warning = F, message=F}
@@ -27,7 +27,7 @@ df <- df[, !colnames(df) %in% c("source")]
 rownames(df) <- NULL
 ``` 
 
-The sites description were provided by the local site data responsibles. The site description variables that we included in the database are listed in the table below.
+The site description was provided by the local site data responsibles. The site description variables that we included in the database are listed in the table below.
 
  
 ```{r, echo=F, warning = F, message=F}
@@ -75,7 +75,7 @@ df <- df[, !colnames(df) %in% c("source")]
 rownames(df) <- NULL
 ```
 
-The soil data were provided by the local site data responsibles. The variables that we included in the database are listed in the table below. The data is very heteregenous, therefore not all variables are available for each site.
+The soil data were provided by the local site data responsibles. The variables that we included in the database are listed in the table below. The data is very heterogeneous, therefore not all variables are available for each site.
 
 ```{r, echo=F, warning = F, message=F}
 pander(df, adding = 0, missing = '**--**', round = 3,    use.hyphening = TRUE, split.cells = 3, split.tables = 200, caption = tableCaption("Description of SOIL variables included in the database."))
@@ -103,7 +103,7 @@ pander(df, adding = 0, missing = '**--**', round = 3,    use.hyphening = TRUE, s
 
 ## Dataset CLIMATE_LOCAL 
 
-The CLIMATE LOCAL data refers to climate data measured at each forest site or meteorological stations close to the site of the forest site. For those forest sites for which the data has been derived from half-hourly  [FLUXNET2015](http://fluxnet.fluxdata.org/) data, we also provide the original half-hourly data in the table METEOROLOGICAL.
+The CLIMATE LOCAL data refers to climate data measured at each forest site or meteorological stations close to the site of the forest site. For those forest sites for which the data has been derived from half-hourly [FLUXNET2015](http://fluxnet.fluxdata.org/) data, we also provide the original half-hourly data in the table METEOROLOGICAL.
 
 When relative humidity was not part of the original data, we calculated it from the vapour pressure deficit and the daily temperatures as
 
