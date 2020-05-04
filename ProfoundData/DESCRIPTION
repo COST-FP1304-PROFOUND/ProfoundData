@@ -1,7 +1,7 @@
 Package: ProfoundData
 Title: Downloading and Exploring Data from the PROFOUND Database
-Version: 0.2.1
-Date: 2020-03-13
+Version: 0.3.0
+Date: 2020-05-04
 Authors@R: c(person("Ramiro", "Silveyra Gonzalez",  email = "rasilgon@gmail.com", role = c("aut")),
             person("Christopher", "Reyer", email = "reyer@pik-potsdam.de", role = c("aut")),
             person("Mahnken", "Mats", email = "mahnken@pik-potsdam.de", role = c("aut")),
