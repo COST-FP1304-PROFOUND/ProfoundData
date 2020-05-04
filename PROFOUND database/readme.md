@@ -11,6 +11,22 @@
 
 # News
 
+## v0.3 - Release Notes
+
+### Changes in existing datasets
+
+* TREE: removed duplicates in TREE views coming from TREE_master and PLOTSIZE_master JOIN for Soro, KROOF and Hyytiala. Replaced entire Soro data with new updated data now available from 1994-2017.
+* STAND: corrected values for foliageBiomass_kgha, branchesBiomass_kgha, stemBiomass_kgha and rootBiomass_kgha for Bily Kriz to match unit. Replaced Soro data with new updated including biomass data available from 1994-2017.
+* CLIMATE_ISMIPFT: renamed rad_Jcm2day to rad_Jcm2.
+* METADATA_CLIMATE_ISIMIPFT: renamed unit of variable rad_Jcm2day from J cm-2 day-1 to J cm-2. CLIMATE_ISIMIP2A: renamed rad_Jcm2day to rad_Jcm2.
+* METADATA_CLIMATE_ISIMIP2A: renamed unit of variable rad_Jcm2day from J cm-2 day-1 to J cm-2. CLIMATE_ISIMIP2B: renamed rad_Jcm2day to rad_Jcm2.
+* METADATA_CLIMATE_ISIMIP2B: renamed unit of variable rad_Jcm2day from J cm-2 day-1 to J cm-2. CLIMATE_ISIMIP2BLBC: renamed rad_Jcm2day to rad_Jcm2.
+* METADATA_CLIMATE_ISIMIP2BLBC: renamed unit of variable rad_Jcm2day from J cm-2 day-1 to J cm-2. CLIMATE_LOCAL: renamed rad_Jcm2day to rad_Jcm2.
+* METADATA_CLIMATE_LOCAL: renamed unit of variable rad_Jcm2day from J cm-2 day-1 to J cm-2.
+* METADATA_MODIS_MOD17A2: renamed unit of variables gpp_gCm2d and psNet_gm2d from gC m-2 d to gC m-2 d-1.
+* SITEDESCRIPTION: minor changes in Soro site description. SOURCE: corrected reference DOI link.
+
+
 ## v0.2.0 - Release Notes
 
 ### New datasets
