@@ -185,13 +185,19 @@ df$species_id <- "fasy"
 df <- df[which(!duplicated(df$year)),]
 head(df)
 names(df) <- gsub("LAI", "lai", names(df))
-Stand_Data$Soro<- df
+
 #inFile <- "/home/trashtos/ownCloud/PROFOUND_Data/Processed/Soro/Standdata_for_DB.txt"
 #df <- read.table(inFile, header = T, sep = "\t")
 #df <- df[,colSums(is.na(df))<nrow(df)]
 #Stand_Data$Soro
 
-#------------------------------------------------------------------------------#
+inFile <- "./Soro/standdata_biomass_for_database_soroe_28-04-2020.txt"
+df_biomass <- read.table(inFile, header = T, sep = "\t")
+
+df_full <- merge(df_biomass, df, by="year", all.x=T)
+
+Stand_Data$Soro<- df_full
+  #------------------------------------------------------------------------------#
 #Combine the Tree data
 locations <- unique(c(names(Stand_Data), names(Stand_Data_Tree)))
 # Remove Hyttiala from this
