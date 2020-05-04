@@ -11,8 +11,8 @@ columns <- c("record_id","variable", "site_id", "type", "units",  "description")
 # Load libraries
 # open connection to DB
 db <- dbConnect(SQLite(), dbname= myDB)
-if ( "METADATA_SITES_master" %in% dbListTables(db)){
-  dbSendQuery(db, "DROP TABLE METADATA_SITES_master")}
+if ( "METADATA_SITEDESCRIPTION_master" %in% dbListTables(db)){
+  dbSendQuery(db, "DROP TABLE METADATA_SITEDESCRIPTION_master")}
 # create table in DB (cant type minus)
 dbSendQuery(conn = db,
             "CREATE TABLE METADATA_SITEDESCRIPTION_master

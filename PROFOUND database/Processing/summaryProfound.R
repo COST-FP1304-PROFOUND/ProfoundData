@@ -779,7 +779,7 @@ unique(unlist(plotAll))
 
 return(unique(unlist(variablesAll)) )
 for (i in 1:length(files)){
-  table <-read.table(files[1], sep = ";", header = TRUE , colClasses = "character"),
+  table <-read.table(files[1], sep = ";", header = TRUE , colClasses = "character")
   unique(table$code_plot)
   unique(table$code_country)
 }

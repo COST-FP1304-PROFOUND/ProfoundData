@@ -24,7 +24,7 @@ source("Version_to_DB.R")
 source("Sites_to_DB.R")
 source("Create_SITES_Views.R")
 source("MetadataSITES_to_DB.R")
-source("SITEDESCRIPTION_to_DB.R")
+source("SITEDESCRIPTION_to_DB-2.R")
 source("MetadataSITEDESCRIPTION_to_DB.R")
 source("Create_SITEDESCRIPTION_Views.R")
 # create ecological description
