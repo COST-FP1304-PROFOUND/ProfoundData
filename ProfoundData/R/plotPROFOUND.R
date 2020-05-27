@@ -15,18 +15,16 @@ plotPROFOUND.TREE <-function(tmp){
     }else{
       plotDBH <- FALSE
       plotHeight <- FALSE
-      plotCombined <- TRUE
+      plotCombined <- FALSE
       overviewPlots <- 0
       if ("dbh1_cm" %in% names(dataSpp))  plotDBH <- TRUE
       if ("height1_m" %in% names(dataSpp))  plotHeight <- TRUE
-      if(!is.null(tmp[["variables"]]) & length(tmp[["variablesChecked"]]) <= 2) plotCombined <- F
+      if(plotDBH & plotHeight) plotCombined <- TRUE
       # Check if only variable is requested
       if (plotHeight & plotDBH & plotCombined){
         overviewPlots <- 4
-      }else if (plotHeight & plotDBH & !plotCombined){
-        overviewPlots <- 2
       } else if (plotHeight || plotDBH & !plotCombined){
-        overviewPlots <- 1
+        overviewPlots <- 2
       }
       # This a values for segment(s)
       epsilon <- 0.1
@@ -40,7 +38,7 @@ plotPROFOUND.TREE <-function(tmp){
         oldpar <- par(mfrow = c(1,1), mar=c(4,4,4,2))
         on.exit(par(oldpar)) 
       }
-      if (plotCombined){
+
       # Histrogram based on year
       # create positions for tick marks, one more than number of bars
       atYear <- 1:(length(unique(dataSpp$year)) + 1)
@@ -51,7 +49,7 @@ plotPROFOUND.TREE <-function(tmp){
       # add x-axis with centered position, with labels, but without ticks.
       axis(side = 1, at = mp[seq(1, length(unique(dataSpp$year)), 2)],
            tick = FALSE, labels = unique(dataSpp$year)[seq(1, length(unique(dataSpp$year)), 2)])
-      }
+
       # Plot averaged DBH
       if(plotDBH){
         meanSppDBH <- aggregate(dataSpp$dbh1_cm  ~ dataSpp$year,  dataSpp, mean, na.action = na.omit, simplify = T)

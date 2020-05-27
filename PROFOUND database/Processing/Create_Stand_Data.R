@@ -42,6 +42,12 @@ names(df) <-  c("year", "species_id", "site_id", "dbhArith_cm", "ba_m2ha", "age"
                 "stemBiomass_kgha", "rootBiomass_kgha")
 df$stem <- NULL
 
+# biomass stock variables from t/ha into kg/ha because raw data values are in t/ha 
+df$foliageBiomass_kgha <- df$foliageBiomass_kgha * 1000
+df$branchesBiomass_kgha <- df$branchesBiomass_kgha * 1000
+df$stemBiomass_kgha <- df$stemBiomass_kgha * 1000
+df$rootBiomass_kgha <- df$rootBiomass_kgha * 1000
+
 #df <- dropDuplicates(df, Tree_Data$BilyKriz)
 #df <- df[ df$year %in% unique(Tree_Data$BilyKriz$year), ]
 Stand_Data$BilyKriz <- df
@@ -174,15 +180,24 @@ cat(Soroe_LAI_2000_2013.df.des)
 # Description is all  there
 df <- Soroe_LAI_2000_2013.df
 df$species_id <- "fasy"
+# reduce to single lai measurement per year: 
+# use only July measurements since most often lai is measured in July in Soro
+df <- df[which(!duplicated(df$year)),]
 head(df)
 names(df) <- gsub("LAI", "lai", names(df))
-Stand_Data$Soro<- df
+
 #inFile <- "/home/trashtos/ownCloud/PROFOUND_Data/Processed/Soro/Standdata_for_DB.txt"
 #df <- read.table(inFile, header = T, sep = "\t")
 #df <- df[,colSums(is.na(df))<nrow(df)]
 #Stand_Data$Soro
 
-#------------------------------------------------------------------------------#
+inFile <- "./Soro/standdata_biomass_for_database_soroe_28-04-2020.txt"
+df_biomass <- read.table(inFile, header = T, sep = "\t")
+
+df_full <- merge(df_biomass, df, by="year", all.x=T)
+
+Stand_Data$Soro<- df_full
+  #------------------------------------------------------------------------------#
 #Combine the Tree data
 locations <- unique(c(names(Stand_Data), names(Stand_Data_Tree)))
 # Remove Hyttiala from this

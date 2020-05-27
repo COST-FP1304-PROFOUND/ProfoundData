@@ -66,7 +66,7 @@ downloadDatabase<- function(location=NULL){
   #if(is.null(location)) location = choose_directory()
   if(is.null(location)) location = getwd()
   file = paste(location, "/ProfoundData.zip", sep = "")
-  download.file("http://www.pik-potsdam.de/data/doi/10.5880/PIK.2019.008/ProfoundData.zip"
+  download.file("http://www.pik-potsdam.de/data/doi/10.5880/PIK.2020.006/ProfoundData.zip"
                 , file)
   if(file.exists(file)) message("download successfull, trying to unzip. This may not work on some operating systems. In this case, locate the downloaded file and unzip by hand.")
 

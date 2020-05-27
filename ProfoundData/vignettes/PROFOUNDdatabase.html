@@ -13,7 +13,7 @@
 
 <meta name="author" content="Ramiro Silveyra Gonzalez, Christopher Reyer, Mats Mahnken, Florian Hartig" />
 
-<meta name="date" content="2020-03-29" />
+<meta name="date" content="2020-05-04" />
 
 <title>The PROFOUND database</title>
 
@@ -213,7 +213,8 @@ code > span.st { color: #d14; }
 code > span.co { color: #888888; font-style: italic; } 
 code > span.ot { color: #007020; } 
 code > span.al { color: #ff0000; font-weight: bold; } 
-code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61717; background-color: #e3d2d2; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
 </style>
 
 
@@ -228,10 +229,10 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 
 <h1 class="title toc-ignore">The PROFOUND database</h1>
 <h4 class="author">Ramiro Silveyra Gonzalez, Christopher Reyer, Mats Mahnken, Florian Hartig</h4>
-<h4 class="date">2020-03-29</h4>
+<h4 class="date">2020-05-04</h4>
 <div class="abstract">
 <p class="abstract">Abstract</p>
-<p>This vignette provides an overview of the Profound databse for benchmarking forest vegetation models, in particular database structure, content, data policy and an overview of each forest site contained in the database.</p>
+<p>This vignette provides an overview of the Profound database for benchmarking forest vegetation models, in particular database structure, content, data policy and an overview of each forest site contained in the database.</p>
 </div>
 
 
@@ -266,7 +267,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <div id="overview" class="section level1">
 <h1>Overview</h1>
 <p>The PROFOUND database (PROFOUND DB) brings together data from a wide range of data sources to evaluate vegetation models and simulate climate impacts at the forest stand scale. It includes 9 forest sites across Europe, and provides for them a site description as well as soil, climate, CO2, Nitrogen deposition, tree-level, forest stand-level and remote sensing data. Moreover, for a subset of 5 sites, also time series of carbon fluxes, energy balances and soil water are available.</p>
-<p>For more details, see the <a href="http://doi.org/10.5880/PIK.2019.008">ProfoundData website</a>, as well as Reyer et al, The PROFOUND database for evaluating vegetation models and simulating climate impacts on forests, Earth Syst. Sci. Data Discuss., <a href="https://doi.org/10.5194/essd-2019-220">https://doi.org/10.5194/essd-2019-220</a>, in review, 2019.</p>
+<p>For more details, see the <a href="http://doi.org/10.5880/PIK.2020.006">ProfoundData website</a>, as well as Reyer et al, The PROFOUND database for evaluating vegetation models and simulating climate impacts on forests, Earth Syst. Sci. Data Discuss., <a href="https://doi.org/10.5194/essd-2019-220">https://doi.org/10.5194/essd-2019-220</a>, in review, 2019.</p>
 </div>
 <div id="data-policy" class="section level1">
 <h1>Data Policy</h1>
@@ -1665,9 +1666,9 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <td align="left">Total daily precipitation</td>
 </tr>
 <tr class="even">
-<td align="left">rad_Jcm2day</td>
+<td align="left">rad_Jcm2</td>
 <td align="left">REAL</td>
-<td align="left">J cm-2 day-1</td>
+<td align="left">J cm-2</td>
 <td align="left">Total daily global radiation</td>
 </tr>
 <tr class="odd">
@@ -3209,7 +3210,7 @@ es(Ta) = 0.6108e^{(17.27*Ta)/ (Ta + 237.3)}
 <tr class="odd">
 <td align="left">gpp_gCm2d</td>
 <td align="left">REAL</td>
-<td align="left">gC m-2 d</td>
+<td align="left">gC m-2 d-1</td>
 <td align="left">Gross Primary Production. Valid range: -375 – 375. Fill value: NA. Spatial resolution 1 km. Temporal resolution: 8-day accumulation.</td>
 <td align="left">MOD17A2</td>
 </tr>
@@ -3223,7 +3224,7 @@ es(Ta) = 0.6108e^{(17.27*Ta)/ (Ta + 237.3)}
 <tr class="odd">
 <td align="left">psNet_gCm2d</td>
 <td align="left">REAL</td>
-<td align="left">gC m-2 d</td>
+<td align="left">gC m-2 d-1</td>
 <td align="left">Net Photosynthesis (GPP – maintenance respiration). Valid range: -375 – 375. Fill value: NA. Spatial resolution 1 km. Temporal resolution: 8-day accumulation.</td>
 <td align="left">MOD17A2</td>
 </tr>

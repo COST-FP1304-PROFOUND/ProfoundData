@@ -1,24 +1,18 @@
-# ProfoundData 0.2.2 
-
-New features
-
-- 
-
-Major changes
-
-- None
+# ProfoundData 0.3.0 
 
 Minor changes
 
-- Add
+- renamed variable "Jcm2day" to "Jcm2"
+- updated DOI and download links to reference to DB version 0.3 
+- minor change to plotting TREE variables
 
 Bugfixes 
 
-- Add, ideally with issue / commit
+- corrected flux unit conversion error in summarizeData() (see commit 3dfa079142654780a9bb74da8cca3754bf0c4f26)
 
 # ProfoundData 0.2.1 
 
-small updates and improcement of user-experience
+small updates and improvement of user-experience
 
 # ProfoundData 0.2.0 
 
